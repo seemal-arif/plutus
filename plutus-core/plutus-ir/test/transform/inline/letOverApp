@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {- 
 Single occurrence let bindings that are functions.
 idFun and funApp both get inlined because they only occur once.
@@ -23,4 +24,19 @@ in funApp 5 6
   )
   
   [ [ funApp (con integer 5) ] (con integer 6) ]
+=======
+(let
+    (nonrec)
+    (termbind
+        (strict)
+        (vardecl idFun (fun (con integer) (con integer)))
+        (lam x (con integer) x)
+    )
+    (termbind
+        (strict)
+        (vardecl funApp (fun (con integer) (fun (con integer) (con integer))))
+        (lam eta (con integer) (lam eta (con integer) [ idFun eta ]))
+    )
+    [ [ funApp (con integer 5) ] (con integer 6) ]
+>>>>>>> 2c8e964d1 (Add over-application test.)
 )

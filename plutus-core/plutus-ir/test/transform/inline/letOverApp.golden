@@ -1,4 +1,13 @@
 [
+<<<<<<< HEAD
   [ (lam x (con integer) (lam y (con integer) y)) (con integer 5) ]
+=======
+  [
+    (lam
+      eta (con integer) (lam eta (con integer) [ (lam x (con integer) x) eta ])
+    )
+    (con integer 5)
+  ]
+>>>>>>> 2c8e964d1 (Add over-application test.)
   (con integer 6)
 ]
