@@ -19,7 +19,11 @@ in g 3
     (termbind
       (strict)
       (vardecl g (fun (con integer) (fun (con integer) (con integer))))
+<<<<<<< HEAD
       (lam y (con integer) idFun)
+=======
+      (lam eta (con integer) idFun)
+>>>>>>> de7c772ed (f)
     )
     [ g (con integer 3) ]
 )
