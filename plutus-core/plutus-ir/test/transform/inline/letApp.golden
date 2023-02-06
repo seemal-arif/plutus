@@ -2,6 +2,7 @@
 [ [ (builtin addInteger) (con integer 4) ] (con integer 5) ]
 =======
 [
+<<<<<<< HEAD
   (lam
     eta
     (con integer)
@@ -26,3 +27,7 @@
   (con integer 5)
 ]
 >>>>>>> d7318048b (Add test of a let that is an application. Needs more investigation on this one.)
+=======
+  (lam eta (con integer) [ [ AddInteger (con integer 4) ] eta ]) (con integer 5)
+]
+>>>>>>> c8da949fc (Simplify letApp by hand.)
