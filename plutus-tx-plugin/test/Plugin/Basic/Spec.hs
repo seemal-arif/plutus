@@ -25,13 +25,21 @@ import PlutusTx.Prelude as P
 import PlutusTx.Test
 
 import Data.Proxy
+import PlutusTx.Builtins qualified as Builtin
 import Prelude hiding ((+))
 
 
 basic :: TestNested
 basic = testNested "Basic" [
-    goldenPir "letFunEg1" monoId
+    -- goldenPir "letOverApp" monoId
+    goldenPir "letApp" letApp
     , goldenPir "letFunEg2" letFun2
+    , goldenPir "letFunInFunAllMulti" letFunInFunAllMulti
+    , goldenPir "letFunInFunMulti" letFunInFunMulti
+    , goldenPir "letFunInFunMultiFullyApplied" letFunInFunMultiFullyApplied
+    , goldenPir "letFunForall" letFunForall
+    , goldenPir "letAppMulti" letAppMulti
+    , goldenPir "letOverAppMulti" letOverAppMulti
 --   , goldenPir "monoK" monoK
 --   , goldenPir "letFun" letFun
 --   , goldenPir "nonstrictLet" nonstrictLet
@@ -47,15 +55,15 @@ basic = testNested "Basic" [
 --   , goldenUPlcCatch "patternMatchFailure" patternMatchFailure
   ]
 
-monoId :: CompiledCode Integer
-{-# NOINLINE monoId #-}
-monoId = plc (Proxy @"monoId") (
+letApp :: CompiledCode Integer
+{-# NOINLINE letApp #-}
+letApp = plc (Proxy @"letApp") (
     let appNum :: Integer
         {-# NOINLINE appNum #-}
         appNum = 4
         funApp :: Integer -> Integer
         {-# NOINLINE funApp #-}
-        funApp = (\x y -> x P.+ y) appNum
+        funApp = (\x y -> Builtin.addInteger x y) appNum
     in funApp 5
     )
 
@@ -69,6 +77,88 @@ letFun2 = plc (Proxy @"monoId") (
         {-# NOINLINE funApp #-}
         funApp = \x -> idFun
     in funApp 5 6
+    )
+
+letFunInFunAllMulti :: CompiledCode ((Integer -> Integer))
+letFunInFunAllMulti = plc (Proxy @"letFunInFunAllMulti") (
+    let
+        idFun :: Integer -> Integer
+        {-# NOINLINE idFun #-}
+        idFun x = x
+        g :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE g #-}
+        g y = idFun
+        k :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE k #-}
+        k = g
+    in k idFun
+    )
+
+letFunInFunMulti :: CompiledCode ((Integer -> Integer))
+letFunInFunMulti = plc (Proxy @"letFunInFunMulti") (
+    let
+        idFun :: Integer -> Integer
+        {-# NOINLINE idFun #-}
+        idFun x = x
+        g :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE g #-}
+        g y = idFun
+    in g idFun
+    )
+
+letFunInFunMultiFullyApplied :: CompiledCode Integer
+letFunInFunMultiFullyApplied = plc (Proxy @"letFunInFunMultiFullyApplied") (
+    let
+        idFun :: Integer -> Integer
+        {-# NOINLINE idFun #-}
+        idFun x = x
+        g :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE g #-}
+        g y = idFun
+    in g idFun 1
+    )
+
+letFunForall :: CompiledCode Integer
+letFunForall = plc (Proxy @"letFunForall") (
+    let
+        idFun :: forall a. a -> a
+        {-# NOINLINE idFun #-}
+        idFun x = x
+        g :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE g #-}
+        g y = idFun
+    in g idFun 1
+    )
+
+letAppMulti :: CompiledCode Integer
+letAppMulti = plc (Proxy @"letAppMulti")(
+    let
+        appNum :: Integer
+        {-# NOINLINE  appNum #-}
+        appNum = 4
+        funApp :: Integer -> Integer
+        {-# NOINLINE funApp #-}
+        funApp = (\x y -> Builtin.addInteger x y) appNum
+        k :: Integer -> Integer
+        {-# NOINLINE k #-}
+        k = funApp
+    in k appNum
+    )
+
+
+letOverAppMulti :: CompiledCode Integer
+letOverAppMulti = plc (Proxy @"letOverAppMulti")(
+    let
+        idFun :: Integer -> Integer
+        {-# NOINLINE idFun #-}
+        idFun y = y
+        funApp :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE funApp #-}
+        funApp x = idFun
+        k :: (Integer -> Integer) -> (Integer -> Integer)
+        {-# NOINLINE k #-}
+        k = funApp
+    in k idFun 6
     )
 
 monoK :: CompiledCode (Integer -> Integer -> Integer)
