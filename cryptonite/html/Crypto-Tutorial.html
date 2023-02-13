@@ -5,11 +5,11 @@
  work with cryptonite types.  For example function <code><a href="../../memory/html/Data-ByteArray.html#v:convert" title="Data.ByteArray">convert</a></code>
  can transform one <code><a href="../../memory/html/Data-ByteArray.html#v:ByteArrayAccess" title="Data.ByteArray">ByteArrayAccess</a></code> concrete type like
  <code><a href="Crypto-Hash.html#v:Digest" title="Crypto.Hash">Digest</a></code> to a <code><a href="../../bytestring/html/Data-ByteString.html#v:ByteString" title="Data.ByteString">ByteString</a></code>.</p><p>Algorithms and functions needing random bytes are based on type class
- <code><a href="Crypto-Random-Types.html#v:MonadRandom" title="Crypto.Random.Types">MonadRandom</a></code>.  Implementation <code><a href="../../ghc/html/libraries/base-4.16.3.0/System-IO.html#t:IO" title="System.IO">IO</a></code> uses a system source
+ <code><a href="Crypto-Random-Types.html#v:MonadRandom" title="Crypto.Random.Types">MonadRandom</a></code>.  Implementation <code><a href="../../ghc/html/libraries/base-4.16.4.0/System-IO.html#t:IO" title="System.IO">IO</a></code> uses a system source
  of entropy.  It is also possible to use a <code><a href="Crypto-Random-Types.html#v:DRG" title="Crypto.Random.Types">DRG</a></code> with
  <code><a href="Crypto-Random-Types.html#v:MonadPseudoRandom" title="Crypto.Random.Types">MonadPseudoRandom</a></code></p><p>Error conditions are returned with data type <code><a href="Crypto-Error.html#v:CryptoFailable" title="Crypto.Error">CryptoFailable</a></code>.
  Functions in module <a href="Crypto-Error.html">Crypto.Error</a> can convert those values to runtime
- exceptions, <code><a href="../../ghc/html/libraries/base-4.16.3.0/Data-Maybe.html#t:Maybe" title="Data.Maybe">Maybe</a></code> or <code><a href="../../ghc/html/libraries/base-4.16.3.0/Data-Either.html#t:Either" title="Data.Either">Either</a></code> values.</p></div><a href="#g:2" id="g:2"><h1>Hash algorithms</h1></a><div class="doc"><p>Hashing a complete message:</p><pre>import Crypto.Hash
+ exceptions, <code><a href="../../ghc/html/libraries/base-4.16.4.0/Data-Maybe.html#t:Maybe" title="Data.Maybe">Maybe</a></code> or <code><a href="../../ghc/html/libraries/base-4.16.4.0/Data-Either.html#t:Either" title="Data.Either">Either</a></code> values.</p></div><a href="#g:2" id="g:2"><h1>Hash algorithms</h1></a><div class="doc"><p>Hashing a complete message:</p><pre>import Crypto.Hash
 
 import Data.ByteString (ByteString)
 

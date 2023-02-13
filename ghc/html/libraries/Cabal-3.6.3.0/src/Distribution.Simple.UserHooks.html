@@ -31,7 +31,7 @@
 </span><span id="line-31"></span><span>        </span><span class="annot"><a href="Distribution.Simple.UserHooks.html#emptyUserHooks"><span class="hs-identifier">emptyUserHooks</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-35"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Compat.Prelude.html"><span class="hs-identifier">Distribution.Compat.Prelude</span></a></span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.PackageDescription.html"><span class="hs-identifier">Distribution.PackageDescription</span></a></span><span>
@@ -41,7 +41,7 @@
 </span><span id="line-41"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Simple.Setup.html"><span class="hs-identifier">Distribution.Simple.Setup</span></a></span><span>
 </span><span id="line-42"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Simple.LocalBuildInfo.html"><span class="hs-identifier">Distribution.Simple.LocalBuildInfo</span></a></span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">type</span><span> </span><span id="Args"><span class="annot"><a href="Distribution.Simple.UserHooks.html#Args"><span class="hs-identifier hs-var">Args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-44"></span><span class="hs-keyword">type</span><span> </span><span id="Args"><span class="annot"><a href="Distribution.Simple.UserHooks.html#Args"><span class="hs-identifier hs-var">Args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span class="hs-comment">-- | Hooks allow authors to add specific functionality before and after a</span><span>
 </span><span id="line-47"></span><span class="hs-comment">-- command is run, and also to specify additional preprocessors.</span><span>
@@ -53,7 +53,7 @@
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span>    </span><span class="hs-comment">-- | Read the description file</span><span>
 </span><span id="line-55"></span><span>    </span><span id="readDesc"><span class="annot"><span class="annottext">UserHooks -&gt; IO (Maybe GenericPackageDescription)
-</span><a href="Distribution.Simple.UserHooks.html#readDesc"><span class="hs-identifier hs-var hs-var">readDesc</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GenericPackageDescription.html#GenericPackageDescription"><span class="hs-identifier hs-type">GenericPackageDescription</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a href="Distribution.Simple.UserHooks.html#readDesc"><span class="hs-identifier hs-var hs-var">readDesc</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GenericPackageDescription.html#GenericPackageDescription"><span class="hs-identifier hs-type">GenericPackageDescription</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>    </span><span class="hs-comment">-- | Custom preprocessors in addition to and overriding 'knownSuffixHandlers'.</span><span>
 </span><span id="line-57"></span><span>    </span><span id="hookedPreProcessors"><span class="annot"><span class="annottext">UserHooks -&gt; [PPSuffixHandler]
 </span><a href="Distribution.Simple.UserHooks.html#hookedPreProcessors"><span class="hs-identifier hs-var hs-var">hookedPreProcessors</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><a href="Distribution.Simple.PreProcess.html#PPSuffixHandler"><span class="hs-identifier hs-type">PPSuffixHandler</span></a></span><span> </span><span class="hs-special">]</span><span class="hs-special">,</span><span>
@@ -113,7 +113,7 @@
 -&gt; ReplFlags
 -&gt; Args
 -&gt; IO ()
-</span><a href="Distribution.Simple.UserHooks.html#replHook"><span class="hs-identifier hs-var hs-var">replHook</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.Types.PackageDescription.html#PackageDescription"><span class="hs-identifier hs-type">PackageDescription</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Types.LocalBuildInfo.html#LocalBuildInfo"><span class="hs-identifier hs-type">LocalBuildInfo</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.UserHooks.html#UserHooks"><span class="hs-identifier hs-type">UserHooks</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.Setup.html#ReplFlags"><span class="hs-identifier hs-type">ReplFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a href="Distribution.Simple.UserHooks.html#replHook"><span class="hs-identifier hs-var hs-var">replHook</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.Types.PackageDescription.html#PackageDescription"><span class="hs-identifier hs-type">PackageDescription</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Types.LocalBuildInfo.html#LocalBuildInfo"><span class="hs-identifier hs-type">LocalBuildInfo</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.UserHooks.html#UserHooks"><span class="hs-identifier hs-type">UserHooks</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.Setup.html#ReplFlags"><span class="hs-identifier hs-type">ReplFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
 </span><span id="line-82"></span><span>    </span><span class="hs-comment">-- |Hook to run after repl command.  Second arg indicates verbosity level.</span><span>
 </span><span id="line-83"></span><span>    </span><span id="postRepl"><span class="annot"><span class="annottext">UserHooks
 -&gt; Args
@@ -307,8 +307,8 @@
 </span><span id="line-154"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Distribution.Simple.UserHooks.html#UserHooks"><span class="hs-identifier hs-type">UserHooks</span></a></span><span> </span><span class="hs-special">{</span><span>
 </span><span id="line-155"></span><span>      </span><span class="annot"><span class="annottext">readDesc :: IO (Maybe GenericPackageDescription)
 </span><a href="Distribution.Simple.UserHooks.html#readDesc"><span class="hs-identifier hs-var">readDesc</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span class="hs-special">,</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-156"></span><span>      </span><span class="annot"><span class="annottext">hookedPreProcessors :: [PPSuffixHandler]
 </span><a href="Distribution.Simple.UserHooks.html#hookedPreProcessors"><span class="hs-identifier hs-var">hookedPreProcessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">,</span><span>
 </span><span id="line-157"></span><span>      </span><span class="annot"><span class="annottext">hookedPrograms :: [Program]
@@ -317,42 +317,42 @@
 </span><a href="Distribution.Simple.UserHooks.html#preConf"><span class="hs-identifier hs-var">preConf</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-159"></span><span>      </span><span class="annot"><span class="annottext">confHook :: (GenericPackageDescription, HookedBuildInfo)
 -&gt; ConfigFlags -&gt; IO LocalBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#confHook"><span class="hs-identifier hs-var">confHook</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span class="annot"><span class="annottext">(GenericPackageDescription, HookedBuildInfo)
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">ConfigFlags
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; [Char] -&gt; a
-</span><a href="../../base-4.16.3.0/src/GHC-Err.html#error"><span class="hs-identifier hs-var">error</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; [Char] -&gt; a
+</span><a href="../../base-4.16.4.0/src/GHC-Err.html#error"><span class="hs-identifier hs-var">error</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;No local build info generated during configure. Over-ride empty configure hook.&quot;</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
 </span><span id="line-160"></span><span>      </span><span class="annot"><span class="annottext">postConf :: Args
 -&gt; ConfigFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postConf"><span class="hs-identifier hs-var">postConf</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-161"></span><span>      </span><span class="annot"><span class="annottext">preBuild :: Args -&gt; BuildFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preBuild"><span class="hs-identifier hs-var">preBuild</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-162"></span><span>      </span><span class="annot"><span class="annottext">buildHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; BuildFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#buildHook"><span class="hs-identifier hs-var">buildHook</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-163"></span><span>      </span><span class="annot"><span class="annottext">postBuild :: Args -&gt; BuildFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postBuild"><span class="hs-identifier hs-var">postBuild</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-164"></span><span>      </span><span class="annot"><span class="annottext">preRepl :: Args -&gt; ReplFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preRepl"><span class="hs-identifier hs-var">preRepl</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-glyph">\</span><span class="annot"><span class="annottext">Args
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">ReplFlags
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
 </span><a href="Distribution.Types.HookedBuildInfo.html#emptyHookedBuildInfo"><span class="hs-identifier hs-var">emptyHookedBuildInfo</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-165"></span><span>      </span><span class="annot"><span class="annottext">replHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; ReplFlags -&gt; Args -&gt; IO ()
@@ -362,125 +362,125 @@ p -&gt; p -&gt; p -&gt; p -&gt; m ()
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">ReplFlags
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Args
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
 </span><span id="line-166"></span><span>      </span><span class="annot"><span class="annottext">postRepl :: Args -&gt; ReplFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postRepl"><span class="hs-identifier hs-var">postRepl</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-167"></span><span>      </span><span class="annot"><span class="annottext">preClean :: Args -&gt; CleanFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preClean"><span class="hs-identifier hs-var">preClean</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {p}. Args -&gt; p -&gt; IO HookedBuildInfo
-</span><a href="#local-6989586621679745628"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745176"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-168"></span><span>      </span><span class="annot"><span class="annottext">cleanHook :: PackageDescription -&gt; () -&gt; UserHooks -&gt; CleanFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#cleanHook"><span class="hs-identifier hs-var">cleanHook</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-169"></span><span>      </span><span class="annot"><span class="annottext">postClean :: Args -&gt; CleanFlags -&gt; PackageDescription -&gt; () -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postClean"><span class="hs-identifier hs-var">postClean</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-170"></span><span>      </span><span class="annot"><span class="annottext">preCopy :: Args -&gt; CopyFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preCopy"><span class="hs-identifier hs-var">preCopy</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-171"></span><span>      </span><span class="annot"><span class="annottext">copyHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; CopyFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#copyHook"><span class="hs-identifier hs-var">copyHook</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-172"></span><span>      </span><span class="annot"><span class="annottext">postCopy :: Args -&gt; CopyFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postCopy"><span class="hs-identifier hs-var">postCopy</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-173"></span><span>      </span><span class="annot"><span class="annottext">preInst :: Args -&gt; InstallFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preInst"><span class="hs-identifier hs-var">preInst</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {p}. Args -&gt; p -&gt; IO HookedBuildInfo
-</span><a href="#local-6989586621679745628"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745176"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-174"></span><span>      </span><span class="annot"><span class="annottext">instHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; InstallFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#instHook"><span class="hs-identifier hs-var">instHook</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-175"></span><span>      </span><span class="annot"><span class="annottext">postInst :: Args
 -&gt; InstallFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postInst"><span class="hs-identifier hs-var">postInst</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-176"></span><span>      </span><span class="annot"><span class="annottext">preReg :: Args -&gt; RegisterFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preReg"><span class="hs-identifier hs-var">preReg</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-177"></span><span>      </span><span class="annot"><span class="annottext">regHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; RegisterFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#regHook"><span class="hs-identifier hs-var">regHook</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-178"></span><span>      </span><span class="annot"><span class="annottext">postReg :: Args
 -&gt; RegisterFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postReg"><span class="hs-identifier hs-var">postReg</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-179"></span><span>      </span><span class="annot"><span class="annottext">preUnreg :: Args -&gt; RegisterFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preUnreg"><span class="hs-identifier hs-var">preUnreg</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {p}. Args -&gt; p -&gt; IO HookedBuildInfo
-</span><a href="#local-6989586621679745628"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745176"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-180"></span><span>      </span><span class="annot"><span class="annottext">unregHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; RegisterFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#unregHook"><span class="hs-identifier hs-var">unregHook</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-181"></span><span>      </span><span class="annot"><span class="annottext">postUnreg :: Args
 -&gt; RegisterFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postUnreg"><span class="hs-identifier hs-var">postUnreg</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-182"></span><span>      </span><span class="annot"><span class="annottext">preHscolour :: Args -&gt; HscolourFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preHscolour"><span class="hs-identifier hs-var">preHscolour</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {p}. Args -&gt; p -&gt; IO HookedBuildInfo
-</span><a href="#local-6989586621679745628"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745176"><span class="hs-identifier hs-var">rn</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-183"></span><span>      </span><span class="annot"><span class="annottext">hscolourHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; HscolourFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#hscolourHook"><span class="hs-identifier hs-var">hscolourHook</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-184"></span><span>      </span><span class="annot"><span class="annottext">postHscolour :: Args
 -&gt; HscolourFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postHscolour"><span class="hs-identifier hs-var">postHscolour</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-185"></span><span>      </span><span class="annot"><span class="annottext">preHaddock :: Args -&gt; HaddockFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preHaddock"><span class="hs-identifier hs-var">preHaddock</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-186"></span><span>      </span><span class="annot"><span class="annottext">haddockHook :: PackageDescription
 -&gt; LocalBuildInfo -&gt; UserHooks -&gt; HaddockFlags -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#haddockHook"><span class="hs-identifier hs-var">haddockHook</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-187"></span><span>      </span><span class="annot"><span class="annottext">postHaddock :: Args
 -&gt; HaddockFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postHaddock"><span class="hs-identifier hs-var">postHaddock</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-188"></span><span>      </span><span class="annot"><span class="annottext">preTest :: Args -&gt; TestFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preTest"><span class="hs-identifier hs-var">preTest</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-189"></span><span>      </span><span class="annot"><span class="annottext">testHook :: Args
 -&gt; PackageDescription
 -&gt; LocalBuildInfo
@@ -491,17 +491,17 @@ p -&gt; p -&gt; m HookedBuildInfo
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-190"></span><span>      </span><span class="annot"><span class="annottext">postTest :: Args -&gt; TestFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postTest"><span class="hs-identifier hs-var">postTest</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-191"></span><span>      </span><span class="annot"><span class="annottext">preBench :: Args -&gt; BenchmarkFlags -&gt; IO HookedBuildInfo
 </span><a href="Distribution.Simple.UserHooks.html#preBench"><span class="hs-identifier hs-var">preBench</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var">rn'</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-192"></span><span>      </span><span class="annot"><span class="annottext">benchHook :: Args
 -&gt; PackageDescription
 -&gt; LocalBuildInfo
@@ -512,34 +512,34 @@ p -&gt; p -&gt; m HookedBuildInfo
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-193"></span><span>      </span><span class="annot"><span class="annottext">postBench :: Args
 -&gt; BenchmarkFlags -&gt; PackageDescription -&gt; LocalBuildInfo -&gt; IO ()
 </span><a href="Distribution.Simple.UserHooks.html#postBench"><span class="hs-identifier hs-var">postBench</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p} {p} {p}.
 Monad m =&gt;
 p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var">ru</span></a></span><span>
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var">ru</span></a></span><span>
 </span><span id="line-194"></span><span>    </span><span class="hs-special">}</span><span>
-</span><span id="line-195"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679745628"><span class="annot"><span class="annottext">rn :: Args -&gt; p -&gt; IO HookedBuildInfo
-</span><a href="#local-6989586621679745628"><span class="hs-identifier hs-var hs-var">rn</span></a></span></span><span>  </span><span id="local-6989586621679745625"><span class="annot"><span class="annottext">Args
-</span><a href="#local-6989586621679745625"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span id="line-195"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679745176"><span class="annot"><span class="annottext">rn :: Args -&gt; p -&gt; IO HookedBuildInfo
+</span><a href="#local-6989586621679745176"><span class="hs-identifier hs-var hs-var">rn</span></a></span></span><span>  </span><span id="local-6989586621679745173"><span class="annot"><span class="annottext">Args
+</span><a href="#local-6989586621679745173"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Args -&gt; IO ()
 </span><a href="Distribution.Simple.Command.html#noExtraFlags"><span class="hs-identifier hs-var">noExtraFlags</span></a></span><span> </span><span class="annot"><span class="annottext">Args
-</span><a href="#local-6989586621679745625"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#%3E%3E"><span class="hs-operator hs-var">&gt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
+</span><a href="#local-6989586621679745173"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#%3E%3E"><span class="hs-operator hs-var">&gt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
 </span><a href="Distribution.Types.HookedBuildInfo.html#emptyHookedBuildInfo"><span class="hs-identifier hs-var">emptyHookedBuildInfo</span></a></span><span>
-</span><span id="line-196"></span><span>          </span><span id="local-6989586621679745632"><span class="annot"><span class="annottext">rn' :: p -&gt; p -&gt; m HookedBuildInfo
-</span><a href="#local-6989586621679745632"><span class="hs-identifier hs-var hs-var">rn'</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span id="line-196"></span><span>          </span><span id="local-6989586621679745180"><span class="annot"><span class="annottext">rn' :: p -&gt; p -&gt; m HookedBuildInfo
+</span><a href="#local-6989586621679745180"><span class="hs-identifier hs-var hs-var">rn'</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span>    </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">HookedBuildInfo
 </span><a href="Distribution.Types.HookedBuildInfo.html#emptyHookedBuildInfo"><span class="hs-identifier hs-var">emptyHookedBuildInfo</span></a></span><span>
-</span><span id="line-197"></span><span>          </span><span id="local-6989586621679745630"><span class="annot"><span class="annottext">ru :: p -&gt; p -&gt; p -&gt; p -&gt; m ()
-</span><a href="#local-6989586621679745630"><span class="hs-identifier hs-var hs-var">ru</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span id="line-197"></span><span>          </span><span id="local-6989586621679745178"><span class="annot"><span class="annottext">ru :: p -&gt; p -&gt; p -&gt; p -&gt; m ()
+</span><a href="#local-6989586621679745178"><span class="hs-identifier hs-var hs-var">ru</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">p
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-198"></span></pre></body></html>

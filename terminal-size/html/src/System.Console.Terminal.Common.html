@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679036139"><span id="local-6989586621679036140"></span></span><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679035934"><span id="local-6989586621679035935"></span></span><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE DeriveDataTypeable #-}</span><span>
 </span><span id="line-3"></span><span class="hs-pragma">{-# LANGUAGE DeriveFoldable #-}</span><span>
 </span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE DeriveFunctor #-}</span><span>
@@ -13,7 +13,7 @@
 </span><span id="line-13"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="System.Console.Terminal.Common.html#Window"><span class="hs-identifier">Window</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Data.Data</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Typeable</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Data</span></a></span><span class="hs-special">)</span><span class="hs-cpp">
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Data</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Typeable</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data</span></a></span><span class="hs-special">)</span><span class="hs-cpp">
 
 #if __GLASGOW_HASKELL__ &lt; 710
 </span><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data.Foldable</span><span> </span><span class="hs-special">(</span><span class="hs-identifier">Foldable</span><span class="hs-special">)</span><span>
@@ -21,22 +21,22 @@
 #endif
 </span><span class="hs-cpp">
 #ifdef LANGUAGE_DeriveGeneric
-</span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">GHC.Generics</span></a></span><span>
-</span><span id="line-25"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Generic</span></a></span><span class="hs-cpp">
+</span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">GHC.Generics</span></a></span><span>
+</span><span id="line-25"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Generic</span></a></span><span class="hs-cpp">
 #if __GLASGOW_HASKELL__ &gt;= 706
-</span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Generic1</span></a></span><span class="hs-cpp">
+</span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Generic1</span></a></span><span class="hs-cpp">
 #endif
 </span><span>  </span><span class="hs-special">)</span><span class="hs-cpp">
 #endif
 </span><span>
 </span><span id="line-32"></span><span class="hs-comment">-- | Terminal window width and height</span><span>
-</span><span id="line-33"></span><span id="local-6989586621679036135"><span id="local-6989586621679036136"><span id="local-6989586621679036137"><span id="local-6989586621679036138"></span></span></span></span><span class="hs-keyword">data</span><span> </span><span id="Window"><span class="annot"><a href="System.Console.Terminal.Common.html#Window"><span class="hs-identifier hs-var">Window</span></a></span></span><span> </span><span id="local-6989586621679036316"><span class="annot"><a href="#local-6989586621679036316"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Window"><span class="annot"><a href="System.Console.Terminal.Common.html#Window"><span class="hs-identifier hs-var">Window</span></a></span></span><span>
+</span><span id="line-33"></span><span id="local-6989586621679035930"><span id="local-6989586621679035931"><span id="local-6989586621679035932"><span id="local-6989586621679035933"></span></span></span></span><span class="hs-keyword">data</span><span> </span><span id="Window"><span class="annot"><a href="System.Console.Terminal.Common.html#Window"><span class="hs-identifier hs-var">Window</span></a></span></span><span> </span><span id="local-6989586621679036111"><span class="annot"><a href="#local-6989586621679036111"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Window"><span class="annot"><a href="System.Console.Terminal.Common.html#Window"><span class="hs-identifier hs-var">Window</span></a></span></span><span>
 </span><span id="line-34"></span><span>  </span><span class="hs-special">{</span><span> </span><span id="height"><span class="annot"><span class="annottext">forall a. Window a -&gt; a
-</span><a href="System.Console.Terminal.Common.html#height"><span class="hs-identifier hs-var hs-var">height</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="#local-6989586621679036316"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><a href="System.Console.Terminal.Common.html#height"><span class="hs-identifier hs-var hs-var">height</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="#local-6989586621679036111"><span class="hs-identifier hs-type">a</span></a></span><span>
 </span><span id="line-35"></span><span>  </span><span class="hs-special">,</span><span> </span><span id="width"><span class="annot"><span class="annottext">forall a. Window a -&gt; a
-</span><a href="System.Console.Terminal.Common.html#width"><span class="hs-identifier hs-var hs-var">width</span></a></span></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="#local-6989586621679036316"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><a href="System.Console.Terminal.Common.html#width"><span class="hs-identifier hs-var hs-var">width</span></a></span></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="#local-6989586621679036111"><span class="hs-identifier hs-type">a</span></a></span><span>
 </span><span id="line-36"></span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span>
-</span><span id="line-37"></span><span>    </span><span class="hs-special">(</span><span> </span><span id="local-6989586621679036122"><span id="local-6989586621679036124"><span id="local-6989586621679036130"><span class="annot"><span class="annottext">Int -&gt; Window a -&gt; ShowS
+</span><span id="line-37"></span><span>    </span><span class="hs-special">(</span><span> </span><span id="local-6989586621679035917"><span id="local-6989586621679035919"><span id="local-6989586621679035925"><span class="annot"><span class="annottext">Int -&gt; Window a -&gt; ShowS
 forall a. Show a =&gt; Int -&gt; Window a -&gt; ShowS
 forall a. Show a =&gt; [Window a] -&gt; ShowS
 forall a. Show a =&gt; Window a -&gt; String
@@ -48,14 +48,14 @@ show :: Window a -&gt; String
 $cshow :: forall a. Show a =&gt; Window a -&gt; String
 showsPrec :: Int -&gt; Window a -&gt; ShowS
 $cshowsPrec :: forall a. Show a =&gt; Int -&gt; Window a -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679036115"><span id="local-6989586621679036119"><span class="annot"><span class="annottext">Window a -&gt; Window a -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035910"><span id="local-6989586621679035914"><span class="annot"><span class="annottext">Window a -&gt; Window a -&gt; Bool
 forall a. Eq a =&gt; Window a -&gt; Window a -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Window a -&gt; Window a -&gt; Bool
 $c/= :: forall a. Eq a =&gt; Window a -&gt; Window a -&gt; Bool
 == :: Window a -&gt; Window a -&gt; Bool
 $c== :: forall a. Eq a =&gt; Window a -&gt; Window a -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679036095"><span id="local-6989586621679036107"><span id="local-6989586621679036110"><span id="local-6989586621679036112"><span class="annot"><span class="annottext">ReadPrec [Window a]
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035890"><span id="local-6989586621679035902"><span id="local-6989586621679035905"><span id="local-6989586621679035907"><span class="annot"><span class="annottext">ReadPrec [Window a]
 ReadPrec (Window a)
 ReadS [Window a]
 forall a. Read a =&gt; ReadPrec [Window a]
@@ -73,7 +73,7 @@ readList :: ReadS [Window a]
 $creadList :: forall a. Read a =&gt; ReadS [Window a]
 readsPrec :: Int -&gt; ReadS (Window a)
 $creadsPrec :: forall a. Read a =&gt; Int -&gt; ReadS (Window a)
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679036054"><span id="local-6989586621679036056"><span id="local-6989586621679036058"><span id="local-6989586621679036060"><span id="local-6989586621679036062"><span id="local-6989586621679036064"><span id="local-6989586621679036066"><span id="local-6989586621679036068"><span id="local-6989586621679036070"><span id="local-6989586621679036076"><span id="local-6989586621679036078"><span id="local-6989586621679036080"><span id="local-6989586621679036084"><span id="local-6989586621679036088"><span class="annot"><span class="annottext">Window a -&gt; DataType
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035849"><span id="local-6989586621679035851"><span id="local-6989586621679035853"><span id="local-6989586621679035855"><span id="local-6989586621679035857"><span id="local-6989586621679035859"><span id="local-6989586621679035861"><span id="local-6989586621679035863"><span id="local-6989586621679035865"><span id="local-6989586621679035871"><span id="local-6989586621679035873"><span id="local-6989586621679035875"><span id="local-6989586621679035879"><span id="local-6989586621679035883"><span class="annot"><span class="annottext">Window a -&gt; DataType
 Window a -&gt; Constr
 forall {a}. Data a =&gt; Typeable (Window a)
 forall a. Data a =&gt; Window a -&gt; DataType
@@ -231,8 +231,8 @@ $cgfoldl :: forall a (c :: * -&gt; *).
 Data a =&gt;
 (forall d b. Data d =&gt; c (d -&gt; b) -&gt; d -&gt; c b)
 -&gt; (forall g. g -&gt; c g) -&gt; Window a -&gt; c (Window a)
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">Typeable</span></a></span><span>
-</span><span id="line-38"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="local-6989586621679036017"><span id="local-6989586621679036019"><span id="local-6989586621679036021"><span id="local-6989586621679036023"><span id="local-6989586621679036025"><span id="local-6989586621679036027"><span id="local-6989586621679036029"><span id="local-6989586621679036031"><span id="local-6989586621679036033"><span id="local-6989586621679036035"><span id="local-6989586621679036037"><span id="local-6989586621679036039"><span id="local-6989586621679036041"><span id="local-6989586621679036043"><span id="local-6989586621679036045"><span id="local-6989586621679036049"><span id="local-6989586621679036051"><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; Window a -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Typeable</span></a></span><span>
+</span><span id="line-38"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035812"><span id="local-6989586621679035814"><span id="local-6989586621679035816"><span id="local-6989586621679035818"><span id="local-6989586621679035820"><span id="local-6989586621679035822"><span id="local-6989586621679035824"><span id="local-6989586621679035826"><span id="local-6989586621679035828"><span id="local-6989586621679035830"><span id="local-6989586621679035832"><span id="local-6989586621679035834"><span id="local-6989586621679035836"><span id="local-6989586621679035838"><span id="local-6989586621679035840"><span id="local-6989586621679035844"><span id="local-6989586621679035846"><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; Window a -&gt; Bool
 forall a. Num a =&gt; Window a -&gt; a
 forall a. Ord a =&gt; Window a -&gt; a
 forall m. Monoid m =&gt; Window m -&gt; m
@@ -296,7 +296,7 @@ foldMap :: forall m a. Monoid m =&gt; (a -&gt; m) -&gt; Window a -&gt; m
 $cfoldMap :: forall m a. Monoid m =&gt; (a -&gt; m) -&gt; Window a -&gt; m
 fold :: forall m. Monoid m =&gt; Window m -&gt; m
 $cfold :: forall m. Monoid m =&gt; Window m -&gt; m
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Foldable</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679036012"><span id="local-6989586621679036014"><span class="annot"><span class="annottext">forall a b. a -&gt; Window b -&gt; Window a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Foldable</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035807"><span id="local-6989586621679035809"><span class="annot"><span class="annottext">forall a b. a -&gt; Window b -&gt; Window a
 forall a b. (a -&gt; b) -&gt; Window a -&gt; Window b
 forall (f :: * -&gt; *).
 (forall a b. (a -&gt; b) -&gt; f a -&gt; f b)
@@ -305,7 +305,7 @@ forall (f :: * -&gt; *).
 $c&lt;$ :: forall a b. a -&gt; Window b -&gt; Window a
 fmap :: forall a b. (a -&gt; b) -&gt; Window a -&gt; Window b
 $cfmap :: forall a b. (a -&gt; b) -&gt; Window a -&gt; Window b
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035996"><span id="local-6989586621679035998"><span id="local-6989586621679036000"><span id="local-6989586621679036004"><span class="annot"><span class="annottext">Functor Window
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679035791"><span id="local-6989586621679035793"><span id="local-6989586621679035795"><span id="local-6989586621679035799"><span class="annot"><span class="annottext">Functor Window
 Foldable Window
 forall (t :: * -&gt; *).
 Functor t
@@ -349,7 +349,7 @@ Applicative f =&gt;
 $ctraverse :: forall (f :: * -&gt; *) a b.
 Applicative f =&gt;
 (a -&gt; f b) -&gt; Window a -&gt; f (Window b)
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Traversable</span></a></span></span></span></span></span><span class="hs-cpp">
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Traversable</span></a></span></span></span></span></span><span class="hs-cpp">
 #ifdef LANGUAGE_DeriveGeneric
 </span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
@@ -357,7 +357,7 @@ forall a x. Rep (Window a) x -&gt; Window a
 forall a x. Window a -&gt; Rep (Window a) x
 $cto :: forall a x. Rep (Window a) x -&gt; Window a
 $cfrom :: forall a x. Window a -&gt; Rep (Window a) x
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-cpp">
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-cpp">
 #if __GLASGOW_HASKELL__ &gt;= 706
 </span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a. Rep1 Window a -&gt; Window a
 forall a. Window a -&gt; Rep1 Window a
@@ -366,7 +366,7 @@ forall k (f :: k -&gt; *).
 -&gt; (forall (a :: k). Rep1 f a -&gt; f a) -&gt; Generic1 f
 $cto1 :: forall a. Rep1 Window a -&gt; Window a
 $cfrom1 :: forall a. Window a -&gt; Rep1 Window a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic1</span></a></span><span class="hs-cpp">
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic1</span></a></span><span class="hs-cpp">
 #endif
 </span><span class="hs-cpp">#endif
 </span><span>    </span><span class="hs-special">)</span><span>

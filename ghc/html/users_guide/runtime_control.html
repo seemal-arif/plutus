@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.7. Running a compiled program &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>5.7. Running a compiled program &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -542,7 +542,7 @@ support for allocating memory in the low 2Gb if available (e.g.
 </dd>
 </dl>
 <p>This option relates to allocation limits; for more about this see
-<a class="reference external" href="./../libraries/base-4.16.3.0/GHC-Conc.html#v:enableAllocationLimit">GHC.Conc.enableAllocationLimit</a>.
+<a class="reference external" href="./../libraries/base-4.16.4.0/GHC-Conc.html#v:enableAllocationLimit">GHC.Conc.enableAllocationLimit</a>.
 When a thread hits its allocation limit, the RTS throws an exception
 to the thread, and the thread gets an additional quota of allocation
 before the exception is raised again, the idea being so that the
@@ -842,7 +842,7 @@ you use the <a class="reference internal" href="#rts-flag-H-size"><code class="x
 <p>Use parallel GC in generation ⟨gen⟩ and higher. Omitting ⟨gen⟩ turns off the
 parallel GC completely, reverting to sequential GC.</p>
 <p>The default parallel GC settings are usually suitable for parallel programs
-(i.e. those using <a class="reference external" href="./../libraries/base-4.16.3.0/GHC-Conc.html#v:par">GHC.Conc.par</a>, Strategies, or with
+(i.e. those using <a class="reference external" href="./../libraries/base-4.16.4.0/GHC-Conc.html#v:par">GHC.Conc.par</a>, Strategies, or with
 multiple threads). However, it is sometimes beneficial to enable the
 parallel GC for a single-threaded sequential program too, especially if the
 program has a large amount of heap data and GC is a significant fraction of
@@ -1218,7 +1218,7 @@ and may change between releases.</p>
 <p>The output is placed in ⟨file⟩. If ⟨file⟩ is omitted, then the
 output is sent to <code class="docutils literal notranslate"><span class="pre">stderr</span></code>.</p>
 <p>If you use the <code class="docutils literal notranslate"><span class="pre">-T</span></code> flag then, you should access the statistics
-using <a class="reference external" href="./../libraries/base-4.16.3.0/GHC-Stats.html">GHC.Stats</a>.</p>
+using <a class="reference external" href="./../libraries/base-4.16.4.0/GHC-Stats.html">GHC.Stats</a>.</p>
 <p>If you use the <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag then, when your program finishes, you
 will see something like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;&lt;ghc: 36169392 bytes, 69 GCs, 603392/1065272 avg/max bytes residency (2 samples), 3M in use, 0.00 INIT (0.00 elapsed), 0.02 MUT (0.02 elapsed), 0.07 GC (0.07 elapsed) :ghc&gt;&gt;

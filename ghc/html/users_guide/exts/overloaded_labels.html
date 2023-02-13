@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.9.7. Overloaded labels &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.9.7. Overloaded labels &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -238,7 +238,7 @@ argument in GHC 8.0, but this was removed in GHC 8.2 as a type application (see
 <a class="reference internal" href="type_applications.html#visible-type-application"><span class="std std-ref">Visible type application</span></a>) can be used instead.</p>
 <p>There are no predefined instances of this class.  It is not in scope by default,
 but can be brought into scope by importing
-<a class="reference external" href="../../libraries/base-4.16.3.0/GHC-OverloadedLabels.html">GHC.OverloadedLabels</a>.  Unlike
+<a class="reference external" href="../../libraries/base-4.16.4.0/GHC-OverloadedLabels.html">GHC.OverloadedLabels</a>.  Unlike
 <code class="docutils literal notranslate"><span class="pre">IsString</span></code>, there are no special defaulting rules for <code class="docutils literal notranslate"><span class="pre">IsLabel</span></code>.</p>
 <p>During typechecking, GHC will replace an occurrence of an overloaded label like
 <code class="docutils literal notranslate"><span class="pre">#foo</span></code> with <code class="docutils literal notranslate"><span class="pre">fromLabel</span> <span class="pre">&#64;&quot;foo&quot;</span></code>.  This will have some type <code class="docutils literal notranslate"><span class="pre">alpha</span></code> and

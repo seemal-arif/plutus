@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679641448"><span id="local-6989586621679641449"><span id="local-6989586621679641450"><span id="local-6989586621679641451"><span id="local-6989586621679641452"><span id="local-6989586621679641453"><span id="local-6989586621679641454"><span id="local-6989586621679641455"><span id="local-6989586621679641456"><span id="local-6989586621679641457"><span id="local-6989586621679641458"><span id="local-6989586621679641459"><span id="local-6989586621679641460"><span id="local-6989586621679641461"><span id="local-6989586621679641462"><span id="local-6989586621679641463"><span id="local-6989586621679641464"><span id="local-6989586621679641465"><span id="local-6989586621679641466"><span id="local-6989586621679641467"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-pragma">{-# LANGUAGE DeriveDataTypeable #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679640996"><span id="local-6989586621679640997"><span id="local-6989586621679640998"><span id="local-6989586621679640999"><span id="local-6989586621679641000"><span id="local-6989586621679641001"><span id="local-6989586621679641002"><span id="local-6989586621679641003"><span id="local-6989586621679641004"><span id="local-6989586621679641005"><span id="local-6989586621679641006"><span id="local-6989586621679641007"><span id="local-6989586621679641008"><span id="local-6989586621679641009"><span id="local-6989586621679641010"><span id="local-6989586621679641011"><span id="local-6989586621679641012"><span id="local-6989586621679641013"><span id="local-6989586621679641014"><span id="local-6989586621679641015"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-pragma">{-# LANGUAGE DeriveDataTypeable #-}</span><span>
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE DeriveGeneric #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Distribution.CabalSpecVersion</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Compat.Prelude.html"><span class="hs-identifier">Distribution.Compat.Prelude</span></a></span><span>
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-comment">-- | Different Cabal-the-spec versions.</span><span>
 </span><span id="line-9"></span><span class="hs-comment">--</span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- We branch based on this at least in the parser.</span><span>
 </span><span id="line-11"></span><span class="hs-comment">--</span><span>
-</span><span id="line-12"></span><span id="local-6989586621679641417"><span id="local-6989586621679641418"></span></span><span class="hs-keyword">data</span><span> </span><span id="CabalSpecVersion"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-var">CabalSpecVersion</span></a></span></span><span>
+</span><span id="line-12"></span><span id="local-6989586621679640965"><span id="local-6989586621679640966"></span></span><span class="hs-keyword">data</span><span> </span><span id="CabalSpecVersion"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-var">CabalSpecVersion</span></a></span></span><span>
 </span><span id="line-13"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span id="CabalSpecV1_0"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_0"><span class="hs-identifier hs-var">CabalSpecV1_0</span></a></span></span><span> </span><span class="hs-comment">-- ^ this is older than 'CabalSpecV1_2'</span><span>
 </span><span id="line-14"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CabalSpecV1_2"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_2"><span class="hs-identifier hs-var">CabalSpecV1_2</span></a></span></span><span> </span><span class="hs-comment">-- ^ new syntax (sections)</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CabalSpecV1_4"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_4"><span class="hs-identifier hs-var">CabalSpecV1_4</span></a></span></span><span>
@@ -29,13 +29,13 @@
 </span><span id="line-29"></span><span>    </span><span class="hs-comment">-- 3.2: no changes</span><span>
 </span><span id="line-30"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CabalSpecV3_4"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_4"><span class="hs-identifier hs-var">CabalSpecV3_4</span></a></span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CabalSpecV3_6"><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_6"><span class="hs-identifier hs-var">CabalSpecV3_6</span></a></span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679641396"><span id="local-6989586621679641398"><span class="annot"><span class="annottext">CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679640944"><span id="local-6989586621679640946"><span class="annot"><span class="annottext">CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 $c/= :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 == :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 $c== :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641376"><span id="local-6989586621679641378"><span id="local-6989586621679641381"><span id="local-6989586621679641384"><span id="local-6989586621679641387"><span id="local-6989586621679641389"><span id="local-6989586621679641391"><span class="annot"><span class="annottext">Eq CabalSpecVersion
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640924"><span id="local-6989586621679640926"><span id="local-6989586621679640929"><span id="local-6989586621679640932"><span id="local-6989586621679640935"><span id="local-6989586621679640937"><span id="local-6989586621679640939"><span class="annot"><span class="annottext">Eq CabalSpecVersion
 CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 CabalSpecVersion -&gt; CabalSpecVersion -&gt; Ordering
 CabalSpecVersion -&gt; CabalSpecVersion -&gt; CabalSpecVersion
@@ -63,7 +63,7 @@ $c&lt;= :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 $c&lt; :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Bool
 compare :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Ordering
 $ccompare :: CabalSpecVersion -&gt; CabalSpecVersion -&gt; Ordering
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641369"><span id="local-6989586621679641371"><span id="local-6989586621679641373"><span class="annot"><span class="annottext">Int -&gt; CabalSpecVersion -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640917"><span id="local-6989586621679640919"><span id="local-6989586621679640921"><span class="annot"><span class="annottext">Int -&gt; CabalSpecVersion -&gt; ShowS
 [CabalSpecVersion] -&gt; ShowS
 CabalSpecVersion -&gt; String
 forall a.
@@ -74,7 +74,7 @@ show :: CabalSpecVersion -&gt; String
 $cshow :: CabalSpecVersion -&gt; String
 showsPrec :: Int -&gt; CabalSpecVersion -&gt; ShowS
 $cshowsPrec :: Int -&gt; CabalSpecVersion -&gt; ShowS
-</span><a href="../../base-4.16.3.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641341"><span id="local-6989586621679641361"><span id="local-6989586621679641364"><span id="local-6989586621679641366"><span class="annot"><span class="annottext">ReadPrec [CabalSpecVersion]
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640889"><span id="local-6989586621679640909"><span id="local-6989586621679640912"><span id="local-6989586621679640914"><span class="annot"><span class="annottext">ReadPrec [CabalSpecVersion]
 ReadPrec CabalSpecVersion
 Int -&gt; ReadS CabalSpecVersion
 ReadS [CabalSpecVersion]
@@ -89,7 +89,7 @@ readList :: ReadS [CabalSpecVersion]
 $creadList :: ReadS [CabalSpecVersion]
 readsPrec :: Int -&gt; ReadS CabalSpecVersion
 $creadsPrec :: Int -&gt; ReadS CabalSpecVersion
-</span><a href="../../base-4.16.3.0/src/GHC-Read.html#Read"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641304"><span id="local-6989586621679641306"><span id="local-6989586621679641310"><span id="local-6989586621679641314"><span id="local-6989586621679641316"><span id="local-6989586621679641325"><span id="local-6989586621679641331"><span id="local-6989586621679641337"><span class="annot"><span class="annottext">Int -&gt; CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Read.html#Read"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640852"><span id="local-6989586621679640854"><span id="local-6989586621679640858"><span id="local-6989586621679640862"><span id="local-6989586621679640864"><span id="local-6989586621679640873"><span id="local-6989586621679640879"><span id="local-6989586621679640885"><span class="annot"><span class="annottext">Int -&gt; CabalSpecVersion
 CabalSpecVersion -&gt; Int
 CabalSpecVersion -&gt; [CabalSpecVersion]
 CabalSpecVersion -&gt; CabalSpecVersion
@@ -124,13 +124,13 @@ pred :: CabalSpecVersion -&gt; CabalSpecVersion
 $cpred :: CabalSpecVersion -&gt; CabalSpecVersion
 succ :: CabalSpecVersion -&gt; CabalSpecVersion
 $csucc :: CabalSpecVersion -&gt; CabalSpecVersion
-</span><a href="../../base-4.16.3.0/src/GHC-Enum.html#Enum"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641299"><span id="local-6989586621679641301"><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Enum.html#Enum"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640847"><span id="local-6989586621679640849"><span class="annot"><span class="annottext">CabalSpecVersion
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: CabalSpecVersion
 $cmaxBound :: CabalSpecVersion
 minBound :: CabalSpecVersion
 $cminBound :: CabalSpecVersion
-</span><a href="../../base-4.16.3.0/src/GHC-Enum.html#Bounded"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/Data-Typeable-Internal.html#Typeable"><span class="hs-identifier hs-type">Typeable</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641267"><span id="local-6989586621679641269"><span id="local-6989586621679641271"><span id="local-6989586621679641273"><span id="local-6989586621679641275"><span id="local-6989586621679641277"><span id="local-6989586621679641279"><span id="local-6989586621679641281"><span id="local-6989586621679641283"><span id="local-6989586621679641285"><span id="local-6989586621679641287"><span id="local-6989586621679641289"><span id="local-6989586621679641291"><span id="local-6989586621679641293"><span class="annot"><span class="annottext">Typeable CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Enum.html#Bounded"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/Data-Typeable-Internal.html#Typeable"><span class="hs-identifier hs-type">Typeable</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640815"><span id="local-6989586621679640817"><span id="local-6989586621679640819"><span id="local-6989586621679640821"><span id="local-6989586621679640823"><span id="local-6989586621679640825"><span id="local-6989586621679640827"><span id="local-6989586621679640829"><span id="local-6989586621679640831"><span id="local-6989586621679640833"><span id="local-6989586621679640835"><span id="local-6989586621679640837"><span id="local-6989586621679640839"><span id="local-6989586621679640841"><span class="annot"><span class="annottext">Typeable CabalSpecVersion
 CabalSpecVersion -&gt; DataType
 CabalSpecVersion -&gt; Constr
 (forall b. Data b =&gt; b -&gt; b)
@@ -274,24 +274,24 @@ gfoldl :: forall (c :: * -&gt; *).
 $cgfoldl :: forall (c :: * -&gt; *).
 (forall d b. Data d =&gt; c (d -&gt; b) -&gt; d -&gt; c b)
 -&gt; (forall g. g -&gt; c g) -&gt; CabalSpecVersion -&gt; c CabalSpecVersion
-</span><a href="../../base-4.16.3.0/src/Data-Data.html#Data"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall x. Rep CabalSpecVersion x -&gt; CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/Data-Data.html#Data"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall x. Rep CabalSpecVersion x -&gt; CabalSpecVersion
 forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
 forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
 $cto :: forall x. Rep CabalSpecVersion x -&gt; CabalSpecVersion
 $cfrom :: forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
-</span><a href="../../base-4.16.3.0/src/GHC-Generics.html#Generic"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">)</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Generics.html#Generic"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679641257"><span id="local-6989586621679641259"><span id="local-6989586621679641261"><span class="annot"><a href="../../binary-0.8.9.0/src/Data-Binary-Class.html#Binary"><span class="hs-identifier hs-type">Binary</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span></span></span></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679641250"><span id="local-6989586621679641252"><span class="annot"><a href="Distribution.Utils.Structured.html#Structured"><span class="hs-identifier hs-type">Structured</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span></span></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="../../deepseq-1.4.6.1/src/Control-DeepSeq.html#NFData"><span class="hs-identifier hs-type">NFData</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679641205"><span class="annot"><span class="annottext">rnf :: CabalSpecVersion -&gt; ()
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679640805"><span id="local-6989586621679640807"><span id="local-6989586621679640809"><span class="annot"><a href="../../binary-0.8.9.0/src/Data-Binary-Class.html#Binary"><span class="hs-identifier hs-type">Binary</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span></span></span></span><span>
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679640798"><span id="local-6989586621679640800"><span class="annot"><a href="Distribution.Utils.Structured.html#Structured"><span class="hs-identifier hs-type">Structured</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span></span></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="../../deepseq-1.4.6.1/src/Control-DeepSeq.html#NFData"><span class="hs-identifier hs-type">NFData</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679640753"><span class="annot"><span class="annottext">rnf :: CabalSpecVersion -&gt; ()
 </span><a href="../../deepseq-1.4.6.1/src/Control-DeepSeq.html#rnf"><span class="hs-identifier hs-var hs-var hs-var hs-var">rnf</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (Generic a, GNFData (Rep a)) =&gt; a -&gt; ()
 </span><a href="Distribution.Compat.Prelude.html#genericRnf"><span class="hs-identifier hs-var">genericRnf</span></a></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span class="hs-comment">-- | Show cabal spec version, but not the way in the .cabal files</span><span>
 </span><span id="line-39"></span><span class="hs-comment">--</span><span>
 </span><span id="line-40"></span><span class="hs-comment">-- @since 3.0.0.0</span><span>
-</span><span id="line-41"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#showCabalSpecVersion"><span class="hs-identifier hs-type">showCabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><span id="line-41"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#showCabalSpecVersion"><span class="hs-identifier hs-type">showCabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-42"></span><span id="showCabalSpecVersion"><span class="annot"><span class="annottext">showCabalSpecVersion :: CabalSpecVersion -&gt; String
 </span><a href="Distribution.CabalSpecVersion.html#showCabalSpecVersion"><span class="hs-identifier hs-var hs-var">showCabalSpecVersion</span></a></span></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_6"><span class="hs-identifier hs-var">CabalSpecV3_6</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -354,131 +354,131 @@ $cfrom :: forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
 </span><span id="line-64"></span><span class="hs-comment">--</span><span>
 </span><span id="line-65"></span><span class="hs-comment">-- It may fail if for recent versions the version is not exact.</span><span>
 </span><span id="line-66"></span><span class="hs-comment">--</span><span>
-</span><span id="line-67"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#cabalSpecFromVersionDigits"><span class="hs-identifier hs-type">cabalSpecFromVersionDigits</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span>
+</span><span id="line-67"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#cabalSpecFromVersionDigits"><span class="hs-identifier hs-type">cabalSpecFromVersionDigits</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span>
 </span><span id="line-68"></span><span id="cabalSpecFromVersionDigits"><span class="annot"><span class="annottext">cabalSpecFromVersionDigits :: [Int] -&gt; Maybe CabalSpecVersion
-</span><a href="Distribution.CabalSpecVersion.html#cabalSpecFromVersionDigits"><span class="hs-identifier hs-var hs-var">cabalSpecFromVersionDigits</span></a></span></span><span> </span><span id="local-6989586621679641199"><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span></span><span>
+</span><a href="Distribution.CabalSpecVersion.html#cabalSpecFromVersionDigits"><span class="hs-identifier hs-var hs-var">cabalSpecFromVersionDigits</span></a></span></span><span> </span><span id="local-6989586621679640747"><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span></span><span>
 </span><span id="line-69"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">3</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">6</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_6"><span class="hs-identifier hs-var">CabalSpecV3_6</span></a></span><span>
 </span><span id="line-70"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">3</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">4</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_4"><span class="hs-identifier hs-var">CabalSpecV3_4</span></a></span><span>
 </span><span id="line-71"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">3</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV3_0"><span class="hs-identifier hs-var">CabalSpecV3_0</span></a></span><span>
 </span><span id="line-72"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">4</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV2_4"><span class="hs-identifier hs-var">CabalSpecV2_4</span></a></span><span>
 </span><span id="line-73"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV2_2"><span class="hs-identifier hs-var">CabalSpecV2_2</span></a></span><span>
 </span><span id="line-74"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV2_0"><span class="hs-identifier hs-var">CabalSpecV2_0</span></a></span><span>
 </span><span id="line-75"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">25</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>
 </span><span id="line-76"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">23</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_24"><span class="hs-identifier hs-var">CabalSpecV1_24</span></a></span><span>
 </span><span id="line-77"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">21</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_22"><span class="hs-identifier hs-var">CabalSpecV1_22</span></a></span><span>
 </span><span id="line-78"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">19</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_20"><span class="hs-identifier hs-var">CabalSpecV1_20</span></a></span><span>
 </span><span id="line-79"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">17</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_18"><span class="hs-identifier hs-var">CabalSpecV1_18</span></a></span><span>
 </span><span id="line-80"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">11</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_12"><span class="hs-identifier hs-var">CabalSpecV1_12</span></a></span><span>
 </span><span id="line-81"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">9</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_10"><span class="hs-identifier hs-var">CabalSpecV1_10</span></a></span><span>
 </span><span id="line-82"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">7</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_8"><span class="hs-identifier hs-var">CabalSpecV1_8</span></a></span><span>
 </span><span id="line-83"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">5</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_6"><span class="hs-identifier hs-var">CabalSpecV1_6</span></a></span><span>
 </span><span id="line-84"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">3</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_4"><span class="hs-identifier hs-var">CabalSpecV1_4</span></a></span><span>
 </span><span id="line-85"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641199"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640747"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">]</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_2"><span class="hs-identifier hs-var">CabalSpecV1_2</span></a></span><span>
 </span><span id="line-86"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_0"><span class="hs-identifier hs-var">CabalSpecV1_0</span></a></span><span>
 </span><span id="line-87"></span><span>
 </span><span id="line-88"></span><span class="hs-comment">-- | @since 3.4.0.0</span><span>
@@ -572,28 +572,28 @@ $cfrom :: forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV1_0"><span class="hs-identifier hs-var">CabalSpecV1_0</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span class="hs-special">]</span><span>
-</span><span id="line-123"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#cabalSpecMinimumLibraryVersion"><span class="hs-identifier hs-var">cabalSpecMinimumLibraryVersion</span></a></span><span> </span><span id="local-6989586621679641196"><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641196"><span class="hs-identifier hs-var">csv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion -&gt; [Int]
+</span><span id="line-123"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#cabalSpecMinimumLibraryVersion"><span class="hs-identifier hs-var">cabalSpecMinimumLibraryVersion</span></a></span><span> </span><span id="local-6989586621679640744"><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="#local-6989586621679640744"><span class="hs-identifier hs-var">csv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion -&gt; [Int]
 </span><a href="Distribution.CabalSpecVersion.html#cabalSpecToVersionDigits"><span class="hs-identifier hs-var">cabalSpecToVersionDigits</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Enum a =&gt; a -&gt; a
-</span><a href="../../base-4.16.3.0/src/GHC-Enum.html#pred"><span class="hs-identifier hs-var">pred</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641196"><span class="hs-identifier hs-var">csv</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-124"></span><span>    </span><span class="hs-special">[</span><span id="local-6989586621679641194"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679641194"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679641193"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679641193"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679641194"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679641193"><span class="hs-identifier hs-var">y</span></a></span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../base-4.16.3.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span class="annot"><span class="annottext">Int
+</span><a href="../../base-4.16.4.0/src/GHC-Enum.html#pred"><span class="hs-identifier hs-var">pred</span></a></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="#local-6989586621679640744"><span class="hs-identifier hs-var">csv</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-124"></span><span>    </span><span class="hs-special">[</span><span id="local-6989586621679640742"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679640742"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679640741"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679640741"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679640742"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679640741"><span class="hs-identifier hs-var">y</span></a></span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span class="hs-special">]</span><span>
-</span><span id="line-125"></span><span>    </span><span id="local-6989586621679641191"><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641191"><span class="hs-identifier hs-var">xs</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679641191"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-125"></span><span>    </span><span id="local-6989586621679640739"><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679640739"><span class="hs-identifier hs-var">xs</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679640739"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-126"></span><span>
 </span><span id="line-127"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#specHasCommonStanzas"><span class="hs-identifier hs-type">specHasCommonStanzas</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasCommonStanzas"><span class="hs-identifier hs-type">HasCommonStanzas</span></a></span><span>
 </span><span id="line-128"></span><span id="specHasCommonStanzas"><span class="annot"><span class="annottext">specHasCommonStanzas :: CabalSpecVersion -&gt; HasCommonStanzas
-</span><a href="Distribution.CabalSpecVersion.html#specHasCommonStanzas"><span class="hs-identifier hs-var hs-var">specHasCommonStanzas</span></a></span></span><span> </span><span id="local-6989586621679641189"><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641189"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Distribution.CabalSpecVersion.html#specHasCommonStanzas"><span class="hs-identifier hs-var hs-var">specHasCommonStanzas</span></a></span></span><span> </span><span id="local-6989586621679640737"><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="#local-6989586621679640737"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-129"></span><span>    </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641189"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640737"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV2_2"><span class="hs-identifier hs-var">CabalSpecV2_2</span></a></span><span>
 </span><span id="line-130"></span><span>    </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">HasCommonStanzas
@@ -603,10 +603,10 @@ $cfrom :: forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
 </span><span id="line-132"></span><span>
 </span><span id="line-133"></span><span class="annot"><a href="Distribution.CabalSpecVersion.html#specHasElif"><span class="hs-identifier hs-type">specHasElif</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#CabalSpecVersion"><span class="hs-identifier hs-type">CabalSpecVersion</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasElif"><span class="hs-identifier hs-type">HasElif</span></a></span><span>
 </span><span id="line-134"></span><span id="specHasElif"><span class="annot"><span class="annottext">specHasElif :: CabalSpecVersion -&gt; HasElif
-</span><a href="Distribution.CabalSpecVersion.html#specHasElif"><span class="hs-identifier hs-var hs-var">specHasElif</span></a></span></span><span> </span><span id="local-6989586621679641185"><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641185"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><a href="Distribution.CabalSpecVersion.html#specHasElif"><span class="hs-identifier hs-var hs-var">specHasElif</span></a></span></span><span> </span><span id="local-6989586621679640733"><span class="annot"><span class="annottext">CabalSpecVersion
+</span><a href="#local-6989586621679640733"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-135"></span><span>    </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
-</span><a href="#local-6989586621679641185"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679640733"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">CabalSpecVersion
 </span><a href="Distribution.CabalSpecVersion.html#CabalSpecV2_2"><span class="hs-identifier hs-var">CabalSpecV2_2</span></a></span><span>
 </span><span id="line-136"></span><span>    </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">HasElif
@@ -620,13 +620,13 @@ $cfrom :: forall x. CabalSpecVersion -&gt; Rep CabalSpecVersion x
 </span><span id="line-142"></span><span>
 </span><span id="line-143"></span><span class="hs-comment">-- IDEA: make some kind of tagged booleans?</span><span>
 </span><span id="line-144"></span><span class="hs-keyword">data</span><span> </span><span id="HasElif"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasElif"><span class="hs-identifier hs-var">HasElif</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="HasElif"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasElif"><span class="hs-identifier hs-var">HasElif</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NoElif"><span class="annot"><a href="Distribution.CabalSpecVersion.html#NoElif"><span class="hs-identifier hs-var">NoElif</span></a></span></span><span>
-</span><span id="line-145"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679641179"><span id="local-6989586621679641181"><span class="annot"><span class="annottext">HasElif -&gt; HasElif -&gt; Bool
+</span><span id="line-145"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679640727"><span id="local-6989586621679640729"><span class="annot"><span class="annottext">HasElif -&gt; HasElif -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: HasElif -&gt; HasElif -&gt; Bool
 $c/= :: HasElif -&gt; HasElif -&gt; Bool
 == :: HasElif -&gt; HasElif -&gt; Bool
 $c== :: HasElif -&gt; HasElif -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641173"><span id="local-6989586621679641175"><span id="local-6989586621679641177"><span class="annot"><span class="annottext">Int -&gt; HasElif -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640721"><span id="local-6989586621679640723"><span id="local-6989586621679640725"><span class="annot"><span class="annottext">Int -&gt; HasElif -&gt; ShowS
 [HasElif] -&gt; ShowS
 HasElif -&gt; String
 forall a.
@@ -637,16 +637,16 @@ show :: HasElif -&gt; String
 $cshow :: HasElif -&gt; String
 showsPrec :: Int -&gt; HasElif -&gt; ShowS
 $cshowsPrec :: Int -&gt; HasElif -&gt; ShowS
-</span><a href="../../base-4.16.3.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-146"></span><span>
 </span><span id="line-147"></span><span class="hs-keyword">data</span><span> </span><span id="HasCommonStanzas"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasCommonStanzas"><span class="hs-identifier hs-var">HasCommonStanzas</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="HasCommonStanzas"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasCommonStanzas"><span class="hs-identifier hs-var">HasCommonStanzas</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NoCommonStanzas"><span class="annot"><a href="Distribution.CabalSpecVersion.html#NoCommonStanzas"><span class="hs-identifier hs-var">NoCommonStanzas</span></a></span></span><span>
-</span><span id="line-148"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679641169"><span id="local-6989586621679641171"><span class="annot"><span class="annottext">HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
+</span><span id="line-148"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679640717"><span id="local-6989586621679640719"><span class="annot"><span class="annottext">HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
 $c/= :: HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
 == :: HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
 $c== :: HasCommonStanzas -&gt; HasCommonStanzas -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679641163"><span id="local-6989586621679641165"><span id="local-6989586621679641167"><span class="annot"><span class="annottext">Int -&gt; HasCommonStanzas -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679640711"><span id="local-6989586621679640713"><span id="local-6989586621679640715"><span class="annot"><span class="annottext">Int -&gt; HasCommonStanzas -&gt; ShowS
 [HasCommonStanzas] -&gt; ShowS
 HasCommonStanzas -&gt; String
 forall a.
@@ -657,7 +657,7 @@ show :: HasCommonStanzas -&gt; String
 $cshow :: HasCommonStanzas -&gt; String
 showsPrec :: Int -&gt; HasCommonStanzas -&gt; ShowS
 $cshowsPrec :: Int -&gt; HasCommonStanzas -&gt; ShowS
-</span><a href="../../base-4.16.3.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-149"></span><span>
 </span><span id="line-150"></span><span class="hs-keyword">data</span><span> </span><span id="HasGlobstar"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasGlobstar"><span class="hs-identifier hs-var">HasGlobstar</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="HasGlobstar"><span class="annot"><a href="Distribution.CabalSpecVersion.html#HasGlobstar"><span class="hs-identifier hs-var">HasGlobstar</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NoGlobstar"><span class="annot"><a href="Distribution.CabalSpecVersion.html#NoGlobstar"><span class="hs-identifier hs-var">NoGlobstar</span></a></span></span><span>
 </span><span id="line-151"></span></pre></body></html>

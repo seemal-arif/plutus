@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span class="hs-comment">-- It enables Cabal to know which 'ComponentId' to associate with a library</span><span>
 </span><span id="line-17"></span><span class="hs-comment">--</span><span>
 </span><span id="line-18"></span><span class="hs-comment">-- @since 2.3.0.0</span><span>
-</span><span id="line-19"></span><span id="local-6989586621679656554"><span id="local-6989586621679656555"></span></span><span class="hs-keyword">data</span><span> </span><span id="GivenComponent"><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-var">GivenComponent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-19"></span><span id="local-6989586621679656102"><span id="local-6989586621679656103"></span></span><span class="hs-keyword">data</span><span> </span><span id="GivenComponent"><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-var">GivenComponent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span id="GivenComponent"><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-var">GivenComponent</span></a></span></span><span>
 </span><span id="line-21"></span><span>    </span><span class="hs-special">{</span><span> </span><span id="givenComponentPackage"><span class="annot"><span class="annottext">GivenComponent -&gt; PackageName
 </span><a href="Distribution.Types.GivenComponent.html#givenComponentPackage"><span class="hs-identifier hs-var hs-var">givenComponentPackage</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.Types.PackageName.html#PackageName"><span class="hs-identifier hs-type">PackageName</span></a></span><span>
@@ -31,7 +31,7 @@ forall a.
 (forall x. a -&gt; Rep a x) -&gt; (forall x. Rep a x -&gt; a) -&gt; Generic a
 $cto :: forall x. Rep GivenComponent x -&gt; GivenComponent
 $cfrom :: forall x. GivenComponent -&gt; Rep GivenComponent x
-</span><a href="../../base-4.16.3.0/src/GHC-Generics.html#Generic"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656522"><span id="local-6989586621679656540"><span id="local-6989586621679656543"><span id="local-6989586621679656545"><span class="annot"><span class="annottext">ReadPrec [GivenComponent]
+</span><a href="../../base-4.16.4.0/src/GHC-Generics.html#Generic"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656070"><span id="local-6989586621679656088"><span id="local-6989586621679656091"><span id="local-6989586621679656093"><span class="annot"><span class="annottext">ReadPrec [GivenComponent]
 ReadPrec GivenComponent
 Int -&gt; ReadS GivenComponent
 ReadS [GivenComponent]
@@ -46,7 +46,7 @@ readList :: ReadS [GivenComponent]
 $creadList :: ReadS [GivenComponent]
 readsPrec :: Int -&gt; ReadS GivenComponent
 $creadsPrec :: Int -&gt; ReadS GivenComponent
-</span><a href="../../base-4.16.3.0/src/GHC-Read.html#Read"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656506"><span id="local-6989586621679656508"><span id="local-6989586621679656518"><span class="annot"><span class="annottext">Int -&gt; GivenComponent -&gt; ShowS
+</span><a href="../../base-4.16.4.0/src/GHC-Read.html#Read"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656054"><span id="local-6989586621679656056"><span id="local-6989586621679656066"><span class="annot"><span class="annottext">Int -&gt; GivenComponent -&gt; ShowS
 [GivenComponent] -&gt; ShowS
 GivenComponent -&gt; String
 forall a.
@@ -57,14 +57,14 @@ show :: GivenComponent -&gt; String
 $cshow :: GivenComponent -&gt; String
 showsPrec :: Int -&gt; GivenComponent -&gt; ShowS
 $cshowsPrec :: Int -&gt; GivenComponent -&gt; ShowS
-</span><a href="../../base-4.16.3.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656495"><span id="local-6989586621679656503"><span class="annot"><span class="annottext">GivenComponent -&gt; GivenComponent -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679656043"><span id="local-6989586621679656051"><span class="annot"><span class="annottext">GivenComponent -&gt; GivenComponent -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: GivenComponent -&gt; GivenComponent -&gt; Bool
 $c/= :: GivenComponent -&gt; GivenComponent -&gt; Bool
 == :: GivenComponent -&gt; GivenComponent -&gt; Bool
 $c== :: GivenComponent -&gt; GivenComponent -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/Data-Typeable-Internal.html#Typeable"><span class="hs-identifier hs-type">Typeable</span></a></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/Data-Typeable-Internal.html#Typeable"><span class="hs-identifier hs-type">Typeable</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679656488"><span id="local-6989586621679656490"><span id="local-6989586621679656492"><span class="annot"><a href="../../binary-0.8.9.0/src/Data-Binary-Class.html#Binary"><span class="hs-identifier hs-type">Binary</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-type">GivenComponent</span></a></span></span></span></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679656481"><span id="local-6989586621679656483"><span class="annot"><a href="Distribution.Utils.Structured.html#Structured"><span class="hs-identifier hs-type">Structured</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-type">GivenComponent</span></a></span></span></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679656036"><span id="local-6989586621679656038"><span id="local-6989586621679656040"><span class="annot"><a href="../../binary-0.8.9.0/src/Data-Binary-Class.html#Binary"><span class="hs-identifier hs-type">Binary</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-type">GivenComponent</span></a></span></span></span></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679656029"><span id="local-6989586621679656031"><span class="annot"><a href="Distribution.Utils.Structured.html#Structured"><span class="hs-identifier hs-type">Structured</span></a></span><span> </span><span class="annot"><a href="Distribution.Types.GivenComponent.html#GivenComponent"><span class="hs-identifier hs-type">GivenComponent</span></a></span></span></span><span>
 </span><span id="line-29"></span></pre></body></html>

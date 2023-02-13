@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.19.4. Assertions &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.19.4. Assertions &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -232,7 +232,7 @@ assertion was made,</p>
 </pre></div>
 </div>
 <p>The rewrite is only performed by the compiler when it spots applications
-of <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Exception.html#v:assert">Control.Exception.assert</a>, so you can still define and use your
+of <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Exception.html#v:assert">Control.Exception.assert</a>, so you can still define and use your
 own versions of <code class="docutils literal notranslate"><span class="pre">assert</span></code>, should you so wish. If not, import
 <code class="docutils literal notranslate"><span class="pre">Control.Exception</span></code> to make use <code class="docutils literal notranslate"><span class="pre">assert</span></code> in your code.</p>
 <p id="index-1">GHC ignores assertions when optimisation is turned on with the
@@ -242,7 +242,7 @@ will be rewritten to <code class="docutils literal notranslate"><span class="pre
 <a class="reference internal" href="../using-optimisation.html#ghc-flag-fignore-asserts"><code class="xref std std-ghc-flag docutils literal notranslate"><span class="pre">-fno-ignore-asserts</span></code></a>
 allows enabling assertions even when optimisation is turned on.</p>
 <p>Assertion failures can be caught, see the documentation for the
-<a class="reference external" href="../../libraries/base-4.16.3.0/Control-Exception.html">Control.Exception</a> library for the details.</p>
+<a class="reference external" href="../../libraries/base-4.16.4.0/Control-Exception.html">Control.Exception</a> library for the details.</p>
 </section>
 
 

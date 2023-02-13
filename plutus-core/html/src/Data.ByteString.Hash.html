@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier">Cardano.Crypto.Hash.SHA256</span></a></span><span>
 </span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier">Cardano.Crypto.Hash.SHA3_256</span></a></span><span>
 </span><span id="line-13"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier">Data.ByteString</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BS</span></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Data.Proxy</span></a></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Proxy</span></a></span><span>
 </span><span id="line-15"></span><span>
 </span><span id="line-16"></span><span class="hs-comment">-- | Hash a [[BSL.ByteString]] using the SHA-256 hash function.</span><span>
 </span><span id="line-17"></span><span class="annot"><a href="Data.ByteString.Hash.html#sha2_256"><span class="hs-identifier hs-type">sha2_256</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span>
@@ -20,7 +20,7 @@
 HashAlgorithm h =&gt;
 proxy h -&gt; ByteString -&gt; ByteString
 </span><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-var">digest</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall {k} (t :: k). Proxy t
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">SHA256</span></a></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">SHA256</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span class="hs-comment">-- | Hash a [[BSL.ByteString]] using the SHA3-256 hash function.</span><span>
 </span><span id="line-21"></span><span class="annot"><a href="Data.ByteString.Hash.html#sha3_256"><span class="hs-identifier hs-type">sha3_256</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span>
@@ -29,7 +29,7 @@ proxy h -&gt; ByteString -&gt; ByteString
 HashAlgorithm h =&gt;
 proxy h -&gt; ByteString -&gt; ByteString
 </span><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-var">digest</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall {k} (t :: k). Proxy t
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">SHA3_256</span></a></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">SHA3_256</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span class="hs-comment">-- | Hash a [[BSL.ByteString]] using the Blake2B-256 hash function.</span><span>
 </span><span id="line-25"></span><span class="annot"><a href="Data.ByteString.Hash.html#blake2b_256"><span class="hs-identifier hs-type">blake2b_256</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">BS.ByteString</span></a></span><span>
@@ -38,5 +38,5 @@ proxy h -&gt; ByteString -&gt; ByteString
 HashAlgorithm h =&gt;
 proxy h -&gt; ByteString -&gt; ByteString
 </span><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-var">digest</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall {k} (t :: k). Proxy t
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">Blake2b_256</span></a></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Proxy</span></a></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="../../../../cardano-crypto-class/html/src"><span class="hs-identifier hs-type">Blake2b_256</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-27"></span></pre></body></html>

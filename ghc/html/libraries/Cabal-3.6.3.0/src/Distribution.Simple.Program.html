@@ -122,7 +122,7 @@
 </span><span id="line-122"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Distribution.Simple.Program.Builtin.html#hpcProgram"><span class="hs-identifier">hpcProgram</span></a></span><span>
 </span><span id="line-123"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-124"></span><span>
-</span><span id="line-125"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-125"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/Prelude.html#"><span class="hs-identifier">Prelude</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-126"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Compat.Prelude.html"><span class="hs-identifier">Distribution.Compat.Prelude</span></a></span><span>
 </span><span id="line-127"></span><span>
 </span><span id="line-128"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Distribution.Simple.Program.Types.html"><span class="hs-identifier">Distribution.Simple.Program.Types</span></a></span><span>
@@ -139,16 +139,16 @@
 </span><span id="line-139"></span><span>           </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Distribution.Simple.Program.Types.html#ProgArg"><span class="hs-identifier hs-type">ProgArg</span></a></span><span class="hs-special">]</span><span>          </span><span class="hs-comment">-- ^Any /extra/ arguments to add</span><span>
 </span><span id="line-140"></span><span>           </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-141"></span><span id="runProgram"><span class="annot"><span class="annottext">runProgram :: Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ()
-</span><a href="Distribution.Simple.Program.html#runProgram"><span class="hs-identifier hs-var hs-var">runProgram</span></a></span></span><span> </span><span id="local-6989586621679706607"><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706607"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706606"><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706606"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706605"><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706605"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Distribution.Simple.Program.html#runProgram"><span class="hs-identifier hs-var hs-var">runProgram</span></a></span></span><span> </span><span id="local-6989586621679706155"><span class="annot"><span class="annottext">Verbosity
+</span><a href="#local-6989586621679706155"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706154"><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706154"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706153"><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706153"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-142"></span><span>  </span><span class="annot"><span class="annottext">Verbosity -&gt; ProgramInvocation -&gt; IO ()
 </span><a href="Distribution.Simple.Program.Run.html#runProgramInvocation"><span class="hs-identifier hs-var">runProgramInvocation</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706607"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ConfiguredProgram -&gt; [ProgArg] -&gt; ProgramInvocation
+</span><a href="#local-6989586621679706155"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ConfiguredProgram -&gt; [ProgArg] -&gt; ProgramInvocation
 </span><a href="Distribution.Simple.Program.Run.html#programInvocation"><span class="hs-identifier hs-var">programInvocation</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706606"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706605"><span class="hs-identifier hs-var">args</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679706154"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706153"><span class="hs-identifier hs-var">args</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-143"></span><span>
 </span><span id="line-144"></span><span>
 </span><span id="line-145"></span><span class="hs-comment">-- | Runs the given configured program and gets the output.</span><span>
@@ -156,18 +156,18 @@
 </span><span id="line-147"></span><span class="annot"><a href="Distribution.Simple.Program.html#getProgramOutput"><span class="hs-identifier hs-type">getProgramOutput</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Distribution.Verbosity.html#Verbosity"><span class="hs-identifier hs-type">Verbosity</span></a></span><span>          </span><span class="hs-comment">-- ^Verbosity</span><span>
 </span><span id="line-148"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.Program.Types.html#ConfiguredProgram"><span class="hs-identifier hs-type">ConfiguredProgram</span></a></span><span>  </span><span class="hs-comment">-- ^The program to run</span><span>
 </span><span id="line-149"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Distribution.Simple.Program.Types.html#ProgArg"><span class="hs-identifier hs-type">ProgArg</span></a></span><span class="hs-special">]</span><span>          </span><span class="hs-comment">-- ^Any /extra/ arguments to add</span><span>
-</span><span id="line-150"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><span id="line-150"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-151"></span><span id="getProgramOutput"><span class="annot"><span class="annottext">getProgramOutput :: Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ProgArg
-</span><a href="Distribution.Simple.Program.html#getProgramOutput"><span class="hs-identifier hs-var hs-var">getProgramOutput</span></a></span></span><span> </span><span id="local-6989586621679706604"><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706604"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706603"><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706603"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706602"><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706602"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Distribution.Simple.Program.html#getProgramOutput"><span class="hs-identifier hs-var hs-var">getProgramOutput</span></a></span></span><span> </span><span id="local-6989586621679706152"><span class="annot"><span class="annottext">Verbosity
+</span><a href="#local-6989586621679706152"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706151"><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706151"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706150"><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706150"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-152"></span><span>  </span><span class="annot"><span class="annottext">Verbosity -&gt; ProgramInvocation -&gt; IO ProgArg
 </span><a href="Distribution.Simple.Program.Run.html#getProgramInvocationOutput"><span class="hs-identifier hs-var">getProgramInvocationOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706604"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ConfiguredProgram -&gt; [ProgArg] -&gt; ProgramInvocation
+</span><a href="#local-6989586621679706152"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ConfiguredProgram -&gt; [ProgArg] -&gt; ProgramInvocation
 </span><a href="Distribution.Simple.Program.Run.html#programInvocation"><span class="hs-identifier hs-var">programInvocation</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706603"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706602"><span class="hs-identifier hs-var">args</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679706151"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706150"><span class="hs-identifier hs-var">args</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-153"></span><span>
 </span><span id="line-154"></span><span>
 </span><span id="line-155"></span><span class="hs-comment">-- | Looks up the given program in the program database and runs it.</span><span>
@@ -178,35 +178,35 @@
 </span><span id="line-160"></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Distribution.Simple.Program.Types.html#ProgArg"><span class="hs-identifier hs-type">ProgArg</span></a></span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^Any /extra/ arguments to add</span><span>
 </span><span id="line-161"></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-162"></span><span id="runDbProgram"><span class="annot"><span class="annottext">runDbProgram :: Verbosity -&gt; Program -&gt; ProgramDb -&gt; [ProgArg] -&gt; IO ()
-</span><a href="Distribution.Simple.Program.html#runDbProgram"><span class="hs-identifier hs-var hs-var">runDbProgram</span></a></span></span><span> </span><span id="local-6989586621679706601"><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706601"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706600"><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706600"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706599"><span class="annot"><span class="annottext">ProgramDb
-</span><a href="#local-6989586621679706599"><span class="hs-identifier hs-var">programDb</span></a></span></span><span> </span><span id="local-6989586621679706598"><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706598"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Distribution.Simple.Program.html#runDbProgram"><span class="hs-identifier hs-var hs-var">runDbProgram</span></a></span></span><span> </span><span id="local-6989586621679706149"><span class="annot"><span class="annottext">Verbosity
+</span><a href="#local-6989586621679706149"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706148"><span class="annot"><span class="annottext">Program
+</span><a href="#local-6989586621679706148"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706147"><span class="annot"><span class="annottext">ProgramDb
+</span><a href="#local-6989586621679706147"><span class="hs-identifier hs-var">programDb</span></a></span></span><span> </span><span id="local-6989586621679706146"><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706146"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-163"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgramDb -&gt; Maybe ConfiguredProgram
 </span><a href="Distribution.Simple.Program.Db.html#lookupProgram"><span class="hs-identifier hs-var">lookupProgram</span></a></span><span> </span><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706600"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">ProgramDb
-</span><a href="#local-6989586621679706599"><span class="hs-identifier hs-var">programDb</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679706148"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">ProgramDb
+</span><a href="#local-6989586621679706147"><span class="hs-identifier hs-var">programDb</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-164"></span><span>    </span><span class="annot"><span class="annottext">Maybe ConfiguredProgram
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Verbosity -&gt; ProgArg -&gt; IO a
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Verbosity -&gt; ProgArg -&gt; IO a
 </span><a href="Distribution.Simple.Utils.html#die%27"><span class="hs-identifier hs-var">die'</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706601"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
-</span><a href="#local-6989586621679706596"><span class="hs-identifier hs-var">notFound</span></a></span><span>
-</span><span id="line-165"></span><span>    </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679706595"><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706595"><span class="hs-identifier hs-var">configuredProg</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ()
+</span><a href="#local-6989586621679706149"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><a href="#local-6989586621679706144"><span class="hs-identifier hs-var">notFound</span></a></span><span>
+</span><span id="line-165"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679706143"><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706143"><span class="hs-identifier hs-var">configuredProg</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ()
 </span><a href="Distribution.Simple.Program.html#runProgram"><span class="hs-identifier hs-var">runProgram</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706601"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706595"><span class="hs-identifier hs-var">configuredProg</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706598"><span class="hs-identifier hs-var">args</span></a></span><span>
+</span><a href="#local-6989586621679706149"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706143"><span class="hs-identifier hs-var">configuredProg</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706146"><span class="hs-identifier hs-var">args</span></a></span><span>
 </span><span id="line-166"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-167"></span><span>   </span><span id="local-6989586621679706596"><span class="annot"><span class="annottext">notFound :: ProgArg
-</span><a href="#local-6989586621679706596"><span class="hs-identifier hs-var hs-var">notFound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><span id="line-167"></span><span>   </span><span id="local-6989586621679706144"><span class="annot"><span class="annottext">notFound :: ProgArg
+</span><a href="#local-6989586621679706144"><span class="hs-identifier hs-var hs-var">notFound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ProgArg
 </span><span class="hs-string">&quot;The program '&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgArg
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgArg
 </span><a href="Distribution.Simple.Program.Types.html#programName"><span class="hs-identifier hs-var">programName</span></a></span><span> </span><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706600"><span class="hs-identifier hs-var">prog</span></a></span><span>
+</span><a href="#local-6989586621679706148"><span class="hs-identifier hs-var">prog</span></a></span><span>
 </span><span id="line-168"></span><span>           </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
 </span><span class="hs-string">&quot;' is required but it could not be found&quot;</span></span><span>
 </span><span id="line-169"></span><span>
 </span><span id="line-170"></span><span class="hs-comment">-- | Looks up the given program in the program database and runs it.</span><span>
@@ -215,36 +215,36 @@
 </span><span id="line-173"></span><span>                   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.Program.Types.html#Program"><span class="hs-identifier hs-type">Program</span></a></span><span>    </span><span class="hs-comment">-- ^The program to run</span><span>
 </span><span id="line-174"></span><span>                   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Distribution.Simple.Program.Db.html#ProgramDb"><span class="hs-identifier hs-type">ProgramDb</span></a></span><span>  </span><span class="hs-comment">-- ^look up the program here</span><span>
 </span><span id="line-175"></span><span>                   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Distribution.Simple.Program.Types.html#ProgArg"><span class="hs-identifier hs-type">ProgArg</span></a></span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^Any /extra/ arguments to add</span><span>
-</span><span id="line-176"></span><span>                   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><span id="line-176"></span><span>                   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-177"></span><span id="getDbProgramOutput"><span class="annot"><span class="annottext">getDbProgramOutput :: Verbosity -&gt; Program -&gt; ProgramDb -&gt; [ProgArg] -&gt; IO ProgArg
-</span><a href="Distribution.Simple.Program.html#getDbProgramOutput"><span class="hs-identifier hs-var hs-var">getDbProgramOutput</span></a></span></span><span> </span><span id="local-6989586621679706593"><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706593"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706592"><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706592"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706591"><span class="annot"><span class="annottext">ProgramDb
-</span><a href="#local-6989586621679706591"><span class="hs-identifier hs-var">programDb</span></a></span></span><span> </span><span id="local-6989586621679706590"><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706590"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Distribution.Simple.Program.html#getDbProgramOutput"><span class="hs-identifier hs-var hs-var">getDbProgramOutput</span></a></span></span><span> </span><span id="local-6989586621679706141"><span class="annot"><span class="annottext">Verbosity
+</span><a href="#local-6989586621679706141"><span class="hs-identifier hs-var">verbosity</span></a></span></span><span> </span><span id="local-6989586621679706140"><span class="annot"><span class="annottext">Program
+</span><a href="#local-6989586621679706140"><span class="hs-identifier hs-var">prog</span></a></span></span><span> </span><span id="local-6989586621679706139"><span class="annot"><span class="annottext">ProgramDb
+</span><a href="#local-6989586621679706139"><span class="hs-identifier hs-var">programDb</span></a></span></span><span> </span><span id="local-6989586621679706138"><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706138"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-178"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgramDb -&gt; Maybe ConfiguredProgram
 </span><a href="Distribution.Simple.Program.Db.html#lookupProgram"><span class="hs-identifier hs-var">lookupProgram</span></a></span><span> </span><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706592"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">ProgramDb
-</span><a href="#local-6989586621679706591"><span class="hs-identifier hs-var">programDb</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679706140"><span class="hs-identifier hs-var">prog</span></a></span><span> </span><span class="annot"><span class="annottext">ProgramDb
+</span><a href="#local-6989586621679706139"><span class="hs-identifier hs-var">programDb</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-179"></span><span>    </span><span class="annot"><span class="annottext">Maybe ConfiguredProgram
-</span><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Verbosity -&gt; ProgArg -&gt; IO a
+</span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Verbosity -&gt; ProgArg -&gt; IO a
 </span><a href="Distribution.Simple.Utils.html#die%27"><span class="hs-identifier hs-var">die'</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706593"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
-</span><a href="#local-6989586621679706589"><span class="hs-identifier hs-var">notFound</span></a></span><span>
-</span><span id="line-180"></span><span>    </span><span class="annot"><a href="../../base-4.16.3.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679706588"><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706588"><span class="hs-identifier hs-var">configuredProg</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ProgArg
+</span><a href="#local-6989586621679706141"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><a href="#local-6989586621679706137"><span class="hs-identifier hs-var">notFound</span></a></span><span>
+</span><span id="line-180"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679706136"><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706136"><span class="hs-identifier hs-var">configuredProg</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Verbosity -&gt; ConfiguredProgram -&gt; [ProgArg] -&gt; IO ProgArg
 </span><a href="Distribution.Simple.Program.html#getProgramOutput"><span class="hs-identifier hs-var">getProgramOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Verbosity
-</span><a href="#local-6989586621679706593"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
-</span><a href="#local-6989586621679706588"><span class="hs-identifier hs-var">configuredProg</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
-</span><a href="#local-6989586621679706590"><span class="hs-identifier hs-var">args</span></a></span><span>
+</span><a href="#local-6989586621679706141"><span class="hs-identifier hs-var">verbosity</span></a></span><span> </span><span class="annot"><span class="annottext">ConfiguredProgram
+</span><a href="#local-6989586621679706136"><span class="hs-identifier hs-var">configuredProg</span></a></span><span> </span><span class="annot"><span class="annottext">[ProgArg]
+</span><a href="#local-6989586621679706138"><span class="hs-identifier hs-var">args</span></a></span><span>
 </span><span id="line-181"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-182"></span><span>   </span><span id="local-6989586621679706589"><span class="annot"><span class="annottext">notFound :: ProgArg
-</span><a href="#local-6989586621679706589"><span class="hs-identifier hs-var hs-var">notFound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><span id="line-182"></span><span>   </span><span id="local-6989586621679706137"><span class="annot"><span class="annottext">notFound :: ProgArg
+</span><a href="#local-6989586621679706137"><span class="hs-identifier hs-var hs-var">notFound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ProgArg
 </span><span class="hs-string">&quot;The program '&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgArg
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">Program -&gt; ProgArg
 </span><a href="Distribution.Simple.Program.Types.html#programName"><span class="hs-identifier hs-var">programName</span></a></span><span> </span><span class="annot"><span class="annottext">Program
-</span><a href="#local-6989586621679706592"><span class="hs-identifier hs-var">prog</span></a></span><span>
+</span><a href="#local-6989586621679706140"><span class="hs-identifier hs-var">prog</span></a></span><span>
 </span><span id="line-183"></span><span>           </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
-</span><a href="../../base-4.16.3.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">ProgArg
 </span><span class="hs-string">&quot;' is required but it could not be found&quot;</span></span><span>
 </span><span id="line-184"></span></pre></body></html>

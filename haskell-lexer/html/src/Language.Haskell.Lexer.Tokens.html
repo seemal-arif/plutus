@@ -40,7 +40,7 @@
 </span><span id="line-40"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Layout"><span class="annot"><a href="Language.Haskell.Lexer.Tokens.html#Layout"><span class="hs-identifier hs-var">Layout</span></a></span></span><span>     </span><span class="hs-comment">-- ^ for implicit braces</span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Indent"><span class="annot"><a href="Language.Haskell.Lexer.Tokens.html#Indent"><span class="hs-identifier hs-var">Indent</span></a></span></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span> </span><span class="hs-comment">-- ^ \&lt;n\&gt;, to preceed first token on each line</span><span>
 </span><span id="line-42"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Open"><span class="annot"><a href="Language.Haskell.Lexer.Tokens.html#Open"><span class="hs-identifier hs-var">Open</span></a></span></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span>   </span><span class="hs-comment">-- ^ \{n\}, after let, where, do or of, if not followed by a \&quot;{\&quot;</span><span>
-</span><span id="line-43"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679079839"><span id="local-6989586621679079841"><span id="local-6989586621679079849"><span class="annot"><span class="annottext">Int -&gt; Token -&gt; ShowS
+</span><span id="line-43"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679079639"><span id="local-6989586621679079641"><span id="local-6989586621679079649"><span class="annot"><span class="annottext">Int -&gt; Token -&gt; ShowS
 [Token] -&gt; ShowS
 Token -&gt; String
 forall a.
@@ -51,13 +51,13 @@ show :: Token -&gt; String
 $cshow :: Token -&gt; String
 showsPrec :: Int -&gt; Token -&gt; ShowS
 $cshowsPrec :: Int -&gt; Token -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679079831"><span id="local-6989586621679079836"><span class="annot"><span class="annottext">Token -&gt; Token -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679079631"><span id="local-6989586621679079636"><span class="annot"><span class="annottext">Token -&gt; Token -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Token -&gt; Token -&gt; Bool
 $c/= :: Token -&gt; Token -&gt; Bool
 == :: Token -&gt; Token -&gt; Bool
 $c== :: Token -&gt; Token -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679079812"><span id="local-6989586621679079814"><span id="local-6989586621679079816"><span id="local-6989586621679079818"><span id="local-6989586621679079820"><span id="local-6989586621679079822"><span id="local-6989586621679079826"><span class="annot"><span class="annottext">Eq Token
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679079612"><span id="local-6989586621679079614"><span id="local-6989586621679079616"><span id="local-6989586621679079618"><span id="local-6989586621679079620"><span id="local-6989586621679079622"><span id="local-6989586621679079626"><span class="annot"><span class="annottext">Eq Token
 Token -&gt; Token -&gt; Bool
 Token -&gt; Token -&gt; Ordering
 Token -&gt; Token -&gt; Token

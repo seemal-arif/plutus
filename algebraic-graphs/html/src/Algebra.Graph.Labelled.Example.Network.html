@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679129525"><span id="local-6989586621679129526"></span></span><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679129291"><span id="local-6989586621679129292"></span></span><span class="hs-pragma">{-# LANGUAGE TypeFamilies #-}</span><span>
 </span><span id="line-2"></span><span class="hs-comment">-----------------------------------------------------------------------------</span><span>
 </span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-4"></span><span class="hs-comment">-- Module     : Algebra.Graph.Labelled.Example.Network</span><span>
@@ -25,13 +25,13 @@
 </span><span id="line-25"></span><span>          </span><span class="hs-glyph">|</span><span> </span><span id="Glasgow"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Network.html#Glasgow"><span class="hs-identifier hs-var">Glasgow</span></a></span></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-glyph">|</span><span> </span><span id="London"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Network.html#London"><span class="hs-identifier hs-var">London</span></a></span></span><span>
 </span><span id="line-27"></span><span>          </span><span class="hs-glyph">|</span><span> </span><span id="Newcastle"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Network.html#Newcastle"><span class="hs-identifier hs-var">Newcastle</span></a></span></span><span>
-</span><span id="line-28"></span><span>          </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129501"><span id="local-6989586621679129503"><span class="annot"><span class="annottext">City
+</span><span id="line-28"></span><span>          </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129267"><span id="local-6989586621679129269"><span class="annot"><span class="annottext">City
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: City
 $cmaxBound :: City
 minBound :: City
 $cminBound :: City
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129463"><span id="local-6989586621679129465"><span id="local-6989586621679129469"><span id="local-6989586621679129473"><span id="local-6989586621679129475"><span id="local-6989586621679129484"><span id="local-6989586621679129490"><span id="local-6989586621679129497"><span class="annot"><span class="annottext">Int -&gt; City
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129229"><span id="local-6989586621679129231"><span id="local-6989586621679129235"><span id="local-6989586621679129239"><span id="local-6989586621679129241"><span id="local-6989586621679129250"><span id="local-6989586621679129256"><span id="local-6989586621679129263"><span class="annot"><span class="annottext">Int -&gt; City
 City -&gt; Int
 City -&gt; [City]
 City -&gt; City
@@ -63,13 +63,13 @@ pred :: City -&gt; City
 $cpred :: City -&gt; City
 succ :: City -&gt; City
 $csucc :: City -&gt; City
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129458"><span id="local-6989586621679129460"><span class="annot"><span class="annottext">City -&gt; City -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129224"><span id="local-6989586621679129226"><span class="annot"><span class="annottext">City -&gt; City -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: City -&gt; City -&gt; Bool
 $c/= :: City -&gt; City -&gt; Bool
 == :: City -&gt; City -&gt; Bool
 $c== :: City -&gt; City -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129438"><span id="local-6989586621679129440"><span id="local-6989586621679129443"><span id="local-6989586621679129446"><span id="local-6989586621679129449"><span id="local-6989586621679129451"><span id="local-6989586621679129453"><span class="annot"><span class="annottext">Eq City
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129204"><span id="local-6989586621679129206"><span id="local-6989586621679129209"><span id="local-6989586621679129212"><span id="local-6989586621679129215"><span id="local-6989586621679129217"><span id="local-6989586621679129219"><span class="annot"><span class="annottext">Eq City
 City -&gt; City -&gt; Bool
 City -&gt; City -&gt; Ordering
 City -&gt; City -&gt; City
@@ -97,7 +97,7 @@ $c&lt;= :: City -&gt; City -&gt; Bool
 $c&lt; :: City -&gt; City -&gt; Bool
 compare :: City -&gt; City -&gt; Ordering
 $ccompare :: City -&gt; City -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129431"><span id="local-6989586621679129433"><span id="local-6989586621679129435"><span class="annot"><span class="annottext">Int -&gt; City -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129197"><span id="local-6989586621679129199"><span id="local-6989586621679129201"><span class="annot"><span class="annottext">Int -&gt; City -&gt; ShowS
 [City] -&gt; ShowS
 City -&gt; String
 forall a.
@@ -108,7 +108,7 @@ show :: City -&gt; String
 $cshow :: City -&gt; String
 showsPrec :: Int -&gt; City -&gt; ShowS
 $cshowsPrec :: Int -&gt; City -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-29"></span><span>
 </span><span id="line-30"></span><span class="hs-comment">-- | For simplicity we measure /journey times/ in integer number of minutes.</span><span>
 </span><span id="line-31"></span><span class="hs-keyword">type</span><span> </span><span id="JourneyTime"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Network.html#JourneyTime"><span class="hs-identifier hs-var">JourneyTime</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span>

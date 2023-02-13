@@ -21,24 +21,24 @@
 True
 -}</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679101017"><span class="annot"><a href="Flat.Class.html#Flat"><span class="hs-identifier hs-type">Flat</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679101017"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Flat.Class.html#Flat"><span class="hs-identifier hs-type">Flat</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../dlist/html/src"><span class="hs-identifier hs-type">DList</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679101017"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679100991"><span class="annot"><span class="annottext">size :: DList a -&gt; NumBits -&gt; NumBits
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679100753"><span class="annot"><a href="Flat.Class.html#Flat"><span class="hs-identifier hs-type">Flat</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679100753"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Flat.Class.html#Flat"><span class="hs-identifier hs-type">Flat</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../dlist/html/src"><span class="hs-identifier hs-type">DList</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679100753"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679100727"><span class="annot"><span class="annottext">size :: DList a -&gt; NumBits -&gt; NumBits
 </span><a href="Flat.Class.html#size"><span class="hs-identifier hs-var hs-var hs-var hs-var">size</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall mono.
 (MonoFoldable mono, Flat (Element mono)) =&gt;
 mono -&gt; NumBits -&gt; NumBits
 </span><a href="Flat.Instances.Mono.html#sizeList"><span class="hs-identifier hs-var">sizeList</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. DList a -&gt; [a]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. DList a -&gt; [a]
 </span><a href="../../../../dlist/html/src"><span class="hs-identifier hs-var">toList</span></a></span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679100984"><span class="annot"><span class="annottext">encode :: DList a -&gt; Encoding
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679100720"><span class="annot"><span class="annottext">encode :: DList a -&gt; Encoding
 </span><a href="Flat.Class.html#encode"><span class="hs-identifier hs-var hs-var hs-var hs-var">encode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall mono.
 (Flat (Element mono), MonoFoldable mono) =&gt;
 mono -&gt; Encoding
 </span><a href="Flat.Instances.Mono.html#encodeList"><span class="hs-identifier hs-var">encodeList</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. DList a -&gt; [a]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. DList a -&gt; [a]
 </span><a href="../../../../dlist/html/src"><span class="hs-identifier hs-var">toList</span></a></span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679100976"><span class="annot"><span class="annottext">decode :: Get (DList a)
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679100712"><span class="annot"><span class="annottext">decode :: Get (DList a)
 </span><a href="Flat.Class.html#decode"><span class="hs-identifier hs-var hs-var hs-var hs-var">decode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; DList a
 </span><a href="../../../../dlist/html/src"><span class="hs-identifier hs-var">fromList</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall b. (IsSequence b, Flat (Element b)) =&gt; Get b
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall b. (IsSequence b, Flat (Element b)) =&gt; Get b
 </span><a href="Flat.Instances.Mono.html#decodeList"><span class="hs-identifier hs-var">decodeList</span></a></span><span>
 </span><span id="line-28"></span></pre></body></html>

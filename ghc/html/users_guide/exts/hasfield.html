@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.5.8. Record field selector polymorphism &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.5.8. Record field selector polymorphism &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -216,7 +216,7 @@
             
   <section id="record-field-selector-polymorphism">
 <span id="id1"></span><h1><span class="section-number">6.5.8. </span>Record field selector polymorphism<a class="headerlink" href="#record-field-selector-polymorphism" title="Permalink to this heading">¶</a></h1>
-<p>The module <a class="reference external" href="../../libraries/base-4.16.3.0/GHC-Records.html">GHC.Records</a> defines the following:</p>
+<p>The module <a class="reference external" href="../../libraries/base-4.16.4.0/GHC-Records.html">GHC.Records</a> defines the following:</p>
 <div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span><span class="w"> </span><span class="kt">HasField</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="kr">where</span><span class="w"></span>
 <span class="w">  </span><span class="n">getField</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 </pre></div>

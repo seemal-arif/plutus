@@ -23,6 +23,34 @@ module Distribution.Compat.CreatePipe
 
 -- | Create a pipe for interprocess communication and return a
 --   <tt>(readEnd, writeEnd)</tt> <a>Handle</a> pair.
+--   
+--   <ul>
+--   <li>WinIO Support</li>
+--   </ul>
+--   
+--   When this function is used with WinIO enabled it's the caller's
+--   responsibility to register the handles with the I/O manager. If this
+--   is not done the operation will deadlock. Association can be done as
+--   follows:
+--   
+--   <pre>
+--   #if defined(<b>IO_MANAGER_WINIO</b>)
+--   import GHC.IO.SubSystem ((<a>!</a>))
+--   import GHC.IO.Handle.Windows (handleToHANDLE)
+--   import GHC.Event.Windows (associateHandle')
+--   #endif
+--   
+--   ...
+--   
+--   #if defined (<b>IO_MANAGER_WINIO</b>)
+--   return () <a>!</a> (do
+--     associateHandle' =<a>handleToHANDLE &lt;handle</a>)
+--   #endif
+--   </pre>
+--   
+--   Only associate handles that you are in charge of read/writing to. Do
+--   not associate handles passed to another process. It's the process's
+--   reponsibility to register the handle if it supports async access.
 createPipe :: IO (Handle, Handle)
 
 module Distribution.Compat.Directory

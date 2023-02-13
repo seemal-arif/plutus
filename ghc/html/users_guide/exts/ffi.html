@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.17. Foreign function interface (FFI) &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.17. Foreign function interface (FFI) &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -247,7 +247,7 @@ Haskell 2010 Report. These extensions are described in <a class="reference inter
 please note that programs using these features are not portable. Hence, these
 features should be avoided where possible.</p>
 <p>The FFI libraries are documented in the accompanying  library
-documentation; see for example the <a class="reference external" href="../../libraries/base-4.16.3.0/Foreign.html">Foreign</a> module.</p>
+documentation; see for example the <a class="reference external" href="../../libraries/base-4.16.4.0/Foreign.html">Foreign</a> module.</p>
 <section id="ghc-differences-to-the-ffi-chapter">
 <h2><span class="section-number">6.17.1. </span>GHC differences to the FFI Chapter<a class="headerlink" href="#ghc-differences-to-the-ffi-chapter" title="Permalink to this heading">¶</a></h2>
 <section id="guaranteed-call-safety">
@@ -283,9 +283,9 @@ the same operating system thread. <em>Sequential</em> <code class="docutils lite
 do not enjoy this luxury and may be run on arbitrary OS threads.</p>
 <p>This behaviour is considered an implementation detail and code relying on
 thread local state should instead use one of the interfaces provided
-in <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Concurrent.html">Control.Concurrent</a> to make this explicit.</p>
+in <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Concurrent.html">Control.Concurrent</a> to make this explicit.</p>
 <p>For information on what bound threads are,
-see the documentation for the <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Concurrent.html">Control.Concurrent</a>.</p>
+see the documentation for the <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Concurrent.html">Control.Concurrent</a>.</p>
 <p>For more details on the implementation see the Paper:
 “Extending the Haskell Foreign Function Interface with Concurrency”.
 Last known to be accessible <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2004/09/conc-ffi.pdf">here</a>.</p>
@@ -602,13 +602,13 @@ of the thread allows it. Being under mask gives the Haskell code an opportunity
 to detect and react to the interrupt error code from the c call.</p>
 <p>If the foreign code simply retries the system call directly without returning
 back to Haskell, then the intended effect of <cite>interruptible</cite> disappears
-and functions like <a class="reference external" href="../../libraries/base-4.16.3.0/System-Timeout.html#v:timeout">System.Timeout.timeout</a> will not work.</p>
+and functions like <a class="reference external" href="../../libraries/base-4.16.4.0/System-Timeout.html#v:timeout">System.Timeout.timeout</a> will not work.</p>
 <p>Finally, after the <code class="docutils literal notranslate"><span class="pre">interruptible</span></code> foreign call returns into Haskell, the
 Haskell code should allow exceptions to be raised
 (<code class="docutils literal notranslate"><span class="pre">Control.Exception</span></code>’s <code class="docutils literal notranslate"><span class="pre">allowInterrupt</span></code>, or <code class="docutils literal notranslate"><span class="pre">interruptible</span> <span class="pre">yield</span></code>
 for non-<code class="docutils literal notranslate"><span class="pre">-threaded</span></code>, see <a class="reference external" href="https://gitlab.haskell.org/ghc/ghc/issues/8684">https://gitlab.haskell.org/ghc/ghc/issues/8684</a>),
 and implement the <code class="docutils literal notranslate"><span class="pre">EINTR</span></code>-retrying in Haskell
-(e.g. using e.g. <a class="reference external" href="../../libraries/base-4.16.3.0/Foreign-C-Error.html#v:throwErrnoIfMinus1Retry">Foreign.C.Error.throwErrnoIfMinus1Retry</a>).</p>
+(e.g. using e.g. <a class="reference external" href="../../libraries/base-4.16.4.0/Foreign-C-Error.html#v:throwErrnoIfMinus1Retry">Foreign.C.Error.throwErrnoIfMinus1Retry</a>).</p>
 <p>Be especially careful when using <code class="docutils literal notranslate"><span class="pre">interruptible</span></code> to check that
 the called foreign function is prepared to deal with the consequences
 of the call being interrupted.
@@ -1028,7 +1028,7 @@ where it is useful to have more control over which OS thread is used,
 for example when calling foreign code that makes use of thread-local
 state. For cases like this, we provide <em>bound threads</em>, which are
 Haskell threads tied to a particular OS thread. For information on bound
-threads, see the documentation for the <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Concurrent.html">Control.Concurrent</a> module.</p>
+threads, see the documentation for the <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Concurrent.html">Control.Concurrent</a> module.</p>
 </section>
 <section id="foreign-exports-and-multi-threading">
 <h4><span class="section-number">6.17.3.4.3. </span>Foreign exports and multi-threading<a class="headerlink" href="#foreign-exports-and-multi-threading" title="Permalink to this heading">¶</a></h4>

@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.19. Arrow notation &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.2.19. Arrow notation &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -270,7 +270,7 @@ source code).</p></li>
 </ul>
 <p>With the <a class="reference internal" href="#extension-Arrows"><code class="xref std std-extension docutils literal notranslate"><span class="pre">Arrows</span></code></a> extension, GHC supports the arrow notation described in
 the second of these papers, translating it using combinators from the
-<a class="reference external" href="../../libraries/base-4.16.3.0/Control-Arrow.html">Control.Arrow</a> module.
+<a class="reference external" href="../../libraries/base-4.16.4.0/Control-Arrow.html">Control.Arrow</a> module.
 What follows is a brief introduction to the notation; it won’t make much
 sense unless you’ve read Hughes’s paper.</p>
 <p>The extension adds a new kind of expression for defining arrows:</p>
@@ -359,7 +359,7 @@ can write</p>
 in place of monadic expressions. The first line sends the value of
 <code class="docutils literal notranslate"><span class="pre">x+1</span></code> as an input to the arrow <code class="docutils literal notranslate"><span class="pre">f</span></code>, and matches its output against
 <code class="docutils literal notranslate"><span class="pre">y</span></code>. In the next line, the output is discarded. The arrow <code class="docutils literal notranslate"><span class="pre">returnA</span></code>
-is defined in the <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Arrow.html">Control.Arrow</a> module as <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">id</span></code>. The above
+is defined in the <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Arrow.html">Control.Arrow</a> module as <code class="docutils literal notranslate"><span class="pre">arr</span> <span class="pre">id</span></code>. The above
 example is treated as an abbreviation for</p>
 <div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">arr</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"></span>
 <span class="w">        </span><span class="n">first</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"></span>
@@ -374,7 +374,7 @@ example is treated as an abbreviation for</p>
 </div>
 <p>Note that variables not used later in the composition are projected out.
 After simplification using rewrite rules (see <a class="reference internal" href="rewrite_rules.html#rewrite-rules"><span class="std std-ref">Rewrite rules</span></a>)
-defined in the <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Arrow.html">Control.Arrow</a> module, this reduces to</p>
+defined in the <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Arrow.html">Control.Arrow</a> module, this reduces to</p>
 <div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">arr</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"></span>
 <span class="w">        </span><span class="n">first</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"></span>
 <span class="w">        </span><span class="n">arr</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"></span>
@@ -607,7 +607,7 @@ to check arrow programs with GHC; tracing type errors in the
 preprocessor output is not easy. Modules intended for both GHC and the
 preprocessor must observe some additional restrictions:</p>
 <ul class="simple">
-<li><p>The module must import <a class="reference external" href="../../libraries/base-4.16.3.0/Control-Arrow.html">Control.Arrow</a>.</p></li>
+<li><p>The module must import <a class="reference external" href="../../libraries/base-4.16.4.0/Control-Arrow.html">Control.Arrow</a>.</p></li>
 <li><p>The preprocessor cannot cope with other Haskell extensions. These
 would have to go in separate modules.</p></li>
 <li><p>Because the preprocessor targets Haskell (rather than Core),

@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.15.3. Static pointers &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>6.15.3. Static pointers &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -32,7 +32,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="../_static/opensearch.xml"/>
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -235,11 +235,11 @@ Jeff Epstein, Andrew P. Black and Simon Peyton-Jones, Proceedings of the
 <section id="using-static-pointers">
 <span id="id2"></span><h2><span class="section-number">6.15.3.1. </span>Using static pointers<a class="headerlink" href="#using-static-pointers" title="Permalink to this heading">¶</a></h2>
 <p>Each reference is given a key which can be used to locate it at runtime
-with <a class="reference external" href="../../libraries/base-4.16.3.0/GHC-StaticPtr.html#v:unsafeLookupStaticPtr">GHC.StaticPtr.unsafeLookupStaticPtr</a>
+with <a class="reference external" href="../../libraries/base-4.16.4.0/GHC-StaticPtr.html#v:unsafeLookupStaticPtr">GHC.StaticPtr.unsafeLookupStaticPtr</a>
 which uses a global and immutable table called the Static Pointer Table.
 The compiler includes entries in this table for all static forms found
 in the linked modules. The value can be obtained from the reference via
-<a class="reference external" href="../../libraries/base-4.16.3.0/GHC-StaticPtr.html#v:deRefStaticPtr">GHC.StaticPtr.deRefStaticPtr</a>.</p>
+<a class="reference external" href="../../libraries/base-4.16.4.0/GHC-StaticPtr.html#v:deRefStaticPtr">GHC.StaticPtr.deRefStaticPtr</a>.</p>
 <p>The body <code class="docutils literal notranslate"><span class="pre">e</span></code> of a <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">e</span></code> expression must be a closed expression. Where
 we say an expression is <em>closed</em> when all of its free (type) variables are
 closed. And a variable is <em>closed</em> if it is let-bound to a <em>closed</em> expression
@@ -302,7 +302,7 @@ type implicitly, via the <code class="docutils literal notranslate"><span class=
 <span class="w">    </span><span class="n">fromStaticPtr</span><span class="w"> </span><span class="n">sptr</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">sptr</span><span class="w"></span>
 </pre></div>
 </div>
-<p>See <a class="reference external" href="../../libraries/base-4.16.3.0/GHC-StaticPtr.html#t:IsStatic">GHC.StaticPtr.IsStatic</a>.</p>
+<p>See <a class="reference external" href="../../libraries/base-4.16.4.0/GHC-StaticPtr.html#t:IsStatic">GHC.StaticPtr.IsStatic</a>.</p>
 <p>Furthermore, type <code class="docutils literal notranslate"><span class="pre">t</span></code> is constrained to have a <code class="docutils literal notranslate"><span class="pre">Typeable</span></code> instance.
 The following are therefore illegal:</p>
 <div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">static</span><span class="w"> </span><span class="n">show</span><span class="w">                    </span><span class="c1">-- No Typeable instance for (Show a =&gt; a -&gt; String)</span><span class="w"></span>

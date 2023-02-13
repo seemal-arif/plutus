@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679218945"><span id="local-6989586621679218946"><span id="local-6989586621679218947"><span id="local-6989586621679218948"><span id="local-6989586621679218949"><span id="local-6989586621679218950"></span></span></span></span></span></span><span class="hs-comment">-- |</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679218716"><span id="local-6989586621679218717"><span id="local-6989586621679218718"><span id="local-6989586621679218719"><span id="local-6989586621679218720"><span id="local-6989586621679218721"></span></span></span></span></span></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-2"></span><span class="hs-comment">-- Module      : Crypto.PubKey.RSA.Types</span><span>
 </span><span id="line-3"></span><span class="hs-comment">-- License     : BSD-style</span><span>
 </span><span id="line-4"></span><span class="hs-comment">-- Maintainer  : Vincent Hanquez &lt;vincent@snarc.org&gt;</span><span>
@@ -20,13 +20,13 @@
 </span><span id="line-20"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#private_e"><span class="hs-identifier">private_e</span></a></span><span>
 </span><span id="line-21"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Data.Data</span></a></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Data</span></a></span><span>
 </span><span id="line-24"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="Crypto.Internal.Imports.html"><span class="hs-identifier">Crypto.Internal.Imports</span></a></span><span>
 </span><span id="line-25"></span><span>
 </span><span id="line-26"></span><span class="hs-comment">-- | Blinder which is used to obfuscate the timing</span><span>
 </span><span id="line-27"></span><span class="hs-comment">-- of the decryption primitive (used by decryption and signing).</span><span>
 </span><span id="line-28"></span><span class="hs-keyword">data</span><span> </span><span id="Blinder"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#Blinder"><span class="hs-identifier hs-var">Blinder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Blinder"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#Blinder"><span class="hs-identifier hs-var">Blinder</span></a></span></span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span>
-</span><span id="line-29"></span><span>             </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218928"><span id="local-6989586621679218930"><span id="local-6989586621679218937"><span class="annot"><span class="annottext">Int -&gt; Blinder -&gt; ShowS
+</span><span id="line-29"></span><span>             </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218699"><span id="local-6989586621679218701"><span id="local-6989586621679218708"><span class="annot"><span class="annottext">Int -&gt; Blinder -&gt; ShowS
 [Blinder] -&gt; ShowS
 Blinder -&gt; String
 forall a.
@@ -37,7 +37,7 @@ show :: Blinder -&gt; String
 $cshow :: Blinder -&gt; String
 showsPrec :: Int -&gt; Blinder -&gt; ShowS
 $cshowsPrec :: Int -&gt; Blinder -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218920"><span id="local-6989586621679218925"><span class="annot"><span class="annottext">Blinder -&gt; Blinder -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218691"><span id="local-6989586621679218696"><span class="annot"><span class="annottext">Blinder -&gt; Blinder -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Blinder -&gt; Blinder -&gt; Bool
 $c/= :: Blinder -&gt; Blinder -&gt; Bool
@@ -52,7 +52,7 @@ $c== :: Blinder -&gt; Blinder -&gt; Bool
 </span><span id="line-35"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="MessageNotRecognized"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#MessageNotRecognized"><span class="hs-identifier hs-var">MessageNotRecognized</span></a></span></span><span> </span><span class="hs-comment">-- ^ the message decrypted doesn't have a PKCS15 structure (0 2 .. 0 msg)</span><span>
 </span><span id="line-36"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="SignatureTooLong"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#SignatureTooLong"><span class="hs-identifier hs-var">SignatureTooLong</span></a></span></span><span>     </span><span class="hs-comment">-- ^ the message's digest is too long</span><span>
 </span><span id="line-37"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="InvalidParameters"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#InvalidParameters"><span class="hs-identifier hs-var">InvalidParameters</span></a></span></span><span>    </span><span class="hs-comment">-- ^ some parameters lead to breaking assumptions.</span><span>
-</span><span id="line-38"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218908"><span id="local-6989586621679218910"><span id="local-6989586621679218912"><span class="annot"><span class="annottext">Int -&gt; Error -&gt; ShowS
+</span><span id="line-38"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218679"><span id="local-6989586621679218681"><span id="local-6989586621679218683"><span class="annot"><span class="annottext">Int -&gt; Error -&gt; ShowS
 [Error] -&gt; ShowS
 Error -&gt; String
 forall a.
@@ -63,7 +63,7 @@ show :: Error -&gt; String
 $cshow :: Error -&gt; String
 showsPrec :: Int -&gt; Error -&gt; ShowS
 $cshowsPrec :: Int -&gt; Error -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218904"><span id="local-6989586621679218906"><span class="annot"><span class="annottext">Error -&gt; Error -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218675"><span id="local-6989586621679218677"><span class="annot"><span class="annottext">Error -&gt; Error -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Error -&gt; Error -&gt; Bool
 $c/= :: Error -&gt; Error -&gt; Bool
@@ -79,7 +79,7 @@ $c== :: Error -&gt; Error -&gt; Bool
 </span><a href="Crypto.PubKey.RSA.Types.html#public_n"><span class="hs-identifier hs-var hs-var">public_n</span></a></span></span><span>    </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span>  </span><span class="hs-comment">-- ^ public p*q</span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="public_e"><span class="annot"><span class="annottext">PublicKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#public_e"><span class="hs-identifier hs-var hs-var">public_e</span></a></span></span><span>    </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span>  </span><span class="hs-comment">-- ^ public exponent e</span><span>
-</span><span id="line-45"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218889"><span id="local-6989586621679218891"><span id="local-6989586621679218898"><span class="annot"><span class="annottext">Int -&gt; PublicKey -&gt; ShowS
+</span><span id="line-45"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218660"><span id="local-6989586621679218662"><span id="local-6989586621679218669"><span class="annot"><span class="annottext">Int -&gt; PublicKey -&gt; ShowS
 [PublicKey] -&gt; ShowS
 PublicKey -&gt; String
 forall a.
@@ -90,7 +90,7 @@ show :: PublicKey -&gt; String
 $cshow :: PublicKey -&gt; String
 showsPrec :: Int -&gt; PublicKey -&gt; ShowS
 $cshowsPrec :: Int -&gt; PublicKey -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218865"><span id="local-6989586621679218882"><span id="local-6989586621679218885"><span id="local-6989586621679218887"><span class="annot"><span class="annottext">ReadPrec [PublicKey]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218636"><span id="local-6989586621679218653"><span id="local-6989586621679218656"><span id="local-6989586621679218658"><span class="annot"><span class="annottext">ReadPrec [PublicKey]
 ReadPrec PublicKey
 Int -&gt; ReadS PublicKey
 ReadS [PublicKey]
@@ -105,13 +105,13 @@ readList :: ReadS [PublicKey]
 $creadList :: ReadS [PublicKey]
 readsPrec :: Int -&gt; ReadS PublicKey
 $creadsPrec :: Int -&gt; ReadS PublicKey
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218855"><span id="local-6989586621679218861"><span class="annot"><span class="annottext">PublicKey -&gt; PublicKey -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218626"><span id="local-6989586621679218632"><span class="annot"><span class="annottext">PublicKey -&gt; PublicKey -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: PublicKey -&gt; PublicKey -&gt; Bool
 $c/= :: PublicKey -&gt; PublicKey -&gt; Bool
 == :: PublicKey -&gt; PublicKey -&gt; Bool
 $c== :: PublicKey -&gt; PublicKey -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218817"><span id="local-6989586621679218819"><span id="local-6989586621679218821"><span id="local-6989586621679218823"><span id="local-6989586621679218825"><span id="local-6989586621679218827"><span id="local-6989586621679218829"><span id="local-6989586621679218831"><span id="local-6989586621679218833"><span id="local-6989586621679218835"><span id="local-6989586621679218837"><span id="local-6989586621679218839"><span id="local-6989586621679218844"><span id="local-6989586621679218851"><span class="annot"><span class="annottext">Typeable PublicKey
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218588"><span id="local-6989586621679218590"><span id="local-6989586621679218592"><span id="local-6989586621679218594"><span id="local-6989586621679218596"><span id="local-6989586621679218598"><span id="local-6989586621679218600"><span id="local-6989586621679218602"><span id="local-6989586621679218604"><span id="local-6989586621679218606"><span id="local-6989586621679218608"><span id="local-6989586621679218610"><span id="local-6989586621679218615"><span id="local-6989586621679218622"><span class="annot"><span class="annottext">Typeable PublicKey
 PublicKey -&gt; DataType
 PublicKey -&gt; Constr
 (forall b. Data b =&gt; b -&gt; b) -&gt; PublicKey -&gt; PublicKey
@@ -238,21 +238,21 @@ gfoldl :: forall (c :: * -&gt; *).
 $cgfoldl :: forall (c :: * -&gt; *).
 (forall d b. Data d =&gt; c (d -&gt; b) -&gt; d -&gt; c b)
 -&gt; (forall g. g -&gt; c g) -&gt; PublicKey -&gt; c PublicKey
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-46"></span><span>
 </span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-type">NFData</span></a></span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PublicKey"><span class="hs-identifier hs-type">PublicKey</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679218809"><span class="annot"><span class="annottext">rnf :: PublicKey -&gt; ()
-</span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">rnf</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PublicKey"><span class="hs-identifier hs-type">PublicKey</span></a></span><span> </span><span id="local-6989586621679218807"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679218807"><span class="hs-identifier hs-var">sz</span></a></span></span><span> </span><span id="local-6989586621679218806"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218806"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621679218805"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218805"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679218580"><span class="annot"><span class="annottext">rnf :: PublicKey -&gt; ()
+</span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">rnf</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PublicKey"><span class="hs-identifier hs-type">PublicKey</span></a></span><span> </span><span id="local-6989586621679218578"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679218578"><span class="hs-identifier hs-var">sz</span></a></span></span><span> </span><span id="local-6989586621679218577"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218577"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621679218576"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218576"><span class="hs-identifier hs-var">e</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218806"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218577"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218805"><span class="hs-identifier hs-var">e</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218576"><span class="hs-identifier hs-var">e</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679218807"><span class="hs-identifier hs-var">sz</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218578"><span class="hs-identifier hs-var">sz</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-49"></span><span>
 </span><span id="line-50"></span><span class="hs-comment">-- | Represent a RSA private key.</span><span>
@@ -280,7 +280,7 @@ $cgfoldl :: forall (c :: * -&gt; *).
 </span><a href="Crypto.PubKey.RSA.Types.html#private_dQ"><span class="hs-identifier hs-var hs-var">private_dQ</span></a></span></span><span>   </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span>   </span><span class="hs-comment">-- ^ d mod (q-1)</span><span>
 </span><span id="line-67"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="private_qinv"><span class="annot"><span class="annottext">PrivateKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#private_qinv"><span class="hs-identifier hs-var hs-var">private_qinv</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-bignum-1.2/src"><span class="hs-identifier hs-type">Integer</span></a></span><span>   </span><span class="hs-comment">-- ^ q^(-1) mod p</span><span>
-</span><span id="line-68"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218783"><span id="local-6989586621679218785"><span id="local-6989586621679218795"><span class="annot"><span class="annottext">Int -&gt; PrivateKey -&gt; ShowS
+</span><span id="line-68"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218554"><span id="local-6989586621679218556"><span id="local-6989586621679218566"><span class="annot"><span class="annottext">Int -&gt; PrivateKey -&gt; ShowS
 [PrivateKey] -&gt; ShowS
 PrivateKey -&gt; String
 forall a.
@@ -291,7 +291,7 @@ show :: PrivateKey -&gt; String
 $cshow :: PrivateKey -&gt; String
 showsPrec :: Int -&gt; PrivateKey -&gt; ShowS
 $cshowsPrec :: Int -&gt; PrivateKey -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218750"><span id="local-6989586621679218776"><span id="local-6989586621679218779"><span id="local-6989586621679218781"><span class="annot"><span class="annottext">ReadPrec [PrivateKey]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218521"><span id="local-6989586621679218547"><span id="local-6989586621679218550"><span id="local-6989586621679218552"><span class="annot"><span class="annottext">ReadPrec [PrivateKey]
 ReadPrec PrivateKey
 Int -&gt; ReadS PrivateKey
 ReadS [PrivateKey]
@@ -306,13 +306,13 @@ readList :: ReadS [PrivateKey]
 $creadList :: ReadS [PrivateKey]
 readsPrec :: Int -&gt; ReadS PrivateKey
 $creadsPrec :: Int -&gt; ReadS PrivateKey
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218738"><span id="local-6989586621679218747"><span class="annot"><span class="annottext">PrivateKey -&gt; PrivateKey -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218509"><span id="local-6989586621679218518"><span class="annot"><span class="annottext">PrivateKey -&gt; PrivateKey -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: PrivateKey -&gt; PrivateKey -&gt; Bool
 $c/= :: PrivateKey -&gt; PrivateKey -&gt; Bool
 == :: PrivateKey -&gt; PrivateKey -&gt; Bool
 $c== :: PrivateKey -&gt; PrivateKey -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218694"><span id="local-6989586621679218696"><span id="local-6989586621679218698"><span id="local-6989586621679218700"><span id="local-6989586621679218702"><span id="local-6989586621679218704"><span id="local-6989586621679218706"><span id="local-6989586621679218708"><span id="local-6989586621679218710"><span id="local-6989586621679218712"><span id="local-6989586621679218714"><span id="local-6989586621679218716"><span id="local-6989586621679218725"><span id="local-6989586621679218734"><span class="annot"><span class="annottext">Typeable PrivateKey
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218465"><span id="local-6989586621679218467"><span id="local-6989586621679218469"><span id="local-6989586621679218471"><span id="local-6989586621679218473"><span id="local-6989586621679218475"><span id="local-6989586621679218477"><span id="local-6989586621679218479"><span id="local-6989586621679218481"><span id="local-6989586621679218483"><span id="local-6989586621679218485"><span id="local-6989586621679218487"><span id="local-6989586621679218496"><span id="local-6989586621679218505"><span class="annot"><span class="annottext">Typeable PrivateKey
 PrivateKey -&gt; DataType
 PrivateKey -&gt; Constr
 (forall b. Data b =&gt; b -&gt; b) -&gt; PrivateKey -&gt; PrivateKey
@@ -439,38 +439,38 @@ gfoldl :: forall (c :: * -&gt; *).
 $cgfoldl :: forall (c :: * -&gt; *).
 (forall d b. Data d =&gt; c (d -&gt; b) -&gt; d -&gt; c b)
 -&gt; (forall g. g -&gt; c g) -&gt; PrivateKey -&gt; c PrivateKey
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-69"></span><span>
 </span><span id="line-70"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-type">NFData</span></a></span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PrivateKey"><span class="hs-identifier hs-type">PrivateKey</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679218685"><span class="annot"><span class="annottext">rnf :: PrivateKey -&gt; ()
-</span><a href="#local-6989586621679218685"><span class="hs-identifier hs-var hs-var hs-var hs-var">rnf</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PrivateKey"><span class="hs-identifier hs-type">PrivateKey</span></a></span><span> </span><span id="local-6989586621679218684"><span class="annot"><span class="annottext">PublicKey
-</span><a href="#local-6989586621679218684"><span class="hs-identifier hs-var">pub</span></a></span></span><span> </span><span id="local-6989586621679218683"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218683"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span id="local-6989586621679218682"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218682"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679218681"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218681"><span class="hs-identifier hs-var">q</span></a></span></span><span> </span><span id="local-6989586621679218680"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218680"><span class="hs-identifier hs-var">dp</span></a></span></span><span> </span><span id="local-6989586621679218679"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218679"><span class="hs-identifier hs-var">dq</span></a></span></span><span> </span><span id="local-6989586621679218678"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218678"><span class="hs-identifier hs-var">qinv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679218456"><span class="annot"><span class="annottext">rnf :: PrivateKey -&gt; ()
+</span><a href="#local-6989586621679218456"><span class="hs-identifier hs-var hs-var hs-var hs-var">rnf</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PrivateKey"><span class="hs-identifier hs-type">PrivateKey</span></a></span><span> </span><span id="local-6989586621679218455"><span class="annot"><span class="annottext">PublicKey
+</span><a href="#local-6989586621679218455"><span class="hs-identifier hs-var">pub</span></a></span></span><span> </span><span id="local-6989586621679218454"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218454"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span id="local-6989586621679218453"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218453"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679218452"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218452"><span class="hs-identifier hs-var">q</span></a></span></span><span> </span><span id="local-6989586621679218451"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218451"><span class="hs-identifier hs-var">dp</span></a></span></span><span> </span><span id="local-6989586621679218450"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218450"><span class="hs-identifier hs-var">dq</span></a></span></span><span> </span><span id="local-6989586621679218449"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621679218449"><span class="hs-identifier hs-var">qinv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-72"></span><span>        </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">PublicKey
-</span><a href="#local-6989586621679218684"><span class="hs-identifier hs-var">pub</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218455"><span class="hs-identifier hs-var">pub</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218683"><span class="hs-identifier hs-var">d</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218454"><span class="hs-identifier hs-var">d</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218682"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218453"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218681"><span class="hs-identifier hs-var">q</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218452"><span class="hs-identifier hs-var">q</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218680"><span class="hs-identifier hs-var">dp</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218451"><span class="hs-identifier hs-var">dp</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NFData a =&gt; a -&gt; ()
 </span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var">rnf</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218679"><span class="hs-identifier hs-var">dq</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218450"><span class="hs-identifier hs-var">dq</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621679218678"><span class="hs-identifier hs-var">qinv</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
+</span><a href="#local-6989586621679218449"><span class="hs-identifier hs-var">qinv</span></a></span><span> </span><span class="annot"><span class="annottext">seq :: forall a b. a -&gt; b -&gt; b
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-operator hs-type">`seq`</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-73"></span><span>
 </span><span id="line-74"></span><span class="hs-comment">-- | get the size in bytes from a private key</span><span>
@@ -478,7 +478,7 @@ $cgfoldl :: forall (c :: * -&gt; *).
 </span><span id="line-76"></span><span id="private_size"><span class="annot"><span class="annottext">private_size :: PrivateKey -&gt; Int
 </span><a href="Crypto.PubKey.RSA.Types.html#private_size"><span class="hs-identifier hs-var hs-var">private_size</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PublicKey -&gt; Int
 </span><a href="Crypto.PubKey.RSA.Types.html#public_size"><span class="hs-identifier hs-var">public_size</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
 </span><a href="Crypto.PubKey.RSA.Types.html#private_pub"><span class="hs-identifier hs-var">private_pub</span></a></span><span>
 </span><span id="line-77"></span><span>
 </span><span id="line-78"></span><span class="hs-comment">-- | get n from a private key</span><span>
@@ -486,7 +486,7 @@ $cgfoldl :: forall (c :: * -&gt; *).
 </span><span id="line-80"></span><span id="private_n"><span class="annot"><span class="annottext">private_n :: PrivateKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#private_n"><span class="hs-identifier hs-var hs-var">private_n</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PublicKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#public_n"><span class="hs-identifier hs-var">public_n</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
 </span><a href="Crypto.PubKey.RSA.Types.html#private_pub"><span class="hs-identifier hs-var">private_pub</span></a></span><span>
 </span><span id="line-81"></span><span>
 </span><span id="line-82"></span><span class="hs-comment">-- | get e from a private key</span><span>
@@ -494,14 +494,14 @@ $cgfoldl :: forall (c :: * -&gt; *).
 </span><span id="line-84"></span><span id="private_e"><span class="annot"><span class="annottext">private_e :: PrivateKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#private_e"><span class="hs-identifier hs-var hs-var">private_e</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PublicKey -&gt; Integer
 </span><a href="Crypto.PubKey.RSA.Types.html#public_e"><span class="hs-identifier hs-var">public_e</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
 </span><a href="Crypto.PubKey.RSA.Types.html#private_pub"><span class="hs-identifier hs-var">private_pub</span></a></span><span>
 </span><span id="line-85"></span><span>
 </span><span id="line-86"></span><span class="hs-comment">-- | Represent RSA KeyPair</span><span>
 </span><span id="line-87"></span><span class="hs-comment">--</span><span>
 </span><span id="line-88"></span><span class="hs-comment">-- note the RSA private key contains already an instance of public key for efficiency</span><span>
 </span><span id="line-89"></span><span class="hs-keyword">newtype</span><span> </span><span id="KeyPair"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-var">KeyPair</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="KeyPair"><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-var">KeyPair</span></a></span></span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PrivateKey"><span class="hs-identifier hs-type">PrivateKey</span></a></span><span>
-</span><span id="line-90"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218668"><span id="local-6989586621679218670"><span id="local-6989586621679218674"><span class="annot"><span class="annottext">Int -&gt; KeyPair -&gt; ShowS
+</span><span id="line-90"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679218439"><span id="local-6989586621679218441"><span id="local-6989586621679218445"><span class="annot"><span class="annottext">Int -&gt; KeyPair -&gt; ShowS
 [KeyPair] -&gt; ShowS
 KeyPair -&gt; String
 forall a.
@@ -512,7 +512,7 @@ show :: KeyPair -&gt; String
 $cshow :: KeyPair -&gt; String
 showsPrec :: Int -&gt; KeyPair -&gt; ShowS
 $cshowsPrec :: Int -&gt; KeyPair -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218655"><span id="local-6989586621679218661"><span id="local-6989586621679218664"><span id="local-6989586621679218666"><span class="annot"><span class="annottext">ReadPrec [KeyPair]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218426"><span id="local-6989586621679218432"><span id="local-6989586621679218435"><span id="local-6989586621679218437"><span class="annot"><span class="annottext">ReadPrec [KeyPair]
 ReadPrec KeyPair
 Int -&gt; ReadS KeyPair
 ReadS [KeyPair]
@@ -527,13 +527,13 @@ readList :: ReadS [KeyPair]
 $creadList :: ReadS [KeyPair]
 readsPrec :: Int -&gt; ReadS KeyPair
 $creadsPrec :: Int -&gt; ReadS KeyPair
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218648"><span id="local-6989586621679218652"><span class="annot"><span class="annottext">KeyPair -&gt; KeyPair -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218419"><span id="local-6989586621679218423"><span class="annot"><span class="annottext">KeyPair -&gt; KeyPair -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: KeyPair -&gt; KeyPair -&gt; Bool
 $c/= :: KeyPair -&gt; KeyPair -&gt; Bool
 == :: KeyPair -&gt; KeyPair -&gt; Bool
 $c== :: KeyPair -&gt; KeyPair -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218613"><span id="local-6989586621679218615"><span id="local-6989586621679218617"><span id="local-6989586621679218619"><span id="local-6989586621679218621"><span id="local-6989586621679218623"><span id="local-6989586621679218625"><span id="local-6989586621679218627"><span id="local-6989586621679218629"><span id="local-6989586621679218631"><span id="local-6989586621679218633"><span id="local-6989586621679218635"><span id="local-6989586621679218638"><span id="local-6989586621679218641"><span class="annot"><span class="annottext">Typeable KeyPair
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218384"><span id="local-6989586621679218386"><span id="local-6989586621679218388"><span id="local-6989586621679218390"><span id="local-6989586621679218392"><span id="local-6989586621679218394"><span id="local-6989586621679218396"><span id="local-6989586621679218398"><span id="local-6989586621679218400"><span id="local-6989586621679218402"><span id="local-6989586621679218404"><span id="local-6989586621679218406"><span id="local-6989586621679218409"><span id="local-6989586621679218412"><span class="annot"><span class="annottext">Typeable KeyPair
 KeyPair -&gt; DataType
 KeyPair -&gt; Constr
 (forall b. Data b =&gt; b -&gt; b) -&gt; KeyPair -&gt; KeyPair
@@ -660,24 +660,24 @@ gfoldl :: forall (c :: * -&gt; *).
 $cgfoldl :: forall (c :: * -&gt; *).
 (forall d b. Data d =&gt; c (d -&gt; b) -&gt; d -&gt; c b)
 -&gt; (forall g. g -&gt; c g) -&gt; KeyPair -&gt; c KeyPair
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218611"><span class="annot"><span class="annottext">KeyPair -&gt; ()
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Data</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621679218382"><span class="annot"><span class="annottext">KeyPair -&gt; ()
 forall a. (a -&gt; ()) -&gt; NFData a
 rnf :: KeyPair -&gt; ()
 $crnf :: KeyPair -&gt; ()
-</span><a href="#local-6989586621679218611"><span class="hs-identifier hs-var hs-var hs-var hs-var">NFData</span></a></span></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679218382"><span class="hs-identifier hs-var hs-var hs-var hs-var">NFData</span></a></span></span><span class="hs-special">)</span><span>
 </span><span id="line-91"></span><span>
 </span><span id="line-92"></span><span class="hs-comment">-- | Public key of a RSA KeyPair</span><span>
 </span><span id="line-93"></span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#toPublicKey"><span class="hs-identifier hs-type">toPublicKey</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PublicKey"><span class="hs-identifier hs-type">PublicKey</span></a></span><span>
 </span><span id="line-94"></span><span id="toPublicKey"><span class="annot"><span class="annottext">toPublicKey :: KeyPair -&gt; PublicKey
-</span><a href="Crypto.PubKey.RSA.Types.html#toPublicKey"><span class="hs-identifier hs-var hs-var">toPublicKey</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span id="local-6989586621679218607"><span class="annot"><span class="annottext">PrivateKey
-</span><a href="#local-6989586621679218607"><span class="hs-identifier hs-var">priv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
+</span><a href="Crypto.PubKey.RSA.Types.html#toPublicKey"><span class="hs-identifier hs-var hs-var">toPublicKey</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span id="local-6989586621679218378"><span class="annot"><span class="annottext">PrivateKey
+</span><a href="#local-6989586621679218378"><span class="hs-identifier hs-var">priv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PrivateKey -&gt; PublicKey
 </span><a href="Crypto.PubKey.RSA.Types.html#private_pub"><span class="hs-identifier hs-var">private_pub</span></a></span><span> </span><span class="annot"><span class="annottext">PrivateKey
-</span><a href="#local-6989586621679218607"><span class="hs-identifier hs-var">priv</span></a></span><span>
+</span><a href="#local-6989586621679218378"><span class="hs-identifier hs-var">priv</span></a></span><span>
 </span><span id="line-95"></span><span>
 </span><span id="line-96"></span><span class="hs-comment">-- | Private key of a RSA KeyPair</span><span>
 </span><span id="line-97"></span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#toPrivateKey"><span class="hs-identifier hs-type">toPrivateKey</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#PrivateKey"><span class="hs-identifier hs-type">PrivateKey</span></a></span><span>
 </span><span id="line-98"></span><span id="toPrivateKey"><span class="annot"><span class="annottext">toPrivateKey :: KeyPair -&gt; PrivateKey
-</span><a href="Crypto.PubKey.RSA.Types.html#toPrivateKey"><span class="hs-identifier hs-var hs-var">toPrivateKey</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span id="local-6989586621679218606"><span class="annot"><span class="annottext">PrivateKey
-</span><a href="#local-6989586621679218606"><span class="hs-identifier hs-var">priv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PrivateKey
-</span><a href="#local-6989586621679218606"><span class="hs-identifier hs-var">priv</span></a></span><span>
+</span><a href="Crypto.PubKey.RSA.Types.html#toPrivateKey"><span class="hs-identifier hs-var hs-var">toPrivateKey</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Crypto.PubKey.RSA.Types.html#KeyPair"><span class="hs-identifier hs-type">KeyPair</span></a></span><span> </span><span id="local-6989586621679218377"><span class="annot"><span class="annottext">PrivateKey
+</span><a href="#local-6989586621679218377"><span class="hs-identifier hs-var">priv</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PrivateKey
+</span><a href="#local-6989586621679218377"><span class="hs-identifier hs-var">priv</span></a></span><span>
 </span><span id="line-99"></span></pre></body></html>

@@ -12,30 +12,30 @@
 </span><span id="line-12"></span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="TimeLocale"><span class="annot"><a href="Data.Time.Format.Locale.html#TimeLocale"><span class="hs-identifier hs-var">TimeLocale</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TimeLocale"><span class="annot"><a href="Data.Time.Format.Locale.html#TimeLocale"><span class="hs-identifier hs-var">TimeLocale</span></a></span></span><span>
 </span><span id="line-14"></span><span>    </span><span class="hs-special">{</span><span> </span><span id="wDays"><span class="annot"><span class="annottext">TimeLocale -&gt; [(String, String)]
-</span><a href="Data.Time.Format.Locale.html#wDays"><span class="hs-identifier hs-var hs-var">wDays</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><a href="Data.Time.Format.Locale.html#wDays"><span class="hs-identifier hs-var hs-var">wDays</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>        </span><span class="hs-comment">-- ^ full and abbreviated week days, starting with Sunday</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="months"><span class="annot"><span class="annottext">TimeLocale -&gt; [(String, String)]
-</span><a href="Data.Time.Format.Locale.html#months"><span class="hs-identifier hs-var hs-var">months</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><a href="Data.Time.Format.Locale.html#months"><span class="hs-identifier hs-var hs-var">months</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>        </span><span class="hs-comment">-- ^ full and abbreviated months</span><span>
 </span><span id="line-18"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="amPm"><span class="annot"><span class="annottext">TimeLocale -&gt; (String, String)
-</span><a href="Data.Time.Format.Locale.html#amPm"><span class="hs-identifier hs-var hs-var">amPm</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span>
+</span><a href="Data.Time.Format.Locale.html#amPm"><span class="hs-identifier hs-var hs-var">amPm</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>        </span><span class="hs-comment">-- ^ AM\/PM symbols</span><span>
 </span><span id="line-20"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="dateTimeFmt"><span class="annot"><span class="annottext">TimeLocale -&gt; String
 </span><a href="Data.Time.Format.Locale.html#dateTimeFmt"><span class="hs-identifier hs-var hs-var">dateTimeFmt</span></a></span></span><span class="hs-special">,</span><span> </span><span id="dateFmt"><span class="annot"><span class="annottext">TimeLocale -&gt; String
 </span><a href="Data.Time.Format.Locale.html#dateFmt"><span class="hs-identifier hs-var hs-var">dateFmt</span></a></span></span><span class="hs-special">,</span><span> </span><span id="timeFmt"><span class="annot"><span class="annottext">TimeLocale -&gt; String
 </span><a href="Data.Time.Format.Locale.html#timeFmt"><span class="hs-identifier hs-var hs-var">timeFmt</span></a></span></span><span class="hs-special">,</span><span> </span><span id="time12Fmt"><span class="annot"><span class="annottext">TimeLocale -&gt; String
-</span><a href="Data.Time.Format.Locale.html#time12Fmt"><span class="hs-identifier hs-var hs-var">time12Fmt</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><a href="Data.Time.Format.Locale.html#time12Fmt"><span class="hs-identifier hs-var hs-var">time12Fmt</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-21"></span><span>        </span><span class="hs-comment">-- ^ formatting strings</span><span>
 </span><span id="line-22"></span><span>    </span><span class="hs-special">,</span><span> </span><span id="knownTimeZones"><span class="annot"><span class="annottext">TimeLocale -&gt; [TimeZone]
 </span><a href="Data.Time.Format.Locale.html#knownTimeZones"><span class="hs-identifier hs-var hs-var">knownTimeZones</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-type">TimeZone</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>        </span><span class="hs-comment">-- ^ time zones known by name</span><span>
-</span><span id="line-24"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679074277"><span id="local-6989586621679074291"><span class="annot"><span class="annottext">TimeLocale -&gt; TimeLocale -&gt; Bool
+</span><span id="line-24"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679074045"><span id="local-6989586621679074059"><span class="annot"><span class="annottext">TimeLocale -&gt; TimeLocale -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: TimeLocale -&gt; TimeLocale -&gt; Bool
 $c/= :: TimeLocale -&gt; TimeLocale -&gt; Bool
 == :: TimeLocale -&gt; TimeLocale -&gt; Bool
 $c== :: TimeLocale -&gt; TimeLocale -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679074229"><span id="local-6989586621679074231"><span id="local-6989586621679074234"><span id="local-6989586621679074237"><span id="local-6989586621679074240"><span id="local-6989586621679074253"><span id="local-6989586621679074267"><span class="annot"><span class="annottext">Eq TimeLocale
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679073997"><span id="local-6989586621679073999"><span id="local-6989586621679074002"><span id="local-6989586621679074005"><span id="local-6989586621679074008"><span id="local-6989586621679074021"><span id="local-6989586621679074035"><span class="annot"><span class="annottext">Eq TimeLocale
 TimeLocale -&gt; TimeLocale -&gt; Bool
 TimeLocale -&gt; TimeLocale -&gt; Ordering
 TimeLocale -&gt; TimeLocale -&gt; TimeLocale
@@ -63,7 +63,7 @@ $c&lt;= :: TimeLocale -&gt; TimeLocale -&gt; Bool
 $c&lt; :: TimeLocale -&gt; TimeLocale -&gt; Bool
 compare :: TimeLocale -&gt; TimeLocale -&gt; Ordering
 $ccompare :: TimeLocale -&gt; TimeLocale -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679074201"><span id="local-6989586621679074203"><span id="local-6989586621679074219"><span class="annot"><span class="annottext">Int -&gt; TimeLocale -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679073969"><span id="local-6989586621679073971"><span id="local-6989586621679073987"><span class="annot"><span class="annottext">Int -&gt; TimeLocale -&gt; ShowS
 [TimeLocale] -&gt; ShowS
 TimeLocale -&gt; String
 forall a.
@@ -74,7 +74,7 @@ show :: TimeLocale -&gt; String
 $cshow :: TimeLocale -&gt; String
 showsPrec :: Int -&gt; TimeLocale -&gt; ShowS
 $cshowsPrec :: Int -&gt; TimeLocale -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
 </span><span id="line-26"></span><span class="hs-comment">-- | Locale representing American usage.</span><span>
 </span><span id="line-27"></span><span class="hs-comment">--</span><span>
@@ -179,56 +179,56 @@ $cshowsPrec :: Int -&gt; TimeLocale -&gt; ShowS
 </span><span id="line-65"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">False</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EST&quot;</span></span><span>
 </span><span id="line-66"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">4</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">True</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EDT&quot;</span></span><span>
 </span><span id="line-67"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">6</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">False</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CST&quot;</span></span><span>
 </span><span id="line-68"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">True</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CDT&quot;</span></span><span>
 </span><span id="line-69"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">7</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">False</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MST&quot;</span></span><span>
 </span><span id="line-70"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">6</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">True</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MDT&quot;</span></span><span>
 </span><span id="line-71"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">8</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">False</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PST&quot;</span></span><span>
 </span><span id="line-72"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Bool -&gt; String -&gt; TimeZone
 </span><a href="Data.Time.LocalTime.Internal.TimeZone.html#TimeZone"><span class="hs-identifier hs-var">TimeZone</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">7</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">60</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">True</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PDT&quot;</span></span><span>
@@ -248,26 +248,26 @@ The @Maybe String@ argument allows to supply an optional time specification. E.g
 'iso8601DateFormat' (Just &quot;%H:%M:%S&quot;)  == &quot;%Y-%m-%dT%H:%M:%S&quot;  -- i.e. @/YYYY-MM-DD/T/HH:MM:SS/@
 @
 -}</span><span>
-</span><span id="line-89"></span><span class="annot"><a href="Data.Time.Format.Locale.html#iso8601DateFormat"><span class="hs-identifier hs-type">iso8601DateFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><span id="line-89"></span><span class="annot"><a href="Data.Time.Format.Locale.html#iso8601DateFormat"><span class="hs-identifier hs-type">iso8601DateFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-90"></span><span id="iso8601DateFormat"><span class="annot"><span class="annottext">iso8601DateFormat :: Maybe String -&gt; String
-</span><a href="Data.Time.Format.Locale.html#iso8601DateFormat"><span class="hs-identifier hs-var hs-var">iso8601DateFormat</span></a></span></span><span> </span><span id="local-6989586621679074192"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679074192"><span class="hs-identifier hs-var">mTimeFmt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Data.Time.Format.Locale.html#iso8601DateFormat"><span class="hs-identifier hs-var hs-var">iso8601DateFormat</span></a></span></span><span> </span><span id="local-6989586621679073960"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679073960"><span class="hs-identifier hs-var">mTimeFmt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-91"></span><span>    </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;%Y-%m-%d&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">++</span></a></span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">++</span></a></span><span>
 </span><span id="line-92"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679074192"><span class="hs-identifier hs-var">mTimeFmt</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679073960"><span class="hs-identifier hs-var">mTimeFmt</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-93"></span><span>        </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">Nothing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Nothing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-94"></span><span>        </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679074191"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679074191"><span class="hs-identifier hs-var">fmt</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Char
+</span><span id="line-94"></span><span>        </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679073959"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679073959"><span class="hs-identifier hs-var">fmt</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'T'</span></span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; [a] -&gt; [a]
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-glyph hs-var">:</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679074191"><span class="hs-identifier hs-var">fmt</span></a></span><span>
+</span><a href="#local-6989586621679073959"><span class="hs-identifier hs-var">fmt</span></a></span><span>
 </span><span id="line-95"></span><span>
 </span><span id="line-96"></span><span class="hs-comment">-- | Format string according to &lt;http://tools.ietf.org/html/rfc822#section-5 RFC822&gt;.</span><span>
-</span><span id="line-97"></span><span class="annot"><a href="Data.Time.Format.Locale.html#rfc822DateFormat"><span class="hs-identifier hs-type">rfc822DateFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
+</span><span id="line-97"></span><span class="annot"><a href="Data.Time.Format.Locale.html#rfc822DateFormat"><span class="hs-identifier hs-type">rfc822DateFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span>
 </span><span id="line-98"></span><span id="rfc822DateFormat"><span class="annot"><span class="annottext">rfc822DateFormat :: String
 </span><a href="Data.Time.Format.Locale.html#rfc822DateFormat"><span class="hs-identifier hs-var hs-var">rfc822DateFormat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;%a, %_d %b %Y %H:%M:%S %Z&quot;</span></span><span>

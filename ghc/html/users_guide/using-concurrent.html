@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.4. Using Concurrent Haskell &mdash; Glasgow Haskell Compiler 9.2.4 User&#39;s Guide</title>
+  <title>5.4. Using Concurrent Haskell &mdash; Glasgow Haskell Compiler 9.2.5 User&#39;s Guide</title>
   
 
   
@@ -33,7 +33,7 @@
 
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Glasgow Haskell Compiler 9.2.4 User&#39;s Guide"
+          title="Search within Glasgow Haskell Compiler 9.2.5 User&#39;s Guide"
           href="_static/opensearch.xml"/>
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                9.2.4
+                9.2.5
               </div>
             
           
@@ -200,7 +200,7 @@
 <p id="index-0">GHC supports Concurrent Haskell by default, without requiring a special
 option or libraries compiled in a certain way. To get access to the
 support libraries for Concurrent Haskell, just import
-<a class="reference external" href="./../libraries/base-4.16.3.0/Control-Concurrent.html">Control.Concurrent</a>. More information on Concurrent Haskell is
+<a class="reference external" href="./../libraries/base-4.16.4.0/Control-Concurrent.html">Control.Concurrent</a>. More information on Concurrent Haskell is
 provided in the documentation for that module.</p>
 <p>Optionally, the program may be linked with the <a class="reference internal" href="phases.html#ghc-flag-threaded"><code class="xref std std-ghc-flag docutils literal notranslate"><span class="pre">-threaded</span></code></a> option (see
 <a class="reference internal" href="phases.html#options-linker"><span class="std std-ref">Options affecting linking</span></a>. This provides two benefits:</p>
@@ -278,7 +278,7 @@ parallel with the <a class="reference internal" href="using-optimisation.html#gh
 <section id="rts-options-for-smp-parallelism">
 <span id="parallel-options"></span><h2><span class="section-number">5.5.2. </span>RTS options for SMP parallelism<a class="headerlink" href="#rts-options-for-smp-parallelism" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to run a program on multiple processors: call
-<a class="reference external" href="./../libraries/base-4.16.3.0/Control-Concurrent.html#v:setNumCapabilities">Control.Concurrent.setNumCapabilities</a> from your program, or
+<a class="reference external" href="./../libraries/base-4.16.4.0/Control-Concurrent.html#v:setNumCapabilities">Control.Concurrent.setNumCapabilities</a> from your program, or
 use the RTS <a class="reference internal" href="#rts-flag-N-x"><code class="xref std std-rts-flag docutils literal notranslate"><span class="pre">-N</span> <span class="pre">⟨x⟩</span></code></a> options.</p>
 <dl class="std rts-flag">
 <dt class="sig sig-object std" id="rts-flag-N-x">
@@ -344,7 +344,7 @@ that migration only applies to threads; sparks created by <code class="docutils 
 are load-balanced separately by work-stealing.</p>
 <p>This option is probably only of use for concurrent programs that
 explicitly schedule threads onto CPUs with
-<a class="reference external" href="./../libraries/base-4.16.3.0/Control-Concurrent.html#v:forkOn">Control.Concurrent.forkOn</a>.</p>
+<a class="reference external" href="./../libraries/base-4.16.4.0/Control-Concurrent.html#v:forkOn">Control.Concurrent.forkOn</a>.</p>
 </dd></dl>
 
 </section>

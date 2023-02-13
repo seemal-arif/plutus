@@ -16,13 +16,13 @@
 </span><span id="line-16"></span><span class="hs-comment">--   processed as a sequence of bytes, not as a separate entity. It's used in</span><span>
 </span><span id="line-17"></span><span class="hs-comment">--   crypto and binary code.</span><span>
 </span><span id="line-18"></span><span class="hs-keyword">newtype</span><span> </span><span id="Raw"><span class="annot"><a href="Cardano.Binary.Raw.html#Raw"><span class="hs-identifier hs-var">Raw</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Raw"><span class="annot"><a href="Cardano.Binary.Raw.html#Raw"><span class="hs-identifier hs-var">Raw</span></a></span></span><span> </span><span class="annot"><a href="../../../../bytestring/html/src"><span class="hs-identifier hs-type">ByteString</span></a></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679110486"><span id="local-6989586621679110491"><span class="annot"><span class="annottext">Raw -&gt; Raw -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679110169"><span id="local-6989586621679110174"><span class="annot"><span class="annottext">Raw -&gt; Raw -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Raw -&gt; Raw -&gt; Bool
 $c/= :: Raw -&gt; Raw -&gt; Bool
 == :: Raw -&gt; Raw -&gt; Bool
 $c== :: Raw -&gt; Raw -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110453"><span id="local-6989586621679110457"><span id="local-6989586621679110461"><span id="local-6989586621679110465"><span id="local-6989586621679110469"><span id="local-6989586621679110473"><span id="local-6989586621679110478"><span class="annot"><span class="annottext">Eq Raw
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110136"><span id="local-6989586621679110140"><span id="local-6989586621679110144"><span id="local-6989586621679110148"><span id="local-6989586621679110152"><span id="local-6989586621679110156"><span id="local-6989586621679110161"><span class="annot"><span class="annottext">Eq Raw
 Raw -&gt; Raw -&gt; Bool
 Raw -&gt; Raw -&gt; Ordering
 Raw -&gt; Raw -&gt; Raw
@@ -50,7 +50,7 @@ $c&lt;= :: Raw -&gt; Raw -&gt; Bool
 $c&lt; :: Raw -&gt; Raw -&gt; Bool
 compare :: Raw -&gt; Raw -&gt; Ordering
 $ccompare :: Raw -&gt; Raw -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110439"><span id="local-6989586621679110441"><span id="local-6989586621679110447"><span class="annot"><span class="annottext">Int -&gt; Raw -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110122"><span id="local-6989586621679110124"><span id="local-6989586621679110130"><span class="annot"><span class="annottext">Int -&gt; Raw -&gt; ShowS
 [Raw] -&gt; ShowS
 Raw -&gt; String
 forall a.
@@ -61,11 +61,11 @@ show :: Raw -&gt; String
 $cshow :: Raw -&gt; String
 showsPrec :: Int -&gt; Raw -&gt; ShowS
 $cshowsPrec :: Int -&gt; Raw -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110436"><span class="annot"><span class="annottext">Raw -&gt; ()
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110119"><span class="annot"><span class="annottext">Raw -&gt; ()
 forall a. (a -&gt; ()) -&gt; NFData a
 rnf :: Raw -&gt; ()
 $crnf :: Raw -&gt; ()
-</span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">NFData</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110422"><span id="local-6989586621679110427"><span class="annot"><span class="annottext">Typeable Raw
+</span><a href="../../../../ghc/html/libraries/deepseq-1.4.6.1/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">NFData</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110105"><span id="local-6989586621679110110"><span class="annot"><span class="annottext">Typeable Raw
 Proxy Raw -&gt; Text
 forall s. Decoder s Raw
 forall a.
@@ -75,7 +75,7 @@ label :: Proxy Raw -&gt; Text
 $clabel :: Proxy Raw -&gt; Text
 fromCBOR :: forall s. Decoder s Raw
 $cfromCBOR :: forall s. Decoder s Raw
-</span><a href="Cardano.Binary.FromCBOR.html#C%3AFromCBOR"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var">FromCBOR</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110401"><span id="local-6989586621679110407"><span id="local-6989586621679110414"><span class="annot"><span class="annottext">Typeable Raw
+</span><a href="Cardano.Binary.FromCBOR.html#C%3AFromCBOR"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var">FromCBOR</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679110084"><span id="local-6989586621679110090"><span id="local-6989586621679110097"><span class="annot"><span class="annottext">Typeable Raw
 Raw -&gt; Encoding
 (forall t. ToCBOR t =&gt; Proxy t -&gt; Size) -&gt; Proxy [Raw] -&gt; Size
 (forall t. ToCBOR t =&gt; Proxy t -&gt; Size) -&gt; Proxy Raw -&gt; Size

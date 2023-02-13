@@ -41,7 +41,7 @@ is represented, as well as representing different versions of the same
 constructor.</p></div><a href="#g:3" id="g:3"><h2>Interoperability with other CBOR implementations</h2></a><div class="doc"><p>Library provides means of stably storing Haskell values for later
 reading by the library.</p><p>The library is <em>not</em> aimed to facilitate serialisation and
 deserialisation across different CBOR implementations.
-But that is possible to setup practically.</p><p>A few things on compatibility with other CBOR implementations:</p><ol><li>The <code><a href="Codec-Serialise-Class.html#t:Serialise" title="Codec.Serialise.Class">Serialise</a></code> instances for some &quot;basic&quot; Haskell types (e.g. <code><a href="../../ghc/html/libraries/base-4.16.3.0/Data-Maybe.html#t:Maybe" title="Data.Maybe">Maybe</a></code>,
+But that is possible to setup practically.</p><p>A few things on compatibility with other CBOR implementations:</p><ol><li>The <code><a href="Codec-Serialise-Class.html#t:Serialise" title="Codec.Serialise.Class">Serialise</a></code> instances for some &quot;basic&quot; Haskell types (e.g. <code><a href="../../ghc/html/libraries/base-4.16.4.0/Data-Maybe.html#t:Maybe" title="Data.Maybe">Maybe</a></code>,
    <code><a href="../../bytestring/html/Data-ByteString.html#v:ByteString" title="Data.ByteString">ByteString</a></code>, tuples) don't carry a tag, in contrast to common
    convention. This is an intentional design decision to minimize encoding size
    for types which are primitive enough that their representation can be
@@ -70,7 +70,7 @@ of reasons:</p><ul><li>deviating from the type-guided encoding that the <code>Ge
     encode = encodeAnimal
     decode = decodeAnimal</pre></div><a href="#g:5" id="g:5"><h2>How to write encoding terms</h2></a><div class="doc"><p>For the purposes of encoding, abstract CBOR representations are embodied by the
 <code><a href="../../cborg/html/Codec-CBOR-Encoding.html#v:Tokens" title="Codec.CBOR.Encoding">Tokens</a></code> type. Such a representation can be efficiently
-built using the <code><a href="../../ghc/html/libraries/base-4.16.3.0/Data-Monoid.html#t:Monoid" title="Data.Monoid">Monoid</a></code> <code><a href="../../cborg/html/Codec-CBOR-Encoding.html#v:Encoding" title="Codec.CBOR.Encoding">Encoding</a></code>.</p><p>For instance, to implement an encoder for the <code>Animal</code> type above:</p><pre>encodeAnimal :: Animal -&gt; Encoding
+built using the <code><a href="../../ghc/html/libraries/base-4.16.4.0/Data-Monoid.html#t:Monoid" title="Data.Monoid">Monoid</a></code> <code><a href="../../cborg/html/Codec-CBOR-Encoding.html#v:Encoding" title="Codec.CBOR.Encoding">Encoding</a></code>.</p><p>For instance, to implement an encoder for the <code>Animal</code> type above:</p><pre>encodeAnimal :: Animal -&gt; Encoding
 encodeAnimal (HoppingAnimal name height) =
     encodeListLen 3 &lt;&gt; encodeWord 0 &lt;&gt; encode name &lt;&gt; encode height
 encodeAnimal (WalkingAnimal name speed) =
@@ -81,7 +81,7 @@ identifies constructor. Fields are encoded using their respective
 the length and tag - to ensure to have the option to migrate types
 later on.</p><p>Note: the recommended encoding represents Haskell constructor indexes
 as CBOR words, not CBOR tags.</p></div><a href="#g:6" id="g:6"><h2>How to write decoding terms</h2></a><div class="doc"><p>Decoding CBOR representations to Haskell values is done in the <code><a href="Codec-Serialise-Decoding.html#t:Decoder" title="Codec.Serialise.Decoding">Decoder</a></code>
-<code><a href="../../ghc/html/libraries/base-4.16.3.0/Control-Monad.html#t:Monad" title="Control.Monad">Monad</a></code>. A <code><a href="Codec-Serialise-Class.html#v:decode" title="Codec.Serialise.Class">decode</a></code> for the <code>Animal</code> type would be:</p><pre>decodeAnimal :: Decoder s Animal
+<code><a href="../../ghc/html/libraries/base-4.16.4.0/Control-Monad.html#t:Monad" title="Control.Monad">Monad</a></code>. A <code><a href="Codec-Serialise-Class.html#v:decode" title="Codec.Serialise.Class">decode</a></code> for the <code>Animal</code> type would be:</p><pre>decodeAnimal :: Decoder s Animal
 decodeAnimal = do
     len &lt;- decodeListLen
     tag &lt;- decodeWord

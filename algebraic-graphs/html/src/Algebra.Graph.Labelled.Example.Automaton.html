@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679129747"><span id="local-6989586621679129748"><span id="local-6989586621679129749"><span id="local-6989586621679129750"></span></span></span></span><span class="hs-pragma">{-# LANGUAGE OverloadedLists, TypeFamilies #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679129513"><span id="local-6989586621679129514"><span id="local-6989586621679129515"><span id="local-6989586621679129516"></span></span></span></span><span class="hs-pragma">{-# LANGUAGE OverloadedLists, TypeFamilies #-}</span><span>
 </span><span id="line-2"></span><span class="hs-comment">-----------------------------------------------------------------------------</span><span>
 </span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-4"></span><span class="hs-comment">-- Module     : Algebra.Graph.Labelled.Example.Automaton</span><span>
@@ -16,9 +16,9 @@
 </span><span id="line-16"></span><span class="hs-comment">-----------------------------------------------------------------------------</span><span>
 </span><span id="line-17"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Algebra.Graph.Labelled.Example.Automaton</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Control.Arrow</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator">(&amp;&amp;&amp;)</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Control.Arrow</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator">(&amp;&amp;&amp;)</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../containers/html/src"><span class="hs-identifier">Data.Map</span></a></span><span>    </span><span class="hs-special">(</span><span class="annot"><a href="../../../../containers/html/src"><span class="hs-identifier">Map</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Data.Monoid</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier">Any</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Monoid</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Any</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
 </span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Algebra.Graph.Label.html"><span class="hs-identifier">Algebra.Graph.Label</span></a></span><span>
 </span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Algebra.Graph.Labelled.html"><span class="hs-identifier">Algebra.Graph.Labelled</span></a></span><span>
@@ -31,13 +31,13 @@
 </span><span id="line-31"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="Tea"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Tea"><span class="hs-identifier hs-var">Tea</span></a></span></span><span>    </span><span class="hs-comment">-- ^ Order tea</span><span>
 </span><span id="line-32"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="Cancel"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Cancel"><span class="hs-identifier hs-var">Cancel</span></a></span></span><span> </span><span class="hs-comment">-- ^ Cancel payment or order</span><span>
 </span><span id="line-33"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="Pay"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Pay"><span class="hs-identifier hs-var">Pay</span></a></span></span><span>    </span><span class="hs-comment">-- ^ Pay for the order</span><span>
-</span><span id="line-34"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129716"><span id="local-6989586621679129718"><span class="annot"><span class="annottext">Alphabet
+</span><span id="line-34"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129482"><span id="local-6989586621679129484"><span class="annot"><span class="annottext">Alphabet
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: Alphabet
 $cmaxBound :: Alphabet
 minBound :: Alphabet
 $cminBound :: Alphabet
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129676"><span id="local-6989586621679129678"><span id="local-6989586621679129682"><span id="local-6989586621679129686"><span id="local-6989586621679129688"><span id="local-6989586621679129698"><span id="local-6989586621679129704"><span id="local-6989586621679129712"><span class="annot"><span class="annottext">Int -&gt; Alphabet
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129442"><span id="local-6989586621679129444"><span id="local-6989586621679129448"><span id="local-6989586621679129452"><span id="local-6989586621679129454"><span id="local-6989586621679129464"><span id="local-6989586621679129470"><span id="local-6989586621679129478"><span class="annot"><span class="annottext">Int -&gt; Alphabet
 Alphabet -&gt; Int
 Alphabet -&gt; [Alphabet]
 Alphabet -&gt; Alphabet
@@ -69,13 +69,13 @@ pred :: Alphabet -&gt; Alphabet
 $cpred :: Alphabet -&gt; Alphabet
 succ :: Alphabet -&gt; Alphabet
 $csucc :: Alphabet -&gt; Alphabet
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129671"><span id="local-6989586621679129673"><span class="annot"><span class="annottext">Alphabet -&gt; Alphabet -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129437"><span id="local-6989586621679129439"><span class="annot"><span class="annottext">Alphabet -&gt; Alphabet -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Alphabet -&gt; Alphabet -&gt; Bool
 $c/= :: Alphabet -&gt; Alphabet -&gt; Bool
 == :: Alphabet -&gt; Alphabet -&gt; Bool
 $c== :: Alphabet -&gt; Alphabet -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129651"><span id="local-6989586621679129653"><span id="local-6989586621679129656"><span id="local-6989586621679129659"><span id="local-6989586621679129662"><span id="local-6989586621679129664"><span id="local-6989586621679129666"><span class="annot"><span class="annottext">Eq Alphabet
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129417"><span id="local-6989586621679129419"><span id="local-6989586621679129422"><span id="local-6989586621679129425"><span id="local-6989586621679129428"><span id="local-6989586621679129430"><span id="local-6989586621679129432"><span class="annot"><span class="annottext">Eq Alphabet
 Alphabet -&gt; Alphabet -&gt; Bool
 Alphabet -&gt; Alphabet -&gt; Ordering
 Alphabet -&gt; Alphabet -&gt; Alphabet
@@ -103,7 +103,7 @@ $c&lt;= :: Alphabet -&gt; Alphabet -&gt; Bool
 $c&lt; :: Alphabet -&gt; Alphabet -&gt; Bool
 compare :: Alphabet -&gt; Alphabet -&gt; Ordering
 $ccompare :: Alphabet -&gt; Alphabet -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129644"><span id="local-6989586621679129646"><span id="local-6989586621679129648"><span class="annot"><span class="annottext">Int -&gt; Alphabet -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129410"><span id="local-6989586621679129412"><span id="local-6989586621679129414"><span class="annot"><span class="annottext">Int -&gt; Alphabet -&gt; ShowS
 [Alphabet] -&gt; ShowS
 Alphabet -&gt; String
 forall a.
@@ -114,19 +114,19 @@ show :: Alphabet -&gt; String
 $cshow :: Alphabet -&gt; String
 showsPrec :: Int -&gt; Alphabet -&gt; ShowS
 $cshowsPrec :: Int -&gt; Alphabet -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span class="hs-comment">-- | The state of the order.</span><span>
 </span><span id="line-37"></span><span class="hs-keyword">data</span><span> </span><span id="State"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#State"><span class="hs-identifier hs-var">State</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Choice"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Choice"><span class="hs-identifier hs-var">Choice</span></a></span></span><span>   </span><span class="hs-comment">-- ^ Choosing what to order</span><span>
 </span><span id="line-38"></span><span>           </span><span class="hs-glyph">|</span><span> </span><span id="Payment"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Payment"><span class="hs-identifier hs-var">Payment</span></a></span></span><span>  </span><span class="hs-comment">-- ^ Making the payment</span><span>
 </span><span id="line-39"></span><span>           </span><span class="hs-glyph">|</span><span> </span><span id="Complete"><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#Complete"><span class="hs-identifier hs-var">Complete</span></a></span></span><span> </span><span class="hs-comment">-- ^ The order is complete</span><span>
-</span><span id="line-40"></span><span>           </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129636"><span id="local-6989586621679129638"><span class="annot"><span class="annottext">State
+</span><span id="line-40"></span><span>           </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679129402"><span id="local-6989586621679129404"><span class="annot"><span class="annottext">State
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: State
 $cmaxBound :: State
 minBound :: State
 $cminBound :: State
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129602"><span id="local-6989586621679129604"><span id="local-6989586621679129608"><span id="local-6989586621679129611"><span id="local-6989586621679129613"><span id="local-6989586621679129621"><span id="local-6989586621679129627"><span id="local-6989586621679129633"><span class="annot"><span class="annottext">Int -&gt; State
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129368"><span id="local-6989586621679129370"><span id="local-6989586621679129374"><span id="local-6989586621679129377"><span id="local-6989586621679129379"><span id="local-6989586621679129387"><span id="local-6989586621679129393"><span id="local-6989586621679129399"><span class="annot"><span class="annottext">Int -&gt; State
 State -&gt; Int
 State -&gt; [State]
 State -&gt; State
@@ -158,13 +158,13 @@ pred :: State -&gt; State
 $cpred :: State -&gt; State
 succ :: State -&gt; State
 $csucc :: State -&gt; State
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129598"><span id="local-6989586621679129600"><span class="annot"><span class="annottext">State -&gt; State -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129364"><span id="local-6989586621679129366"><span class="annot"><span class="annottext">State -&gt; State -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: State -&gt; State -&gt; Bool
 $c/= :: State -&gt; State -&gt; Bool
 == :: State -&gt; State -&gt; Bool
 $c== :: State -&gt; State -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129579"><span id="local-6989586621679129581"><span id="local-6989586621679129584"><span id="local-6989586621679129587"><span id="local-6989586621679129590"><span id="local-6989586621679129592"><span id="local-6989586621679129594"><span class="annot"><span class="annottext">Eq State
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129345"><span id="local-6989586621679129347"><span id="local-6989586621679129350"><span id="local-6989586621679129353"><span id="local-6989586621679129356"><span id="local-6989586621679129358"><span id="local-6989586621679129360"><span class="annot"><span class="annottext">Eq State
 State -&gt; State -&gt; Bool
 State -&gt; State -&gt; Ordering
 State -&gt; State -&gt; State
@@ -192,7 +192,7 @@ $c&lt;= :: State -&gt; State -&gt; Bool
 $c&lt; :: State -&gt; State -&gt; Bool
 compare :: State -&gt; State -&gt; Ordering
 $ccompare :: State -&gt; State -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129573"><span id="local-6989586621679129575"><span id="local-6989586621679129577"><span class="annot"><span class="annottext">Int -&gt; State -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679129339"><span id="local-6989586621679129341"><span id="local-6989586621679129343"><span class="annot"><span class="annottext">Int -&gt; State -&gt; ShowS
 [State] -&gt; ShowS
 State -&gt; String
 forall a.
@@ -203,7 +203,7 @@ show :: State -&gt; String
 $cshow :: State -&gt; String
 showsPrec :: Int -&gt; State -&gt; ShowS
 $cshowsPrec :: Int -&gt; State -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span class="hs-comment">-- TODO: Add an illustration.</span><span>
 </span><span id="line-43"></span><span class="hs-comment">-- | An example automaton for ordering coffee or tea.</span><span>
@@ -262,26 +262,26 @@ $cshowsPrec :: Int -&gt; State -&gt; ShowS
 </span><span id="line-73"></span><span id="reachability"><span class="annot"><span class="annottext">reachability :: Map State [State]
 </span><a href="Algebra.Graph.Labelled.Example.Automaton.html#reachability"><span class="hs-identifier hs-var hs-var">reachability</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall k a. Ord k =&gt; [(k, a)] -&gt; Map k a
 </span><a href="../../../../containers/html/src"><span class="hs-identifier hs-var">Map.fromList</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; a
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="annot"><span class="annottext">forall (a :: * -&gt; * -&gt; *) b c c'.
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="annot"><span class="annottext">forall (a :: * -&gt; * -&gt; *) b c c'.
 Arrow a =&gt;
 a b c -&gt; a b c' -&gt; a b (c, c')
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">&amp;&amp;&amp;</span></a></span><span> </span><span class="annot"><span class="annottext">forall t.
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&amp;&amp;&amp;</span></a></span><span> </span><span class="annot"><span class="annottext">forall t.
 (ToGraph t, Ord (ToVertex t)) =&gt;
 t -&gt; ToVertex t -&gt; [ToVertex t]
 </span><a href="Algebra.Graph.ToGraph.html#reachable"><span class="hs-identifier hs-var">reachable</span></a></span><span> </span><span class="annot"><span class="annottext">Graph Any State
-</span><a href="#local-6989586621679129563"><span class="hs-identifier hs-var">skeleton</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">State
+</span><a href="#local-6989586621679129329"><span class="hs-identifier hs-var">skeleton</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">State
 </span><a href="Algebra.Graph.Labelled.Example.Automaton.html#Choice"><span class="hs-identifier hs-var">Choice</span></a></span><span> </span><span class="hs-glyph">..</span><span class="hs-special">]</span><span>
 </span><span id="line-74"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-75"></span><span>    </span><span class="annot"><a href="#local-6989586621679129563"><span class="hs-identifier hs-type">skeleton</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Algebra.Graph.Labelled.html#Graph"><span class="hs-identifier hs-type">Graph</span></a></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-type">Any</span></a></span><span> </span><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#State"><span class="hs-identifier hs-type">State</span></a></span><span>
-</span><span id="line-76"></span><span>    </span><span id="local-6989586621679129563"><span class="annot"><span class="annottext">skeleton :: Graph Any State
-</span><a href="#local-6989586621679129563"><span class="hs-identifier hs-var hs-var">skeleton</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall e f a. (e -&gt; f) -&gt; Graph e a -&gt; Graph f a
+</span><span id="line-75"></span><span>    </span><span class="annot"><a href="#local-6989586621679129329"><span class="hs-identifier hs-type">skeleton</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Algebra.Graph.Labelled.html#Graph"><span class="hs-identifier hs-type">Graph</span></a></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Any</span></a></span><span> </span><span class="annot"><a href="Algebra.Graph.Labelled.Example.Automaton.html#State"><span class="hs-identifier hs-type">State</span></a></span><span>
+</span><span id="line-76"></span><span>    </span><span id="local-6989586621679129329"><span class="annot"><span class="annottext">skeleton :: Graph Any State
+</span><a href="#local-6989586621679129329"><span class="hs-identifier hs-var hs-var">skeleton</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall e f a. (e -&gt; f) -&gt; Graph e a -&gt; Graph f a
 </span><a href="Algebra.Graph.Labelled.html#emap"><span class="hs-identifier hs-var">emap</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Any
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-identifier hs-var">Any</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Any</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
 </span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var">not</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><a href="../../../../ghc/html/libraries/base-4.16.3.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Label a -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Label a -&gt; Bool
 </span><a href="Algebra.Graph.Label.html#isZero"><span class="hs-identifier hs-var">isZero</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Graph (RegularExpression Alphabet) State
 </span><a href="Algebra.Graph.Labelled.Example.Automaton.html#coffeeTeaAutomaton"><span class="hs-identifier hs-var">coffeeTeaAutomaton</span></a></span><span>
 </span><span id="line-77"></span></pre></body></html>
