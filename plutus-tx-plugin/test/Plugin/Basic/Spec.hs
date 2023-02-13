@@ -33,6 +33,9 @@ basic :: TestNested
 basic = testNested "Basic" [
     -- goldenPir "letOverApp" monoId
     goldenPir "letApp" letApp
+    , goldenPir "letIdFunForall" letIdFunForall
+    , goldenPir "letIdFunForallMulti" letIdFunForallMulti
+    , goldenPir "letIdFunForallMultiNotSat" letIdFunForallMultiNotSat
     , goldenPir "letFunEg2" letFun2
     , goldenPir "letFunInFunAllMulti" letFunInFunAllMulti
     , goldenPir "letFunInFunMulti" letFunInFunMulti
@@ -78,6 +81,33 @@ letFun2 = plc (Proxy @"monoId") (
         funApp = \x -> idFun
     in funApp 5 6
     )
+
+letIdFunForallMulti :: CompiledCode Integer
+{-# NOINLINE letIdFunForallMulti #-}
+letIdFunForallMulti = plc (Proxy @"letIdFunForallMulti") (
+    let idFun :: forall a . a -> a
+        {-# NOINLINE idFun #-}
+        idFun = \x -> x
+    in Builtin.addInteger (idFun @Integer 3) (idFun @Integer 3)
+    )
+
+letIdFunForall :: CompiledCode Integer
+{-# NOINLINE letIdFunForall #-}
+letIdFunForall = plc (Proxy @"letIdFunForall") (
+    let idFun :: forall a . a -> a
+        {-# NOINLINE idFun #-}
+        idFun = \x -> x
+    in idFun @Integer 3--[Builtin.addInteger [idFun @Integer 3] [idFun @Integer 3]]
+    )
+
+letIdFunForallMultiNotSat :: CompiledCode (Integer -> Integer)
+letIdFunForallMultiNotSat = plc (Proxy @"letIdFunForallMultiNotSat") (
+    let idFun :: forall a . a -> a
+        {-# NOINLINE idFun #-}
+        idFun = \x -> x
+    in (idFun @(Integer-> Integer)) (idFun @Integer)
+    )
+
 
 letFunInFunAllMulti :: CompiledCode ((Integer -> Integer))
 letFunInFunAllMulti = plc (Proxy @"letFunInFunAllMulti") (
