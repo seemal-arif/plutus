@@ -175,7 +175,6 @@ letAppMulti = plc (Proxy @"letAppMulti")(
     in k appNum
     )
 
-
 letOverAppMulti :: CompiledCode Integer
 letOverAppMulti = plc (Proxy @"letOverAppMulti")(
     let
@@ -188,7 +187,7 @@ letOverAppMulti = plc (Proxy @"letOverAppMulti")(
         k :: (Integer -> Integer) -> (Integer -> Integer)
         {-# NOINLINE k #-}
         k = funApp
-    in k idFun 6
+    in k (k idFun) 6
     )
 
 monoK :: CompiledCode (Integer -> Integer -> Integer)
