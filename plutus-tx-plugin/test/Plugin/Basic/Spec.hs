@@ -168,7 +168,7 @@ letAppMulti = plc (Proxy @"letAppMulti")(
         appNum = 4
         funApp :: Integer -> Integer
         {-# NOINLINE funApp #-}
-        funApp = (\x y -> Builtin.addInteger x y) appNum
+        funApp x = Builtin.addInteger appNum x
         k :: Integer -> Integer
         {-# NOINLINE k #-}
         k = funApp
