@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621681160669"><span id="local-6989586621681160670"><span id="local-6989586621681160671"><span id="local-6989586621681160672"></span></span></span></span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621681160672"><span id="local-6989586621681160673"><span id="local-6989586621681160674"><span id="local-6989586621681160675"></span></span></span></span><span>
 </span><span id="line-2"></span><span class="hs-comment">-- | Utils for calculating general worst, bound, squeese and free, functions.</span><span>
 </span><span id="line-3"></span><span class="hs-comment">--</span><span>
 </span><span id="line-4"></span><span class="hs-comment">--   as per: &quot;A Generalized Algorithm for Graph-Coloring Register Allocation&quot;</span><span>
@@ -42,7 +42,7 @@
 </span><span id="line-42"></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-comment">-- floating point regs</span><span>
 </span><span id="line-44"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="ClassF64"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#ClassF64"><span class="hs-identifier hs-var">ClassF64</span></a></span></span><span>      </span><span class="hs-comment">-- 64 bit FPRs</span><span>
-</span><span id="line-45"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160643"><span id="local-6989586621681160645"><span id="local-6989586621681160647"><span class="annot"><span class="annottext">Int -&gt; RegClass -&gt; ShowS
+</span><span id="line-45"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160646"><span id="local-6989586621681160648"><span id="local-6989586621681160650"><span class="annot"><span class="annottext">Int -&gt; RegClass -&gt; ShowS
 [RegClass] -&gt; ShowS
 RegClass -&gt; String
 forall a.
@@ -53,13 +53,13 @@ show :: RegClass -&gt; String
 $cshow :: RegClass -&gt; String
 showsPrec :: Int -&gt; RegClass -&gt; ShowS
 $cshowsPrec :: Int -&gt; RegClass -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160638"><span id="local-6989586621681160640"><span class="annot"><span class="annottext">RegClass -&gt; RegClass -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160641"><span id="local-6989586621681160643"><span class="annot"><span class="annottext">RegClass -&gt; RegClass -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: RegClass -&gt; RegClass -&gt; Bool
 $c/= :: RegClass -&gt; RegClass -&gt; Bool
 == :: RegClass -&gt; RegClass -&gt; Bool
 $c== :: RegClass -&gt; RegClass -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160601"><span id="local-6989586621681160603"><span id="local-6989586621681160607"><span id="local-6989586621681160611"><span id="local-6989586621681160613"><span id="local-6989586621681160622"><span id="local-6989586621681160628"><span id="local-6989586621681160635"><span class="annot"><span class="annottext">Int -&gt; RegClass
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160604"><span id="local-6989586621681160606"><span id="local-6989586621681160610"><span id="local-6989586621681160614"><span id="local-6989586621681160616"><span id="local-6989586621681160625"><span id="local-6989586621681160631"><span id="local-6989586621681160638"><span class="annot"><span class="annottext">Int -&gt; RegClass
 RegClass -&gt; Int
 RegClass -&gt; [RegClass]
 RegClass -&gt; RegClass
@@ -101,7 +101,7 @@ $csucc :: RegClass -&gt; RegClass
 </span><span id="line-52"></span><span>
 </span><span id="line-53"></span><span>        </span><span class="hs-comment">-- a sub-component of one of the other regs</span><span>
 </span><span id="line-54"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="RegSub"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-var">RegSub</span></a></span></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-type">RegSub</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span>
-</span><span id="line-55"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160586"><span id="local-6989586621681160588"><span id="local-6989586621681160596"><span class="annot"><span class="annottext">Int -&gt; Reg -&gt; ShowS
+</span><span id="line-55"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160589"><span id="local-6989586621681160591"><span id="local-6989586621681160599"><span class="annot"><span class="annottext">Int -&gt; Reg -&gt; ShowS
 [Reg] -&gt; ShowS
 Reg -&gt; String
 forall a.
@@ -112,7 +112,7 @@ show :: Reg -&gt; String
 $cshow :: Reg -&gt; String
 showsPrec :: Int -&gt; Reg -&gt; ShowS
 $cshowsPrec :: Int -&gt; Reg -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160578"><span id="local-6989586621681160584"><span class="annot"><span class="annottext">Reg -&gt; Reg -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160581"><span id="local-6989586621681160587"><span class="annot"><span class="annottext">Reg -&gt; Reg -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Reg -&gt; Reg -&gt; Bool
 $c/= :: Reg -&gt; Reg -&gt; Bool
@@ -123,40 +123,40 @@ $c== :: Reg -&gt; Reg -&gt; Bool
 </span><span id="line-57"></span><span>
 </span><span id="line-58"></span><span class="hs-comment">-- | so we can put regs in UniqSets</span><span>
 </span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Types.Unique.html#Uniquable"><span class="hs-identifier hs-type">Uniquable</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-60"></span><span>        </span><span id="local-6989586621681160561"><span class="annot"><span class="annottext">getUnique :: Reg -&gt; Unique
-</span><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var hs-var hs-var hs-var">getUnique</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span id="local-6989586621681160559"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160559"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621681160558"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160558"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">)</span><span>
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621681160564"><span class="annot"><span class="annottext">getUnique :: Reg -&gt; Unique
+</span><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var hs-var hs-var hs-var">getUnique</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span id="local-6989586621681160562"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160562"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621681160561"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160561"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">)</span><span>
 </span><span id="line-61"></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Unique
 </span><a href="GHC.Builtin.Uniques.html#mkRegSingleUnique"><span class="hs-identifier hs-var">mkRegSingleUnique</span></a></span><span>
 </span><span id="line-62"></span><span>         </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Enum a =&gt; a -&gt; Int
 </span><a href="../../base-4.16.4.0/src/GHC-Enum.html#fromEnum"><span class="hs-identifier hs-var">fromEnum</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160559"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681160562"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2A"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1000</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160558"><span class="hs-identifier hs-var">i</span></a></span><span>
+</span><a href="#local-6989586621681160561"><span class="hs-identifier hs-var">i</span></a></span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span>        </span><span class="annot"><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var">getUnique</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-type">RegSub</span></a></span><span> </span><span id="local-6989586621681160553"><span class="annot"><span class="annottext">RegSub
-</span><a href="#local-6989586621681160553"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span id="local-6989586621681160552"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160552"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621681160551"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160551"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-64"></span><span>        </span><span class="annot"><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var">getUnique</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-type">RegSub</span></a></span><span> </span><span id="local-6989586621681160556"><span class="annot"><span class="annottext">RegSub
+</span><a href="#local-6989586621681160556"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span id="local-6989586621681160555"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160555"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621681160554"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160554"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-65"></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Unique
 </span><a href="GHC.Builtin.Uniques.html#mkRegSubUnique"><span class="hs-identifier hs-var">mkRegSubUnique</span></a></span><span>
 </span><span id="line-66"></span><span>         </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Enum a =&gt; a -&gt; Int
 </span><a href="../../base-4.16.4.0/src/GHC-Enum.html#fromEnum"><span class="hs-identifier hs-var">fromEnum</span></a></span><span> </span><span class="annot"><span class="annottext">RegSub
-</span><a href="#local-6989586621681160553"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681160556"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2A"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">10000</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Enum a =&gt; a -&gt; Int
 </span><a href="../../base-4.16.4.0/src/GHC-Enum.html#fromEnum"><span class="hs-identifier hs-var">fromEnum</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160552"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681160555"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2A"><span class="hs-operator hs-var">*</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1000</span></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160551"><span class="hs-identifier hs-var">i</span></a></span><span>
+</span><a href="#local-6989586621681160554"><span class="hs-identifier hs-var">i</span></a></span><span>
 </span><span id="line-67"></span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var">getUnique</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-type">RegSub</span></a></span><span> </span><span class="annot"><span class="annottext">RegSub
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#RegSub"><span class="hs-identifier hs-type">RegSub</span></a></span><span> </span><span class="annot"><span class="annottext">RegSub
@@ -172,7 +172,7 @@ $c== :: Reg -&gt; Reg -&gt; Bool
 </span><span id="line-74"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span id="SubL16"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#SubL16"><span class="hs-identifier hs-var">SubL16</span></a></span></span><span>        </span><span class="hs-comment">-- lowest 16 bits</span><span>
 </span><span id="line-75"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="SubL8"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#SubL8"><span class="hs-identifier hs-var">SubL8</span></a></span></span><span>         </span><span class="hs-comment">-- lowest  8 bits</span><span>
 </span><span id="line-76"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="SubL8H"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#SubL8H"><span class="hs-identifier hs-var">SubL8H</span></a></span></span><span>        </span><span class="hs-comment">-- second lowest 8 bits</span><span>
-</span><span id="line-77"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160540"><span id="local-6989586621681160542"><span id="local-6989586621681160544"><span class="annot"><span class="annottext">Int -&gt; RegSub -&gt; ShowS
+</span><span id="line-77"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160543"><span id="local-6989586621681160545"><span id="local-6989586621681160547"><span class="annot"><span class="annottext">Int -&gt; RegSub -&gt; ShowS
 [RegSub] -&gt; ShowS
 RegSub -&gt; String
 forall a.
@@ -183,7 +183,7 @@ show :: RegSub -&gt; String
 $cshow :: RegSub -&gt; String
 showsPrec :: Int -&gt; RegSub -&gt; ShowS
 $cshowsPrec :: Int -&gt; RegSub -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160507"><span id="local-6989586621681160509"><span id="local-6989586621681160513"><span id="local-6989586621681160516"><span id="local-6989586621681160518"><span id="local-6989586621681160526"><span id="local-6989586621681160532"><span id="local-6989586621681160538"><span class="annot"><span class="annottext">Int -&gt; RegSub
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160510"><span id="local-6989586621681160512"><span id="local-6989586621681160516"><span id="local-6989586621681160519"><span id="local-6989586621681160521"><span id="local-6989586621681160529"><span id="local-6989586621681160535"><span id="local-6989586621681160541"><span class="annot"><span class="annottext">Int -&gt; RegSub
 RegSub -&gt; Int
 RegSub -&gt; [RegSub]
 RegSub -&gt; RegSub
@@ -215,7 +215,7 @@ pred :: RegSub -&gt; RegSub
 $cpred :: RegSub -&gt; RegSub
 succ :: RegSub -&gt; RegSub
 $csucc :: RegSub -&gt; RegSub
-</span><a href="../../base-4.16.4.0/src/GHC-Enum.html#Enum"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160488"><span id="local-6989586621681160490"><span id="local-6989586621681160493"><span id="local-6989586621681160496"><span id="local-6989586621681160499"><span id="local-6989586621681160501"><span id="local-6989586621681160503"><span class="annot"><span class="annottext">Eq RegSub
+</span><a href="../../base-4.16.4.0/src/GHC-Enum.html#Enum"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160491"><span id="local-6989586621681160493"><span id="local-6989586621681160496"><span id="local-6989586621681160499"><span id="local-6989586621681160502"><span id="local-6989586621681160504"><span id="local-6989586621681160506"><span class="annot"><span class="annottext">Eq RegSub
 RegSub -&gt; RegSub -&gt; Bool
 RegSub -&gt; RegSub -&gt; Ordering
 RegSub -&gt; RegSub -&gt; RegSub
@@ -243,7 +243,7 @@ $c&lt;= :: RegSub -&gt; RegSub -&gt; Bool
 $c&lt; :: RegSub -&gt; RegSub -&gt; Bool
 compare :: RegSub -&gt; RegSub -&gt; Ordering
 $ccompare :: RegSub -&gt; RegSub -&gt; Ordering
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160483"><span id="local-6989586621681160485"><span class="annot"><span class="annottext">RegSub -&gt; RegSub -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160486"><span id="local-6989586621681160488"><span class="annot"><span class="annottext">RegSub -&gt; RegSub -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: RegSub -&gt; RegSub -&gt; Bool
 $c/= :: RegSub -&gt; RegSub -&gt; Bool
@@ -268,70 +268,70 @@ $c== :: RegSub -&gt; RegSub -&gt; Bool
 </span><span id="line-93"></span><span>
 </span><span id="line-94"></span><span id="worst"><span class="annot"><span class="annottext">worst :: (RegClass -&gt; UniqSet Reg)
 -&gt; (Reg -&gt; UniqSet Reg) -&gt; Int -&gt; RegClass -&gt; RegClass -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#worst"><span class="hs-identifier hs-var hs-var">worst</span></a></span></span><span> </span><span id="local-6989586621681160482"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160482"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160481"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160481"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160480"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160480"><span class="hs-identifier hs-var">neighbors</span></a></span></span><span> </span><span id="local-6989586621681160479"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160479"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160478"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160478"><span class="hs-identifier hs-var">classC</span></a></span></span><span>
-</span><span id="line-95"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span>  </span><span id="local-6989586621681160477"><span class="annot"><span class="annottext">regAliasS :: UniqSet Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160477"><span class="hs-identifier hs-var hs-var">regAliasS</span></a></span></span><span> </span><span id="local-6989586621681160476"><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160476"><span class="hs-identifier hs-var">regs</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [UniqSet a] -&gt; UniqSet a
+</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#worst"><span class="hs-identifier hs-var hs-var">worst</span></a></span></span><span> </span><span id="local-6989586621681160485"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160485"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160484"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160484"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160483"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160483"><span class="hs-identifier hs-var">neighbors</span></a></span></span><span> </span><span id="local-6989586621681160482"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160482"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160481"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160481"><span class="hs-identifier hs-var">classC</span></a></span></span><span>
+</span><span id="line-95"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span>  </span><span id="local-6989586621681160480"><span class="annot"><span class="annottext">regAliasS :: UniqSet Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160480"><span class="hs-identifier hs-var hs-var">regAliasS</span></a></span></span><span> </span><span id="local-6989586621681160479"><span class="annot"><span class="annottext">UniqSet Reg
+</span><a href="#local-6989586621681160479"><span class="hs-identifier hs-var">regs</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [UniqSet a] -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#unionManyUniqSets"><span class="hs-identifier hs-var">unionManyUniqSets</span></a></span><span>
 </span><span id="line-96"></span><span>                        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160481"><span class="hs-identifier hs-var">regAlias</span></a></span><span>
+</span><a href="#local-6989586621681160484"><span class="hs-identifier hs-var">regAlias</span></a></span><span>
 </span><span id="line-97"></span><span>                        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall elt. UniqSet elt -&gt; [elt]
 </span><a href="GHC.Types.Unique.Set.html#nonDetEltsUniqSet"><span class="hs-identifier hs-var">nonDetEltsUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160476"><span class="hs-identifier hs-var">regs</span></a></span><span>
+</span><a href="#local-6989586621681160479"><span class="hs-identifier hs-var">regs</span></a></span><span>
 </span><span id="line-98"></span><span>                        </span><span class="hs-comment">-- This is non-deterministic but we do not</span><span>
 </span><span id="line-99"></span><span>                        </span><span class="hs-comment">-- currently support deterministic code-generation.</span><span>
 </span><span id="line-100"></span><span>                        </span><span class="hs-comment">-- See Note [Unique Determinism and code generation]</span><span>
 </span><span id="line-101"></span><span>
 </span><span id="line-102"></span><span>        </span><span class="hs-comment">-- all the regs in classes N, C</span><span>
-</span><span id="line-103"></span><span>        </span><span id="local-6989586621681160473"><span class="annot"><span class="annottext">regsN :: UniqSet Reg
-</span><a href="#local-6989586621681160473"><span class="hs-identifier hs-var hs-var">regsN</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160482"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160479"><span class="hs-identifier hs-var">classN</span></a></span><span>
-</span><span id="line-104"></span><span>        </span><span id="local-6989586621681160472"><span class="annot"><span class="annottext">regsC :: UniqSet Reg
-</span><a href="#local-6989586621681160472"><span class="hs-identifier hs-var hs-var">regsC</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160482"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160478"><span class="hs-identifier hs-var">classC</span></a></span><span>
+</span><span id="line-103"></span><span>        </span><span id="local-6989586621681160476"><span class="annot"><span class="annottext">regsN :: UniqSet Reg
+</span><a href="#local-6989586621681160476"><span class="hs-identifier hs-var hs-var">regsN</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160485"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160482"><span class="hs-identifier hs-var">classN</span></a></span><span>
+</span><span id="line-104"></span><span>        </span><span id="local-6989586621681160475"><span class="annot"><span class="annottext">regsC :: UniqSet Reg
+</span><a href="#local-6989586621681160475"><span class="hs-identifier hs-var hs-var">regsC</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160485"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160481"><span class="hs-identifier hs-var">classC</span></a></span><span>
 </span><span id="line-105"></span><span>
 </span><span id="line-106"></span><span>        </span><span class="hs-comment">-- all the possible subsets of c which have size &lt; m</span><span>
-</span><span id="line-107"></span><span>        </span><span id="local-6989586621681160471"><span class="annot"><span class="annottext">regsS :: [UniqSet Reg]
-</span><a href="#local-6989586621681160471"><span class="hs-identifier hs-var hs-var">regsS</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><a href="../../base-4.16.4.0/src/GHC-List.html#filter"><span class="hs-identifier hs-var">filter</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160470"><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160470"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; Int
+</span><span id="line-107"></span><span>        </span><span id="local-6989586621681160474"><span class="annot"><span class="annottext">regsS :: [UniqSet Reg]
+</span><a href="#local-6989586621681160474"><span class="hs-identifier hs-var hs-var">regsS</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><a href="../../base-4.16.4.0/src/GHC-List.html#filter"><span class="hs-identifier hs-var">filter</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160473"><span class="annot"><span class="annottext">UniqSet Reg
+</span><a href="#local-6989586621681160473"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; Int
 </span><a href="GHC.Types.Unique.Set.html#sizeUniqSet"><span class="hs-identifier hs-var">sizeUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160470"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160473"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-108"></span><span>                                     </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
 </span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; Int
 </span><a href="GHC.Types.Unique.Set.html#sizeUniqSet"><span class="hs-identifier hs-var">sizeUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160470"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160473"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&lt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160480"><span class="hs-identifier hs-var">neighbors</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681160483"><span class="hs-identifier hs-var">neighbors</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-109"></span><span>                        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Uniquable a =&gt; UniqSet a -&gt; [UniqSet a]
 </span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetLS"><span class="hs-identifier hs-var">powersetLS</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160472"><span class="hs-identifier hs-var">regsC</span></a></span><span>
+</span><a href="#local-6989586621681160475"><span class="hs-identifier hs-var">regsC</span></a></span><span>
 </span><span id="line-110"></span><span>
 </span><span id="line-111"></span><span>        </span><span class="hs-comment">-- for each of the subsets of C, the regs which conflict</span><span>
 </span><span id="line-112"></span><span>        </span><span class="hs-comment">-- with posiblities for N</span><span>
-</span><span id="line-113"></span><span>        </span><span id="local-6989586621681160465"><span class="annot"><span class="annottext">regsS_conflict :: [UniqSet Reg]
-</span><a href="#local-6989586621681160465"><span class="hs-identifier hs-var hs-var">regsS_conflict</span></a></span></span><span>
+</span><span id="line-113"></span><span>        </span><span id="local-6989586621681160468"><span class="annot"><span class="annottext">regsS_conflict :: [UniqSet Reg]
+</span><a href="#local-6989586621681160468"><span class="hs-identifier hs-var hs-var">regsS_conflict</span></a></span></span><span>
 </span><span id="line-114"></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
-</span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160464"><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160464"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; UniqSet a -&gt; UniqSet a
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160467"><span class="annot"><span class="annottext">UniqSet Reg
+</span><a href="#local-6989586621681160467"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; UniqSet a -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#intersectUniqSets"><span class="hs-identifier hs-var">intersectUniqSets</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160473"><span class="hs-identifier hs-var">regsN</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">UniqSet Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160477"><span class="hs-identifier hs-var">regAliasS</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160464"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[UniqSet Reg]
-</span><a href="#local-6989586621681160471"><span class="hs-identifier hs-var">regsS</span></a></span><span>
+</span><a href="#local-6989586621681160476"><span class="hs-identifier hs-var">regsN</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">UniqSet Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160480"><span class="hs-identifier hs-var">regAliasS</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
+</span><a href="#local-6989586621681160467"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[UniqSet Reg]
+</span><a href="#local-6989586621681160474"><span class="hs-identifier hs-var">regsS</span></a></span><span>
 </span><span id="line-115"></span><span>
 </span><span id="line-116"></span><span>  </span><span class="hs-keyword">in</span><span>    </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. (Foldable t, Ord a) =&gt; t a -&gt; a
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#maximum"><span class="hs-identifier hs-var">maximum</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -339,7 +339,7 @@ $c== :: RegSub -&gt; RegSub -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; Int
 </span><a href="GHC.Types.Unique.Set.html#sizeUniqSet"><span class="hs-identifier hs-var">sizeUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">[UniqSet Reg]
-</span><a href="#local-6989586621681160465"><span class="hs-identifier hs-var">regsS_conflict</span></a></span><span>
+</span><a href="#local-6989586621681160468"><span class="hs-identifier hs-var">regsS_conflict</span></a></span><span>
 </span><span id="line-117"></span><span>
 </span><span id="line-118"></span><span>
 </span><span id="line-119"></span><span class="hs-comment">-- | For a node N of classN and neighbors of classesC</span><span>
@@ -351,49 +351,49 @@ $c== :: RegSub -&gt; RegSub -&gt; Bool
 </span><span id="line-125"></span><span>
 </span><span id="line-126"></span><span id="bound"><span class="annot"><span class="annottext">bound :: (RegClass -&gt; UniqSet Reg)
 -&gt; (Reg -&gt; UniqSet Reg) -&gt; RegClass -&gt; [RegClass] -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#bound"><span class="hs-identifier hs-var hs-var">bound</span></a></span></span><span> </span><span id="local-6989586621681160461"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160461"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160460"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160460"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160459"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160459"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160458"><span class="annot"><span class="annottext">[RegClass]
-</span><a href="#local-6989586621681160458"><span class="hs-identifier hs-var">classesC</span></a></span></span><span>
-</span><span id="line-127"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span>  </span><span id="local-6989586621681160457"><span class="annot"><span class="annottext">regAliasS :: UniqFM Reg Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160457"><span class="hs-identifier hs-var hs-var">regAliasS</span></a></span></span><span> </span><span id="local-6989586621681160456"><span class="annot"><span class="annottext">UniqFM Reg Reg
-</span><a href="#local-6989586621681160456"><span class="hs-identifier hs-var">regs</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [UniqSet a] -&gt; UniqSet a
+</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#bound"><span class="hs-identifier hs-var hs-var">bound</span></a></span></span><span> </span><span id="local-6989586621681160464"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160464"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160463"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160463"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160462"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160462"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160461"><span class="annot"><span class="annottext">[RegClass]
+</span><a href="#local-6989586621681160461"><span class="hs-identifier hs-var">classesC</span></a></span></span><span>
+</span><span id="line-127"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span>  </span><span id="local-6989586621681160460"><span class="annot"><span class="annottext">regAliasS :: UniqFM Reg Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160460"><span class="hs-identifier hs-var hs-var">regAliasS</span></a></span></span><span> </span><span id="local-6989586621681160459"><span class="annot"><span class="annottext">UniqFM Reg Reg
+</span><a href="#local-6989586621681160459"><span class="hs-identifier hs-var">regs</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [UniqSet a] -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#unionManyUniqSets"><span class="hs-identifier hs-var">unionManyUniqSets</span></a></span><span>
 </span><span id="line-128"></span><span>                        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160460"><span class="hs-identifier hs-var">regAlias</span></a></span><span>
+</span><a href="#local-6989586621681160463"><span class="hs-identifier hs-var">regAlias</span></a></span><span>
 </span><span id="line-129"></span><span>                        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall key elt. UniqFM key elt -&gt; [elt]
 </span><a href="GHC.Types.Unique.FM.html#nonDetEltsUFM"><span class="hs-identifier hs-var">nonDetEltsUFM</span></a></span><span> </span><span class="annot"><span class="annottext">UniqFM Reg Reg
-</span><a href="#local-6989586621681160456"><span class="hs-identifier hs-var">regs</span></a></span><span>
+</span><a href="#local-6989586621681160459"><span class="hs-identifier hs-var">regs</span></a></span><span>
 </span><span id="line-130"></span><span>                        </span><span class="hs-comment">-- See Note [Unique Determinism and code generation]</span><span>
 </span><span id="line-131"></span><span>
-</span><span id="line-132"></span><span>        </span><span id="local-6989586621681160454"><span class="annot"><span class="annottext">regsC_aliases :: UniqSet Reg
-</span><a href="#local-6989586621681160454"><span class="hs-identifier hs-var hs-var">regsC_aliases</span></a></span></span><span>
+</span><span id="line-132"></span><span>        </span><span id="local-6989586621681160457"><span class="annot"><span class="annottext">regsC_aliases :: UniqSet Reg
+</span><a href="#local-6989586621681160457"><span class="hs-identifier hs-var hs-var">regsC_aliases</span></a></span></span><span>
 </span><span id="line-133"></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. [UniqSet a] -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#unionManyUniqSets"><span class="hs-identifier hs-var">unionManyUniqSets</span></a></span><span>
 </span><span id="line-134"></span><span>                </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">UniqFM Reg Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160457"><span class="hs-identifier hs-var">regAliasS</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><a href="#local-6989586621681160460"><span class="hs-identifier hs-var">regAliasS</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#."><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; UniqFM a a
 </span><a href="GHC.Types.Unique.Set.html#getUniqSet"><span class="hs-identifier hs-var">getUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#."><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160461"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[RegClass]
-</span><a href="#local-6989586621681160458"><span class="hs-identifier hs-var">classesC</span></a></span><span>
+</span><a href="#local-6989586621681160464"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[RegClass]
+</span><a href="#local-6989586621681160461"><span class="hs-identifier hs-var">classesC</span></a></span><span>
 </span><span id="line-135"></span><span>
-</span><span id="line-136"></span><span>        </span><span id="local-6989586621681160451"><span class="annot"><span class="annottext">overlap :: UniqSet Reg
-</span><a href="#local-6989586621681160451"><span class="hs-identifier hs-var hs-var">overlap</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; UniqSet a -&gt; UniqSet a
+</span><span id="line-136"></span><span>        </span><span id="local-6989586621681160454"><span class="annot"><span class="annottext">overlap :: UniqSet Reg
+</span><a href="#local-6989586621681160454"><span class="hs-identifier hs-var hs-var">overlap</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; UniqSet a -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#intersectUniqSets"><span class="hs-identifier hs-var">intersectUniqSets</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160461"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160459"><span class="hs-identifier hs-var">classN</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160454"><span class="hs-identifier hs-var">regsC_aliases</span></a></span><span>
+</span><a href="#local-6989586621681160464"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160462"><span class="hs-identifier hs-var">classN</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
+</span><a href="#local-6989586621681160457"><span class="hs-identifier hs-var">regsC_aliases</span></a></span><span>
 </span><span id="line-137"></span><span>
 </span><span id="line-138"></span><span>   </span><span class="hs-keyword">in</span><span>   </span><span class="annot"><span class="annottext">forall a. UniqSet a -&gt; Int
 </span><a href="GHC.Types.Unique.Set.html#sizeUniqSet"><span class="hs-identifier hs-var">sizeUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet Reg
-</span><a href="#local-6989586621681160451"><span class="hs-identifier hs-var">overlap</span></a></span><span>
+</span><a href="#local-6989586621681160454"><span class="hs-identifier hs-var">overlap</span></a></span><span>
 </span><span id="line-139"></span><span>
 </span><span id="line-140"></span><span>
 </span><span id="line-141"></span><span class="hs-comment">-- | The total squeese on a particular node with a list of neighbors.</span><span>
@@ -407,50 +407,50 @@ $c== :: RegSub -&gt; RegSub -&gt; Bool
 </span><span id="line-149"></span><span>
 </span><span id="line-150"></span><span id="squeese"><span class="annot"><span class="annottext">squeese :: (RegClass -&gt; UniqSet Reg)
 -&gt; (Reg -&gt; UniqSet Reg) -&gt; RegClass -&gt; [(Int, RegClass)] -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#squeese"><span class="hs-identifier hs-var hs-var">squeese</span></a></span></span><span> </span><span id="local-6989586621681160450"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160450"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160449"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160449"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160448"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160448"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160447"><span class="annot"><span class="annottext">[(Int, RegClass)]
-</span><a href="#local-6989586621681160447"><span class="hs-identifier hs-var">countCs</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#squeese"><span class="hs-identifier hs-var hs-var">squeese</span></a></span></span><span> </span><span id="local-6989586621681160453"><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160453"><span class="hs-identifier hs-var">regsOfClass</span></a></span></span><span> </span><span id="local-6989586621681160452"><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160452"><span class="hs-identifier hs-var">regAlias</span></a></span></span><span> </span><span id="local-6989586621681160451"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160451"><span class="hs-identifier hs-var">classN</span></a></span></span><span> </span><span id="local-6989586621681160450"><span class="annot"><span class="annottext">[(Int, RegClass)]
+</span><a href="#local-6989586621681160450"><span class="hs-identifier hs-var">countCs</span></a></span></span><span>
 </span><span id="line-151"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#sum"><span class="hs-identifier hs-var">sum</span></a></span><span>
 </span><span id="line-152"></span><span>        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
-</span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621681160445"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160445"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160444"><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160444"><span class="hs-identifier hs-var">classC</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">(RegClass -&gt; UniqSet Reg)
+</span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621681160448"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160448"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160447"><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160447"><span class="hs-identifier hs-var">classC</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">(RegClass -&gt; UniqSet Reg)
 -&gt; (Reg -&gt; UniqSet Reg) -&gt; Int -&gt; RegClass -&gt; RegClass -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#worst"><span class="hs-identifier hs-var">worst</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160450"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
-</span><a href="#local-6989586621681160449"><span class="hs-identifier hs-var">regAlias</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160445"><span class="hs-identifier hs-var">i</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160448"><span class="hs-identifier hs-var">classN</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="#local-6989586621681160444"><span class="hs-identifier hs-var">classC</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681160453"><span class="hs-identifier hs-var">regsOfClass</span></a></span><span> </span><span class="annot"><span class="annottext">Reg -&gt; UniqSet Reg
+</span><a href="#local-6989586621681160452"><span class="hs-identifier hs-var">regAlias</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160448"><span class="hs-identifier hs-var">i</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160451"><span class="hs-identifier hs-var">classN</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160447"><span class="hs-identifier hs-var">classC</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-153"></span><span>        </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">[(Int, RegClass)]
-</span><a href="#local-6989586621681160447"><span class="hs-identifier hs-var">countCs</span></a></span><span>
+</span><a href="#local-6989586621681160450"><span class="hs-identifier hs-var">countCs</span></a></span><span>
 </span><span id="line-154"></span><span>
 </span><span id="line-155"></span><span>
 </span><span id="line-156"></span><span class="hs-comment">-- | powerset (for lists)</span><span>
-</span><span id="line-157"></span><span id="local-6989586621681160704"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetL"><span class="hs-identifier hs-type">powersetL</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621681160704"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621681160704"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span></span><span>
+</span><span id="line-157"></span><span id="local-6989586621681160707"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetL"><span class="hs-identifier hs-type">powersetL</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621681160707"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621681160707"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span></span><span>
 </span><span id="line-158"></span><span id="powersetL"><span class="annot"><span class="annottext">powersetL :: forall a. [a] -&gt; [[a]]
 </span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetL"><span class="hs-identifier hs-var hs-var">powersetL</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a b. Monad m =&gt; (a -&gt; m [b]) -&gt; [a] -&gt; m [b]
-</span><a href="GHC.Utils.Monad.html#concatMapM"><span class="hs-identifier hs-var">concatMapM</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160440"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621681160440"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">,</span><span class="hs-special">[</span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621681160440"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><a href="GHC.Utils.Monad.html#concatMapM"><span class="hs-identifier hs-var">concatMapM</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681160443"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621681160443"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">,</span><span class="hs-special">[</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621681160443"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
 </span><span id="line-159"></span><span>
 </span><span id="line-160"></span><span>
 </span><span id="line-161"></span><span class="hs-comment">-- | powersetLS (list of sets)</span><span>
-</span><span id="line-162"></span><span id="local-6989586621681160716"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetLS"><span class="hs-identifier hs-type">powersetLS</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Unique.html#Uniquable"><span class="hs-identifier hs-type">Uniquable</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160716"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160716"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160716"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span></span><span>
+</span><span id="line-162"></span><span id="local-6989586621681160719"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetLS"><span class="hs-identifier hs-type">powersetLS</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Unique.html#Uniquable"><span class="hs-identifier hs-type">Uniquable</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160719"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160719"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681160719"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span></span><span>
 </span><span id="line-163"></span><span id="powersetLS"><span class="annot"><span class="annottext">powersetLS :: forall a. Uniquable a =&gt; UniqSet a -&gt; [UniqSet a]
-</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetLS"><span class="hs-identifier hs-var hs-var">powersetLS</span></a></span></span><span> </span><span id="local-6989586621681160437"><span class="annot"><span class="annottext">UniqSet a
-</span><a href="#local-6989586621681160437"><span class="hs-identifier hs-var">s</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetLS"><span class="hs-identifier hs-var hs-var">powersetLS</span></a></span></span><span> </span><span id="local-6989586621681160440"><span class="annot"><span class="annottext">UniqSet a
+</span><a href="#local-6989586621681160440"><span class="hs-identifier hs-var">s</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Uniquable a =&gt; [a] -&gt; UniqSet a
 </span><a href="GHC.Types.Unique.Set.html#mkUniqSet"><span class="hs-identifier hs-var">mkUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [[a]]
 </span><a href="GHC.CmmToAsm.Reg.Graph.Base.html#powersetL"><span class="hs-identifier hs-var">powersetL</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall elt. UniqSet elt -&gt; [elt]
 </span><a href="GHC.Types.Unique.Set.html#nonDetEltsUniqSet"><span class="hs-identifier hs-var">nonDetEltsUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet a
-</span><a href="#local-6989586621681160437"><span class="hs-identifier hs-var">s</span></a></span><span>
+</span><a href="#local-6989586621681160440"><span class="hs-identifier hs-var">s</span></a></span><span>
 </span><span id="line-164"></span><span>  </span><span class="hs-comment">-- See Note [Unique Determinism and code generation]</span><span>
 </span><span id="line-165"></span></pre></body></html>

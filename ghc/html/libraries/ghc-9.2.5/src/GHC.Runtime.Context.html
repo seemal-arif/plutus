@@ -278,12 +278,12 @@ It's exactly the same for type-family instances.  See #7102
 </span><span id="line-265"></span><span class="hs-comment">-- | Constructs an empty InteractiveContext.</span><span>
 </span><span id="line-266"></span><span class="annot"><a href="GHC.Runtime.Context.html#emptyInteractiveContext"><span class="hs-identifier hs-type">emptyInteractiveContext</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#DynFlags"><span class="hs-identifier hs-type">DynFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span>
 </span><span id="line-267"></span><span id="emptyInteractiveContext"><span class="annot"><span class="annottext">emptyInteractiveContext :: DynFlags -&gt; InteractiveContext
-</span><a href="GHC.Runtime.Context.html#emptyInteractiveContext"><span class="hs-identifier hs-var hs-var">emptyInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144823"><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681144823"><span class="hs-identifier hs-var">dflags</span></a></span></span><span>
+</span><a href="GHC.Runtime.Context.html#emptyInteractiveContext"><span class="hs-identifier hs-var hs-var">emptyInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144826"><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681144826"><span class="hs-identifier hs-var">dflags</span></a></span></span><span>
 </span><span id="line-268"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-special">{</span><span>
 </span><span id="line-269"></span><span>       </span><span class="annot"><span class="annottext">ic_dflags :: DynFlags
 </span><a href="GHC.Runtime.Context.html#ic_dflags"><span class="hs-identifier hs-var">ic_dflags</span></a></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681144823"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621681144826"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-270"></span><span>       </span><span class="annot"><span class="annottext">ic_imports :: [InteractiveImport]
 </span><a href="GHC.Runtime.Context.html#ic_imports"><span class="hs-identifier hs-var">ic_imports</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">,</span><span>
 </span><span id="line-271"></span><span>       </span><span class="annot"><span class="annottext">ic_rn_gbl_env :: GlobalRdrEnv
@@ -320,11 +320,11 @@ It's exactly the same for type-family instances.  See #7102
 </span><span id="line-284"></span><span class="annot"><a href="GHC.Runtime.Context.html#icInteractiveModule"><span class="hs-identifier hs-type">icInteractiveModule</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Unit.Types.html#Module"><span class="hs-identifier hs-type">Module</span></a></span><span>
 </span><span id="line-285"></span><span id="icInteractiveModule"><span class="annot"><span class="annottext">icInteractiveModule :: InteractiveContext -&gt; Module
 </span><a href="GHC.Runtime.Context.html#icInteractiveModule"><span class="hs-identifier hs-var hs-var">icInteractiveModule</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_mod_index :: InteractiveContext -&gt; Int
-</span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144820"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144820"><span class="hs-identifier hs-var">index</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span>
+</span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144823"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681144823"><span class="hs-identifier hs-var">index</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span>
 </span><span id="line-286"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Module
 </span><a href="GHC.Builtin.Names.html#mkInteractiveModule"><span class="hs-identifier hs-var">mkInteractiveModule</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144820"><span class="hs-identifier hs-var">index</span></a></span><span>
+</span><a href="#local-6989586621681144823"><span class="hs-identifier hs-var">index</span></a></span><span>
 </span><span id="line-287"></span><span>
 </span><span id="line-288"></span><span class="hs-comment">-- | This function returns the list of visible TyThings (useful for</span><span>
 </span><span id="line-289"></span><span class="hs-comment">-- e.g. showBindings)</span><span>
@@ -336,14 +336,14 @@ It's exactly the same for type-family instances.  See #7102
 </span><span id="line-293"></span><span class="hs-comment">-- | Get the PrintUnqualified function based on the flags and this InteractiveContext</span><span>
 </span><span id="line-294"></span><span class="annot"><a href="GHC.Runtime.Context.html#icPrintUnqual"><span class="hs-identifier hs-type">icPrintUnqual</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Unit.Env.html#UnitEnv"><span class="hs-identifier hs-type">UnitEnv</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#PrintUnqualified"><span class="hs-identifier hs-type">PrintUnqualified</span></a></span><span>
 </span><span id="line-295"></span><span id="icPrintUnqual"><span class="annot"><span class="annottext">icPrintUnqual :: UnitEnv -&gt; InteractiveContext -&gt; PrintUnqualified
-</span><a href="GHC.Runtime.Context.html#icPrintUnqual"><span class="hs-identifier hs-var hs-var">icPrintUnqual</span></a></span></span><span> </span><span id="local-6989586621681144819"><span class="annot"><span class="annottext">UnitEnv
-</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">unit_env</span></a></span></span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_rn_gbl_env :: InteractiveContext -&gt; GlobalRdrEnv
-</span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144818"><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">grenv</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Runtime.Context.html#icPrintUnqual"><span class="hs-identifier hs-var hs-var">icPrintUnqual</span></a></span></span><span> </span><span id="local-6989586621681144822"><span class="annot"><span class="annottext">UnitEnv
+</span><a href="#local-6989586621681144822"><span class="hs-identifier hs-var">unit_env</span></a></span></span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_rn_gbl_env :: InteractiveContext -&gt; GlobalRdrEnv
+</span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144821"><span class="annot"><span class="annottext">GlobalRdrEnv
+</span><a href="#local-6989586621681144821"><span class="hs-identifier hs-var">grenv</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-296"></span><span>    </span><span class="annot"><span class="annottext">UnitEnv -&gt; GlobalRdrEnv -&gt; PrintUnqualified
 </span><a href="GHC.Types.Name.Ppr.html#mkPrintUnqualified"><span class="hs-identifier hs-var">mkPrintUnqualified</span></a></span><span> </span><span class="annot"><span class="annottext">UnitEnv
-</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">unit_env</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">grenv</span></a></span><span>
+</span><a href="#local-6989586621681144822"><span class="hs-identifier hs-var">unit_env</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
+</span><a href="#local-6989586621681144821"><span class="hs-identifier hs-var">grenv</span></a></span><span>
 </span><span id="line-297"></span><span>
 </span><span id="line-298"></span><span class="hs-comment">-- | extendInteractiveContext is called with new TyThings recently defined to update the</span><span>
 </span><span id="line-299"></span><span class="hs-comment">-- InteractiveContext to include them.  Ids are easily removed when shadowed,</span><span>
@@ -364,159 +364,159 @@ It's exactly the same for type-family instances.  See #7102
 -&gt; Maybe [Type]
 -&gt; FixityEnv
 -&gt; InteractiveContext
-</span><a href="GHC.Runtime.Context.html#extendInteractiveContext"><span class="hs-identifier hs-var hs-var">extendInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144816"><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span> </span><span id="local-6989586621681144815"><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">new_tythings</span></a></span></span><span> </span><span id="local-6989586621681144814"><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144814"><span class="hs-identifier hs-var">new_cls_insts</span></a></span></span><span> </span><span id="local-6989586621681144813"><span class="annot"><span class="annottext">[FamInst]
-</span><a href="#local-6989586621681144813"><span class="hs-identifier hs-var">new_fam_insts</span></a></span></span><span> </span><span id="local-6989586621681144812"><span class="annot"><span class="annottext">Maybe [Type]
-</span><a href="#local-6989586621681144812"><span class="hs-identifier hs-var">defaults</span></a></span></span><span> </span><span id="local-6989586621681144811"><span class="annot"><span class="annottext">FixityEnv
-</span><a href="#local-6989586621681144811"><span class="hs-identifier hs-var">fix_env</span></a></span></span><span>
+</span><a href="GHC.Runtime.Context.html#extendInteractiveContext"><span class="hs-identifier hs-var hs-var">extendInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144819"><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span> </span><span id="local-6989586621681144818"><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">new_tythings</span></a></span></span><span> </span><span id="local-6989586621681144817"><span class="annot"><span class="annottext">[ClsInst]
+</span><a href="#local-6989586621681144817"><span class="hs-identifier hs-var">new_cls_insts</span></a></span></span><span> </span><span id="local-6989586621681144816"><span class="annot"><span class="annottext">[FamInst]
+</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">new_fam_insts</span></a></span></span><span> </span><span id="local-6989586621681144815"><span class="annot"><span class="annottext">Maybe [Type]
+</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">defaults</span></a></span></span><span> </span><span id="local-6989586621681144814"><span class="annot"><span class="annottext">FixityEnv
+</span><a href="#local-6989586621681144814"><span class="hs-identifier hs-var">fix_env</span></a></span></span><span>
 </span><span id="line-311"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_mod_index :: Int
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_mod_index :: Int
 </span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; Int
 </span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-312"></span><span>                            </span><span class="hs-comment">-- Always bump this; even instances should create</span><span>
 </span><span id="line-313"></span><span>                            </span><span class="hs-comment">-- a new mod_index (#9426)</span><span>
 </span><span id="line-314"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: [TyThing]
 </span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144809"><span class="hs-identifier hs-var">old_tythings</span></a></span><span>
+</span><a href="#local-6989586621681144812"><span class="hs-identifier hs-var">old_tythings</span></a></span><span>
 </span><span id="line-315"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_rn_gbl_env :: GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [TyThing] -&gt; GlobalRdrEnv
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [TyThing] -&gt; GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#icExtendGblRdrEnv"><span class="hs-operator hs-var">`icExtendGblRdrEnv`</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">new_tythings</span></a></span><span>
+</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">new_tythings</span></a></span><span>
 </span><span id="line-316"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_instances :: ([ClsInst], [FamInst])
 </span><a href="GHC.Runtime.Context.html#ic_instances"><span class="hs-identifier hs-var">ic_instances</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span> </span><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144814"><span class="hs-identifier hs-var">new_cls_insts</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681144817"><span class="hs-identifier hs-var">new_cls_insts</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144808"><span class="hs-identifier hs-var">old_cls_insts</span></a></span><span>
+</span><a href="#local-6989586621681144811"><span class="hs-identifier hs-var">old_cls_insts</span></a></span><span>
 </span><span id="line-317"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[FamInst]
-</span><a href="#local-6989586621681144813"><span class="hs-identifier hs-var">new_fam_insts</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">new_fam_insts</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[FamInst]
-</span><a href="#local-6989586621681144807"><span class="hs-identifier hs-var">fam_insts</span></a></span><span> </span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681144810"><span class="hs-identifier hs-var">fam_insts</span></a></span><span> </span><span class="hs-special">)</span><span>
 </span><span id="line-318"></span><span>                            </span><span class="hs-comment">-- we don't shadow old family instances (#7102),</span><span>
 </span><span id="line-319"></span><span>                            </span><span class="hs-comment">-- so don't need to remove them here</span><span>
 </span><span id="line-320"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_default :: Maybe [Type]
 </span><a href="GHC.Runtime.Context.html#ic_default"><span class="hs-identifier hs-var">ic_default</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Type]
-</span><a href="#local-6989586621681144812"><span class="hs-identifier hs-var">defaults</span></a></span><span>
+</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">defaults</span></a></span><span>
 </span><span id="line-321"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_fix_env :: FixityEnv
 </span><a href="GHC.Runtime.Context.html#ic_fix_env"><span class="hs-identifier hs-var">ic_fix_env</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FixityEnv
-</span><a href="#local-6989586621681144811"><span class="hs-identifier hs-var">fix_env</span></a></span><span>  </span><span class="hs-comment">-- See Note [Fixity declarations in GHCi]</span><span>
+</span><a href="#local-6989586621681144814"><span class="hs-identifier hs-var">fix_env</span></a></span><span>  </span><span class="hs-comment">-- See Note [Fixity declarations in GHCi]</span><span>
 </span><span id="line-322"></span><span>          </span><span class="hs-special">}</span><span>
 </span><span id="line-323"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-324"></span><span>    </span><span id="local-6989586621681144806"><span class="annot"><span class="annottext">new_ids :: [Id]
-</span><a href="#local-6989586621681144806"><span class="hs-identifier hs-var hs-var">new_ids</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144805"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144805"><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144805"><span class="hs-identifier hs-var">id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144815"><span class="hs-identifier hs-var">new_tythings</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-325"></span><span>    </span><span id="local-6989586621681144809"><span class="annot"><span class="annottext">old_tythings :: [TyThing]
-</span><a href="#local-6989586621681144809"><span class="hs-identifier hs-var hs-var">old_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span id="line-324"></span><span>    </span><span id="local-6989586621681144809"><span class="annot"><span class="annottext">new_ids :: [Id]
+</span><a href="#local-6989586621681144809"><span class="hs-identifier hs-var hs-var">new_ids</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144808"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144808"><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144808"><span class="hs-identifier hs-var">id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144818"><span class="hs-identifier hs-var">new_tythings</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-325"></span><span>    </span><span id="local-6989586621681144812"><span class="annot"><span class="annottext">old_tythings :: [TyThing]
+</span><a href="#local-6989586621681144812"><span class="hs-identifier hs-var hs-var">old_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
 </span><a href="GHC.Utils.Misc.html#filterOut"><span class="hs-identifier hs-var">filterOut</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Id] -&gt; TyThing -&gt; Bool
 </span><a href="GHC.Runtime.Context.html#shadowed_by"><span class="hs-identifier hs-var">shadowed_by</span></a></span><span> </span><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144806"><span class="hs-identifier hs-var">new_ids</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">InteractiveContext -&gt; [TyThing]
+</span><a href="#local-6989586621681144809"><span class="hs-identifier hs-var">new_ids</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">InteractiveContext -&gt; [TyThing]
 </span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-326"></span><span>
 </span><span id="line-327"></span><span>    </span><span class="hs-comment">-- Discard old instances that have been fully overridden</span><span>
 </span><span id="line-328"></span><span>    </span><span class="hs-comment">-- See Note [Override identical instances in GHCi]</span><span>
-</span><span id="line-329"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621681144801"><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">cls_insts</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681144807"><span class="annot"><span class="annottext">[FamInst]
-</span><a href="#local-6989586621681144807"><span class="hs-identifier hs-var">fam_insts</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; ([ClsInst], [FamInst])
+</span><span id="line-329"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621681144804"><span class="annot"><span class="annottext">[ClsInst]
+</span><a href="#local-6989586621681144804"><span class="hs-identifier hs-var">cls_insts</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681144810"><span class="annot"><span class="annottext">[FamInst]
+</span><a href="#local-6989586621681144810"><span class="hs-identifier hs-var">fam_insts</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; ([ClsInst], [FamInst])
 </span><a href="GHC.Runtime.Context.html#ic_instances"><span class="hs-identifier hs-var">ic_instances</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144816"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
-</span><span id="line-330"></span><span>    </span><span id="local-6989586621681144808"><span class="annot"><span class="annottext">old_cls_insts :: [ClsInst]
-</span><a href="#local-6989586621681144808"><span class="hs-identifier hs-var hs-var">old_cls_insts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><a href="GHC.Utils.Misc.html#filterOut"><span class="hs-identifier hs-var">filterOut</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681144800"><span class="annot"><span class="annottext">ClsInst
-</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><a href="#local-6989586621681144819"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
+</span><span id="line-330"></span><span>    </span><span id="local-6989586621681144811"><span class="annot"><span class="annottext">old_cls_insts :: [ClsInst]
+</span><a href="#local-6989586621681144811"><span class="hs-identifier hs-var hs-var">old_cls_insts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><a href="GHC.Utils.Misc.html#filterOut"><span class="hs-identifier hs-var">filterOut</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681144803"><span class="annot"><span class="annottext">ClsInst
+</span><a href="#local-6989586621681144803"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ClsInst -&gt; ClsInst -&gt; Bool
 </span><a href="GHC.Core.InstEnv.html#identicalClsInstHead"><span class="hs-identifier hs-var">identicalClsInstHead</span></a></span><span> </span><span class="annot"><span class="annottext">ClsInst
-</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144814"><span class="hs-identifier hs-var">new_cls_insts</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[ClsInst]
-</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">cls_insts</span></a></span><span>
+</span><a href="#local-6989586621681144803"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[ClsInst]
+</span><a href="#local-6989586621681144817"><span class="hs-identifier hs-var">new_cls_insts</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[ClsInst]
+</span><a href="#local-6989586621681144804"><span class="hs-identifier hs-var">cls_insts</span></a></span><span>
 </span><span id="line-331"></span><span>
 </span><span id="line-332"></span><span class="annot"><a href="GHC.Runtime.Context.html#extendInteractiveContextWithIds"><span class="hs-identifier hs-type">extendInteractiveContextWithIds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Var.html#Id"><span class="hs-identifier hs-type">Id</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span>
 </span><span id="line-333"></span><span class="hs-comment">-- Just a specialised version</span><span>
 </span><span id="line-334"></span><span id="extendInteractiveContextWithIds"><span class="annot"><span class="annottext">extendInteractiveContextWithIds :: InteractiveContext -&gt; [Id] -&gt; InteractiveContext
-</span><a href="GHC.Runtime.Context.html#extendInteractiveContextWithIds"><span class="hs-identifier hs-var hs-var">extendInteractiveContextWithIds</span></a></span></span><span> </span><span id="local-6989586621681144798"><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span> </span><span id="local-6989586621681144797"><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var">new_ids</span></a></span></span><span>
+</span><a href="GHC.Runtime.Context.html#extendInteractiveContextWithIds"><span class="hs-identifier hs-var hs-var">extendInteractiveContextWithIds</span></a></span></span><span> </span><span id="local-6989586621681144801"><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span> </span><span id="local-6989586621681144800"><span class="annot"><span class="annottext">[Id]
+</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">new_ids</span></a></span></span><span>
 </span><span id="line-335"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#null"><span class="hs-identifier hs-var">null</span></a></span><span> </span><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var">new_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
+</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">new_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
 </span><span id="line-336"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_mod_index :: Int
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_mod_index :: Int
 </span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; Int
 </span><a href="GHC.Runtime.Context.html#ic_mod_index"><span class="hs-identifier hs-var">ic_mod_index</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-337"></span><span>                         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: [TyThing]
 </span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144795"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144794"><span class="hs-identifier hs-var">old_tythings</span></a></span><span>
+</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var">old_tythings</span></a></span><span>
 </span><span id="line-338"></span><span>                         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ic_rn_gbl_env :: GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext -&gt; GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#ic_rn_gbl_env"><span class="hs-identifier hs-var">ic_rn_gbl_env</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [TyThing] -&gt; GlobalRdrEnv
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [TyThing] -&gt; GlobalRdrEnv
 </span><a href="GHC.Runtime.Context.html#icExtendGblRdrEnv"><span class="hs-operator hs-var">`icExtendGblRdrEnv`</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144795"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">new_tythings</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-339"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-340"></span><span>    </span><span id="local-6989586621681144795"><span class="annot"><span class="annottext">new_tythings :: [TyThing]
-</span><a href="#local-6989586621681144795"><span class="hs-identifier hs-var hs-var">new_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span id="line-340"></span><span>    </span><span id="local-6989586621681144798"><span class="annot"><span class="annottext">new_tythings :: [TyThing]
+</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var hs-var">new_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">Id -&gt; TyThing
 </span><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-var">AnId</span></a></span><span> </span><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var">new_ids</span></a></span><span>
-</span><span id="line-341"></span><span>    </span><span id="local-6989586621681144794"><span class="annot"><span class="annottext">old_tythings :: [TyThing]
-</span><a href="#local-6989586621681144794"><span class="hs-identifier hs-var hs-var">old_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">new_ids</span></a></span><span>
+</span><span id="line-341"></span><span>    </span><span id="local-6989586621681144797"><span class="annot"><span class="annottext">old_tythings :: [TyThing]
+</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var hs-var">old_tythings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
 </span><a href="GHC.Utils.Misc.html#filterOut"><span class="hs-identifier hs-var">filterOut</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Id] -&gt; TyThing -&gt; Bool
 </span><a href="GHC.Runtime.Context.html#shadowed_by"><span class="hs-identifier hs-var">shadowed_by</span></a></span><span> </span><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144797"><span class="hs-identifier hs-var">new_ids</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">InteractiveContext -&gt; [TyThing]
+</span><a href="#local-6989586621681144800"><span class="hs-identifier hs-var">new_ids</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">InteractiveContext -&gt; [TyThing]
 </span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144798"><span class="hs-identifier hs-var">ictxt</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681144801"><span class="hs-identifier hs-var">ictxt</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-342"></span><span>
 </span><span id="line-343"></span><span class="annot"><a href="GHC.Runtime.Context.html#shadowed_by"><span class="hs-identifier hs-type">shadowed_by</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Var.html#Id"><span class="hs-identifier hs-type">Id</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.TyThing.html#TyThing"><span class="hs-identifier hs-type">TyThing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
 </span><span id="line-344"></span><span id="shadowed_by"><span class="annot"><span class="annottext">shadowed_by :: [Id] -&gt; TyThing -&gt; Bool
-</span><a href="GHC.Runtime.Context.html#shadowed_by"><span class="hs-identifier hs-var hs-var">shadowed_by</span></a></span></span><span> </span><span id="local-6989586621681144793"><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144793"><span class="hs-identifier hs-var">ids</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; Bool
-</span><a href="#local-6989586621681144792"><span class="hs-identifier hs-var">shadowed</span></a></span><span>
+</span><a href="GHC.Runtime.Context.html#shadowed_by"><span class="hs-identifier hs-var hs-var">shadowed_by</span></a></span></span><span> </span><span id="local-6989586621681144796"><span class="annot"><span class="annottext">[Id]
+</span><a href="#local-6989586621681144796"><span class="hs-identifier hs-var">ids</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; Bool
+</span><a href="#local-6989586621681144795"><span class="hs-identifier hs-var">shadowed</span></a></span><span>
 </span><span id="line-345"></span><span>  </span><span class="hs-keyword">where</span><span>
 </span><span id="line-346"></span><span>    </span><span class="hs-comment">-- Keep record selectors because they might be needed by HasField (#19322)</span><span>
-</span><span id="line-347"></span><span>    </span><span id="local-6989586621681144792"><span class="annot"><span class="annottext">shadowed :: TyThing -&gt; Bool
-</span><a href="#local-6989586621681144792"><span class="hs-identifier hs-var hs-var">shadowed</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144791"><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144791"><span class="hs-identifier hs-var">id</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Id -&gt; Bool
+</span><span id="line-347"></span><span>    </span><span id="local-6989586621681144795"><span class="annot"><span class="annottext">shadowed :: TyThing -&gt; Bool
+</span><a href="#local-6989586621681144795"><span class="hs-identifier hs-var hs-var">shadowed</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144794"><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144794"><span class="hs-identifier hs-var">id</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Id -&gt; Bool
 </span><a href="GHC.Types.Id.html#isRecordSelector"><span class="hs-identifier hs-var">isRecordSelector</span></a></span><span> </span><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144791"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681144794"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span>
-</span><span id="line-348"></span><span>    </span><span class="annot"><a href="#local-6989586621681144792"><span class="hs-identifier hs-var">shadowed</span></a></span><span> </span><span id="local-6989586621681144790"><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144790"><span class="hs-identifier hs-var">tything</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. NamedThing a =&gt; a -&gt; OccName
+</span><span id="line-348"></span><span>    </span><span class="annot"><a href="#local-6989586621681144795"><span class="hs-identifier hs-var">shadowed</span></a></span><span> </span><span id="local-6989586621681144793"><span class="annot"><span class="annottext">TyThing
+</span><a href="#local-6989586621681144793"><span class="hs-identifier hs-var">tything</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. NamedThing a =&gt; a -&gt; OccName
 </span><a href="GHC.Types.Name.html#getOccName"><span class="hs-identifier hs-var">getOccName</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144790"><span class="hs-identifier hs-var">tything</span></a></span><span> </span><span class="annot"><span class="annottext">OccName -&gt; OccSet -&gt; Bool
+</span><a href="#local-6989586621681144793"><span class="hs-identifier hs-var">tything</span></a></span><span> </span><span class="annot"><span class="annottext">OccName -&gt; OccSet -&gt; Bool
 </span><a href="GHC.Types.Name.Occurrence.html#elemOccSet"><span class="hs-operator hs-var">`elemOccSet`</span></a></span><span> </span><span class="annot"><span class="annottext">OccSet
-</span><a href="#local-6989586621681144787"><span class="hs-identifier hs-var">new_occs</span></a></span><span>
-</span><span id="line-349"></span><span>    </span><span id="local-6989586621681144787"><span class="annot"><span class="annottext">new_occs :: OccSet
-</span><a href="#local-6989586621681144787"><span class="hs-identifier hs-var hs-var">new_occs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[OccName] -&gt; OccSet
+</span><a href="#local-6989586621681144790"><span class="hs-identifier hs-var">new_occs</span></a></span><span>
+</span><span id="line-349"></span><span>    </span><span id="local-6989586621681144790"><span class="annot"><span class="annottext">new_occs :: OccSet
+</span><a href="#local-6989586621681144790"><span class="hs-identifier hs-var hs-var">new_occs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[OccName] -&gt; OccSet
 </span><a href="GHC.Types.Name.Occurrence.html#mkOccSet"><span class="hs-identifier hs-var">mkOccSet</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. NamedThing a =&gt; a -&gt; OccName
 </span><a href="GHC.Types.Name.html#getOccName"><span class="hs-identifier hs-var">getOccName</span></a></span><span> </span><span class="annot"><span class="annottext">[Id]
-</span><a href="#local-6989586621681144793"><span class="hs-identifier hs-var">ids</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681144796"><span class="hs-identifier hs-var">ids</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-350"></span><span>
 </span><span id="line-351"></span><span class="annot"><a href="GHC.Runtime.Context.html#setInteractivePrintName"><span class="hs-identifier hs-type">setInteractivePrintName</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Name.html#Name"><span class="hs-identifier hs-type">Name</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span>
 </span><span id="line-352"></span><span id="setInteractivePrintName"><span class="annot"><span class="annottext">setInteractivePrintName :: InteractiveContext -&gt; Name -&gt; InteractiveContext
-</span><a href="GHC.Runtime.Context.html#setInteractivePrintName"><span class="hs-identifier hs-var hs-var">setInteractivePrintName</span></a></span></span><span> </span><span id="local-6989586621681144785"><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144785"><span class="hs-identifier hs-var">ic</span></a></span></span><span> </span><span id="local-6989586621681144784"><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681144784"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144785"><span class="hs-identifier hs-var">ic</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">ic_int_print :: Name
+</span><a href="GHC.Runtime.Context.html#setInteractivePrintName"><span class="hs-identifier hs-var hs-var">setInteractivePrintName</span></a></span></span><span> </span><span id="local-6989586621681144788"><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144788"><span class="hs-identifier hs-var">ic</span></a></span></span><span> </span><span id="local-6989586621681144787"><span class="annot"><span class="annottext">Name
+</span><a href="#local-6989586621681144787"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144788"><span class="hs-identifier hs-var">ic</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">ic_int_print :: Name
 </span><a href="GHC.Runtime.Context.html#ic_int_print"><span class="hs-identifier hs-var">ic_int_print</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681144784"><span class="hs-identifier hs-var">n</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621681144787"><span class="hs-identifier hs-var">n</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-353"></span><span>
 </span><span id="line-354"></span><span>    </span><span class="hs-comment">-- ToDo: should not add Ids to the gbl env here</span><span>
 </span><span id="line-355"></span><span>
@@ -524,28 +524,28 @@ It's exactly the same for type-family instances.  See #7102
 </span><span id="line-357"></span><span class="hs-comment">-- later ones, and shadowing existing entries in the GlobalRdrEnv.</span><span>
 </span><span id="line-358"></span><span class="annot"><a href="GHC.Runtime.Context.html#icExtendGblRdrEnv"><span class="hs-identifier hs-type">icExtendGblRdrEnv</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Name.Reader.html#GlobalRdrEnv"><span class="hs-identifier hs-type">GlobalRdrEnv</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.TyThing.html#TyThing"><span class="hs-identifier hs-type">TyThing</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Name.Reader.html#GlobalRdrEnv"><span class="hs-identifier hs-type">GlobalRdrEnv</span></a></span><span>
 </span><span id="line-359"></span><span id="icExtendGblRdrEnv"><span class="annot"><span class="annottext">icExtendGblRdrEnv :: GlobalRdrEnv -&gt; [TyThing] -&gt; GlobalRdrEnv
-</span><a href="GHC.Runtime.Context.html#icExtendGblRdrEnv"><span class="hs-identifier hs-var hs-var">icExtendGblRdrEnv</span></a></span></span><span> </span><span id="local-6989586621681144783"><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144783"><span class="hs-identifier hs-var">env</span></a></span></span><span> </span><span id="local-6989586621681144782"><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144782"><span class="hs-identifier hs-var">tythings</span></a></span></span><span>
+</span><a href="GHC.Runtime.Context.html#icExtendGblRdrEnv"><span class="hs-identifier hs-var hs-var">icExtendGblRdrEnv</span></a></span></span><span> </span><span id="local-6989586621681144786"><span class="annot"><span class="annottext">GlobalRdrEnv
+</span><a href="#local-6989586621681144786"><span class="hs-identifier hs-var">env</span></a></span></span><span> </span><span id="local-6989586621681144785"><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144785"><span class="hs-identifier hs-var">tythings</span></a></span></span><span>
 </span><span id="line-360"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a b.
 Foldable t =&gt;
 (a -&gt; b -&gt; b) -&gt; b -&gt; t a -&gt; b
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#foldr"><span class="hs-identifier hs-var">foldr</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; GlobalRdrEnv -&gt; GlobalRdrEnv
-</span><a href="#local-6989586621681144780"><span class="hs-identifier hs-var">add</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144783"><span class="hs-identifier hs-var">env</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144782"><span class="hs-identifier hs-var">tythings</span></a></span><span>  </span><span class="hs-comment">-- Foldr makes things in the front of</span><span>
+</span><a href="#local-6989586621681144783"><span class="hs-identifier hs-var">add</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
+</span><a href="#local-6989586621681144786"><span class="hs-identifier hs-var">env</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144785"><span class="hs-identifier hs-var">tythings</span></a></span><span>  </span><span class="hs-comment">-- Foldr makes things in the front of</span><span>
 </span><span id="line-361"></span><span>                            </span><span class="hs-comment">-- the list shadow things at the back</span><span>
 </span><span id="line-362"></span><span>  </span><span class="hs-keyword">where</span><span>
 </span><span id="line-363"></span><span>    </span><span class="hs-comment">-- One at a time, to ensure each shadows the previous ones</span><span>
-</span><span id="line-364"></span><span>    </span><span id="local-6989586621681144780"><span class="annot"><span class="annottext">add :: TyThing -&gt; GlobalRdrEnv -&gt; GlobalRdrEnv
-</span><a href="#local-6989586621681144780"><span class="hs-identifier hs-var hs-var">add</span></a></span></span><span> </span><span id="local-6989586621681144776"><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144776"><span class="hs-identifier hs-var">thing</span></a></span></span><span> </span><span id="local-6989586621681144775"><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144775"><span class="hs-identifier hs-var">env</span></a></span></span><span>
+</span><span id="line-364"></span><span>    </span><span id="local-6989586621681144783"><span class="annot"><span class="annottext">add :: TyThing -&gt; GlobalRdrEnv -&gt; GlobalRdrEnv
+</span><a href="#local-6989586621681144783"><span class="hs-identifier hs-var hs-var">add</span></a></span></span><span> </span><span id="local-6989586621681144779"><span class="annot"><span class="annottext">TyThing
+</span><a href="#local-6989586621681144779"><span class="hs-identifier hs-var">thing</span></a></span></span><span> </span><span id="local-6989586621681144778"><span class="annot"><span class="annottext">GlobalRdrEnv
+</span><a href="#local-6989586621681144778"><span class="hs-identifier hs-var">env</span></a></span></span><span>
 </span><span id="line-365"></span><span>       </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; Bool
-</span><a href="#local-6989586621681144774"><span class="hs-identifier hs-var">is_sub_bndr</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144776"><span class="hs-identifier hs-var">thing</span></a></span><span>
+</span><a href="#local-6989586621681144777"><span class="hs-identifier hs-var">is_sub_bndr</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
+</span><a href="#local-6989586621681144779"><span class="hs-identifier hs-var">thing</span></a></span><span>
 </span><span id="line-366"></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144775"><span class="hs-identifier hs-var">env</span></a></span><span>
+</span><a href="#local-6989586621681144778"><span class="hs-identifier hs-var">env</span></a></span><span>
 </span><span id="line-367"></span><span>       </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>
 </span><span id="line-368"></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) b a.
@@ -553,33 +553,33 @@ Foldable t =&gt;
 (b -&gt; a -&gt; b) -&gt; b -&gt; t a -&gt; b
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#foldl%27"><span class="hs-identifier hs-var">foldl'</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; GlobalRdrElt -&gt; GlobalRdrEnv
 </span><a href="GHC.Types.Name.Reader.html#extendGlobalRdrEnv"><span class="hs-identifier hs-var">extendGlobalRdrEnv</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144771"><span class="hs-identifier hs-var">env1</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a b. Foldable t =&gt; (a -&gt; [b]) -&gt; t a -&gt; [b]
+</span><a href="#local-6989586621681144774"><span class="hs-identifier hs-var">env1</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a b. Foldable t =&gt; (a -&gt; [b]) -&gt; t a -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#concatMap"><span class="hs-identifier hs-var">concatMap</span></a></span><span> </span><span class="annot"><span class="annottext">AvailInfo -&gt; [GlobalRdrElt]
 </span><a href="GHC.Types.Name.Reader.html#localGREsFromAvail"><span class="hs-identifier hs-var">localGREsFromAvail</span></a></span><span> </span><span class="annot"><span class="annottext">[AvailInfo]
-</span><a href="#local-6989586621681144768"><span class="hs-identifier hs-var">avail</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681144771"><span class="hs-identifier hs-var">avail</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-369"></span><span>       </span><span class="hs-keyword">where</span><span>
-</span><span id="line-370"></span><span>          </span><span id="local-6989586621681144771"><span class="annot"><span class="annottext">env1 :: GlobalRdrEnv
-</span><a href="#local-6989586621681144771"><span class="hs-identifier hs-var hs-var">env1</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [GreName] -&gt; GlobalRdrEnv
+</span><span id="line-370"></span><span>          </span><span id="local-6989586621681144774"><span class="annot"><span class="annottext">env1 :: GlobalRdrEnv
+</span><a href="#local-6989586621681144774"><span class="hs-identifier hs-var hs-var">env1</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv -&gt; [GreName] -&gt; GlobalRdrEnv
 </span><a href="GHC.Types.Name.Reader.html#shadowNames"><span class="hs-identifier hs-var">shadowNames</span></a></span><span> </span><span class="annot"><span class="annottext">GlobalRdrEnv
-</span><a href="#local-6989586621681144775"><span class="hs-identifier hs-var">env</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a b. Foldable t =&gt; (a -&gt; [b]) -&gt; t a -&gt; [b]
+</span><a href="#local-6989586621681144778"><span class="hs-identifier hs-var">env</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a b. Foldable t =&gt; (a -&gt; [b]) -&gt; t a -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#concatMap"><span class="hs-identifier hs-var">concatMap</span></a></span><span> </span><span class="annot"><span class="annottext">AvailInfo -&gt; [GreName]
 </span><a href="GHC.Types.Avail.html#availGreNames"><span class="hs-identifier hs-var">availGreNames</span></a></span><span> </span><span class="annot"><span class="annottext">[AvailInfo]
-</span><a href="#local-6989586621681144768"><span class="hs-identifier hs-var">avail</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-371"></span><span>          </span><span id="local-6989586621681144768"><span class="annot"><span class="annottext">avail :: [AvailInfo]
-</span><a href="#local-6989586621681144768"><span class="hs-identifier hs-var hs-var">avail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; [AvailInfo]
+</span><a href="#local-6989586621681144771"><span class="hs-identifier hs-var">avail</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-371"></span><span>          </span><span id="local-6989586621681144771"><span class="annot"><span class="annottext">avail :: [AvailInfo]
+</span><a href="#local-6989586621681144771"><span class="hs-identifier hs-var hs-var">avail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; [AvailInfo]
 </span><a href="GHC.Types.TyThing.html#tyThingAvailInfo"><span class="hs-identifier hs-var">tyThingAvailInfo</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144776"><span class="hs-identifier hs-var">thing</span></a></span><span>
+</span><a href="#local-6989586621681144779"><span class="hs-identifier hs-var">thing</span></a></span><span>
 </span><span id="line-372"></span><span>
 </span><span id="line-373"></span><span>    </span><span class="hs-comment">-- Ugh! The new_tythings may include record selectors, since they</span><span>
 </span><span id="line-374"></span><span>    </span><span class="hs-comment">-- are not implicit-ids, and must appear in the TypeEnv.  But they</span><span>
 </span><span id="line-375"></span><span>    </span><span class="hs-comment">-- will also be brought into scope by the corresponding (ATyCon</span><span>
 </span><span id="line-376"></span><span>    </span><span class="hs-comment">-- tc).  And we want the latter, because that has the correct</span><span>
 </span><span id="line-377"></span><span>    </span><span class="hs-comment">-- parent (#10520)</span><span>
-</span><span id="line-378"></span><span>    </span><span id="local-6989586621681144774"><span class="annot"><span class="annottext">is_sub_bndr :: TyThing -&gt; Bool
-</span><a href="#local-6989586621681144774"><span class="hs-identifier hs-var hs-var">is_sub_bndr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144764"><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144764"><span class="hs-identifier hs-var">f</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Id -&gt; IdDetails
+</span><span id="line-378"></span><span>    </span><span id="local-6989586621681144777"><span class="annot"><span class="annottext">is_sub_bndr :: TyThing -&gt; Bool
+</span><a href="#local-6989586621681144777"><span class="hs-identifier hs-var hs-var">is_sub_bndr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144767"><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144767"><span class="hs-identifier hs-var">f</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Id -&gt; IdDetails
 </span><a href="GHC.Types.Var.html#idDetails"><span class="hs-identifier hs-var">idDetails</span></a></span><span> </span><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144764"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681144767"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-379"></span><span>                             </span><span class="annot"><a href="GHC.Types.Id.Info.html#RecSelId"><span class="hs-identifier hs-type">RecSelId</span></a></span><span> </span><span class="hs-special">{</span><span class="hs-special">}</span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span>
 </span><span id="line-380"></span><span>                             </span><span class="annot"><a href="GHC.Types.Id.Info.html#ClassOpId"><span class="hs-identifier hs-type">ClassOpId</span></a></span><span> </span><span class="hs-special">{</span><span class="hs-special">}</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Bool
@@ -587,59 +587,59 @@ Foldable t =&gt;
 </span><span id="line-381"></span><span>                             </span><span class="annot"><span class="annottext">IdDetails
 </span><span class="hs-identifier">_</span></span><span>            </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span>
-</span><span id="line-382"></span><span>    </span><span class="annot"><a href="#local-6989586621681144774"><span class="hs-identifier hs-var">is_sub_bndr</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
+</span><span id="line-382"></span><span>    </span><span class="annot"><a href="#local-6989586621681144777"><span class="hs-identifier hs-var">is_sub_bndr</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span>
 </span><span id="line-383"></span><span>
 </span><span id="line-384"></span><span class="annot"><a href="GHC.Runtime.Context.html#substInteractiveContext"><span class="hs-identifier hs-type">substInteractiveContext</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Core.TyCo.Subst.html#TCvSubst"><span class="hs-identifier hs-type">TCvSubst</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span>
 </span><span id="line-385"></span><span id="substInteractiveContext"><span class="annot"><span class="annottext">substInteractiveContext :: InteractiveContext -&gt; TCvSubst -&gt; InteractiveContext
-</span><a href="GHC.Runtime.Context.html#substInteractiveContext"><span class="hs-identifier hs-var hs-var">substInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144760"><span class="annot"><span class="annottext">ictxt :: InteractiveContext
-</span><a href="#local-6989586621681144760"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span class="hs-glyph">@</span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: InteractiveContext -&gt; [TyThing]
-</span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144759"><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144759"><span class="hs-identifier hs-var">tts</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span id="local-6989586621681144758"><span class="annot"><span class="annottext">TCvSubst
-</span><a href="#local-6989586621681144758"><span class="hs-identifier hs-var">subst</span></a></span></span><span>
+</span><a href="GHC.Runtime.Context.html#substInteractiveContext"><span class="hs-identifier hs-var hs-var">substInteractiveContext</span></a></span></span><span> </span><span id="local-6989586621681144763"><span class="annot"><span class="annottext">ictxt :: InteractiveContext
+</span><a href="#local-6989586621681144763"><span class="hs-identifier hs-var">ictxt</span></a></span></span><span class="hs-glyph">@</span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveContext"><span class="hs-identifier hs-type">InteractiveContext</span></a></span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: InteractiveContext -&gt; [TyThing]
+</span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621681144762"><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144762"><span class="hs-identifier hs-var">tts</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span id="local-6989586621681144761"><span class="annot"><span class="annottext">TCvSubst
+</span><a href="#local-6989586621681144761"><span class="hs-identifier hs-var">subst</span></a></span></span><span>
 </span><span id="line-386"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">TCvSubst -&gt; Bool
 </span><a href="GHC.Core.TyCo.Subst.html#isEmptyTCvSubst"><span class="hs-identifier hs-var">isEmptyTCvSubst</span></a></span><span> </span><span class="annot"><span class="annottext">TCvSubst
-</span><a href="#local-6989586621681144758"><span class="hs-identifier hs-var">subst</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144760"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
+</span><a href="#local-6989586621681144761"><span class="hs-identifier hs-var">subst</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
+</span><a href="#local-6989586621681144763"><span class="hs-identifier hs-var">ictxt</span></a></span><span>
 </span><span id="line-387"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InteractiveContext
-</span><a href="#local-6989586621681144760"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: [TyThing]
+</span><a href="#local-6989586621681144763"><span class="hs-identifier hs-var">ictxt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ic_tythings :: [TyThing]
 </span><a href="GHC.Runtime.Context.html#ic_tythings"><span class="hs-identifier hs-var">ic_tythings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">TyThing -&gt; TyThing
-</span><a href="#local-6989586621681144756"><span class="hs-identifier hs-var">subst_ty</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
-</span><a href="#local-6989586621681144759"><span class="hs-identifier hs-var">tts</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621681144759"><span class="hs-identifier hs-var">subst_ty</span></a></span><span> </span><span class="annot"><span class="annottext">[TyThing]
+</span><a href="#local-6989586621681144762"><span class="hs-identifier hs-var">tts</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-388"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-389"></span><span>    </span><span id="local-6989586621681144756"><span class="annot"><span class="annottext">subst_ty :: TyThing -&gt; TyThing
-</span><a href="#local-6989586621681144756"><span class="hs-identifier hs-var hs-var">subst_ty</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144755"><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144755"><span class="hs-identifier hs-var">id</span></a></span></span><span class="hs-special">)</span><span>
+</span><span id="line-389"></span><span>    </span><span id="local-6989586621681144759"><span class="annot"><span class="annottext">subst_ty :: TyThing -&gt; TyThing
+</span><a href="#local-6989586621681144759"><span class="hs-identifier hs-var hs-var">subst_ty</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-type">AnId</span></a></span><span> </span><span id="local-6989586621681144758"><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144758"><span class="hs-identifier hs-var">id</span></a></span></span><span class="hs-special">)</span><span>
 </span><span id="line-390"></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Id -&gt; TyThing
 </span><a href="GHC.Types.TyThing.html#AnId"><span class="hs-identifier hs-var">AnId</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">(Type -&gt; Type) -&gt; Id -&gt; Id
 </span><a href="GHC.Types.Var.html#updateIdTypeAndMult"><span class="hs-identifier hs-var">updateIdTypeAndMult</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TCvSubst -&gt; Type -&gt; Type
 </span><a href="GHC.Core.TyCo.Subst.html#substTyAddInScope"><span class="hs-identifier hs-var">substTyAddInScope</span></a></span><span> </span><span class="annot"><span class="annottext">TCvSubst
-</span><a href="#local-6989586621681144758"><span class="hs-identifier hs-var">subst</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Id
-</span><a href="#local-6989586621681144755"><span class="hs-identifier hs-var">id</span></a></span><span>
+</span><a href="#local-6989586621681144761"><span class="hs-identifier hs-var">subst</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Id
+</span><a href="#local-6989586621681144758"><span class="hs-identifier hs-var">id</span></a></span><span>
 </span><span id="line-391"></span><span>      </span><span class="hs-comment">-- Variables in the interactive context *can* mention free type variables</span><span>
 </span><span id="line-392"></span><span>      </span><span class="hs-comment">-- because of the runtime debugger. Otherwise you'd expect all</span><span>
 </span><span id="line-393"></span><span>      </span><span class="hs-comment">-- variables bound in the interactive context to be closed.</span><span>
-</span><span id="line-394"></span><span>    </span><span class="annot"><a href="#local-6989586621681144756"><span class="hs-identifier hs-var">subst_ty</span></a></span><span> </span><span id="local-6989586621681144752"><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144752"><span class="hs-identifier hs-var">tt</span></a></span></span><span>
+</span><span id="line-394"></span><span>    </span><span class="annot"><a href="#local-6989586621681144759"><span class="hs-identifier hs-var">subst_ty</span></a></span><span> </span><span id="local-6989586621681144755"><span class="annot"><span class="annottext">TyThing
+</span><a href="#local-6989586621681144755"><span class="hs-identifier hs-var">tt</span></a></span></span><span>
 </span><span id="line-395"></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TyThing
-</span><a href="#local-6989586621681144752"><span class="hs-identifier hs-var">tt</span></a></span><span>
+</span><a href="#local-6989586621681144755"><span class="hs-identifier hs-var">tt</span></a></span><span>
 </span><span id="line-396"></span><span>
 </span><span id="line-397"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Runtime.Context.html#InteractiveImport"><span class="hs-identifier hs-type">InteractiveImport</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-398"></span><span>  </span><span id="local-6989586621681144722"><span class="annot"><span class="annottext">ppr :: InteractiveImport -&gt; SDoc
-</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Runtime.Context.html#IIModule"><span class="hs-identifier hs-type">IIModule</span></a></span><span> </span><span id="local-6989586621681144720"><span class="annot"><span class="annottext">ModuleName
-</span><a href="#local-6989586621681144720"><span class="hs-identifier hs-var">m</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char -&gt; SDoc
+</span><span id="line-398"></span><span>  </span><span id="local-6989586621681144725"><span class="annot"><span class="annottext">ppr :: InteractiveImport -&gt; SDoc
+</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Runtime.Context.html#IIModule"><span class="hs-identifier hs-type">IIModule</span></a></span><span> </span><span id="local-6989586621681144723"><span class="annot"><span class="annottext">ModuleName
+</span><a href="#local-6989586621681144723"><span class="hs-identifier hs-var">m</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#char"><span class="hs-identifier hs-var">char</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'*'</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">ModuleName
-</span><a href="#local-6989586621681144720"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-399"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Runtime.Context.html#IIDecl"><span class="hs-identifier hs-type">IIDecl</span></a></span><span> </span><span id="local-6989586621681144717"><span class="annot"><span class="annottext">ImportDecl GhcPs
-</span><a href="#local-6989586621681144717"><span class="hs-identifier hs-var">d</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
+</span><a href="#local-6989586621681144723"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-399"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Runtime.Context.html#IIDecl"><span class="hs-identifier hs-type">IIDecl</span></a></span><span> </span><span id="local-6989586621681144720"><span class="annot"><span class="annottext">ImportDecl GhcPs
+</span><a href="#local-6989586621681144720"><span class="hs-identifier hs-var">d</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">ImportDecl GhcPs
-</span><a href="#local-6989586621681144717"><span class="hs-identifier hs-var">d</span></a></span><span>
+</span><a href="#local-6989586621681144720"><span class="hs-identifier hs-var">d</span></a></span><span>
 </span><span id="line-400"></span><span>
 </span><span id="line-401"></span></pre></body></html>

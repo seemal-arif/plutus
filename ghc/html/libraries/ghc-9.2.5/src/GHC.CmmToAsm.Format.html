@@ -49,7 +49,7 @@
 </span><span id="line-49"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="II64"><span class="annot"><a href="GHC.CmmToAsm.Format.html#II64"><span class="hs-identifier hs-var">II64</span></a></span></span><span>
 </span><span id="line-50"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="FF32"><span class="annot"><a href="GHC.CmmToAsm.Format.html#FF32"><span class="hs-identifier hs-var">FF32</span></a></span></span><span>
 </span><span id="line-51"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="FF64"><span class="annot"><a href="GHC.CmmToAsm.Format.html#FF64"><span class="hs-identifier hs-var">FF64</span></a></span></span><span>
-</span><span id="line-52"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681215182"><span id="local-6989586621681215184"><span id="local-6989586621681215186"><span class="annot"><span class="annottext">Int -&gt; Format -&gt; ShowS
+</span><span id="line-52"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681215185"><span id="local-6989586621681215187"><span id="local-6989586621681215189"><span class="annot"><span class="annottext">Int -&gt; Format -&gt; ShowS
 [Format] -&gt; ShowS
 Format -&gt; String
 forall a.
@@ -60,7 +60,7 @@ show :: Format -&gt; String
 $cshow :: Format -&gt; String
 showsPrec :: Int -&gt; Format -&gt; ShowS
 $cshowsPrec :: Int -&gt; Format -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681215177"><span id="local-6989586621681215179"><span class="annot"><span class="annottext">Format -&gt; Format -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681215180"><span id="local-6989586621681215182"><span class="annot"><span class="annottext">Format -&gt; Format -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Format -&gt; Format -&gt; Bool
 $c/= :: Format -&gt; Format -&gt; Bool
@@ -72,10 +72,10 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span id="line-55"></span><span class="hs-comment">-- | Get the integer format of this width.</span><span>
 </span><span id="line-56"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#intFormat"><span class="hs-identifier hs-type">intFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Cmm.Type.html#Width"><span class="hs-identifier hs-type">Width</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span>
 </span><span id="line-57"></span><span id="intFormat"><span class="annot"><span class="annottext">intFormat :: Width -&gt; Format
-</span><a href="GHC.CmmToAsm.Format.html#intFormat"><span class="hs-identifier hs-var hs-var">intFormat</span></a></span></span><span> </span><span id="local-6989586621681215175"><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215175"><span class="hs-identifier hs-var">width</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Format.html#intFormat"><span class="hs-identifier hs-var hs-var">intFormat</span></a></span></span><span> </span><span id="local-6989586621681215178"><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681215178"><span class="hs-identifier hs-var">width</span></a></span></span><span>
 </span><span id="line-58"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215175"><span class="hs-identifier hs-var">width</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681215178"><span class="hs-identifier hs-var">width</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W8"><span class="hs-identifier hs-var">W8</span></a></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#II8"><span class="hs-identifier hs-var">II8</span></a></span><span>
@@ -88,8 +88,8 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W64"><span class="hs-identifier hs-var">W64</span></a></span><span>     </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#II64"><span class="hs-identifier hs-var">II64</span></a></span><span>
-</span><span id="line-63"></span><span>        </span><span id="local-6989586621681215170"><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215170"><span class="hs-identifier hs-var">other</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a
+</span><span id="line-63"></span><span>        </span><span id="local-6989586621681215173"><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681215173"><span class="hs-identifier hs-var">other</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a
 </span><a href="GHC.Utils.Panic.Plain.html#sorry"><span class="hs-identifier hs-var">sorry</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;The native code generator cannot &quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
@@ -98,7 +98,7 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span class="hs-string">&quot;produce code for Format.intFormat &quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Show a =&gt; a -&gt; String
 </span><a href="../../base-4.16.4.0/src/GHC-Show.html#show"><span class="hs-identifier hs-var">show</span></a></span><span> </span><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215170"><span class="hs-identifier hs-var">other</span></a></span><span>
+</span><a href="#local-6989586621681215173"><span class="hs-identifier hs-var">other</span></a></span><span>
 </span><span id="line-65"></span><span>            </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;\n\tConsider using the llvm backend with -fllvm&quot;</span></span><span>
@@ -107,10 +107,10 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span id="line-68"></span><span class="hs-comment">-- | Get the float format of this width.</span><span>
 </span><span id="line-69"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#floatFormat"><span class="hs-identifier hs-type">floatFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Cmm.Type.html#Width"><span class="hs-identifier hs-type">Width</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span>
 </span><span id="line-70"></span><span id="floatFormat"><span class="annot"><span class="annottext">floatFormat :: Width -&gt; Format
-</span><a href="GHC.CmmToAsm.Format.html#floatFormat"><span class="hs-identifier hs-var hs-var">floatFormat</span></a></span></span><span> </span><span id="local-6989586621681215167"><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215167"><span class="hs-identifier hs-var">width</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Format.html#floatFormat"><span class="hs-identifier hs-var hs-var">floatFormat</span></a></span></span><span> </span><span id="local-6989586621681215170"><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681215170"><span class="hs-identifier hs-var">width</span></a></span></span><span>
 </span><span id="line-71"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215167"><span class="hs-identifier hs-var">width</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681215170"><span class="hs-identifier hs-var">width</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-72"></span><span>        </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W32"><span class="hs-identifier hs-var">W32</span></a></span><span>     </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#FF32"><span class="hs-identifier hs-var">FF32</span></a></span><span>
@@ -118,12 +118,12 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><a href="GHC.Cmm.Type.html#W64"><span class="hs-identifier hs-var">W64</span></a></span><span>     </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#FF64"><span class="hs-identifier hs-var">FF64</span></a></span><span>
 </span><span id="line-74"></span><span>
-</span><span id="line-75"></span><span>        </span><span id="local-6989586621681215166"><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215166"><span class="hs-identifier hs-var">other</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; String -&gt; SDoc -&gt; a
+</span><span id="line-75"></span><span>        </span><span id="local-6989586621681215169"><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681215169"><span class="hs-identifier hs-var">other</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; String -&gt; SDoc -&gt; a
 </span><a href="GHC.Utils.Panic.html#pprPanic"><span class="hs-identifier hs-var">pprPanic</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Format.floatFormat&quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681215166"><span class="hs-identifier hs-var">other</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681215169"><span class="hs-identifier hs-var">other</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-76"></span><span>
 </span><span id="line-77"></span><span class="hs-comment">-- | Check if a format represent an integer value.</span><span>
 </span><span id="line-78"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#isIntFormat"><span class="hs-identifier hs-type">isIntFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
@@ -136,10 +136,10 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span id="line-81"></span><span class="hs-comment">-- | Check if a format represents a floating point value.</span><span>
 </span><span id="line-82"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#isFloatFormat"><span class="hs-identifier hs-type">isFloatFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
 </span><span id="line-83"></span><span id="isFloatFormat"><span class="annot"><span class="annottext">isFloatFormat :: Format -&gt; Bool
-</span><a href="GHC.CmmToAsm.Format.html#isFloatFormat"><span class="hs-identifier hs-var hs-var">isFloatFormat</span></a></span></span><span> </span><span id="local-6989586621681215161"><span class="annot"><span class="annottext">Format
-</span><a href="#local-6989586621681215161"><span class="hs-identifier hs-var">format</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Format.html#isFloatFormat"><span class="hs-identifier hs-var hs-var">isFloatFormat</span></a></span></span><span> </span><span id="local-6989586621681215164"><span class="annot"><span class="annottext">Format
+</span><a href="#local-6989586621681215164"><span class="hs-identifier hs-var">format</span></a></span></span><span>
 </span><span id="line-84"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Format
-</span><a href="#local-6989586621681215161"><span class="hs-identifier hs-var">format</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681215164"><span class="hs-identifier hs-var">format</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-85"></span><span>        </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#FF32"><span class="hs-identifier hs-var">FF32</span></a></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span>
@@ -154,28 +154,28 @@ $c== :: Format -&gt; Format -&gt; Bool
 </span><span id="line-90"></span><span class="hs-comment">-- | Convert a Cmm type to a Format.</span><span>
 </span><span id="line-91"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#cmmTypeFormat"><span class="hs-identifier hs-type">cmmTypeFormat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Cmm.Type.html#CmmType"><span class="hs-identifier hs-type">CmmType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span>
 </span><span id="line-92"></span><span id="cmmTypeFormat"><span class="annot"><span class="annottext">cmmTypeFormat :: CmmType -&gt; Format
-</span><a href="GHC.CmmToAsm.Format.html#cmmTypeFormat"><span class="hs-identifier hs-var hs-var">cmmTypeFormat</span></a></span></span><span> </span><span id="local-6989586621681215160"><span class="annot"><span class="annottext">CmmType
-</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">ty</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Format.html#cmmTypeFormat"><span class="hs-identifier hs-var hs-var">cmmTypeFormat</span></a></span></span><span> </span><span id="local-6989586621681215163"><span class="annot"><span class="annottext">CmmType
+</span><a href="#local-6989586621681215163"><span class="hs-identifier hs-var">ty</span></a></span></span><span>
 </span><span id="line-93"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">CmmType -&gt; Bool
 </span><a href="GHC.Cmm.Type.html#isFloatType"><span class="hs-identifier hs-var">isFloatType</span></a></span><span> </span><span class="annot"><span class="annottext">CmmType
-</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">ty</span></a></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Width -&gt; Format
+</span><a href="#local-6989586621681215163"><span class="hs-identifier hs-var">ty</span></a></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Width -&gt; Format
 </span><a href="GHC.CmmToAsm.Format.html#floatFormat"><span class="hs-identifier hs-var">floatFormat</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CmmType -&gt; Width
 </span><a href="GHC.Cmm.Type.html#typeWidth"><span class="hs-identifier hs-var">typeWidth</span></a></span><span> </span><span class="annot"><span class="annottext">CmmType
-</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">ty</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681215163"><span class="hs-identifier hs-var">ty</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-94"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Width -&gt; Format
 </span><a href="GHC.CmmToAsm.Format.html#intFormat"><span class="hs-identifier hs-var">intFormat</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CmmType -&gt; Width
 </span><a href="GHC.Cmm.Type.html#typeWidth"><span class="hs-identifier hs-var">typeWidth</span></a></span><span> </span><span class="annot"><span class="annottext">CmmType
-</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">ty</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681215163"><span class="hs-identifier hs-var">ty</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-95"></span><span>
 </span><span id="line-96"></span><span>
 </span><span id="line-97"></span><span class="hs-comment">-- | Get the Width of a Format.</span><span>
 </span><span id="line-98"></span><span class="annot"><a href="GHC.CmmToAsm.Format.html#formatToWidth"><span class="hs-identifier hs-type">formatToWidth</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Cmm.Type.html#Width"><span class="hs-identifier hs-type">Width</span></a></span><span>
 </span><span id="line-99"></span><span id="formatToWidth"><span class="annot"><span class="annottext">formatToWidth :: Format -&gt; Width
-</span><a href="GHC.CmmToAsm.Format.html#formatToWidth"><span class="hs-identifier hs-var hs-var">formatToWidth</span></a></span></span><span> </span><span id="local-6989586621681215157"><span class="annot"><span class="annottext">Format
-</span><a href="#local-6989586621681215157"><span class="hs-identifier hs-var">format</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Format.html#formatToWidth"><span class="hs-identifier hs-var hs-var">formatToWidth</span></a></span></span><span> </span><span id="local-6989586621681215160"><span class="annot"><span class="annottext">Format
+</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">format</span></a></span></span><span>
 </span><span id="line-100"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Format
-</span><a href="#local-6989586621681215157"><span class="hs-identifier hs-var">format</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681215160"><span class="hs-identifier hs-var">format</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-101"></span><span>        </span><span class="annot"><span class="annottext">Format
 </span><a href="GHC.CmmToAsm.Format.html#II8"><span class="hs-identifier hs-var">II8</span></a></span><span>             </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W8"><span class="hs-identifier hs-var">W8</span></a></span><span>

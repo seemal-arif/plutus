@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span id="RcInteger"><span class="annot"><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span></span><span>
 </span><span id="line-20"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="RcFloat"><span class="annot"><a href="GHC.Platform.Reg.Class.html#RcFloat"><span class="hs-identifier hs-var">RcFloat</span></a></span></span><span>
 </span><span id="line-21"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="RcDouble"><span class="annot"><a href="GHC.Platform.Reg.Class.html#RcDouble"><span class="hs-identifier hs-var">RcDouble</span></a></span></span><span>
-</span><span id="line-22"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621681150188"><span id="local-6989586621681150190"><span class="annot"><span class="annottext">RegClass -&gt; RegClass -&gt; Bool
+</span><span id="line-22"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621681150191"><span id="local-6989586621681150193"><span class="annot"><span class="annottext">RegClass -&gt; RegClass -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: RegClass -&gt; RegClass -&gt; Bool
 $c/= :: RegClass -&gt; RegClass -&gt; Bool
@@ -29,7 +29,7 @@ $c== :: RegClass -&gt; RegClass -&gt; Bool
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span>
 </span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Types.Unique.html#Uniquable"><span class="hs-identifier hs-type">Uniquable</span></a></span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621681150183"><span class="annot"><span class="annottext">getUnique :: RegClass -&gt; Unique
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621681150186"><span class="annot"><span class="annottext">getUnique :: RegClass -&gt; Unique
 </span><a href="GHC.Types.Unique.html#getUnique"><span class="hs-identifier hs-var hs-var hs-var hs-var">getUnique</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Unique
 </span><a href="GHC.Builtin.Uniques.html#mkRegClassUnique"><span class="hs-identifier hs-var">mkRegClassUnique</span></a></span><span> </span><span class="annot"><span class="annottext">Int
@@ -44,7 +44,7 @@ $c== :: RegClass -&gt; RegClass -&gt; Bool
 </span><span class="hs-number">2</span></span><span>
 </span><span id="line-29"></span><span>
 </span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621681150177"><span class="annot"><span class="annottext">ppr :: RegClass -&gt; SDoc
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621681150180"><span class="annot"><span class="annottext">ppr :: RegClass -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">Outputable.text</span></a></span><span> </span><span class="annot"><span class="annottext">String

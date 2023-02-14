@@ -54,45 +54,45 @@
 </span><span id="line-54"></span><span class="hs-comment">--      Each architecture has a different register setup, so we use a</span><span>
 </span><span id="line-55"></span><span class="hs-comment">--      different regSqueeze function for each.</span><span>
 </span><span id="line-56"></span><span class="hs-comment">--</span><span>
-</span><span id="line-57"></span><span id="local-6989586621681161023"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-type">accSqueeze</span></a></span><span>
+</span><span id="line-57"></span><span id="local-6989586621681161026"><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-type">accSqueeze</span></a></span><span>
 </span><span id="line-58"></span><span>        </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-59"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-60"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621681161023"><span class="hs-identifier hs-type">reg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-61"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681161023"><span class="hs-identifier hs-type">reg</span></a></span><span>
+</span><span id="line-60"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621681161026"><span class="hs-identifier hs-type">reg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-61"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Unique.Set.html#UniqSet"><span class="hs-identifier hs-type">UniqSet</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681161026"><span class="hs-identifier hs-type">reg</span></a></span><span>
 </span><span id="line-62"></span><span>        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span></span><span>
 </span><span id="line-63"></span><span>
 </span><span id="line-64"></span><span id="accSqueeze"><span class="annot"><span class="annottext">accSqueeze :: forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var hs-var">accSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160979"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160979"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span id="local-6989586621681160978"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">maxCount</span></a></span></span><span> </span><span id="local-6989586621681160977"><span class="annot"><span class="annottext">reg -&gt; Int
-</span><a href="#local-6989586621681160977"><span class="hs-identifier hs-var">squeeze</span></a></span></span><span> </span><span id="local-6989586621681160976"><span class="annot"><span class="annottext">UniqSet reg
-</span><a href="#local-6989586621681160976"><span class="hs-identifier hs-var">us</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [reg] -&gt; Int
-</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160979"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall elt. UniqSet elt -&gt; [elt]
+</span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var hs-var">accSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160982"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160982"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span id="local-6989586621681160981"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160981"><span class="hs-identifier hs-var">maxCount</span></a></span></span><span> </span><span id="local-6989586621681160980"><span class="annot"><span class="annottext">reg -&gt; Int
+</span><a href="#local-6989586621681160980"><span class="hs-identifier hs-var">squeeze</span></a></span></span><span> </span><span id="local-6989586621681160979"><span class="annot"><span class="annottext">UniqSet reg
+</span><a href="#local-6989586621681160979"><span class="hs-identifier hs-var">us</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [reg] -&gt; Int
+</span><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160982"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall elt. UniqSet elt -&gt; [elt]
 </span><a href="GHC.Types.Unique.Set.html#nonDetEltsUniqSet"><span class="hs-identifier hs-var">nonDetEltsUniqSet</span></a></span><span> </span><span class="annot"><span class="annottext">UniqSet reg
-</span><a href="#local-6989586621681160976"><span class="hs-identifier hs-var">us</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681160979"><span class="hs-identifier hs-var">us</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-65"></span><span>  </span><span class="hs-comment">-- See Note [Unique Determinism and code generation]</span><span>
-</span><span id="line-66"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621681160975"><span class="annot"><span class="annottext">acc :: Int -&gt; [reg] -&gt; Int
-</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var hs-var">acc</span></a></span></span><span> </span><span id="local-6989586621681160973"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160973"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160973"><span class="hs-identifier hs-var">count</span></a></span><span>
-</span><span id="line-67"></span><span>        </span><span class="annot"><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span id="local-6989586621681160972"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160972"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="annot"><span class="annottext">[reg]
+</span><span id="line-66"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621681160978"><span class="annot"><span class="annottext">acc :: Int -&gt; [reg] -&gt; Int
+</span><a href="#local-6989586621681160978"><span class="hs-identifier hs-var hs-var">acc</span></a></span></span><span> </span><span id="local-6989586621681160976"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160976"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160976"><span class="hs-identifier hs-var">count</span></a></span><span>
+</span><span id="line-67"></span><span>        </span><span class="annot"><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span id="local-6989586621681160975"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="annot"><span class="annottext">[reg]
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160972"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">maxCount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160972"><span class="hs-identifier hs-var">count</span></a></span><span>
-</span><span id="line-68"></span><span>        </span><span class="annot"><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span id="local-6989586621681160971"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160971"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160970"><span class="annot"><span class="annottext">reg
-</span><a href="#local-6989586621681160970"><span class="hs-identifier hs-var">r</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621681160969"><span class="annot"><span class="annottext">[reg]
-</span><a href="#local-6989586621681160969"><span class="hs-identifier hs-var">rs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [reg] -&gt; Int
-</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160971"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681160981"><span class="hs-identifier hs-var">maxCount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160975"><span class="hs-identifier hs-var">count</span></a></span><span>
+</span><span id="line-68"></span><span>        </span><span class="annot"><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span id="local-6989586621681160974"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160974"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621681160973"><span class="annot"><span class="annottext">reg
+</span><a href="#local-6989586621681160973"><span class="hs-identifier hs-var">r</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621681160972"><span class="annot"><span class="annottext">[reg]
+</span><a href="#local-6989586621681160972"><span class="hs-identifier hs-var">rs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [reg] -&gt; Int
+</span><a href="#local-6989586621681160978"><span class="hs-identifier hs-var">acc</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160974"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">reg -&gt; Int
-</span><a href="#local-6989586621681160977"><span class="hs-identifier hs-var">squeeze</span></a></span><span> </span><span class="annot"><span class="annottext">reg
-</span><a href="#local-6989586621681160970"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[reg]
-</span><a href="#local-6989586621681160969"><span class="hs-identifier hs-var">rs</span></a></span><span>
+</span><a href="#local-6989586621681160980"><span class="hs-identifier hs-var">squeeze</span></a></span><span> </span><span class="annot"><span class="annottext">reg
+</span><a href="#local-6989586621681160973"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[reg]
+</span><a href="#local-6989586621681160972"><span class="hs-identifier hs-var">rs</span></a></span><span>
 </span><span id="line-69"></span><span>
 </span><span id="line-70"></span><span class="hs-comment">{- Note [accSqueeze]
 ~~~~~~~~~~~~~~~~~~~~
@@ -136,18 +136,18 @@ the most efficient variant tried. Benchmark compiling 10-times SHA1.hs follows.
 -&gt; (RegClass -&gt; VirtualReg -&gt; Int)
 -&gt; (RegClass -&gt; RealReg -&gt; Int)
 -&gt; Triv VirtualReg RegClass RealReg
-</span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var hs-var">trivColorable</span></a></span></span><span> </span><span id="local-6989586621681160967"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160967"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160966"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160966"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160965"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160965"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span> </span><span id="local-6989586621681160963"><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160963"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160962"><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160962"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
-</span><span id="line-109"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160961"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_INTEGER :: Int
-</span><a href="#local-6989586621681160961"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var hs-var">trivColorable</span></a></span></span><span> </span><span id="local-6989586621681160970"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681160970"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160969"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
+</span><a href="#local-6989586621681160969"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160968"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
+</span><a href="#local-6989586621681160968"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span> </span><span id="local-6989586621681160966"><span class="annot"><span class="annottext">UniqSet VirtualReg
+</span><a href="#local-6989586621681160966"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160965"><span class="annot"><span class="annottext">UniqSet RealReg
+</span><a href="#local-6989586621681160965"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
+</span><span id="line-109"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160964"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_INTEGER :: Int
+</span><a href="#local-6989586621681160964"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span></span><span>
 </span><span id="line-110"></span><span>                  </span><span class="hs-glyph">=</span><span>        </span><span class="hs-special">(</span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160967"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681160970"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-111"></span><span>                            </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">3</span></span><span>
@@ -207,45 +207,45 @@ the most efficient variant tried. Benchmark compiling 10-times SHA1.hs follows.
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchUnknown"><span class="hs-identifier hs-var">ArchUnknown</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a
 </span><a href="GHC.Utils.Panic.Plain.html#panic"><span class="hs-identifier hs-var">panic</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;trivColorable ArchUnknown&quot;</span></span><span class="hs-special">)</span><span>
-</span><span id="line-129"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160943"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160943"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-129"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160946"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160946"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160961"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
+</span><a href="#local-6989586621681160964"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
 </span><span id="line-130"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160966"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160969"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-131"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160963"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
+</span><a href="#local-6989586621681160966"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
 </span><span id="line-132"></span><span>
-</span><span id="line-133"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160942"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160942"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-133"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160945"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160945"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span>  </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160943"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160961"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
+</span><a href="#local-6989586621681160946"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160964"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
 </span><span id="line-134"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160965"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160968"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcInteger"><span class="hs-identifier hs-var">RcInteger</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-135"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160962"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
+</span><a href="#local-6989586621681160965"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
 </span><span id="line-136"></span><span>
 </span><span id="line-137"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160942"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160945"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160961"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
+</span><a href="#local-6989586621681160964"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_INTEGER</span></a></span><span>
 </span><span id="line-138"></span><span>
-</span><span id="line-139"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var">trivColorable</span></a></span><span> </span><span id="local-6989586621681160940"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160940"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160939"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160939"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160938"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160938"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="GHC.Platform.Reg.Class.html#RcFloat"><span class="hs-identifier hs-var">RcFloat</span></a></span><span> </span><span id="local-6989586621681160936"><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160936"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160935"><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160935"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
-</span><span id="line-140"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160934"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_FLOAT :: Int
-</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span></span><span>
+</span><span id="line-139"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var">trivColorable</span></a></span><span> </span><span id="local-6989586621681160943"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681160943"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160942"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
+</span><a href="#local-6989586621681160942"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160941"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
+</span><a href="#local-6989586621681160941"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="GHC.Platform.Reg.Class.html#RcFloat"><span class="hs-identifier hs-var">RcFloat</span></a></span><span> </span><span id="local-6989586621681160939"><span class="annot"><span class="annottext">UniqSet VirtualReg
+</span><a href="#local-6989586621681160939"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160938"><span class="annot"><span class="annottext">UniqSet RealReg
+</span><a href="#local-6989586621681160938"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
+</span><span id="line-140"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160937"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_FLOAT :: Int
+</span><a href="#local-6989586621681160937"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span></span><span>
 </span><span id="line-141"></span><span>                  </span><span class="hs-glyph">=</span><span>        </span><span class="hs-special">(</span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160940"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681160943"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-142"></span><span>                    </span><span class="hs-comment">-- On x86_64 and x86, Float and RcDouble</span><span>
 </span><span id="line-143"></span><span>                    </span><span class="hs-comment">-- use the same registers,</span><span>
 </span><span id="line-144"></span><span>                    </span><span class="hs-comment">-- so we only use RcDouble to represent the</span><span>
@@ -309,45 +309,45 @@ the most efficient variant tried. Benchmark compiling 10-times SHA1.hs follows.
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchUnknown"><span class="hs-identifier hs-var">ArchUnknown</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a
 </span><a href="GHC.Utils.Panic.Plain.html#panic"><span class="hs-identifier hs-var">panic</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;trivColorable ArchUnknown&quot;</span></span><span class="hs-special">)</span><span>
-</span><span id="line-164"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160933"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160933"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-164"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160936"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160936"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
+</span><a href="#local-6989586621681160937"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
 </span><span id="line-165"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160939"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160942"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcFloat"><span class="hs-identifier hs-var">RcFloat</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-166"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160936"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
+</span><a href="#local-6989586621681160939"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
 </span><span id="line-167"></span><span>
-</span><span id="line-168"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160932"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160932"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-168"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160935"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160935"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span>  </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160933"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
+</span><a href="#local-6989586621681160936"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160937"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
 </span><span id="line-169"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160938"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160941"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcFloat"><span class="hs-identifier hs-var">RcFloat</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-170"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160935"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
+</span><a href="#local-6989586621681160938"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
 </span><span id="line-171"></span><span>
 </span><span id="line-172"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160932"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160935"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
+</span><a href="#local-6989586621681160937"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_FLOAT</span></a></span><span>
 </span><span id="line-173"></span><span>
-</span><span id="line-174"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var">trivColorable</span></a></span><span> </span><span id="local-6989586621681160931"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160931"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160930"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160930"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160929"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160929"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
-</span><a href="GHC.Platform.Reg.Class.html#RcDouble"><span class="hs-identifier hs-var">RcDouble</span></a></span><span> </span><span id="local-6989586621681160927"><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160927"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160926"><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160926"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
-</span><span id="line-175"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160925"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_DOUBLE :: Int
-</span><a href="#local-6989586621681160925"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span></span><span>
+</span><span id="line-174"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#trivColorable"><span class="hs-identifier hs-var">trivColorable</span></a></span><span> </span><span id="local-6989586621681160934"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681160933"><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
+</span><a href="#local-6989586621681160933"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681160932"><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
+</span><a href="#local-6989586621681160932"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="GHC.Platform.Reg.Class.html#RcDouble"><span class="hs-identifier hs-var">RcDouble</span></a></span><span> </span><span id="local-6989586621681160930"><span class="annot"><span class="annottext">UniqSet VirtualReg
+</span><a href="#local-6989586621681160930"><span class="hs-identifier hs-var">conflicts</span></a></span></span><span> </span><span id="local-6989586621681160929"><span class="annot"><span class="annottext">UniqSet RealReg
+</span><a href="#local-6989586621681160929"><span class="hs-identifier hs-var">exclusions</span></a></span></span><span>
+</span><span id="line-175"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681160928"><span class="annot"><span class="annottext">cALLOCATABLE_REGS_DOUBLE :: Int
+</span><a href="#local-6989586621681160928"><span class="hs-identifier hs-var hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span></span><span>
 </span><span id="line-176"></span><span>                  </span><span class="hs-glyph">=</span><span>        </span><span class="hs-special">(</span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681160931"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681160934"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-177"></span><span>                            </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">8</span></span><span>
@@ -410,32 +410,32 @@ the most efficient variant tried. Benchmark compiling 10-times SHA1.hs follows.
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchUnknown"><span class="hs-identifier hs-var">ArchUnknown</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a
 </span><a href="GHC.Utils.Panic.Plain.html#panic"><span class="hs-identifier hs-var">panic</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;trivColorable ArchUnknown&quot;</span></span><span class="hs-special">)</span><span>
-</span><span id="line-198"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160924"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160924"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-198"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160927"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160927"><span class="hs-identifier hs-var">count2</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160925"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
+</span><a href="#local-6989586621681160928"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
 </span><span id="line-199"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="#local-6989586621681160930"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160933"><span class="hs-identifier hs-var">virtualRegSqueeze</span></a></span><span> </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcDouble"><span class="hs-identifier hs-var">RcDouble</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-200"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet VirtualReg
-</span><a href="#local-6989586621681160927"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
+</span><a href="#local-6989586621681160930"><span class="hs-identifier hs-var">conflicts</span></a></span><span>
 </span><span id="line-201"></span><span>
-</span><span id="line-202"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160923"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160923"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
+</span><span id="line-202"></span><span>        </span><span class="hs-special">,</span><span> </span><span id="local-6989586621681160926"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160926"><span class="hs-identifier hs-var">count3</span></a></span></span><span>        </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall reg. Int -&gt; Int -&gt; (reg -&gt; Int) -&gt; UniqSet reg -&gt; Int
 </span><a href="GHC.CmmToAsm.Reg.Graph.TrivColorable.html#accSqueeze"><span class="hs-identifier hs-var">accSqueeze</span></a></span><span>  </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160924"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160925"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
+</span><a href="#local-6989586621681160927"><span class="hs-identifier hs-var">count2</span></a></span><span>    </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681160928"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
 </span><span id="line-203"></span><span>                                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
-</span><a href="#local-6989586621681160929"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
+</span><a href="#local-6989586621681160932"><span class="hs-identifier hs-var">realRegSqueeze</span></a></span><span>   </span><span class="annot"><span class="annottext">RegClass
 </span><a href="GHC.Platform.Reg.Class.html#RcDouble"><span class="hs-identifier hs-var">RcDouble</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-204"></span><span>                                </span><span class="annot"><span class="annottext">UniqSet RealReg
-</span><a href="#local-6989586621681160926"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
+</span><a href="#local-6989586621681160929"><span class="hs-identifier hs-var">exclusions</span></a></span><span>
 </span><span id="line-205"></span><span>
 </span><span id="line-206"></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160923"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621681160926"><span class="hs-identifier hs-var">count3</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681160925"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
+</span><a href="#local-6989586621681160928"><span class="hs-identifier hs-var">cALLOCATABLE_REGS_DOUBLE</span></a></span><span>
 </span><span id="line-207"></span><span>
 </span><span id="line-208"></span><span>
 </span><span id="line-209"></span><span>

@@ -61,13 +61,13 @@
 </span><span id="line-61"></span><span>
 </span><span id="line-62"></span><span class="hs-comment">-- | A reference to an un-named metadata node.</span><span>
 </span><span id="line-63"></span><span class="hs-keyword">newtype</span><span> </span><span id="MetaId"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-var">MetaId</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="MetaId"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-var">MetaId</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-64"></span><span>               </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213616"><span id="local-6989586621681213621"><span class="annot"><span class="annottext">MetaId -&gt; MetaId -&gt; Bool
+</span><span id="line-64"></span><span>               </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213619"><span id="local-6989586621681213624"><span class="annot"><span class="annottext">MetaId -&gt; MetaId -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: MetaId -&gt; MetaId -&gt; Bool
 $c/= :: MetaId -&gt; MetaId -&gt; Bool
 == :: MetaId -&gt; MetaId -&gt; Bool
 $c== :: MetaId -&gt; MetaId -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213583"><span id="local-6989586621681213587"><span id="local-6989586621681213591"><span id="local-6989586621681213595"><span id="local-6989586621681213599"><span id="local-6989586621681213603"><span id="local-6989586621681213608"><span class="annot"><span class="annottext">Eq MetaId
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213586"><span id="local-6989586621681213590"><span id="local-6989586621681213594"><span id="local-6989586621681213598"><span id="local-6989586621681213602"><span id="local-6989586621681213606"><span id="local-6989586621681213611"><span class="annot"><span class="annottext">Eq MetaId
 MetaId -&gt; MetaId -&gt; Bool
 MetaId -&gt; MetaId -&gt; Ordering
 MetaId -&gt; MetaId -&gt; MetaId
@@ -95,7 +95,7 @@ $c&lt;= :: MetaId -&gt; MetaId -&gt; Bool
 $c&lt; :: MetaId -&gt; MetaId -&gt; Bool
 compare :: MetaId -&gt; MetaId -&gt; Ordering
 $ccompare :: MetaId -&gt; MetaId -&gt; Ordering
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213548"><span id="local-6989586621681213552"><span id="local-6989586621681213556"><span id="local-6989586621681213560"><span id="local-6989586621681213564"><span id="local-6989586621681213568"><span id="local-6989586621681213572"><span id="local-6989586621681213577"><span class="annot"><span class="annottext">Int -&gt; MetaId
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213551"><span id="local-6989586621681213555"><span id="local-6989586621681213559"><span id="local-6989586621681213563"><span id="local-6989586621681213567"><span id="local-6989586621681213571"><span id="local-6989586621681213575"><span id="local-6989586621681213580"><span class="annot"><span class="annottext">Int -&gt; MetaId
 MetaId -&gt; Int
 MetaId -&gt; [MetaId]
 MetaId -&gt; MetaId
@@ -130,21 +130,21 @@ $csucc :: MetaId -&gt; MetaId
 </span><a href="../../base-4.16.4.0/src/GHC-Enum.html#Enum"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-65"></span><span>
 </span><span id="line-66"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-type">MetaId</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621681213540"><span class="annot"><span class="annottext">ppr :: MetaId -&gt; SDoc
-</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-type">MetaId</span></a></span><span> </span><span id="local-6989586621681213538"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681213538"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char -&gt; SDoc
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621681213543"><span class="annot"><span class="annottext">ppr :: MetaId -&gt; SDoc
+</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-type">MetaId</span></a></span><span> </span><span id="local-6989586621681213541"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681213541"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#char"><span class="hs-identifier hs-var">char</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'!'</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#int"><span class="hs-identifier hs-var">int</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681213538"><span class="hs-identifier hs-var">n</span></a></span><span>
+</span><a href="#local-6989586621681213541"><span class="hs-identifier hs-var">n</span></a></span><span>
 </span><span id="line-68"></span><span>
 </span><span id="line-69"></span><span class="hs-comment">-- | LLVM metadata expressions</span><span>
 </span><span id="line-70"></span><span class="hs-keyword">data</span><span> </span><span id="MetaExpr"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaExpr"><span class="hs-identifier hs-var">MetaExpr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="MetaStr"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaStr"><span class="hs-identifier hs-var">MetaStr</span></a></span></span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="GHC.Llvm.Types.html#LMString"><span class="hs-identifier hs-type">LMString</span></a></span><span>
 </span><span id="line-71"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="MetaNode"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaNode"><span class="hs-identifier hs-var">MetaNode</span></a></span></span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaId"><span class="hs-identifier hs-type">MetaId</span></a></span><span>
 </span><span id="line-72"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="MetaVar"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaVar"><span class="hs-identifier hs-var">MetaVar</span></a></span></span><span> </span><span class="hs-glyph">!</span><span class="annot"><a href="GHC.Llvm.Types.html#LlvmVar"><span class="hs-identifier hs-type">LlvmVar</span></a></span><span>
 </span><span id="line-73"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="MetaStruct"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaStruct"><span class="hs-identifier hs-var">MetaStruct</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaExpr"><span class="hs-identifier hs-type">MetaExpr</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-74"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213519"><span id="local-6989586621681213529"><span class="annot"><span class="annottext">MetaExpr -&gt; MetaExpr -&gt; Bool
+</span><span id="line-74"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213522"><span id="local-6989586621681213532"><span class="annot"><span class="annottext">MetaExpr -&gt; MetaExpr -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: MetaExpr -&gt; MetaExpr -&gt; Bool
 $c/= :: MetaExpr -&gt; MetaExpr -&gt; Bool
@@ -155,7 +155,7 @@ $c== :: MetaExpr -&gt; MetaExpr -&gt; Bool
 </span><span id="line-76"></span><span class="hs-comment">-- | Associates some metadata with a specific label for attaching to an</span><span>
 </span><span id="line-77"></span><span class="hs-comment">-- instruction.</span><span>
 </span><span id="line-78"></span><span class="hs-keyword">data</span><span> </span><span id="MetaAnnot"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaAnnot"><span class="hs-identifier hs-var">MetaAnnot</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="MetaAnnot"><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaAnnot"><span class="hs-identifier hs-var">MetaAnnot</span></a></span></span><span> </span><span class="annot"><a href="GHC.Llvm.Types.html#LMString"><span class="hs-identifier hs-type">LMString</span></a></span><span> </span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaExpr"><span class="hs-identifier hs-type">MetaExpr</span></a></span><span>
-</span><span id="line-79"></span><span>               </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213512"><span id="local-6989586621681213516"><span class="annot"><span class="annottext">MetaAnnot -&gt; MetaAnnot -&gt; Bool
+</span><span id="line-79"></span><span>               </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213515"><span id="local-6989586621681213519"><span class="annot"><span class="annottext">MetaAnnot -&gt; MetaAnnot -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: MetaAnnot -&gt; MetaAnnot -&gt; Bool
 $c/= :: MetaAnnot -&gt; MetaAnnot -&gt; Bool

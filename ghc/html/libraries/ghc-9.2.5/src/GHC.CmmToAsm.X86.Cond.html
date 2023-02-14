@@ -27,7 +27,7 @@
 </span><span id="line-27"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="OFLO"><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#OFLO"><span class="hs-identifier hs-var">OFLO</span></a></span></span><span>          </span><span class="hs-comment">-- jo</span><span>
 </span><span id="line-28"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="PARITY"><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#PARITY"><span class="hs-identifier hs-var">PARITY</span></a></span></span><span>        </span><span class="hs-comment">-- jp</span><span>
 </span><span id="line-29"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span id="NOTPARITY"><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#NOTPARITY"><span class="hs-identifier hs-var">NOTPARITY</span></a></span></span><span>     </span><span class="hs-comment">-- jnp</span><span>
-</span><span id="line-30"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621680960203"><span id="local-6989586621680960205"><span class="annot"><span class="annottext">Cond -&gt; Cond -&gt; Bool
+</span><span id="line-30"></span><span>        </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621680960206"><span id="local-6989586621680960208"><span class="annot"><span class="annottext">Cond -&gt; Cond -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Cond -&gt; Cond -&gt; Bool
 $c/= :: Cond -&gt; Cond -&gt; Bool
@@ -49,17 +49,17 @@ $c== :: Cond -&gt; Cond -&gt; Bool
 </span><span id="line-36"></span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#condToUnsigned"><span class="hs-identifier hs-var">condToUnsigned</span></a></span><span> </span><span class="annot"><span class="annottext">Cond
 </span><a href="GHC.CmmToAsm.X86.Cond.html#LE"><span class="hs-identifier hs-var">LE</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Cond
 </span><a href="GHC.CmmToAsm.X86.Cond.html#LEU"><span class="hs-identifier hs-var">LEU</span></a></span><span>
-</span><span id="line-37"></span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#condToUnsigned"><span class="hs-identifier hs-var">condToUnsigned</span></a></span><span> </span><span id="local-6989586621680960201"><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960201"><span class="hs-identifier hs-var">x</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960201"><span class="hs-identifier hs-var">x</span></a></span><span>
+</span><span id="line-37"></span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#condToUnsigned"><span class="hs-identifier hs-var">condToUnsigned</span></a></span><span> </span><span id="local-6989586621680960204"><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960204"><span class="hs-identifier hs-var">x</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960204"><span class="hs-identifier hs-var">x</span></a></span><span>
 </span><span id="line-38"></span><span>
 </span><span id="line-39"></span><span class="hs-comment">-- | @maybeFlipCond c@ returns @Just c'@ if it is possible to flip the</span><span>
 </span><span id="line-40"></span><span class="hs-comment">-- arguments to the conditional @c@, and the new condition should be @c'@.</span><span>
 </span><span id="line-41"></span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#maybeFlipCond"><span class="hs-identifier hs-type">maybeFlipCond</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#Cond"><span class="hs-identifier hs-type">Cond</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#Cond"><span class="hs-identifier hs-type">Cond</span></a></span><span>
 </span><span id="line-42"></span><span id="maybeFlipCond"><span class="annot"><span class="annottext">maybeFlipCond :: Cond -&gt; Maybe Cond
-</span><a href="GHC.CmmToAsm.X86.Cond.html#maybeFlipCond"><span class="hs-identifier hs-var hs-var">maybeFlipCond</span></a></span></span><span> </span><span id="local-6989586621680960200"><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960200"><span class="hs-identifier hs-var">cond</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960200"><span class="hs-identifier hs-var">cond</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="GHC.CmmToAsm.X86.Cond.html#maybeFlipCond"><span class="hs-identifier hs-var hs-var">maybeFlipCond</span></a></span></span><span> </span><span id="local-6989586621680960203"><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960203"><span class="hs-identifier hs-var">cond</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960203"><span class="hs-identifier hs-var">cond</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">Cond
 </span><a href="GHC.CmmToAsm.X86.Cond.html#EQQ"><span class="hs-identifier hs-var">EQQ</span></a></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">Cond
@@ -100,8 +100,8 @@ $c== :: Cond -&gt; Cond -&gt; Bool
 </span><a href="GHC.CmmToAsm.X86.Cond.html#GE"><span class="hs-identifier hs-var">GE</span></a></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">Cond
 </span><a href="GHC.CmmToAsm.X86.Cond.html#LE"><span class="hs-identifier hs-var">LE</span></a></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621680960199"><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960199"><span class="hs-identifier hs-var">_other</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621680960202"><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960202"><span class="hs-identifier hs-var">_other</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>
 </span><span id="line-54"></span><span>
 </span><span id="line-55"></span><span class="hs-comment">-- | If we apply @maybeInvertCond@ to the condition of a jump we turn</span><span>
@@ -114,9 +114,9 @@ $c== :: Cond -&gt; Cond -&gt; Bool
 </span><span id="line-62"></span><span class="hs-comment">-- Also inverting twice might return a synonym for the original condition.</span><span>
 </span><span id="line-63"></span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#maybeInvertCond"><span class="hs-identifier hs-type">maybeInvertCond</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#Cond"><span class="hs-identifier hs-type">Cond</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Maybe"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Cond.html#Cond"><span class="hs-identifier hs-type">Cond</span></a></span><span>
 </span><span id="line-64"></span><span id="maybeInvertCond"><span class="annot"><span class="annottext">maybeInvertCond :: Cond -&gt; Maybe Cond
-</span><a href="GHC.CmmToAsm.X86.Cond.html#maybeInvertCond"><span class="hs-identifier hs-var hs-var">maybeInvertCond</span></a></span></span><span> </span><span id="local-6989586621680960198"><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960198"><span class="hs-identifier hs-var">cond</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Cond
-</span><a href="#local-6989586621680960198"><span class="hs-identifier hs-var">cond</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="GHC.CmmToAsm.X86.Cond.html#maybeInvertCond"><span class="hs-identifier hs-var hs-var">maybeInvertCond</span></a></span></span><span> </span><span id="local-6989586621680960201"><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960201"><span class="hs-identifier hs-var">cond</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Cond
+</span><a href="#local-6989586621680960201"><span class="hs-identifier hs-var">cond</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">Cond
 </span><a href="GHC.CmmToAsm.X86.Cond.html#ALWAYS"><span class="hs-identifier hs-var">ALWAYS</span></a></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span>

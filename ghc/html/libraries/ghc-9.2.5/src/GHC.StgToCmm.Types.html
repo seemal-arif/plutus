@@ -140,12 +140,12 @@ moving parts are:
 </span><span id="line-137"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="LFLetNoEscape"><span class="annot"><a href="GHC.StgToCmm.Types.html#LFLetNoEscape"><span class="hs-identifier hs-var">LFLetNoEscape</span></a></span></span><span>       </span><span class="hs-comment">-- See LetNoEscape module for precise description</span><span>
 </span><span id="line-138"></span><span>
 </span><span id="line-139"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.StgToCmm.Types.html#LambdaFormInfo"><span class="hs-identifier hs-type">LambdaFormInfo</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-140"></span><span>    </span><span id="local-6989586621681141719"><span class="annot"><span class="annottext">ppr :: LambdaFormInfo -&gt; SDoc
-</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFReEntrant"><span class="hs-identifier hs-type">LFReEntrant</span></a></span><span> </span><span id="local-6989586621681141717"><span class="annot"><span class="annottext">TopLevelFlag
-</span><a href="#local-6989586621681141717"><span class="hs-identifier hs-var">top</span></a></span></span><span> </span><span id="local-6989586621681141716"><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141716"><span class="hs-identifier hs-var">rep</span></a></span></span><span> </span><span id="local-6989586621681141715"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141715"><span class="hs-identifier hs-var">fvs</span></a></span></span><span> </span><span id="local-6989586621681141714"><span class="annot"><span class="annottext">ArgDescr
-</span><a href="#local-6989586621681141714"><span class="hs-identifier hs-var">argdesc</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-140"></span><span>    </span><span id="local-6989586621681141722"><span class="annot"><span class="annottext">ppr :: LambdaFormInfo -&gt; SDoc
+</span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFReEntrant"><span class="hs-identifier hs-type">LFReEntrant</span></a></span><span> </span><span id="local-6989586621681141720"><span class="annot"><span class="annottext">TopLevelFlag
+</span><a href="#local-6989586621681141720"><span class="hs-identifier hs-var">top</span></a></span></span><span> </span><span id="local-6989586621681141719"><span class="annot"><span class="annottext">RepArity
+</span><a href="#local-6989586621681141719"><span class="hs-identifier hs-var">rep</span></a></span></span><span> </span><span id="local-6989586621681141718"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681141718"><span class="hs-identifier hs-var">fvs</span></a></span></span><span> </span><span id="local-6989586621681141717"><span class="annot"><span class="annottext">ArgDescr
+</span><a href="#local-6989586621681141717"><span class="hs-identifier hs-var">argdesc</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-141"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LFReEntrant&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
@@ -153,22 +153,22 @@ moving parts are:
 </span><a href="GHC.Utils.Outputable.html#brackets"><span class="hs-identifier hs-var">brackets</span></a></span><span>
 </span><span id="line-142"></span><span>        </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">TopLevelFlag
-</span><a href="#local-6989586621681141717"><span class="hs-identifier hs-var">top</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141720"><span class="hs-identifier hs-var">top</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141716"><span class="hs-identifier hs-var">rep</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141719"><span class="hs-identifier hs-var">rep</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; SDoc
 </span><a href="GHC.StgToCmm.Types.html#pprFvs"><span class="hs-identifier hs-var">pprFvs</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141715"><span class="hs-identifier hs-var">fvs</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141718"><span class="hs-identifier hs-var">fvs</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">ArgDescr
-</span><a href="#local-6989586621681141714"><span class="hs-identifier hs-var">argdesc</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-143"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFThunk"><span class="hs-identifier hs-type">LFThunk</span></a></span><span> </span><span id="local-6989586621681141708"><span class="annot"><span class="annottext">TopLevelFlag
-</span><a href="#local-6989586621681141708"><span class="hs-identifier hs-var">top</span></a></span></span><span> </span><span id="local-6989586621681141707"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141707"><span class="hs-identifier hs-var">hasfv</span></a></span></span><span> </span><span id="local-6989586621681141706"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141706"><span class="hs-identifier hs-var">updateable</span></a></span></span><span> </span><span id="local-6989586621681141705"><span class="annot"><span class="annottext">StandardFormInfo
-</span><a href="#local-6989586621681141705"><span class="hs-identifier hs-var">sfi</span></a></span></span><span> </span><span id="local-6989586621681141704"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141704"><span class="hs-identifier hs-var">m_function</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681141717"><span class="hs-identifier hs-var">argdesc</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-143"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFThunk"><span class="hs-identifier hs-type">LFThunk</span></a></span><span> </span><span id="local-6989586621681141711"><span class="annot"><span class="annottext">TopLevelFlag
+</span><a href="#local-6989586621681141711"><span class="hs-identifier hs-var">top</span></a></span></span><span> </span><span id="local-6989586621681141710"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681141710"><span class="hs-identifier hs-var">hasfv</span></a></span></span><span> </span><span id="local-6989586621681141709"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681141709"><span class="hs-identifier hs-var">updateable</span></a></span></span><span> </span><span id="local-6989586621681141708"><span class="annot"><span class="annottext">StandardFormInfo
+</span><a href="#local-6989586621681141708"><span class="hs-identifier hs-var">sfi</span></a></span></span><span> </span><span id="local-6989586621681141707"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681141707"><span class="hs-identifier hs-var">m_function</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-144"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LFThunk&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
@@ -176,38 +176,38 @@ moving parts are:
 </span><a href="GHC.Utils.Outputable.html#brackets"><span class="hs-identifier hs-var">brackets</span></a></span><span>
 </span><span id="line-145"></span><span>        </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">TopLevelFlag
-</span><a href="#local-6989586621681141708"><span class="hs-identifier hs-var">top</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141711"><span class="hs-identifier hs-var">top</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; SDoc
 </span><a href="GHC.StgToCmm.Types.html#pprFvs"><span class="hs-identifier hs-var">pprFvs</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141707"><span class="hs-identifier hs-var">hasfv</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141710"><span class="hs-identifier hs-var">hasfv</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; SDoc
 </span><a href="GHC.StgToCmm.Types.html#pprUpdateable"><span class="hs-identifier hs-var">pprUpdateable</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141706"><span class="hs-identifier hs-var">updateable</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141709"><span class="hs-identifier hs-var">updateable</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span>
 </span><span id="line-146"></span><span>         </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">StandardFormInfo
-</span><a href="#local-6989586621681141705"><span class="hs-identifier hs-var">sfi</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
+</span><a href="#local-6989586621681141708"><span class="hs-identifier hs-var">sfi</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; SDoc
 </span><a href="GHC.StgToCmm.Types.html#pprFuncFlag"><span class="hs-identifier hs-var">pprFuncFlag</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141704"><span class="hs-identifier hs-var">m_function</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-147"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFCon"><span class="hs-identifier hs-type">LFCon</span></a></span><span> </span><span id="local-6989586621681141701"><span class="annot"><span class="annottext">DataCon
-</span><a href="#local-6989586621681141701"><span class="hs-identifier hs-var">con</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681141707"><span class="hs-identifier hs-var">m_function</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-147"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFCon"><span class="hs-identifier hs-type">LFCon</span></a></span><span> </span><span id="local-6989586621681141704"><span class="annot"><span class="annottext">DataCon
+</span><a href="#local-6989586621681141704"><span class="hs-identifier hs-var">con</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-148"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LFCon&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#brackets"><span class="hs-identifier hs-var">brackets</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">DataCon
-</span><a href="#local-6989586621681141701"><span class="hs-identifier hs-var">con</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-149"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFUnknown"><span class="hs-identifier hs-type">LFUnknown</span></a></span><span> </span><span id="local-6989586621681141700"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141700"><span class="hs-identifier hs-var">m_func</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681141704"><span class="hs-identifier hs-var">con</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-149"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#LFUnknown"><span class="hs-identifier hs-type">LFUnknown</span></a></span><span> </span><span id="local-6989586621681141703"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681141703"><span class="hs-identifier hs-var">m_func</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-150"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LFUnknown&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#brackets"><span class="hs-identifier hs-var">brackets</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; SDoc
 </span><a href="GHC.StgToCmm.Types.html#pprFuncFlag"><span class="hs-identifier hs-var">pprFuncFlag</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681141700"><span class="hs-identifier hs-var">m_func</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681141703"><span class="hs-identifier hs-var">m_func</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-151"></span><span>    </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">LambdaFormInfo
 </span><a href="GHC.StgToCmm.Types.html#LFUnlifted"><span class="hs-identifier hs-var">LFUnlifted</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-152"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; SDoc
@@ -278,7 +278,7 @@ moving parts are:
 </span><span id="line-191"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="ArgUnknown"><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgUnknown"><span class="hs-identifier hs-var">ArgUnknown</span></a></span></span><span>          </span><span class="hs-comment">-- For imported binds.</span><span>
 </span><span id="line-192"></span><span>                        </span><span class="hs-comment">-- Invariant: Never Unknown for binds of the module</span><span>
 </span><span id="line-193"></span><span>                        </span><span class="hs-comment">-- we are compiling.</span><span>
-</span><span id="line-194"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681141688"><span id="local-6989586621681141695"><span class="annot"><span class="annottext">ArgDescr -&gt; ArgDescr -&gt; Bool
+</span><span id="line-194"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681141691"><span id="local-6989586621681141698"><span class="annot"><span class="annottext">ArgDescr -&gt; ArgDescr -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: ArgDescr -&gt; ArgDescr -&gt; Bool
 $c/= :: ArgDescr -&gt; ArgDescr -&gt; Bool
@@ -287,21 +287,21 @@ $c== :: ArgDescr -&gt; ArgDescr -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-195"></span><span>
 </span><span id="line-196"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgDescr"><span class="hs-identifier hs-type">ArgDescr</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-197"></span><span>  </span><span id="local-6989586621681141679"><span class="annot"><span class="annottext">ppr :: ArgDescr -&gt; SDoc
-</span><a href="#local-6989586621681141679"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgSpec"><span class="hs-identifier hs-type">ArgSpec</span></a></span><span> </span><span id="local-6989586621681141678"><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141678"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
+</span><span id="line-197"></span><span>  </span><span id="local-6989586621681141682"><span class="annot"><span class="annottext">ppr :: ArgDescr -&gt; SDoc
+</span><a href="#local-6989586621681141682"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgSpec"><span class="hs-identifier hs-type">ArgSpec</span></a></span><span> </span><span id="local-6989586621681141681"><span class="annot"><span class="annottext">RepArity
+</span><a href="#local-6989586621681141681"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ArgSpec&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141678"><span class="hs-identifier hs-var">n</span></a></span><span>
-</span><span id="line-198"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgGen"><span class="hs-identifier hs-type">ArgGen</span></a></span><span> </span><span id="local-6989586621681141677"><span class="annot"><span class="annottext">Liveness
-</span><a href="#local-6989586621681141677"><span class="hs-identifier hs-var">ls</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
+</span><a href="#local-6989586621681141681"><span class="hs-identifier hs-var">n</span></a></span><span>
+</span><span id="line-198"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ArgGen"><span class="hs-identifier hs-type">ArgGen</span></a></span><span> </span><span id="local-6989586621681141680"><span class="annot"><span class="annottext">Liveness
+</span><a href="#local-6989586621681141680"><span class="hs-identifier hs-var">ls</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ArgGen&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%2B%3E"><span class="hs-operator hs-var">&lt;+&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">Liveness
-</span><a href="#local-6989586621681141677"><span class="hs-identifier hs-var">ls</span></a></span><span>
+</span><a href="#local-6989586621681141680"><span class="hs-identifier hs-var">ls</span></a></span><span>
 </span><span id="line-199"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">ArgDescr
 </span><a href="GHC.StgToCmm.Types.html#ArgUnknown"><span class="hs-identifier hs-var">ArgUnknown</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
@@ -331,7 +331,7 @@ $c== :: ArgDescr -&gt; ArgDescr -&gt; Bool
 </span><span id="line-222"></span><span>        </span><span class="hs-comment">-- There are a few of these (for 1 &lt;= n &lt;= MAX_SPEC_AP_SIZE) pre-compiled</span><span>
 </span><span id="line-223"></span><span>        </span><span class="hs-comment">-- in the RTS to save space.</span><span>
 </span><span id="line-224"></span><span>        </span><span class="hs-glyph">!</span><span class="annot"><a href="GHC.Types.Basic.html#RepArity"><span class="hs-identifier hs-type">RepArity</span></a></span><span>       </span><span class="hs-comment">-- Arity, n</span><span>
-</span><span id="line-225"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681141668"><span id="local-6989586621681141672"><span class="annot"><span class="annottext">StandardFormInfo -&gt; StandardFormInfo -&gt; Bool
+</span><span id="line-225"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681141671"><span id="local-6989586621681141675"><span class="annot"><span class="annottext">StandardFormInfo -&gt; StandardFormInfo -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: StandardFormInfo -&gt; StandardFormInfo -&gt; Bool
 $c/= :: StandardFormInfo -&gt; StandardFormInfo -&gt; Bool
@@ -343,23 +343,23 @@ $c== :: StandardFormInfo -&gt; StandardFormInfo -&gt; Bool
 </span><span id="line-228"></span><span class="hs-keyword">type</span><span> </span><span id="WordOff"><span class="annot"><a href="GHC.StgToCmm.Types.html#WordOff"><span class="hs-identifier hs-var">WordOff</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-229"></span><span>
 </span><span id="line-230"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.StgToCmm.Types.html#StandardFormInfo"><span class="hs-identifier hs-type">StandardFormInfo</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-231"></span><span>  </span><span id="local-6989586621681141664"><span class="annot"><span class="annottext">ppr :: StandardFormInfo -&gt; SDoc
-</span><a href="#local-6989586621681141664"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="annot"><span class="annottext">StandardFormInfo
+</span><span id="line-231"></span><span>  </span><span id="local-6989586621681141667"><span class="annot"><span class="annottext">ppr :: StandardFormInfo -&gt; SDoc
+</span><a href="#local-6989586621681141667"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="annot"><span class="annottext">StandardFormInfo
 </span><a href="GHC.StgToCmm.Types.html#NonStandardThunk"><span class="hs-identifier hs-var">NonStandardThunk</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RegThunk&quot;</span></span><span>
-</span><span id="line-232"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#SelectorThunk"><span class="hs-identifier hs-type">SelectorThunk</span></a></span><span> </span><span id="local-6989586621681141663"><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141663"><span class="hs-identifier hs-var">w</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
+</span><span id="line-232"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#SelectorThunk"><span class="hs-identifier hs-type">SelectorThunk</span></a></span><span> </span><span id="local-6989586621681141666"><span class="annot"><span class="annottext">RepArity
+</span><a href="#local-6989586621681141666"><span class="hs-identifier hs-var">w</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SelThunk:&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141663"><span class="hs-identifier hs-var">w</span></a></span><span>
-</span><span id="line-233"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ApThunk"><span class="hs-identifier hs-type">ApThunk</span></a></span><span> </span><span id="local-6989586621681141662"><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141662"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
+</span><a href="#local-6989586621681141666"><span class="hs-identifier hs-var">w</span></a></span><span>
+</span><span id="line-233"></span><span>  </span><span class="annot"><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.StgToCmm.Types.html#ApThunk"><span class="hs-identifier hs-type">ApThunk</span></a></span><span> </span><span id="local-6989586621681141665"><span class="annot"><span class="annottext">RepArity
+</span><a href="#local-6989586621681141665"><span class="hs-identifier hs-var">n</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ApThunk:&quot;</span></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">RepArity
-</span><a href="#local-6989586621681141662"><span class="hs-identifier hs-var">n</span></a></span><span>
+</span><a href="#local-6989586621681141665"><span class="hs-identifier hs-var">n</span></a></span><span>
 </span><span id="line-234"></span></pre></body></html>

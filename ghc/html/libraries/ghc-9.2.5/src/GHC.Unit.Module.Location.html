@@ -50,7 +50,7 @@
 </span><a href="GHC.Unit.Module.Location.html#ml_hie_file"><span class="hs-identifier hs-var hs-var">ml_hie_file</span></a></span></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-IO.html#FilePath"><span class="hs-identifier hs-type">FilePath</span></a></span><span>
 </span><span id="line-47"></span><span>                </span><span class="hs-comment">-- ^ Where the .hie file is, whether or not it exists</span><span>
 </span><span id="line-48"></span><span>                </span><span class="hs-comment">-- yet.</span><span>
-</span><span id="line-49"></span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621680982135"><span id="local-6989586621680982137"><span id="local-6989586621680982147"><span class="annot"><span class="annottext">Int -&gt; ModLocation -&gt; ShowS
+</span><span id="line-49"></span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621680982138"><span id="local-6989586621680982140"><span id="local-6989586621680982150"><span class="annot"><span class="annottext">Int -&gt; ModLocation -&gt; ShowS
 [ModLocation] -&gt; ShowS
 ModLocation -&gt; FilePath
 forall a.
@@ -64,7 +64,7 @@ $cshowsPrec :: Int -&gt; ModLocation -&gt; ShowS
 </span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span>
 </span><span id="line-50"></span><span>
 </span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Unit.Module.Location.html#ModLocation"><span class="hs-identifier hs-type">ModLocation</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>   </span><span id="local-6989586621680982126"><span class="annot"><span class="annottext">ppr :: ModLocation -&gt; SDoc
+</span><span id="line-52"></span><span>   </span><span id="local-6989586621680982129"><span class="annot"><span class="annottext">ppr :: ModLocation -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#."><span class="hs-operator hs-var">.</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Show a =&gt; a -&gt; FilePath
@@ -73,9 +73,9 @@ $cshowsPrec :: Int -&gt; ModLocation -&gt; ShowS
 </span><span id="line-54"></span><span class="hs-comment">-- | Add the @-boot@ suffix to .hs, .hi and .o files</span><span>
 </span><span id="line-55"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-type">addBootSuffix</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-IO.html#FilePath"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-IO.html#FilePath"><span class="hs-identifier hs-type">FilePath</span></a></span><span>
 </span><span id="line-56"></span><span id="addBootSuffix"><span class="annot"><span class="annottext">addBootSuffix :: ShowS
-</span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var hs-var">addBootSuffix</span></a></span></span><span> </span><span id="local-6989586621680982121"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982121"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982121"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var hs-var">addBootSuffix</span></a></span></span><span> </span><span id="local-6989586621680982124"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621680982124"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621680982124"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;-boot&quot;</span></span><span>
 </span><span id="line-57"></span><span>
@@ -84,13 +84,13 @@ $cshowsPrec :: Int -&gt; ModLocation -&gt; ShowS
 </span><span id="line-60"></span><span id="removeBootSuffix"><span class="annot"><span class="annottext">removeBootSuffix :: ShowS
 </span><a href="GHC.Unit.Module.Location.html#removeBootSuffix"><span class="hs-identifier hs-var hs-var">removeBootSuffix</span></a></span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;-boot&quot;</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
-</span><span id="line-61"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#removeBootSuffix"><span class="hs-identifier hs-var">removeBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span id="local-6989586621680982120"><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621680982120"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621680982119"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982119"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621680982120"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; [a] -&gt; [a]
+</span><span id="line-61"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#removeBootSuffix"><span class="hs-identifier hs-var">removeBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span id="local-6989586621680982123"><span class="annot"><span class="annottext">Char
+</span><a href="#local-6989586621680982123"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621680982122"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621680982122"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char
+</span><a href="#local-6989586621680982123"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#removeBootSuffix"><span class="hs-identifier hs-var">removeBootSuffix</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982119"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621680982122"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-62"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#removeBootSuffix"><span class="hs-identifier hs-var">removeBootSuffix</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; FilePath -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Err.html#error"><span class="hs-identifier hs-var">error</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;removeBootSuffix: no -boot suffix&quot;</span></span><span>
@@ -99,68 +99,68 @@ $cshowsPrec :: Int -&gt; ModLocation -&gt; ShowS
 </span><span id="line-65"></span><span class="hs-comment">-- | Add the @-boot@ suffix if the @Bool@ argument is @True@</span><span>
 </span><span id="line-66"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#addBootSuffix_maybe"><span class="hs-identifier hs-type">addBootSuffix_maybe</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Unit.Types.html#IsBootInterface"><span class="hs-identifier hs-type">IsBootInterface</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-IO.html#FilePath"><span class="hs-identifier hs-type">FilePath</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-IO.html#FilePath"><span class="hs-identifier hs-type">FilePath</span></a></span><span>
 </span><span id="line-67"></span><span id="addBootSuffix_maybe"><span class="annot"><span class="annottext">addBootSuffix_maybe :: IsBootInterface -&gt; ShowS
-</span><a href="GHC.Unit.Module.Location.html#addBootSuffix_maybe"><span class="hs-identifier hs-var hs-var">addBootSuffix_maybe</span></a></span></span><span> </span><span id="local-6989586621680982117"><span class="annot"><span class="annottext">IsBootInterface
-</span><a href="#local-6989586621680982117"><span class="hs-identifier hs-var">is_boot</span></a></span></span><span> </span><span id="local-6989586621680982116"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">IsBootInterface
-</span><a href="#local-6989586621680982117"><span class="hs-identifier hs-var">is_boot</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="GHC.Unit.Module.Location.html#addBootSuffix_maybe"><span class="hs-identifier hs-var hs-var">addBootSuffix_maybe</span></a></span></span><span> </span><span id="local-6989586621680982120"><span class="annot"><span class="annottext">IsBootInterface
+</span><a href="#local-6989586621680982120"><span class="hs-identifier hs-var">is_boot</span></a></span></span><span> </span><span id="local-6989586621680982119"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621680982119"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">IsBootInterface
+</span><a href="#local-6989586621680982120"><span class="hs-identifier hs-var">is_boot</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-68"></span><span>  </span><span class="annot"><span class="annottext">IsBootInterface
 </span><a href="GHC.Unit.Types.html#IsBoot"><span class="hs-identifier hs-var">IsBoot</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">path</span></a></span><span>
+</span><a href="#local-6989586621680982119"><span class="hs-identifier hs-var">path</span></a></span><span>
 </span><span id="line-69"></span><span>  </span><span class="annot"><span class="annottext">IsBootInterface
 </span><a href="GHC.Unit.Types.html#NotBoot"><span class="hs-identifier hs-var">NotBoot</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">path</span></a></span><span>
+</span><a href="#local-6989586621680982119"><span class="hs-identifier hs-var">path</span></a></span><span>
 </span><span id="line-70"></span><span>
 </span><span id="line-71"></span><span class="hs-comment">-- | Add the @-boot@ suffix to all file paths associated with the module</span><span>
 </span><span id="line-72"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#addBootSuffixLocn"><span class="hs-identifier hs-type">addBootSuffixLocn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Unit.Module.Location.html#ModLocation"><span class="hs-identifier hs-type">ModLocation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Unit.Module.Location.html#ModLocation"><span class="hs-identifier hs-type">ModLocation</span></a></span><span>
 </span><span id="line-73"></span><span id="addBootSuffixLocn"><span class="annot"><span class="annottext">addBootSuffixLocn :: ModLocation -&gt; ModLocation
-</span><a href="GHC.Unit.Module.Location.html#addBootSuffixLocn"><span class="hs-identifier hs-var hs-var">addBootSuffixLocn</span></a></span></span><span> </span><span id="local-6989586621680982113"><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span></span><span>
+</span><a href="GHC.Unit.Module.Location.html#addBootSuffixLocn"><span class="hs-identifier hs-var hs-var">addBootSuffixLocn</span></a></span></span><span> </span><span id="local-6989586621680982116"><span class="annot"><span class="annottext">ModLocation
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span></span><span>
 </span><span id="line-74"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ml_hs_file :: Maybe FilePath
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ml_hs_file :: Maybe FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hs_file"><span class="hs-identifier hs-var">ml_hs_file</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#fmap"><span class="hs-identifier hs-var">fmap</span></a></span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; Maybe FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hs_file"><span class="hs-identifier hs-var">ml_hs_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-75"></span><span>         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ml_hi_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hi_file"><span class="hs-identifier hs-var">ml_hi_file</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hi_file"><span class="hs-identifier hs-var">ml_hi_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-76"></span><span>         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ml_obj_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_obj_file"><span class="hs-identifier hs-var">ml_obj_file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_obj_file"><span class="hs-identifier hs-var">ml_obj_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-77"></span><span>         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ml_hie_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hie_file"><span class="hs-identifier hs-var">ml_hie_file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hie_file"><span class="hs-identifier hs-var">ml_hie_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982113"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621680982116"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-78"></span><span>
 </span><span id="line-79"></span><span class="hs-comment">-- | Add the @-boot@ suffix to all output file paths associated with the</span><span>
 </span><span id="line-80"></span><span class="hs-comment">-- module, not including the input file itself</span><span>
 </span><span id="line-81"></span><span class="annot"><a href="GHC.Unit.Module.Location.html#addBootSuffixLocnOut"><span class="hs-identifier hs-type">addBootSuffixLocnOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Unit.Module.Location.html#ModLocation"><span class="hs-identifier hs-type">ModLocation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Unit.Module.Location.html#ModLocation"><span class="hs-identifier hs-type">ModLocation</span></a></span><span>
 </span><span id="line-82"></span><span id="addBootSuffixLocnOut"><span class="annot"><span class="annottext">addBootSuffixLocnOut :: ModLocation -&gt; ModLocation
-</span><a href="GHC.Unit.Module.Location.html#addBootSuffixLocnOut"><span class="hs-identifier hs-var hs-var">addBootSuffixLocnOut</span></a></span></span><span> </span><span id="local-6989586621680982112"><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982112"><span class="hs-identifier hs-var">locn</span></a></span></span><span>
+</span><a href="GHC.Unit.Module.Location.html#addBootSuffixLocnOut"><span class="hs-identifier hs-var hs-var">addBootSuffixLocnOut</span></a></span></span><span> </span><span id="local-6989586621680982115"><span class="annot"><span class="annottext">ModLocation
+</span><a href="#local-6989586621680982115"><span class="hs-identifier hs-var">locn</span></a></span></span><span>
 </span><span id="line-83"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982112"><span class="hs-identifier hs-var">locn</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ml_hi_file :: FilePath
+</span><a href="#local-6989586621680982115"><span class="hs-identifier hs-var">locn</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ml_hi_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hi_file"><span class="hs-identifier hs-var">ml_hi_file</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hi_file"><span class="hs-identifier hs-var">ml_hi_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982112"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680982115"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-84"></span><span>         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ml_obj_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_obj_file"><span class="hs-identifier hs-var">ml_obj_file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_obj_file"><span class="hs-identifier hs-var">ml_obj_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982112"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680982115"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-85"></span><span>         </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ml_hie_file :: FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hie_file"><span class="hs-identifier hs-var">ml_hie_file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS
 </span><a href="GHC.Unit.Module.Location.html#addBootSuffix"><span class="hs-identifier hs-var">addBootSuffix</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ModLocation -&gt; FilePath
 </span><a href="GHC.Unit.Module.Location.html#ml_hie_file"><span class="hs-identifier hs-var">ml_hie_file</span></a></span><span> </span><span class="annot"><span class="annottext">ModLocation
-</span><a href="#local-6989586621680982112"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621680982115"><span class="hs-identifier hs-var">locn</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-86"></span><span>
 </span><span id="line-87"></span><span>
 </span><span id="line-88"></span></pre></body></html>

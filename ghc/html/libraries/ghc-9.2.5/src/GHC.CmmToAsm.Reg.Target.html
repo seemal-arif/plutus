@@ -41,11 +41,11 @@
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetVirtualRegSqueeze"><span class="hs-identifier hs-type">targetVirtualRegSqueeze</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#VirtualReg"><span class="hs-identifier hs-type">VirtualReg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-43"></span><span id="targetVirtualRegSqueeze"><span class="annot"><span class="annottext">targetVirtualRegSqueeze :: Platform -&gt; RegClass -&gt; VirtualReg -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetVirtualRegSqueeze"><span class="hs-identifier hs-var hs-var">targetVirtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681216918"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216918"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetVirtualRegSqueeze"><span class="hs-identifier hs-var hs-var">targetVirtualRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681216921"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216921"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216918"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681216921"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; VirtualReg -&gt; Int
 </span><a href="GHC.CmmToAsm.X86.Regs.html#virtualRegSqueeze"><span class="hs-identifier hs-var">X86.virtualRegSqueeze</span></a></span><span>
@@ -106,11 +106,11 @@
 </span><span id="line-61"></span><span>
 </span><span id="line-62"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetRealRegSqueeze"><span class="hs-identifier hs-type">targetRealRegSqueeze</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#RealReg"><span class="hs-identifier hs-type">RealReg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-63"></span><span id="targetRealRegSqueeze"><span class="annot"><span class="annottext">targetRealRegSqueeze :: Platform -&gt; RegClass -&gt; RealReg -&gt; Int
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetRealRegSqueeze"><span class="hs-identifier hs-var hs-var">targetRealRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681216896"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216896"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetRealRegSqueeze"><span class="hs-identifier hs-var hs-var">targetRealRegSqueeze</span></a></span></span><span> </span><span id="local-6989586621681216899"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216899"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
 </span><span id="line-64"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216896"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681216899"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-65"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">RegClass -&gt; RealReg -&gt; Int
 </span><a href="GHC.CmmToAsm.X86.Regs.html#realRegSqueeze"><span class="hs-identifier hs-var">X86.realRegSqueeze</span></a></span><span>
@@ -170,19 +170,19 @@
 </span><span id="line-80"></span><span>
 </span><span id="line-81"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfRealReg"><span class="hs-identifier hs-type">targetClassOfRealReg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#RealReg"><span class="hs-identifier hs-type">RealReg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span>
 </span><span id="line-82"></span><span id="targetClassOfRealReg"><span class="annot"><span class="annottext">targetClassOfRealReg :: Platform -&gt; RealReg -&gt; RegClass
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfRealReg"><span class="hs-identifier hs-var hs-var">targetClassOfRealReg</span></a></span></span><span> </span><span id="local-6989586621681216891"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216891"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfRealReg"><span class="hs-identifier hs-var hs-var">targetClassOfRealReg</span></a></span></span><span> </span><span id="local-6989586621681216894"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216894"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
 </span><span id="line-83"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216891"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681216894"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-84"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; RegClass
 </span><a href="GHC.CmmToAsm.X86.Regs.html#classOfRealReg"><span class="hs-identifier hs-var">X86.classOfRealReg</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216891"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681216894"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-85"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86_64"><span class="hs-identifier hs-var">ArchX86_64</span></a></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; RegClass
 </span><a href="GHC.CmmToAsm.X86.Regs.html#classOfRealReg"><span class="hs-identifier hs-var">X86.classOfRealReg</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216891"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681216894"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-86"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchPPC"><span class="hs-identifier hs-var">ArchPPC</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">RealReg -&gt; RegClass
 </span><a href="GHC.CmmToAsm.PPC.Regs.html#classOfRealReg"><span class="hs-identifier hs-var">PPC.classOfRealReg</span></a></span><span>
@@ -236,11 +236,11 @@
 </span><span id="line-99"></span><span>
 </span><span id="line-100"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetMkVirtualReg"><span class="hs-identifier hs-type">targetMkVirtualReg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Types.Unique.html#Unique"><span class="hs-identifier hs-type">Unique</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Format.html#Format"><span class="hs-identifier hs-type">Format</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#VirtualReg"><span class="hs-identifier hs-type">VirtualReg</span></a></span><span>
 </span><span id="line-101"></span><span id="targetMkVirtualReg"><span class="annot"><span class="annottext">targetMkVirtualReg :: Platform -&gt; Unique -&gt; Format -&gt; VirtualReg
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetMkVirtualReg"><span class="hs-identifier hs-var hs-var">targetMkVirtualReg</span></a></span></span><span> </span><span id="local-6989586621681216886"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216886"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetMkVirtualReg"><span class="hs-identifier hs-var hs-var">targetMkVirtualReg</span></a></span></span><span> </span><span id="local-6989586621681216889"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216889"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
 </span><span id="line-102"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216886"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681216889"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-103"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Unique -&gt; Format -&gt; VirtualReg
 </span><a href="GHC.CmmToAsm.X86.RegInfo.html#mkVirtualReg"><span class="hs-identifier hs-var">X86.mkVirtualReg</span></a></span><span>
@@ -300,19 +300,19 @@
 </span><span id="line-118"></span><span>
 </span><span id="line-119"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetRegDotColor"><span class="hs-identifier hs-type">targetRegDotColor</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#RealReg"><span class="hs-identifier hs-type">RealReg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#SDoc"><span class="hs-identifier hs-type">SDoc</span></a></span><span>
 </span><span id="line-120"></span><span id="targetRegDotColor"><span class="annot"><span class="annottext">targetRegDotColor :: Platform -&gt; RealReg -&gt; SDoc
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetRegDotColor"><span class="hs-identifier hs-var hs-var">targetRegDotColor</span></a></span></span><span> </span><span id="local-6989586621681216881"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216881"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetRegDotColor"><span class="hs-identifier hs-var hs-var">targetRegDotColor</span></a></span></span><span> </span><span id="local-6989586621681216884"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216884"><span class="hs-identifier hs-var">platform</span></a></span></span><span>
 </span><span id="line-121"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Arch
 </span><a href="GHC.Platform.html#platformArch"><span class="hs-identifier hs-var">platformArch</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216881"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681216884"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-122"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86"><span class="hs-identifier hs-var">ArchX86</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; SDoc
 </span><a href="GHC.CmmToAsm.X86.RegInfo.html#regDotColor"><span class="hs-identifier hs-var">X86.regDotColor</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216881"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681216884"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-123"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchX86_64"><span class="hs-identifier hs-var">ArchX86_64</span></a></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; SDoc
 </span><a href="GHC.CmmToAsm.X86.RegInfo.html#regDotColor"><span class="hs-identifier hs-var">X86.regDotColor</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216881"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681216884"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-124"></span><span>      </span><span class="annot"><span class="annottext">Arch
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#ArchPPC"><span class="hs-identifier hs-var">ArchPPC</span></a></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">RealReg -&gt; SDoc
 </span><a href="GHC.CmmToAsm.PPC.Regs.html#regDotColor"><span class="hs-identifier hs-var">PPC.regDotColor</span></a></span><span>
@@ -367,18 +367,18 @@
 </span><span id="line-138"></span><span>
 </span><span id="line-139"></span><span class="annot"><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfReg"><span class="hs-identifier hs-type">targetClassOfReg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Platform.html#Platform"><span class="hs-identifier hs-type">Platform</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.html#Reg"><span class="hs-identifier hs-type">Reg</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Platform.Reg.Class.html#RegClass"><span class="hs-identifier hs-type">RegClass</span></a></span><span>
 </span><span id="line-140"></span><span id="targetClassOfReg"><span class="annot"><span class="annottext">targetClassOfReg :: Platform -&gt; Reg -&gt; RegClass
-</span><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfReg"><span class="hs-identifier hs-var hs-var">targetClassOfReg</span></a></span></span><span> </span><span id="local-6989586621681216876"><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216876"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681216875"><span class="annot"><span class="annottext">Reg
-</span><a href="#local-6989586621681216875"><span class="hs-identifier hs-var">reg</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfReg"><span class="hs-identifier hs-var hs-var">targetClassOfReg</span></a></span></span><span> </span><span id="local-6989586621681216879"><span class="annot"><span class="annottext">Platform
+</span><a href="#local-6989586621681216879"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span id="local-6989586621681216878"><span class="annot"><span class="annottext">Reg
+</span><a href="#local-6989586621681216878"><span class="hs-identifier hs-var">reg</span></a></span></span><span>
 </span><span id="line-141"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Reg
-</span><a href="#local-6989586621681216875"><span class="hs-identifier hs-var">reg</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-142"></span><span>   </span><span class="annot"><a href="GHC.Platform.Reg.html#RegVirtual"><span class="hs-identifier hs-type">RegVirtual</span></a></span><span> </span><span id="local-6989586621681216873"><span class="annot"><span class="annottext">VirtualReg
-</span><a href="#local-6989586621681216873"><span class="hs-identifier hs-var">vr</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">VirtualReg -&gt; RegClass
+</span><a href="#local-6989586621681216878"><span class="hs-identifier hs-var">reg</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-142"></span><span>   </span><span class="annot"><a href="GHC.Platform.Reg.html#RegVirtual"><span class="hs-identifier hs-type">RegVirtual</span></a></span><span> </span><span id="local-6989586621681216876"><span class="annot"><span class="annottext">VirtualReg
+</span><a href="#local-6989586621681216876"><span class="hs-identifier hs-var">vr</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">VirtualReg -&gt; RegClass
 </span><a href="GHC.Platform.Reg.html#classOfVirtualReg"><span class="hs-identifier hs-var">classOfVirtualReg</span></a></span><span> </span><span class="annot"><span class="annottext">VirtualReg
-</span><a href="#local-6989586621681216873"><span class="hs-identifier hs-var">vr</span></a></span><span>
-</span><span id="line-143"></span><span>   </span><span class="annot"><a href="GHC.Platform.Reg.html#RegReal"><span class="hs-identifier hs-type">RegReal</span></a></span><span> </span><span id="local-6989586621681216870"><span class="annot"><span class="annottext">RealReg
-</span><a href="#local-6989586621681216870"><span class="hs-identifier hs-var">rr</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; RegClass
+</span><a href="#local-6989586621681216876"><span class="hs-identifier hs-var">vr</span></a></span><span>
+</span><span id="line-143"></span><span>   </span><span class="annot"><a href="GHC.Platform.Reg.html#RegReal"><span class="hs-identifier hs-type">RegReal</span></a></span><span> </span><span id="local-6989586621681216873"><span class="annot"><span class="annottext">RealReg
+</span><a href="#local-6989586621681216873"><span class="hs-identifier hs-var">rr</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; RealReg -&gt; RegClass
 </span><a href="GHC.CmmToAsm.Reg.Target.html#targetClassOfRealReg"><span class="hs-identifier hs-var">targetClassOfRealReg</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681216876"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="annot"><span class="annottext">RealReg
-</span><a href="#local-6989586621681216870"><span class="hs-identifier hs-var">rr</span></a></span><span>
+</span><a href="#local-6989586621681216879"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="annot"><span class="annottext">RealReg
+</span><a href="#local-6989586621681216873"><span class="hs-identifier hs-var">rr</span></a></span><span>
 </span><span id="line-144"></span></pre></body></html>

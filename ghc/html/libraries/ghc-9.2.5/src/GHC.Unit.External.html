@@ -144,35 +144,35 @@
 </span><span id="line-124"></span><span class="annot"><a href="GHC.Unit.External.html#addEpsInStats"><span class="hs-identifier hs-type">addEpsInStats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Unit.External.html#EpsStats"><span class="hs-identifier hs-type">EpsStats</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Unit.External.html#EpsStats"><span class="hs-identifier hs-type">EpsStats</span></a></span><span>
 </span><span id="line-125"></span><span class="hs-comment">-- ^ Add stats for one newly-read interface</span><span>
 </span><span id="line-126"></span><span id="addEpsInStats"><span class="annot"><span class="annottext">addEpsInStats :: EpsStats -&gt; Int -&gt; Int -&gt; Int -&gt; EpsStats
-</span><a href="GHC.Unit.External.html#addEpsInStats"><span class="hs-identifier hs-var hs-var">addEpsInStats</span></a></span></span><span> </span><span id="local-6989586621681144596"><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span></span><span> </span><span id="local-6989586621681144595"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144595"><span class="hs-identifier hs-var">n_decls</span></a></span></span><span> </span><span id="local-6989586621681144594"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144594"><span class="hs-identifier hs-var">n_insts</span></a></span></span><span> </span><span id="local-6989586621681144593"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144593"><span class="hs-identifier hs-var">n_rules</span></a></span></span><span>
+</span><a href="GHC.Unit.External.html#addEpsInStats"><span class="hs-identifier hs-var hs-var">addEpsInStats</span></a></span></span><span> </span><span id="local-6989586621681144599"><span class="annot"><span class="annottext">EpsStats
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span></span><span> </span><span id="local-6989586621681144598"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681144598"><span class="hs-identifier hs-var">n_decls</span></a></span></span><span> </span><span id="local-6989586621681144597"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681144597"><span class="hs-identifier hs-var">n_insts</span></a></span></span><span> </span><span id="local-6989586621681144596"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">n_rules</span></a></span></span><span>
 </span><span id="line-127"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">n_ifaces_in :: Int
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">n_ifaces_in :: Int
 </span><a href="GHC.Unit.External.html#n_ifaces_in"><span class="hs-identifier hs-var">n_ifaces_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">EpsStats -&gt; Int
 </span><a href="GHC.Unit.External.html#n_ifaces_in"><span class="hs-identifier hs-var">n_ifaces_in</span></a></span><span> </span><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">1</span></span><span>
 </span><span id="line-128"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">n_decls_in :: Int
 </span><a href="GHC.Unit.External.html#n_decls_in"><span class="hs-identifier hs-var">n_decls_in</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">EpsStats -&gt; Int
 </span><a href="GHC.Unit.External.html#n_decls_in"><span class="hs-identifier hs-var">n_decls_in</span></a></span><span> </span><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144595"><span class="hs-identifier hs-var">n_decls</span></a></span><span>
+</span><a href="#local-6989586621681144598"><span class="hs-identifier hs-var">n_decls</span></a></span><span>
 </span><span id="line-129"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">n_insts_in :: Int
 </span><a href="GHC.Unit.External.html#n_insts_in"><span class="hs-identifier hs-var">n_insts_in</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">EpsStats -&gt; Int
 </span><a href="GHC.Unit.External.html#n_insts_in"><span class="hs-identifier hs-var">n_insts_in</span></a></span><span> </span><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144594"><span class="hs-identifier hs-var">n_insts</span></a></span><span>
+</span><a href="#local-6989586621681144597"><span class="hs-identifier hs-var">n_insts</span></a></span><span>
 </span><span id="line-130"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">n_rules_in :: Int
 </span><a href="GHC.Unit.External.html#n_rules_in"><span class="hs-identifier hs-var">n_rules_in</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">EpsStats -&gt; Int
 </span><a href="GHC.Unit.External.html#n_rules_in"><span class="hs-identifier hs-var">n_rules_in</span></a></span><span> </span><span class="annot"><span class="annottext">EpsStats
-</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621681144599"><span class="hs-identifier hs-var">stats</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Num.html#%2B"><span class="hs-operator hs-var">+</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681144593"><span class="hs-identifier hs-var">n_rules</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621681144596"><span class="hs-identifier hs-var">n_rules</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-131"></span><span>
 </span><span id="line-132"></span></pre></body></html>

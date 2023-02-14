@@ -96,111 +96,111 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><span id="line-96"></span><span>
 </span><span id="line-97"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-type">neededLinkArgs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#LinkerInfo"><span class="hs-identifier hs-type">LinkerInfo</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Utils.CliOption.html#Option"><span class="hs-identifier hs-type">Option</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-98"></span><span id="neededLinkArgs"><span class="annot"><span class="annottext">neededLinkArgs :: LinkerInfo -&gt; [Option]
-</span><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var hs-var">neededLinkArgs</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#GnuLD"><span class="hs-identifier hs-type">GnuLD</span></a></span><span> </span><span id="local-6989586621681163140"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163140"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163140"><span class="hs-identifier hs-var">o</span></a></span><span>
-</span><span id="line-99"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#GnuGold"><span class="hs-identifier hs-type">GnuGold</span></a></span><span> </span><span id="local-6989586621681163138"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163138"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163138"><span class="hs-identifier hs-var">o</span></a></span><span>
-</span><span id="line-100"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#LlvmLLD"><span class="hs-identifier hs-type">LlvmLLD</span></a></span><span> </span><span id="local-6989586621681163136"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163136"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163136"><span class="hs-identifier hs-var">o</span></a></span><span>
-</span><span id="line-101"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#DarwinLD"><span class="hs-identifier hs-type">DarwinLD</span></a></span><span> </span><span id="local-6989586621681163134"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163134"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163134"><span class="hs-identifier hs-var">o</span></a></span><span>
-</span><span id="line-102"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#SolarisLD"><span class="hs-identifier hs-type">SolarisLD</span></a></span><span> </span><span id="local-6989586621681163132"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163132"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163132"><span class="hs-identifier hs-var">o</span></a></span><span>
-</span><span id="line-103"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#AixLD"><span class="hs-identifier hs-type">AixLD</span></a></span><span> </span><span id="local-6989586621681163130"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163130"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163130"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var hs-var">neededLinkArgs</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#GnuLD"><span class="hs-identifier hs-type">GnuLD</span></a></span><span> </span><span id="local-6989586621681163143"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163143"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163143"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><span id="line-99"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#GnuGold"><span class="hs-identifier hs-type">GnuGold</span></a></span><span> </span><span id="local-6989586621681163141"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163141"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163141"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><span id="line-100"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#LlvmLLD"><span class="hs-identifier hs-type">LlvmLLD</span></a></span><span> </span><span id="local-6989586621681163139"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163139"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163139"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><span id="line-101"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#DarwinLD"><span class="hs-identifier hs-type">DarwinLD</span></a></span><span> </span><span id="local-6989586621681163137"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163137"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163137"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><span id="line-102"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#SolarisLD"><span class="hs-identifier hs-type">SolarisLD</span></a></span><span> </span><span id="local-6989586621681163135"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163135"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163135"><span class="hs-identifier hs-var">o</span></a></span><span>
+</span><span id="line-103"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Driver.Session.html#AixLD"><span class="hs-identifier hs-type">AixLD</span></a></span><span> </span><span id="local-6989586621681163133"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163133"><span class="hs-identifier hs-var">o</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163133"><span class="hs-identifier hs-var">o</span></a></span><span>
 </span><span id="line-104"></span><span class="annot"><a href="GHC.SysTools.Info.html#neededLinkArgs"><span class="hs-identifier hs-var">neededLinkArgs</span></a></span><span> </span><span class="annot"><span class="annottext">LinkerInfo
 </span><a href="GHC.Driver.Session.html#UnknownLD"><span class="hs-identifier hs-var">UnknownLD</span></a></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-105"></span><span>
 </span><span id="line-106"></span><span class="hs-comment">-- Grab linker info and cache it in DynFlags.</span><span>
 </span><span id="line-107"></span><span class="annot"><a href="GHC.SysTools.Info.html#getLinkerInfo"><span class="hs-identifier hs-type">getLinkerInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.Logger.html#Logger"><span class="hs-identifier hs-type">Logger</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#DynFlags"><span class="hs-identifier hs-type">DynFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#LinkerInfo"><span class="hs-identifier hs-type">LinkerInfo</span></a></span><span>
 </span><span id="line-108"></span><span id="getLinkerInfo"><span class="annot"><span class="annottext">getLinkerInfo :: Logger -&gt; DynFlags -&gt; IO LinkerInfo
-</span><a href="GHC.SysTools.Info.html#getLinkerInfo"><span class="hs-identifier hs-var hs-var">getLinkerInfo</span></a></span></span><span> </span><span id="local-6989586621681163127"><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163127"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163126"><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163126"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-109"></span><span>  </span><span id="local-6989586621681163125"><span class="annot"><span class="annottext">Maybe LinkerInfo
-</span><a href="#local-6989586621681163125"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; IO a
+</span><a href="GHC.SysTools.Info.html#getLinkerInfo"><span class="hs-identifier hs-var hs-var">getLinkerInfo</span></a></span></span><span> </span><span id="local-6989586621681163130"><span class="annot"><span class="annottext">Logger
+</span><a href="#local-6989586621681163130"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163129"><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163129"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-109"></span><span>  </span><span id="local-6989586621681163128"><span class="annot"><span class="annottext">Maybe LinkerInfo
+</span><a href="#local-6989586621681163128"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; IO a
 </span><a href="../../base-4.16.4.0/src/GHC-IORef.html#readIORef"><span class="hs-identifier hs-var">readIORef</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">DynFlags -&gt; IORef (Maybe LinkerInfo)
 </span><a href="GHC.Driver.Session.html#rtldInfo"><span class="hs-identifier hs-var">rtldInfo</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163126"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163129"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-110"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe LinkerInfo
-</span><a href="#local-6989586621681163125"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-111"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621681163122"><span class="annot"><span class="annottext">LinkerInfo
-</span><a href="#local-6989586621681163122"><span class="hs-identifier hs-var">v</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><a href="#local-6989586621681163128"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-111"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621681163125"><span class="annot"><span class="annottext">LinkerInfo
+</span><a href="#local-6989586621681163125"><span class="hs-identifier hs-var">v</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">LinkerInfo
-</span><a href="#local-6989586621681163122"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621681163125"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-112"></span><span>    </span><span class="annot"><span class="annottext">Maybe LinkerInfo
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-113"></span><span>      </span><span id="local-6989586621681163121"><span class="annot"><span class="annottext">LinkerInfo
-</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; IO LinkerInfo
+</span><span id="line-113"></span><span>      </span><span id="local-6989586621681163124"><span class="annot"><span class="annottext">LinkerInfo
+</span><a href="#local-6989586621681163124"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; IO LinkerInfo
 </span><a href="GHC.SysTools.Info.html#getLinkerInfo%27"><span class="hs-identifier hs-var">getLinkerInfo'</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163127"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163126"><span class="hs-identifier hs-var">dflags</span></a></span><span>
+</span><a href="#local-6989586621681163130"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163129"><span class="hs-identifier hs-var">dflags</span></a></span><span>
 </span><span id="line-114"></span><span>      </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; a -&gt; IO ()
 </span><a href="../../base-4.16.4.0/src/GHC-IORef.html#writeIORef"><span class="hs-identifier hs-var">writeIORef</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">DynFlags -&gt; IORef (Maybe LinkerInfo)
 </span><a href="GHC.Driver.Session.html#rtldInfo"><span class="hs-identifier hs-var">rtldInfo</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163126"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
+</span><a href="#local-6989586621681163129"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">LinkerInfo
-</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163124"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-115"></span><span>      </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">LinkerInfo
-</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621681163124"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-116"></span><span>
 </span><span id="line-117"></span><span class="hs-comment">-- See Note [Run-time linker info].</span><span>
 </span><span id="line-118"></span><span class="annot"><a href="GHC.SysTools.Info.html#getLinkerInfo%27"><span class="hs-identifier hs-type">getLinkerInfo'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.Logger.html#Logger"><span class="hs-identifier hs-type">Logger</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#DynFlags"><span class="hs-identifier hs-type">DynFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#LinkerInfo"><span class="hs-identifier hs-type">LinkerInfo</span></a></span><span>
 </span><span id="line-119"></span><span id="getLinkerInfo%27"><span class="annot"><span class="annottext">getLinkerInfo' :: Logger -&gt; DynFlags -&gt; IO LinkerInfo
-</span><a href="GHC.SysTools.Info.html#getLinkerInfo%27"><span class="hs-identifier hs-var hs-var">getLinkerInfo'</span></a></span></span><span> </span><span id="local-6989586621681163118"><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163118"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163117"><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681163116"><span class="annot"><span class="annottext">platform :: Platform
-</span><a href="#local-6989586621681163116"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; Platform
+</span><a href="GHC.SysTools.Info.html#getLinkerInfo%27"><span class="hs-identifier hs-var hs-var">getLinkerInfo'</span></a></span></span><span> </span><span id="local-6989586621681163121"><span class="annot"><span class="annottext">Logger
+</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163120"><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-120"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681163119"><span class="annot"><span class="annottext">platform :: Platform
+</span><a href="#local-6989586621681163119"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; Platform
 </span><a href="GHC.Driver.Session.html#targetPlatform"><span class="hs-identifier hs-var">targetPlatform</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span><span>
-</span><span id="line-121"></span><span>      </span><span id="local-6989586621681163114"><span class="annot"><span class="annottext">os :: OS
-</span><a href="#local-6989586621681163114"><span class="hs-identifier hs-var hs-var">os</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; OS
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span><span>
+</span><span id="line-121"></span><span>      </span><span id="local-6989586621681163117"><span class="annot"><span class="annottext">os :: OS
+</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var hs-var">os</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; OS
 </span><a href="GHC.Platform.html#platformOS"><span class="hs-identifier hs-var">platformOS</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681163116"><span class="hs-identifier hs-var">platform</span></a></span><span>
-</span><span id="line-122"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621681163112"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163112"><span class="hs-identifier hs-var">pgm</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621681163111"><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163111"><span class="hs-identifier hs-var">args0</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; (String, [Option])
+</span><a href="#local-6989586621681163119"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><span id="line-122"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621681163115"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163115"><span class="hs-identifier hs-var">pgm</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621681163114"><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163114"><span class="hs-identifier hs-var">args0</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; (String, [Option])
 </span><a href="GHC.Driver.Session.html#pgm_l"><span class="hs-identifier hs-var">pgm_l</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span><span>
-</span><span id="line-123"></span><span>      </span><span id="local-6989586621681163109"><span class="annot"><span class="annottext">args1 :: [Option]
-</span><a href="#local-6989586621681163109"><span class="hs-identifier hs-var hs-var">args1</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span><span>
+</span><span id="line-123"></span><span>      </span><span id="local-6989586621681163112"><span class="annot"><span class="annottext">args1 :: [Option]
+</span><a href="#local-6989586621681163112"><span class="hs-identifier hs-var hs-var">args1</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; Option
 </span><a href="GHC.Utils.CliOption.html#Option"><span class="hs-identifier hs-var">Option</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. DynFlags -&gt; (DynFlags -&gt; [a]) -&gt; [a]
 </span><a href="GHC.Driver.Session.html#getOpts"><span class="hs-identifier hs-var">getOpts</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; [String]
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; [String]
 </span><a href="GHC.Driver.Session.html#opt_l"><span class="hs-identifier hs-var">opt_l</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-124"></span><span>      </span><span id="local-6989586621681163105"><span class="annot"><span class="annottext">args2 :: [Option]
-</span><a href="#local-6989586621681163105"><span class="hs-identifier hs-var hs-var">args2</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163111"><span class="hs-identifier hs-var">args0</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
+</span><span id="line-124"></span><span>      </span><span id="local-6989586621681163108"><span class="annot"><span class="annottext">args2 :: [Option]
+</span><a href="#local-6989586621681163108"><span class="hs-identifier hs-var hs-var">args2</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Option]
+</span><a href="#local-6989586621681163114"><span class="hs-identifier hs-var">args0</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163109"><span class="hs-identifier hs-var">args1</span></a></span><span>
-</span><span id="line-125"></span><span>      </span><span id="local-6989586621681163104"><span class="annot"><span class="annottext">args3 :: [String]
-</span><a href="#local-6989586621681163104"><span class="hs-identifier hs-var hs-var">args3</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621681163112"><span class="hs-identifier hs-var">args1</span></a></span><span>
+</span><span id="line-125"></span><span>      </span><span id="local-6989586621681163107"><span class="annot"><span class="annottext">args3 :: [String]
+</span><a href="#local-6989586621681163107"><span class="hs-identifier hs-var hs-var">args3</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-List.html#filter"><span class="hs-identifier hs-var">filter</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Foldable f =&gt; f a -&gt; Bool
 </span><a href="GHC.Utils.Misc.html#notNull"><span class="hs-identifier hs-var">notNull</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#map"><span class="hs-identifier hs-var">map</span></a></span><span> </span><span class="annot"><span class="annottext">Option -&gt; String
 </span><a href="GHC.Utils.CliOption.html#showOpt"><span class="hs-identifier hs-var">showOpt</span></a></span><span> </span><span class="annot"><span class="annottext">[Option]
-</span><a href="#local-6989586621681163105"><span class="hs-identifier hs-var">args2</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163108"><span class="hs-identifier hs-var">args2</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-126"></span><span>
 </span><span id="line-127"></span><span>      </span><span class="hs-comment">-- Try to grab the info from the process output.</span><span>
-</span><span id="line-128"></span><span>      </span><span id="local-6989586621681163083"><span class="annot"><span class="annottext">parseLinkerInfo :: t String -&gt; p -&gt; p -&gt; m LinkerInfo
-</span><a href="#local-6989586621681163083"><span class="hs-identifier hs-var hs-var">parseLinkerInfo</span></a></span></span><span> </span><span id="local-6989586621681163082"><span class="annot"><span class="annottext">t String
-</span><a href="#local-6989586621681163082"><span class="hs-identifier hs-var">stdo</span></a></span></span><span> </span><span id="local-6989586621681163081"><span class="annot"><span class="annottext">p
-</span><a href="#local-6989586621681163081"><span class="hs-identifier hs-var">_stde</span></a></span></span><span> </span><span id="local-6989586621681163080"><span class="annot"><span class="annottext">p
-</span><a href="#local-6989586621681163080"><span class="hs-identifier hs-var">_exitc</span></a></span></span><span>
+</span><span id="line-128"></span><span>      </span><span id="local-6989586621681163086"><span class="annot"><span class="annottext">parseLinkerInfo :: t String -&gt; p -&gt; p -&gt; m LinkerInfo
+</span><a href="#local-6989586621681163086"><span class="hs-identifier hs-var hs-var">parseLinkerInfo</span></a></span></span><span> </span><span id="local-6989586621681163085"><span class="annot"><span class="annottext">t String
+</span><a href="#local-6989586621681163085"><span class="hs-identifier hs-var">stdo</span></a></span></span><span> </span><span id="local-6989586621681163084"><span class="annot"><span class="annottext">p
+</span><a href="#local-6989586621681163084"><span class="hs-identifier hs-var">_stde</span></a></span></span><span> </span><span id="local-6989586621681163083"><span class="annot"><span class="annottext">p
+</span><a href="#local-6989586621681163083"><span class="hs-identifier hs-var">_exitc</span></a></span></span><span>
 </span><span id="line-129"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GNU ld&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">t String
-</span><a href="#local-6989586621681163082"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163085"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-130"></span><span>          </span><span class="hs-comment">-- GNU ld specifically needs to use less memory. This especially</span><span>
 </span><span id="line-131"></span><span>          </span><span class="hs-comment">-- hurts on small object files. #5240.</span><span>
 </span><span id="line-132"></span><span>          </span><span class="hs-comment">-- Set DT_NEEDED for all shared libraries. #10110.</span><span>
@@ -223,7 +223,7 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GNU gold&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">t String
-</span><a href="#local-6989586621681163082"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163085"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-141"></span><span>          </span><span class="hs-comment">-- GNU gold only needs --no-as-needed. #10110.</span><span>
 </span><span id="line-142"></span><span>          </span><span class="hs-comment">-- ELF specific flag, see Note [ELF needed shared libs]</span><span>
 </span><span id="line-143"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
@@ -233,17 +233,17 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><span class="hs-string">&quot;-Wl,--no-as-needed&quot;</span></span><span class="hs-special">]</span><span class="hs-special">)</span><span>
 </span><span id="line-144"></span><span>
 </span><span id="line-145"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
-</span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163078"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163078"><span class="hs-identifier hs-var">line</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163081"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163081"><span class="hs-identifier hs-var">line</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LLD&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163078"><span class="hs-identifier hs-var">line</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><a href="#local-6989586621681163081"><span class="hs-identifier hs-var">line</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
 </span><span class="hs-operator hs-var">||</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;LLD&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. (Foldable t, Eq a) =&gt; a -&gt; t a -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#elem"><span class="hs-operator hs-var">`elem`</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#words"><span class="hs-identifier hs-var">words</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163078"><span class="hs-identifier hs-var">line</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">t String
-</span><a href="#local-6989586621681163082"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163081"><span class="hs-identifier hs-var">line</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">t String
+</span><a href="#local-6989586621681163085"><span class="hs-identifier hs-var">stdo</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-146"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Option] -&gt; LinkerInfo
 </span><a href="GHC.Driver.Session.html#LlvmLLD"><span class="hs-identifier hs-var">LlvmLLD</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -263,7 +263,7 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><span id="line-153"></span><span>  </span><span class="annot"><span class="annottext">forall a. IO a -&gt; (IOException -&gt; IO a) -&gt; IO a
 </span><a href="GHC.Utils.Exception.html#catchIO"><span class="hs-identifier hs-var">catchIO</span></a></span><span> </span><span class="hs-special">(</span><span>
 </span><span id="line-154"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">OS
-</span><a href="#local-6989586621681163114"><span class="hs-identifier hs-var">os</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">os</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-155"></span><span>      </span><span class="annot"><span class="annottext">OS
 </span><a href="../../ghc-boot-9.2.5/src/GHC-Platform-ArchOS.html#OSSolaris2"><span class="hs-identifier hs-var">OSSolaris2</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span>
 </span><span id="line-156"></span><span>        </span><span class="hs-comment">-- Solaris uses its own Solaris linker. Even all</span><span>
@@ -321,17 +321,17 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-186"></span><span>        </span><span class="hs-comment">-- In practice, we use the compiler as the linker here. Pass</span><span>
 </span><span id="line-187"></span><span>        </span><span class="hs-comment">-- -Wl,--version to get linker version info.</span><span>
-</span><span id="line-188"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621681163069"><span class="annot"><span class="annottext">ExitCode
-</span><a href="#local-6989586621681163069"><span class="hs-identifier hs-var">exitc</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163068"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163068"><span class="hs-identifier hs-var">stdo</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163067"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163067"><span class="hs-identifier hs-var">stde</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-188"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621681163072"><span class="annot"><span class="annottext">ExitCode
+</span><a href="#local-6989586621681163072"><span class="hs-identifier hs-var">exitc</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163071"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163071"><span class="hs-identifier hs-var">stdo</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163070"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163070"><span class="hs-identifier hs-var">stde</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; [String] -&gt; (String, String) -&gt; IO (ExitCode, String, String)
 </span><a href="GHC.SysTools.Process.html#readProcessEnvWithExitCode"><span class="hs-identifier hs-var">readProcessEnvWithExitCode</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163112"><span class="hs-identifier hs-var">pgm</span></a></span><span>
+</span><a href="#local-6989586621681163115"><span class="hs-identifier hs-var">pgm</span></a></span><span>
 </span><span id="line-189"></span><span>                               </span><span class="hs-special">(</span><span class="hs-special">[</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-Wl,--version&quot;</span></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163104"><span class="hs-identifier hs-var">args3</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163107"><span class="hs-identifier hs-var">args3</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-190"></span><span>                               </span><span class="annot"><span class="annottext">(String, String)
 </span><a href="GHC.SysTools.Process.html#c_locale_env"><span class="hs-identifier hs-var">c_locale_env</span></a></span><span>
 </span><span id="line-191"></span><span>        </span><span class="hs-comment">-- Split the output by lines to make certain kinds</span><span>
@@ -341,19 +341,19 @@ https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf :
 </span><span id="line-195"></span><span>        </span><span class="annot"><span class="annottext">forall {t :: * -&gt; *} {m :: * -&gt; *} {p} {p}.
 (Foldable t, MonadFail m) =&gt;
 t String -&gt; p -&gt; p -&gt; m LinkerInfo
-</span><a href="#local-6989586621681163083"><span class="hs-identifier hs-var">parseLinkerInfo</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><a href="#local-6989586621681163086"><span class="hs-identifier hs-var">parseLinkerInfo</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#lines"><span class="hs-identifier hs-var">lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163068"><span class="hs-identifier hs-var">stdo</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><a href="#local-6989586621681163071"><span class="hs-identifier hs-var">stdo</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#lines"><span class="hs-identifier hs-var">lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163067"><span class="hs-identifier hs-var">stde</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">ExitCode
-</span><a href="#local-6989586621681163069"><span class="hs-identifier hs-var">exitc</span></a></span><span>
+</span><a href="#local-6989586621681163070"><span class="hs-identifier hs-var">stde</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">ExitCode
+</span><a href="#local-6989586621681163072"><span class="hs-identifier hs-var">exitc</span></a></span><span>
 </span><span id="line-196"></span><span>    </span><span class="hs-special">)</span><span>
-</span><span id="line-197"></span><span>    </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163063"><span class="annot"><span class="annottext">IOException
-</span><a href="#local-6989586621681163063"><span class="hs-identifier hs-var">err</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-197"></span><span>    </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163066"><span class="annot"><span class="annottext">IOException
+</span><a href="#local-6989586621681163066"><span class="hs-identifier hs-var">err</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-198"></span><span>        </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; Int -&gt; SDoc -&gt; IO ()
 </span><a href="GHC.Utils.Error.html#debugTraceMsg"><span class="hs-identifier hs-var">debugTraceMsg</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163118"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span>
 </span><span id="line-199"></span><span>            </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
@@ -362,11 +362,11 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><span id="line-200"></span><span>             </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Show a =&gt; a -&gt; String
 </span><a href="../../base-4.16.4.0/src/GHC-Show.html#show"><span class="hs-identifier hs-var">show</span></a></span><span> </span><span class="annot"><span class="annottext">IOException
-</span><a href="#local-6989586621681163063"><span class="hs-identifier hs-var">err</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163066"><span class="hs-identifier hs-var">err</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-201"></span><span>        </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; SDoc -&gt; IO ()
 </span><a href="GHC.Utils.Error.html#errorMsg"><span class="hs-identifier hs-var">errorMsg</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163118"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163117"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621681163121"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163120"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; Int -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#hang"><span class="hs-identifier hs-var">hang</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
@@ -392,59 +392,59 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><span id="line-208"></span><span class="hs-comment">-- Grab compiler info and cache it in DynFlags.</span><span>
 </span><span id="line-209"></span><span class="annot"><a href="GHC.SysTools.Info.html#getCompilerInfo"><span class="hs-identifier hs-type">getCompilerInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.Logger.html#Logger"><span class="hs-identifier hs-type">Logger</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#DynFlags"><span class="hs-identifier hs-type">DynFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#CompilerInfo"><span class="hs-identifier hs-type">CompilerInfo</span></a></span><span>
 </span><span id="line-210"></span><span id="getCompilerInfo"><span class="annot"><span class="annottext">getCompilerInfo :: Logger -&gt; DynFlags -&gt; IO CompilerInfo
-</span><a href="GHC.SysTools.Info.html#getCompilerInfo"><span class="hs-identifier hs-var hs-var">getCompilerInfo</span></a></span></span><span> </span><span id="local-6989586621681163054"><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163054"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163053"><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-211"></span><span>  </span><span id="local-6989586621681163052"><span class="annot"><span class="annottext">Maybe CompilerInfo
-</span><a href="#local-6989586621681163052"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; IO a
+</span><a href="GHC.SysTools.Info.html#getCompilerInfo"><span class="hs-identifier hs-var hs-var">getCompilerInfo</span></a></span></span><span> </span><span id="local-6989586621681163057"><span class="annot"><span class="annottext">Logger
+</span><a href="#local-6989586621681163057"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163056"><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163056"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-211"></span><span>  </span><span id="local-6989586621681163055"><span class="annot"><span class="annottext">Maybe CompilerInfo
+</span><a href="#local-6989586621681163055"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; IO a
 </span><a href="../../base-4.16.4.0/src/GHC-IORef.html#readIORef"><span class="hs-identifier hs-var">readIORef</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">DynFlags -&gt; IORef (Maybe CompilerInfo)
 </span><a href="GHC.Driver.Session.html#rtccInfo"><span class="hs-identifier hs-var">rtccInfo</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163056"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-212"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Maybe CompilerInfo
-</span><a href="#local-6989586621681163052"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-213"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621681163050"><span class="annot"><span class="annottext">CompilerInfo
-</span><a href="#local-6989586621681163050"><span class="hs-identifier hs-var">v</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><a href="#local-6989586621681163055"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-213"></span><span>    </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621681163053"><span class="annot"><span class="annottext">CompilerInfo
+</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">v</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
-</span><a href="#local-6989586621681163050"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-214"></span><span>    </span><span class="annot"><span class="annottext">Maybe CompilerInfo
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Nothing"><span class="hs-identifier hs-var">Nothing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-215"></span><span>      </span><span id="local-6989586621681163049"><span class="annot"><span class="annottext">CompilerInfo
-</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; IO CompilerInfo
+</span><span id="line-215"></span><span>      </span><span id="local-6989586621681163052"><span class="annot"><span class="annottext">CompilerInfo
+</span><a href="#local-6989586621681163052"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; IO CompilerInfo
 </span><a href="GHC.SysTools.Info.html#getCompilerInfo%27"><span class="hs-identifier hs-var">getCompilerInfo'</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163054"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">dflags</span></a></span><span>
+</span><a href="#local-6989586621681163057"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163056"><span class="hs-identifier hs-var">dflags</span></a></span><span>
 </span><span id="line-216"></span><span>      </span><span class="annot"><span class="annottext">forall a. IORef a -&gt; a -&gt; IO ()
 </span><a href="../../base-4.16.4.0/src/GHC-IORef.html#writeIORef"><span class="hs-identifier hs-var">writeIORef</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">DynFlags -&gt; IORef (Maybe CompilerInfo)
 </span><a href="GHC.Driver.Session.html#rtccInfo"><span class="hs-identifier hs-var">rtccInfo</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163053"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
+</span><a href="#local-6989586621681163056"><span class="hs-identifier hs-var">dflags</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
 </span><a href="../../base-4.16.4.0/src/GHC-Maybe.html#Just"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
-</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163052"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-217"></span><span>      </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
-</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621681163052"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-218"></span><span>
 </span><span id="line-219"></span><span class="hs-comment">-- See Note [Run-time linker info].</span><span>
 </span><span id="line-220"></span><span class="annot"><a href="GHC.SysTools.Info.html#getCompilerInfo%27"><span class="hs-identifier hs-type">getCompilerInfo'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.Logger.html#Logger"><span class="hs-identifier hs-type">Logger</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#DynFlags"><span class="hs-identifier hs-type">DynFlags</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="GHC.Driver.Session.html#CompilerInfo"><span class="hs-identifier hs-type">CompilerInfo</span></a></span><span>
 </span><span id="line-221"></span><span id="getCompilerInfo%27"><span class="annot"><span class="annottext">getCompilerInfo' :: Logger -&gt; DynFlags -&gt; IO CompilerInfo
-</span><a href="GHC.SysTools.Info.html#getCompilerInfo%27"><span class="hs-identifier hs-var hs-var">getCompilerInfo'</span></a></span></span><span> </span><span id="local-6989586621681163047"><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163047"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163046"><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163046"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-222"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681163045"><span class="annot"><span class="annottext">pgm :: String
-</span><a href="#local-6989586621681163045"><span class="hs-identifier hs-var hs-var">pgm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; String
+</span><a href="GHC.SysTools.Info.html#getCompilerInfo%27"><span class="hs-identifier hs-var hs-var">getCompilerInfo'</span></a></span></span><span> </span><span id="local-6989586621681163050"><span class="annot"><span class="annottext">Logger
+</span><a href="#local-6989586621681163050"><span class="hs-identifier hs-var">logger</span></a></span></span><span> </span><span id="local-6989586621681163049"><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">dflags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-222"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621681163048"><span class="annot"><span class="annottext">pgm :: String
+</span><a href="#local-6989586621681163048"><span class="hs-identifier hs-var hs-var">pgm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DynFlags -&gt; String
 </span><a href="GHC.Driver.Session.html#pgm_c"><span class="hs-identifier hs-var">pgm_c</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163046"><span class="hs-identifier hs-var">dflags</span></a></span><span>
+</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">dflags</span></a></span><span>
 </span><span id="line-223"></span><span>      </span><span class="hs-comment">-- Try to grab the info from the process output.</span><span>
-</span><span id="line-224"></span><span>      </span><span id="local-6989586621681163022"><span class="annot"><span class="annottext">parseCompilerInfo :: p -&gt; [String] -&gt; p -&gt; m CompilerInfo
-</span><a href="#local-6989586621681163022"><span class="hs-identifier hs-var hs-var">parseCompilerInfo</span></a></span></span><span> </span><span id="local-6989586621681163021"><span class="annot"><span class="annottext">p
-</span><a href="#local-6989586621681163021"><span class="hs-identifier hs-var">_stdo</span></a></span></span><span> </span><span id="local-6989586621681163020"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span></span><span> </span><span id="local-6989586621681163019"><span class="annot"><span class="annottext">p
-</span><a href="#local-6989586621681163019"><span class="hs-identifier hs-var">_exitc</span></a></span></span><span>
+</span><span id="line-224"></span><span>      </span><span id="local-6989586621681163025"><span class="annot"><span class="annottext">parseCompilerInfo :: p -&gt; [String] -&gt; p -&gt; m CompilerInfo
+</span><a href="#local-6989586621681163025"><span class="hs-identifier hs-var hs-var">parseCompilerInfo</span></a></span></span><span> </span><span id="local-6989586621681163024"><span class="annot"><span class="annottext">p
+</span><a href="#local-6989586621681163024"><span class="hs-identifier hs-var">_stdo</span></a></span></span><span> </span><span id="local-6989586621681163023"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span></span><span> </span><span id="local-6989586621681163022"><span class="annot"><span class="annottext">p
+</span><a href="#local-6989586621681163022"><span class="hs-identifier hs-var">_exitc</span></a></span></span><span>
 </span><span id="line-225"></span><span>        </span><span class="hs-comment">-- Regular GCC</span><span>
 </span><span id="line-226"></span><span>        </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;gcc version&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isInfixOf"><span class="hs-operator hs-var">`isInfixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-227"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#GCC"><span class="hs-identifier hs-var">GCC</span></a></span><span>
@@ -453,7 +453,7 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;clang version&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isInfixOf"><span class="hs-operator hs-var">`isInfixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-230"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#Clang"><span class="hs-identifier hs-var">Clang</span></a></span><span>
@@ -462,7 +462,7 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;FreeBSD clang version&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isInfixOf"><span class="hs-operator hs-var">`isInfixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-233"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#Clang"><span class="hs-identifier hs-var">Clang</span></a></span><span>
@@ -471,7 +471,7 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Apple LLVM version 5.1&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-236"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#AppleClang51"><span class="hs-identifier hs-var">AppleClang51</span></a></span><span>
@@ -480,7 +480,7 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Apple LLVM version&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-239"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#AppleClang"><span class="hs-identifier hs-var">AppleClang</span></a></span><span>
@@ -489,7 +489,7 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><a href="../../base-4.16.4.0/src/Data-Foldable.html#any"><span class="hs-identifier hs-var">any</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Apple clang version&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. Eq a =&gt; [a] -&gt; [a] -&gt; Bool
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#isPrefixOf"><span class="hs-operator hs-var">`isPrefixOf`</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-242"></span><span>          </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#return"><span class="hs-identifier hs-var">return</span></a></span><span> </span><span class="annot"><span class="annottext">CompilerInfo
 </span><a href="GHC.Driver.Session.html#AppleClang"><span class="hs-identifier hs-var">AppleClang</span></a></span><span>
@@ -501,19 +501,19 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><span class="hs-string">&quot;invalid -v output, or compiler is unsupported: &quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%2B%2B"><span class="hs-operator hs-var">++</span></a></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#unlines"><span class="hs-identifier hs-var">unlines</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621681163020"><span class="hs-identifier hs-var">stde</span></a></span><span>
+</span><a href="#local-6989586621681163023"><span class="hs-identifier hs-var">stde</span></a></span><span>
 </span><span id="line-245"></span><span>
 </span><span id="line-246"></span><span>  </span><span class="hs-comment">-- Process the executable call</span><span>
 </span><span id="line-247"></span><span>  </span><span class="annot"><span class="annottext">forall a. IO a -&gt; (IOException -&gt; IO a) -&gt; IO a
 </span><a href="GHC.Utils.Exception.html#catchIO"><span class="hs-identifier hs-var">catchIO</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-keyword">do</span><span>
-</span><span id="line-248"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621681163013"><span class="annot"><span class="annottext">ExitCode
-</span><a href="#local-6989586621681163013"><span class="hs-identifier hs-var">exitc</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163012"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163012"><span class="hs-identifier hs-var">stdo</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163011"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163011"><span class="hs-identifier hs-var">stde</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span>
+</span><span id="line-248"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621681163016"><span class="annot"><span class="annottext">ExitCode
+</span><a href="#local-6989586621681163016"><span class="hs-identifier hs-var">exitc</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163015"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163015"><span class="hs-identifier hs-var">stdo</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681163014"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163014"><span class="hs-identifier hs-var">stde</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span>
 </span><span id="line-249"></span><span>          </span><span class="annot"><span class="annottext">String
 -&gt; [String] -&gt; (String, String) -&gt; IO (ExitCode, String, String)
 </span><a href="GHC.SysTools.Process.html#readProcessEnvWithExitCode"><span class="hs-identifier hs-var">readProcessEnvWithExitCode</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163045"><span class="hs-identifier hs-var">pgm</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681163048"><span class="hs-identifier hs-var">pgm</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-v&quot;</span></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">(String, String)
 </span><a href="GHC.SysTools.Process.html#c_locale_env"><span class="hs-identifier hs-var">c_locale_env</span></a></span><span>
 </span><span id="line-250"></span><span>      </span><span class="hs-comment">-- Split the output by lines to make certain kinds</span><span>
@@ -521,19 +521,19 @@ t String -&gt; p -&gt; p -&gt; m LinkerInfo
 </span><span id="line-252"></span><span>      </span><span class="annot"><span class="annottext">forall {m :: * -&gt; *} {p} {p}.
 MonadFail m =&gt;
 p -&gt; [String] -&gt; p -&gt; m CompilerInfo
-</span><a href="#local-6989586621681163022"><span class="hs-identifier hs-var">parseCompilerInfo</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><a href="#local-6989586621681163025"><span class="hs-identifier hs-var">parseCompilerInfo</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#lines"><span class="hs-identifier hs-var">lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163012"><span class="hs-identifier hs-var">stdo</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
+</span><a href="#local-6989586621681163015"><span class="hs-identifier hs-var">stdo</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; [String]
 </span><a href="../../base-4.16.4.0/src/Data-OldList.html#lines"><span class="hs-identifier hs-var">lines</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681163011"><span class="hs-identifier hs-var">stde</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">ExitCode
-</span><a href="#local-6989586621681163013"><span class="hs-identifier hs-var">exitc</span></a></span><span>
+</span><a href="#local-6989586621681163014"><span class="hs-identifier hs-var">stde</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">ExitCode
+</span><a href="#local-6989586621681163016"><span class="hs-identifier hs-var">exitc</span></a></span><span>
 </span><span id="line-253"></span><span>      </span><span class="hs-special">)</span><span>
-</span><span id="line-254"></span><span>      </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163010"><span class="annot"><span class="annottext">IOException
-</span><a href="#local-6989586621681163010"><span class="hs-identifier hs-var">err</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-254"></span><span>      </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621681163013"><span class="annot"><span class="annottext">IOException
+</span><a href="#local-6989586621681163013"><span class="hs-identifier hs-var">err</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-255"></span><span>          </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; Int -&gt; SDoc -&gt; IO ()
 </span><a href="GHC.Utils.Error.html#debugTraceMsg"><span class="hs-identifier hs-var">debugTraceMsg</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163047"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163046"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681163050"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">2</span></span><span>
 </span><span id="line-256"></span><span>              </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
@@ -542,11 +542,11 @@ p -&gt; [String] -&gt; p -&gt; m CompilerInfo
 </span><span id="line-257"></span><span>               </span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Show a =&gt; a -&gt; String
 </span><a href="../../base-4.16.4.0/src/GHC-Show.html#show"><span class="hs-identifier hs-var">show</span></a></span><span> </span><span class="annot"><span class="annottext">IOException
-</span><a href="#local-6989586621681163010"><span class="hs-identifier hs-var">err</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681163013"><span class="hs-identifier hs-var">err</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-258"></span><span>          </span><span class="annot"><span class="annottext">Logger -&gt; DynFlags -&gt; SDoc -&gt; IO ()
 </span><a href="GHC.Utils.Error.html#errorMsg"><span class="hs-identifier hs-var">errorMsg</span></a></span><span> </span><span class="annot"><span class="annottext">Logger
-</span><a href="#local-6989586621681163047"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
-</span><a href="#local-6989586621681163046"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621681163050"><span class="hs-identifier hs-var">logger</span></a></span><span> </span><span class="annot"><span class="annottext">DynFlags
+</span><a href="#local-6989586621681163049"><span class="hs-identifier hs-var">dflags</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; Int -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#hang"><span class="hs-identifier hs-var">hang</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String

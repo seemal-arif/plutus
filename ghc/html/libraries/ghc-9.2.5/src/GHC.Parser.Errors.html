@@ -408,7 +408,7 @@
 </span><span id="line-403"></span><span class="hs-keyword">data</span><span> </span><span id="NumUnderscoreReason"><span class="annot"><a href="GHC.Parser.Errors.html#NumUnderscoreReason"><span class="hs-identifier hs-var">NumUnderscoreReason</span></a></span></span><span>
 </span><span id="line-404"></span><span>   </span><span class="hs-glyph">=</span><span> </span><span id="NumUnderscore_Integral"><span class="annot"><a href="GHC.Parser.Errors.html#NumUnderscore_Integral"><span class="hs-identifier hs-var">NumUnderscore_Integral</span></a></span></span><span>
 </span><span id="line-405"></span><span>   </span><span class="hs-glyph">|</span><span> </span><span id="NumUnderscore_Float"><span class="annot"><a href="GHC.Parser.Errors.html#NumUnderscore_Float"><span class="hs-identifier hs-var">NumUnderscore_Float</span></a></span></span><span>
-</span><span id="line-406"></span><span>   </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681172078"><span id="local-6989586621681172080"><span id="local-6989586621681172082"><span class="annot"><span class="annottext">Int -&gt; NumUnderscoreReason -&gt; ShowS
+</span><span id="line-406"></span><span>   </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681172081"><span id="local-6989586621681172083"><span id="local-6989586621681172085"><span class="annot"><span class="annottext">Int -&gt; NumUnderscoreReason -&gt; ShowS
 [NumUnderscoreReason] -&gt; ShowS
 NumUnderscoreReason -&gt; String
 forall a.
@@ -419,13 +419,13 @@ show :: NumUnderscoreReason -&gt; String
 $cshow :: NumUnderscoreReason -&gt; String
 showsPrec :: Int -&gt; NumUnderscoreReason -&gt; ShowS
 $cshowsPrec :: Int -&gt; NumUnderscoreReason -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172073"><span id="local-6989586621681172075"><span class="annot"><span class="annottext">NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172076"><span id="local-6989586621681172078"><span class="annot"><span class="annottext">NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
 $c/= :: NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
 == :: NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
 $c== :: NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172053"><span id="local-6989586621681172055"><span id="local-6989586621681172058"><span id="local-6989586621681172061"><span id="local-6989586621681172064"><span id="local-6989586621681172066"><span id="local-6989586621681172068"><span class="annot"><span class="annottext">Eq NumUnderscoreReason
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172056"><span id="local-6989586621681172058"><span id="local-6989586621681172061"><span id="local-6989586621681172064"><span id="local-6989586621681172067"><span id="local-6989586621681172069"><span id="local-6989586621681172071"><span class="annot"><span class="annottext">Eq NumUnderscoreReason
 NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Bool
 NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Ordering
 NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; NumUnderscoreReason
@@ -470,7 +470,7 @@ $ccompare :: NumUnderscoreReason -&gt; NumUnderscoreReason -&gt; Ordering
 </span><span id="line-420"></span><span>   </span><span class="hs-glyph">=</span><span> </span><span id="LexErrKind_EOF"><span class="annot"><a href="GHC.Parser.Errors.html#LexErrKind_EOF"><span class="hs-identifier hs-var">LexErrKind_EOF</span></a></span></span><span>        </span><span class="hs-comment">-- ^ End of input</span><span>
 </span><span id="line-421"></span><span>   </span><span class="hs-glyph">|</span><span> </span><span id="LexErrKind_UTF8"><span class="annot"><a href="GHC.Parser.Errors.html#LexErrKind_UTF8"><span class="hs-identifier hs-var">LexErrKind_UTF8</span></a></span></span><span>       </span><span class="hs-comment">-- ^ UTF-8 decoding error</span><span>
 </span><span id="line-422"></span><span>   </span><span class="hs-glyph">|</span><span> </span><span id="LexErrKind_Char"><span class="annot"><a href="GHC.Parser.Errors.html#LexErrKind_Char"><span class="hs-identifier hs-var">LexErrKind_Char</span></a></span></span><span> </span><span class="hs-glyph">!</span><span class="annot"><span class="hs-identifier hs-type">Char</span></span><span> </span><span class="hs-comment">-- ^ Error at given character</span><span>
-</span><span id="line-423"></span><span>   </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681172031"><span id="local-6989586621681172033"><span id="local-6989586621681172039"><span class="annot"><span class="annottext">Int -&gt; LexErrKind -&gt; ShowS
+</span><span id="line-423"></span><span>   </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681172034"><span id="local-6989586621681172036"><span id="local-6989586621681172042"><span class="annot"><span class="annottext">Int -&gt; LexErrKind -&gt; ShowS
 [LexErrKind] -&gt; ShowS
 LexErrKind -&gt; String
 forall a.
@@ -481,13 +481,13 @@ show :: LexErrKind -&gt; String
 $cshow :: LexErrKind -&gt; String
 showsPrec :: Int -&gt; LexErrKind -&gt; ShowS
 $cshowsPrec :: Int -&gt; LexErrKind -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172025"><span id="local-6989586621681172029"><span class="annot"><span class="annottext">LexErrKind -&gt; LexErrKind -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172028"><span id="local-6989586621681172032"><span class="annot"><span class="annottext">LexErrKind -&gt; LexErrKind -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: LexErrKind -&gt; LexErrKind -&gt; Bool
 $c/= :: LexErrKind -&gt; LexErrKind -&gt; Bool
 == :: LexErrKind -&gt; LexErrKind -&gt; Bool
 $c== :: LexErrKind -&gt; LexErrKind -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172003"><span id="local-6989586621681172005"><span id="local-6989586621681172008"><span id="local-6989586621681172011"><span id="local-6989586621681172014"><span id="local-6989586621681172017"><span id="local-6989586621681172021"><span class="annot"><span class="annottext">Eq LexErrKind
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span id="local-6989586621681172006"><span id="local-6989586621681172008"><span id="local-6989586621681172011"><span id="local-6989586621681172014"><span id="local-6989586621681172017"><span id="local-6989586621681172020"><span id="local-6989586621681172024"><span class="annot"><span class="annottext">Eq LexErrKind
 LexErrKind -&gt; LexErrKind -&gt; Bool
 LexErrKind -&gt; LexErrKind -&gt; Ordering
 LexErrKind -&gt; LexErrKind -&gt; LexErrKind

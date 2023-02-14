@@ -84,9 +84,9 @@
 </span><span id="line-84"></span><span class="hs-comment">-- those variables.</span><span>
 </span><span id="line-85"></span><span class="annot"><a href="GHC.Utils.FV.html#fvVarAcc"><span class="hs-identifier hs-type">fvVarAcc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span>  </span><span class="hs-special">(</span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Var.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="GHC.Types.Var.Set.html#VarSet"><span class="hs-identifier hs-type">VarSet</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-86"></span><span id="fvVarAcc"><span class="annot"><span class="annottext">fvVarAcc :: FV -&gt; ([Var], VarSet)
-</span><a href="GHC.Utils.FV.html#fvVarAcc"><span class="hs-identifier hs-var hs-var">fvVarAcc</span></a></span></span><span> </span><span id="local-6989586621680999018"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999018"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999018"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a b. a -&gt; b -&gt; a
+</span><a href="GHC.Utils.FV.html#fvVarAcc"><span class="hs-identifier hs-var hs-var">fvVarAcc</span></a></span></span><span> </span><span id="local-6989586621680999021"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680999021"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680999021"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a b. a -&gt; b -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#const"><span class="hs-identifier hs-var">const</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">VarSet
 </span><a href="GHC.Types.Var.Set.html#emptyVarSet"><span class="hs-identifier hs-var">emptyVarSet</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">[</span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">VarSet
@@ -163,35 +163,35 @@
 </span><span id="line-144"></span><span class="hs-comment">-- Ignores duplicates and respects the filtering function.</span><span>
 </span><span id="line-145"></span><span class="annot"><a href="GHC.Utils.FV.html#unitFV"><span class="hs-identifier hs-type">unitFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Var.html#Id"><span class="hs-identifier hs-type">Id</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-146"></span><span id="unitFV"><span class="annot"><span class="annottext">unitFV :: Var -&gt; FV
-</span><a href="GHC.Utils.FV.html#unitFV"><span class="hs-identifier hs-var hs-var">unitFV</span></a></span></span><span> </span><span id="local-6989586621680999012"><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span></span><span> </span><span id="local-6989586621680999011"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680999011"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680999010"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999010"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680999009"><span class="annot"><span class="annottext">acc :: ([Var], VarSet)
-</span><a href="#local-6989586621680999009"><span class="hs-identifier hs-var">acc</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span id="local-6989586621680999008"><span class="annot"><span class="annottext">[Var]
-</span><a href="#local-6989586621680999008"><span class="hs-identifier hs-var">have</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621680999007"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999007"><span class="hs-identifier hs-var">haveSet</span></a></span></span><span class="hs-special">)</span><span>
+</span><a href="GHC.Utils.FV.html#unitFV"><span class="hs-identifier hs-var hs-var">unitFV</span></a></span></span><span> </span><span id="local-6989586621680999015"><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span></span><span> </span><span id="local-6989586621680999014"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680999014"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680999013"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680999013"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680999012"><span class="annot"><span class="annottext">acc :: ([Var], VarSet)
+</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">acc</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span id="local-6989586621680999011"><span class="annot"><span class="annottext">[Var]
+</span><a href="#local-6989586621680999011"><span class="hs-identifier hs-var">have</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621680999010"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680999010"><span class="hs-identifier hs-var">haveSet</span></a></span></span><span class="hs-special">)</span><span>
 </span><span id="line-147"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="annot"><span class="annottext">Var -&gt; VarSet -&gt; Bool
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="annot"><span class="annottext">Var -&gt; VarSet -&gt; Bool
 </span><a href="GHC.Types.Var.Set.html#elemVarSet"><span class="hs-operator hs-var">`elemVarSet`</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999010"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680999009"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680999013"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-148"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="annot"><span class="annottext">Var -&gt; VarSet -&gt; Bool
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="annot"><span class="annottext">Var -&gt; VarSet -&gt; Bool
 </span><a href="GHC.Types.Var.Set.html#elemVarSet"><span class="hs-operator hs-var">`elemVarSet`</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999007"><span class="hs-identifier hs-var">haveSet</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680999009"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680999010"><span class="hs-identifier hs-var">haveSet</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-149"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680999011"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span><span class="annot"><span class="annottext">forall a. a -&gt; [a] -&gt; [a]
+</span><a href="#local-6989586621680999014"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span><span class="annot"><span class="annottext">forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span class="annot"><span class="annottext">[Var]
-</span><a href="#local-6989586621680999008"><span class="hs-identifier hs-var">have</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">VarSet -&gt; Var -&gt; VarSet
+</span><a href="#local-6989586621680999011"><span class="hs-identifier hs-var">have</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">VarSet -&gt; Var -&gt; VarSet
 </span><a href="GHC.Types.Var.Set.html#extendVarSet"><span class="hs-identifier hs-var">extendVarSet</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999007"><span class="hs-identifier hs-var">haveSet</span></a></span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">var</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621680999010"><span class="hs-identifier hs-var">haveSet</span></a></span><span> </span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999015"><span class="hs-identifier hs-var">var</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-150"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#otherwise"><span class="hs-identifier hs-var">otherwise</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680999009"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680999012"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-151"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#unitFV"><span class="hs-pragma hs-type">unitFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-152"></span><span>
 </span><span id="line-153"></span><span class="hs-comment">-- | Return no free variables.</span><span>
@@ -199,151 +199,151 @@
 </span><span id="line-155"></span><span id="emptyFV"><span class="annot"><span class="annottext">emptyFV :: FV
 </span><a href="GHC.Utils.FV.html#emptyFV"><span class="hs-identifier hs-var hs-var">emptyFV</span></a></span></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621680999004"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680999004"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680999004"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621680999007"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680999007"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680999007"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-156"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#emptyFV"><span class="hs-pragma hs-type">emptyFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-157"></span><span>
 </span><span id="line-158"></span><span class="hs-comment">-- | Union two free variable computations.</span><span>
 </span><span id="line-159"></span><span class="annot"><a href="GHC.Utils.FV.html#unionFV"><span class="hs-identifier hs-type">unionFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-160"></span><span id="unionFV"><span class="annot"><span class="annottext">unionFV :: FV -&gt; FV -&gt; FV
-</span><a href="GHC.Utils.FV.html#unionFV"><span class="hs-identifier hs-var hs-var">unionFV</span></a></span></span><span> </span><span id="local-6989586621680999003"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999003"><span class="hs-identifier hs-var">fv1</span></a></span></span><span> </span><span id="local-6989586621680999002"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999002"><span class="hs-identifier hs-var">fv2</span></a></span></span><span> </span><span id="local-6989586621680999001"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680999001"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680999000"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999000"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998999"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998999"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#unionFV"><span class="hs-identifier hs-var hs-var">unionFV</span></a></span></span><span> </span><span id="local-6989586621680999006"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680999006"><span class="hs-identifier hs-var">fv1</span></a></span></span><span> </span><span id="local-6989586621680999005"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680999005"><span class="hs-identifier hs-var">fv2</span></a></span></span><span> </span><span id="local-6989586621680999004"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680999004"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680999003"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680999003"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680999002"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680999002"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-161"></span><span>  </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999003"><span class="hs-identifier hs-var">fv1</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680999001"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999000"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621680999006"><span class="hs-identifier hs-var">fv1</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680999004"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680999003"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24%21"><span class="hs-operator hs-var">$!</span></a></span><span> </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680999002"><span class="hs-identifier hs-var">fv2</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680999001"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680999000"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621680999005"><span class="hs-identifier hs-var">fv2</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680999004"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680999003"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24%21"><span class="hs-operator hs-var">$!</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998999"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680999002"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-162"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#unionFV"><span class="hs-pragma hs-type">unionFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-163"></span><span>
 </span><span id="line-164"></span><span class="hs-comment">-- | Mark the variable as not free by putting it in scope.</span><span>
 </span><span id="line-165"></span><span class="annot"><a href="GHC.Utils.FV.html#delFV"><span class="hs-identifier hs-type">delFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Var.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-166"></span><span id="delFV"><span class="annot"><span class="annottext">delFV :: Var -&gt; FV -&gt; FV
-</span><a href="GHC.Utils.FV.html#delFV"><span class="hs-identifier hs-var hs-var">delFV</span></a></span></span><span> </span><span id="local-6989586621680998997"><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680998997"><span class="hs-identifier hs-var">var</span></a></span></span><span> </span><span id="local-6989586621680998996"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998996"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998995"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998995"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span class="hs-glyph">!</span><span id="local-6989586621680998994"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998994"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998993"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998993"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#delFV"><span class="hs-identifier hs-var hs-var">delFV</span></a></span></span><span> </span><span id="local-6989586621680999000"><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999000"><span class="hs-identifier hs-var">var</span></a></span></span><span> </span><span id="local-6989586621680998999"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680998999"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998998"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998998"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span class="hs-glyph">!</span><span id="local-6989586621680998997"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998997"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998996"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998996"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-167"></span><span>  </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998996"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998995"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">VarSet -&gt; Var -&gt; VarSet
+</span><a href="#local-6989586621680998999"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998998"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">VarSet -&gt; Var -&gt; VarSet
 </span><a href="GHC.Types.Var.Set.html#extendVarSet"><span class="hs-identifier hs-var">extendVarSet</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998994"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680998997"><span class="hs-identifier hs-var">var</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998993"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998997"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680999000"><span class="hs-identifier hs-var">var</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998996"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-168"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#delFV"><span class="hs-pragma hs-type">delFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-169"></span><span>
 </span><span id="line-170"></span><span class="hs-comment">-- | Mark many free variables as not free.</span><span>
 </span><span id="line-171"></span><span class="annot"><a href="GHC.Utils.FV.html#delFVs"><span class="hs-identifier hs-type">delFVs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Var.Set.html#VarSet"><span class="hs-identifier hs-type">VarSet</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-172"></span><span id="delFVs"><span class="annot"><span class="annottext">delFVs :: VarSet -&gt; FV -&gt; FV
-</span><a href="GHC.Utils.FV.html#delFVs"><span class="hs-identifier hs-var hs-var">delFVs</span></a></span></span><span> </span><span id="local-6989586621680998992"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998992"><span class="hs-identifier hs-var">vars</span></a></span></span><span> </span><span id="local-6989586621680998991"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998991"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998990"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998990"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span class="hs-glyph">!</span><span id="local-6989586621680998989"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998989"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998988"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998988"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#delFVs"><span class="hs-identifier hs-var hs-var">delFVs</span></a></span></span><span> </span><span id="local-6989586621680998995"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998995"><span class="hs-identifier hs-var">vars</span></a></span></span><span> </span><span id="local-6989586621680998994"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680998994"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998993"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998993"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span class="hs-glyph">!</span><span id="local-6989586621680998992"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998992"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998991"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998991"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-173"></span><span>  </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998991"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998990"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998989"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet -&gt; VarSet -&gt; VarSet
+</span><a href="#local-6989586621680998994"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998993"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998992"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet -&gt; VarSet -&gt; VarSet
 </span><a href="GHC.Types.Var.Set.html#unionVarSet"><span class="hs-operator hs-var">`unionVarSet`</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998992"><span class="hs-identifier hs-var">vars</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998988"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998995"><span class="hs-identifier hs-var">vars</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998991"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-174"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#delFVs"><span class="hs-pragma hs-type">delFVs</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-175"></span><span>
 </span><span id="line-176"></span><span class="hs-comment">-- | Filter a free variable computation.</span><span>
 </span><span id="line-177"></span><span class="annot"><a href="GHC.Utils.FV.html#filterFV"><span class="hs-identifier hs-type">filterFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#InterestingVarFun"><span class="hs-identifier hs-type">InterestingVarFun</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-178"></span><span id="filterFV"><span class="annot"><span class="annottext">filterFV :: InterestingVarFun -&gt; FV -&gt; FV
-</span><a href="GHC.Utils.FV.html#filterFV"><span class="hs-identifier hs-var hs-var">filterFV</span></a></span></span><span> </span><span id="local-6989586621680998986"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998986"><span class="hs-identifier hs-var">fv_cand2</span></a></span></span><span> </span><span id="local-6989586621680998985"><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998985"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998984"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998984"><span class="hs-identifier hs-var">fv_cand1</span></a></span></span><span> </span><span id="local-6989586621680998983"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998983"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998982"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998982"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#filterFV"><span class="hs-identifier hs-var hs-var">filterFV</span></a></span></span><span> </span><span id="local-6989586621680998989"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998989"><span class="hs-identifier hs-var">fv_cand2</span></a></span></span><span> </span><span id="local-6989586621680998988"><span class="annot"><span class="annottext">FV
+</span><a href="#local-6989586621680998988"><span class="hs-identifier hs-var">fv</span></a></span></span><span> </span><span id="local-6989586621680998987"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998987"><span class="hs-identifier hs-var">fv_cand1</span></a></span></span><span> </span><span id="local-6989586621680998986"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998986"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998985"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998985"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-179"></span><span>  </span><span class="annot"><span class="annottext">FV
-</span><a href="#local-6989586621680998985"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621680998981"><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680998981"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998984"><span class="hs-identifier hs-var">fv_cand1</span></a></span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680998981"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><a href="#local-6989586621680998988"><span class="hs-identifier hs-var">fv</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621680998984"><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680998984"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998987"><span class="hs-identifier hs-var">fv_cand1</span></a></span><span> </span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680998984"><span class="hs-identifier hs-var">v</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
 </span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998986"><span class="hs-identifier hs-var">fv_cand2</span></a></span><span> </span><span class="annot"><span class="annottext">Var
-</span><a href="#local-6989586621680998981"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998983"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998982"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998989"><span class="hs-identifier hs-var">fv_cand2</span></a></span><span> </span><span class="annot"><span class="annottext">Var
+</span><a href="#local-6989586621680998984"><span class="hs-identifier hs-var">v</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998986"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998985"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-180"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#filterFV"><span class="hs-pragma hs-type">filterFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-181"></span><span>
 </span><span id="line-182"></span><span class="hs-comment">-- | Map a free variable computation over a list and union the results.</span><span>
-</span><span id="line-183"></span><span id="local-6989586621680999035"><span class="annot"><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-type">mapUnionFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621680999035"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621680999035"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span></span><span>
+</span><span id="line-183"></span><span id="local-6989586621680999038"><span class="annot"><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-type">mapUnionFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621680999038"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621680999038"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span></span><span>
 </span><span id="line-184"></span><span id="mapUnionFV"><span class="annot"><span class="annottext">mapUnionFV :: forall a. (a -&gt; FV) -&gt; [a] -&gt; FV
-</span><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var hs-var">mapUnionFV</span></a></span></span><span> </span><span id="local-6989586621680998979"><span class="annot"><span class="annottext">a -&gt; FV
-</span><a href="#local-6989586621680998979"><span class="hs-identifier hs-var">_f</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span id="local-6989586621680998978"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998978"><span class="hs-identifier hs-var">_fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998977"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998977"><span class="hs-identifier hs-var">_in_scope</span></a></span></span><span> </span><span id="local-6989586621680998976"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998976"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998976"><span class="hs-identifier hs-var">acc</span></a></span><span>
-</span><span id="line-185"></span><span class="annot"><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var">mapUnionFV</span></a></span><span> </span><span id="local-6989586621680998975"><span class="annot"><span class="annottext">a -&gt; FV
-</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621680998974"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621680998974"><span class="hs-identifier hs-var">a</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621680998973"><span class="annot"><span class="annottext">[a]
-</span><a href="#local-6989586621680998973"><span class="hs-keyword hs-var">as</span></a></span></span><span class="hs-special">)</span><span> </span><span id="local-6989586621680998972"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998972"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998971"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998971"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998970"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998970"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var hs-var">mapUnionFV</span></a></span></span><span> </span><span id="local-6989586621680998982"><span class="annot"><span class="annottext">a -&gt; FV
+</span><a href="#local-6989586621680998982"><span class="hs-identifier hs-var">_f</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span id="local-6989586621680998981"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998981"><span class="hs-identifier hs-var">_fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998980"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998980"><span class="hs-identifier hs-var">_in_scope</span></a></span></span><span> </span><span id="local-6989586621680998979"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998979"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998979"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><span id="line-185"></span><span class="annot"><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var">mapUnionFV</span></a></span><span> </span><span id="local-6989586621680998978"><span class="annot"><span class="annottext">a -&gt; FV
+</span><a href="#local-6989586621680998978"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621680998977"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621680998977"><span class="hs-identifier hs-var">a</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621680998976"><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621680998976"><span class="hs-keyword hs-var">as</span></a></span></span><span class="hs-special">)</span><span> </span><span id="local-6989586621680998975"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998974"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998974"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998973"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998973"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-186"></span><span>  </span><span class="annot"><span class="annottext">forall a. (a -&gt; FV) -&gt; [a] -&gt; FV
 </span><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var">mapUnionFV</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; FV
-</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">[a]
-</span><a href="#local-6989586621680998973"><span class="hs-keyword hs-var">as</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998972"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998971"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621680998978"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621680998976"><span class="hs-keyword hs-var">as</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998974"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24%21"><span class="hs-operator hs-var">$!</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; FV
-</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621680998974"><span class="hs-identifier hs-var">a</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998972"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998971"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><a href="#local-6989586621680998978"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621680998977"><span class="hs-identifier hs-var">a</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998975"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998974"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#%24%21"><span class="hs-operator hs-var">$!</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998970"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998973"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-187"></span><span class="hs-pragma">{-# INLINABLE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-pragma hs-type">mapUnionFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-188"></span><span>
 </span><span id="line-189"></span><span class="hs-comment">-- | Union many free variable computations.</span><span>
 </span><span id="line-190"></span><span class="annot"><a href="GHC.Utils.FV.html#unionsFV"><span class="hs-identifier hs-type">unionsFV</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-191"></span><span id="unionsFV"><span class="annot"><span class="annottext">unionsFV :: [FV] -&gt; FV
-</span><a href="GHC.Utils.FV.html#unionsFV"><span class="hs-identifier hs-var hs-var">unionsFV</span></a></span></span><span> </span><span id="local-6989586621680998969"><span class="annot"><span class="annottext">[FV]
-</span><a href="#local-6989586621680998969"><span class="hs-identifier hs-var">fvs</span></a></span></span><span> </span><span id="local-6989586621680998968"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998968"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998967"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998967"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998966"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998966"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; FV) -&gt; [a] -&gt; FV
+</span><a href="GHC.Utils.FV.html#unionsFV"><span class="hs-identifier hs-var hs-var">unionsFV</span></a></span></span><span> </span><span id="local-6989586621680998972"><span class="annot"><span class="annottext">[FV]
+</span><a href="#local-6989586621680998972"><span class="hs-identifier hs-var">fvs</span></a></span></span><span> </span><span id="local-6989586621680998971"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998971"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998970"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998970"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998969"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998969"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; FV) -&gt; [a] -&gt; FV
 </span><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var">mapUnionFV</span></a></span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#id"><span class="hs-identifier hs-var">id</span></a></span><span> </span><span class="annot"><span class="annottext">[FV]
-</span><a href="#local-6989586621680998969"><span class="hs-identifier hs-var">fvs</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998968"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998967"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998966"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998972"><span class="hs-identifier hs-var">fvs</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998971"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998970"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998969"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-192"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#unionsFV"><span class="hs-pragma hs-type">unionsFV</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-193"></span><span>
 </span><span id="line-194"></span><span class="hs-comment">-- | Add multiple variables - when free, to the returned free variables.</span><span>
 </span><span id="line-195"></span><span class="hs-comment">-- Ignores duplicates and respects the filtering function.</span><span>
 </span><span id="line-196"></span><span class="annot"><a href="GHC.Utils.FV.html#mkFVs"><span class="hs-identifier hs-type">mkFVs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Types.Var.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#FV"><span class="hs-identifier hs-type">FV</span></a></span><span>
 </span><span id="line-197"></span><span id="mkFVs"><span class="annot"><span class="annottext">mkFVs :: [Var] -&gt; FV
-</span><a href="GHC.Utils.FV.html#mkFVs"><span class="hs-identifier hs-var hs-var">mkFVs</span></a></span></span><span> </span><span id="local-6989586621680998964"><span class="annot"><span class="annottext">[Var]
-</span><a href="#local-6989586621680998964"><span class="hs-identifier hs-var">vars</span></a></span></span><span> </span><span id="local-6989586621680998963"><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998963"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998962"><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998962"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998961"><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998961"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="GHC.Utils.FV.html#mkFVs"><span class="hs-identifier hs-var hs-var">mkFVs</span></a></span></span><span> </span><span id="local-6989586621680998967"><span class="annot"><span class="annottext">[Var]
+</span><a href="#local-6989586621680998967"><span class="hs-identifier hs-var">vars</span></a></span></span><span> </span><span id="local-6989586621680998966"><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998966"><span class="hs-identifier hs-var">fv_cand</span></a></span></span><span> </span><span id="local-6989586621680998965"><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998965"><span class="hs-identifier hs-var">in_scope</span></a></span></span><span> </span><span id="local-6989586621680998964"><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998964"><span class="hs-identifier hs-var">acc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-198"></span><span>  </span><span class="annot"><span class="annottext">forall a. (a -&gt; FV) -&gt; [a] -&gt; FV
 </span><a href="GHC.Utils.FV.html#mapUnionFV"><span class="hs-identifier hs-var">mapUnionFV</span></a></span><span> </span><span class="annot"><span class="annottext">Var -&gt; FV
 </span><a href="GHC.Utils.FV.html#unitFV"><span class="hs-identifier hs-var">unitFV</span></a></span><span> </span><span class="annot"><span class="annottext">[Var]
-</span><a href="#local-6989586621680998964"><span class="hs-identifier hs-var">vars</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
-</span><a href="#local-6989586621680998963"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
-</span><a href="#local-6989586621680998962"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
-</span><a href="#local-6989586621680998961"><span class="hs-identifier hs-var">acc</span></a></span><span>
+</span><a href="#local-6989586621680998967"><span class="hs-identifier hs-var">vars</span></a></span><span> </span><span class="annot"><span class="annottext">InterestingVarFun
+</span><a href="#local-6989586621680998966"><span class="hs-identifier hs-var">fv_cand</span></a></span><span> </span><span class="annot"><span class="annottext">VarSet
+</span><a href="#local-6989586621680998965"><span class="hs-identifier hs-var">in_scope</span></a></span><span> </span><span class="annot"><span class="annottext">([Var], VarSet)
+</span><a href="#local-6989586621680998964"><span class="hs-identifier hs-var">acc</span></a></span><span>
 </span><span id="line-199"></span><span class="hs-pragma">{-# INLINE</span><span> </span><span class="annot"><a href="GHC.Utils.FV.html#mkFVs"><span class="hs-pragma hs-type">mkFVs</span></a></span><span> </span><span class="hs-pragma">#-}</span><span>
 </span><span id="line-200"></span></pre></body></html>

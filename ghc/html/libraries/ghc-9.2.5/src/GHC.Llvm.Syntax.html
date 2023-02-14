@@ -101,7 +101,7 @@
 </span><span id="line-87"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="SyncAcqRel"><span class="annot"><a href="GHC.Llvm.Syntax.html#SyncAcqRel"><span class="hs-identifier hs-var">SyncAcqRel</span></a></span></span><span>
 </span><span id="line-88"></span><span>  </span><span class="hs-comment">-- | Full sequential Consistency operation.</span><span>
 </span><span id="line-89"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="SyncSeqCst"><span class="annot"><a href="GHC.Llvm.Syntax.html#SyncSeqCst"><span class="hs-identifier hs-var">SyncSeqCst</span></a></span></span><span>
-</span><span id="line-90"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213805"><span id="local-6989586621681213807"><span id="local-6989586621681213809"><span class="annot"><span class="annottext">Int -&gt; LlvmSyncOrdering -&gt; ShowS
+</span><span id="line-90"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213808"><span id="local-6989586621681213810"><span id="local-6989586621681213812"><span class="annot"><span class="annottext">Int -&gt; LlvmSyncOrdering -&gt; ShowS
 [LlvmSyncOrdering] -&gt; ShowS
 LlvmSyncOrdering -&gt; String
 forall a.
@@ -112,7 +112,7 @@ show :: LlvmSyncOrdering -&gt; String
 $cshow :: LlvmSyncOrdering -&gt; String
 showsPrec :: Int -&gt; LlvmSyncOrdering -&gt; ShowS
 $cshowsPrec :: Int -&gt; LlvmSyncOrdering -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213800"><span id="local-6989586621681213802"><span class="annot"><span class="annottext">LlvmSyncOrdering -&gt; LlvmSyncOrdering -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213803"><span id="local-6989586621681213805"><span class="annot"><span class="annottext">LlvmSyncOrdering -&gt; LlvmSyncOrdering -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: LlvmSyncOrdering -&gt; LlvmSyncOrdering -&gt; Bool
 $c/= :: LlvmSyncOrdering -&gt; LlvmSyncOrdering -&gt; Bool
@@ -134,7 +134,7 @@ $c== :: LlvmSyncOrdering -&gt; LlvmSyncOrdering -&gt; Bool
 </span><span id="line-103"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="LAO_Min"><span class="annot"><a href="GHC.Llvm.Syntax.html#LAO_Min"><span class="hs-identifier hs-var">LAO_Min</span></a></span></span><span>
 </span><span id="line-104"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="LAO_Umax"><span class="annot"><a href="GHC.Llvm.Syntax.html#LAO_Umax"><span class="hs-identifier hs-var">LAO_Umax</span></a></span></span><span>
 </span><span id="line-105"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="LAO_Umin"><span class="annot"><a href="GHC.Llvm.Syntax.html#LAO_Umin"><span class="hs-identifier hs-var">LAO_Umin</span></a></span></span><span>
-</span><span id="line-106"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213782"><span id="local-6989586621681213784"><span id="local-6989586621681213786"><span class="annot"><span class="annottext">Int -&gt; LlvmAtomicOp -&gt; ShowS
+</span><span id="line-106"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213785"><span id="local-6989586621681213787"><span id="local-6989586621681213789"><span class="annot"><span class="annottext">Int -&gt; LlvmAtomicOp -&gt; ShowS
 [LlvmAtomicOp] -&gt; ShowS
 LlvmAtomicOp -&gt; String
 forall a.
@@ -145,7 +145,7 @@ show :: LlvmAtomicOp -&gt; String
 $cshow :: LlvmAtomicOp -&gt; String
 showsPrec :: Int -&gt; LlvmAtomicOp -&gt; ShowS
 $cshowsPrec :: Int -&gt; LlvmAtomicOp -&gt; ShowS
-</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213778"><span id="local-6989586621681213780"><span class="annot"><span class="annottext">LlvmAtomicOp -&gt; LlvmAtomicOp -&gt; Bool
+</span><a href="../../base-4.16.4.0/src/GHC-Show.html#Show"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621681213781"><span id="local-6989586621681213783"><span class="annot"><span class="annottext">LlvmAtomicOp -&gt; LlvmAtomicOp -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: LlvmAtomicOp -&gt; LlvmAtomicOp -&gt; Bool
 $c/= :: LlvmAtomicOp -&gt; LlvmAtomicOp -&gt; Bool
@@ -239,7 +239,7 @@ $c== :: LlvmAtomicOp -&gt; LlvmAtomicOp -&gt; Bool
   -}</span><span>
 </span><span id="line-192"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="MetaStmt"><span class="annot"><a href="GHC.Llvm.Syntax.html#MetaStmt"><span class="hs-identifier hs-var">MetaStmt</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaAnnot"><span class="hs-identifier hs-type">MetaAnnot</span></a></span><span class="hs-special">]</span><span> </span><span class="annot"><a href="GHC.Llvm.Syntax.html#LlvmStatement"><span class="hs-identifier hs-type">LlvmStatement</span></a></span><span>
 </span><span id="line-193"></span><span>
-</span><span id="line-194"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213732"><span id="local-6989586621681213763"><span class="annot"><span class="annottext">LlvmStatement -&gt; LlvmStatement -&gt; Bool
+</span><span id="line-194"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213735"><span id="local-6989586621681213766"><span class="annot"><span class="annottext">LlvmStatement -&gt; LlvmStatement -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: LlvmStatement -&gt; LlvmStatement -&gt; Bool
 $c/= :: LlvmStatement -&gt; LlvmStatement -&gt; Bool
@@ -402,7 +402,7 @@ $c== :: LlvmStatement -&gt; LlvmStatement -&gt; Bool
   -}</span><span>
 </span><span id="line-349"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="MExpr"><span class="annot"><a href="GHC.Llvm.Syntax.html#MExpr"><span class="hs-identifier hs-var">MExpr</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="GHC.Llvm.MetaData.html#MetaAnnot"><span class="hs-identifier hs-type">MetaAnnot</span></a></span><span class="hs-special">]</span><span> </span><span class="annot"><a href="GHC.Llvm.Syntax.html#LlvmExpression"><span class="hs-identifier hs-type">LlvmExpression</span></a></span><span>
 </span><span id="line-350"></span><span>
-</span><span id="line-351"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213642"><span id="local-6989586621681213708"><span class="annot"><span class="annottext">LlvmExpression -&gt; LlvmExpression -&gt; Bool
+</span><span id="line-351"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621681213645"><span id="local-6989586621681213711"><span class="annot"><span class="annottext">LlvmExpression -&gt; LlvmExpression -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: LlvmExpression -&gt; LlvmExpression -&gt; Bool
 $c/= :: LlvmExpression -&gt; LlvmExpression -&gt; Bool

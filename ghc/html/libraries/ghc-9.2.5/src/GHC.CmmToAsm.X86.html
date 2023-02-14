@@ -28,11 +28,11 @@
 </span><span id="line-26"></span><span>
 </span><span id="line-27"></span><span class="annot"><a href="GHC.CmmToAsm.X86.html#ncgX86_64"><span class="hs-identifier hs-type">ncgX86_64</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Config.html#NCGConfig"><span class="hs-identifier hs-type">NCGConfig</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Monad.html#NcgImpl"><span class="hs-identifier hs-type">NcgImpl</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Basic.html#Alignment"><span class="hs-identifier hs-type">Alignment</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="GHC.Cmm.html#RawCmmStatics"><span class="hs-identifier hs-type">RawCmmStatics</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Instr.html#Instr"><span class="hs-identifier hs-type">X86.Instr</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Instr.html#JumpDest"><span class="hs-identifier hs-type">X86.JumpDest</span></a></span><span>
 </span><span id="line-28"></span><span id="ncgX86_64"><span class="annot"><span class="annottext">ncgX86_64 :: NCGConfig -&gt; NcgImpl (Alignment, RawCmmStatics) Instr JumpDest
-</span><a href="GHC.CmmToAsm.X86.html#ncgX86_64"><span class="hs-identifier hs-var hs-var">ncgX86_64</span></a></span></span><span> </span><span id="local-6989586621681250249"><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Monad.html#NcgImpl"><span class="hs-identifier hs-type">NcgImpl</span></a></span><span>
+</span><a href="GHC.CmmToAsm.X86.html#ncgX86_64"><span class="hs-identifier hs-var hs-var">ncgX86_64</span></a></span></span><span> </span><span id="local-6989586621681250252"><span class="annot"><span class="annottext">NCGConfig
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Monad.html#NcgImpl"><span class="hs-identifier hs-type">NcgImpl</span></a></span><span>
 </span><span id="line-29"></span><span>   </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ncgConfig :: NCGConfig
 </span><a href="GHC.CmmToAsm.Monad.html#ncgConfig"><span class="hs-identifier hs-var">ncgConfig</span></a></span><span>                 </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span><span>
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span><span>
 </span><span id="line-30"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">cmmTopCodeGen :: RawCmmDecl -&gt; NatM [NatCmmDecl (Alignment, RawCmmStatics) Instr]
 </span><a href="GHC.CmmToAsm.Monad.html#cmmTopCodeGen"><span class="hs-identifier hs-var">cmmTopCodeGen</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">RawCmmDecl -&gt; NatM [NatCmmDecl (Alignment, RawCmmStatics) Instr]
 </span><a href="GHC.CmmToAsm.X86.CodeGen.html#cmmTopCodeGen"><span class="hs-identifier hs-var">X86.cmmTopCodeGen</span></a></span><span>
@@ -40,7 +40,7 @@
 </span><a href="GHC.CmmToAsm.Monad.html#generateJumpTableForInstr"><span class="hs-identifier hs-var">generateJumpTableForInstr</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig
 -&gt; Instr -&gt; Maybe (NatCmmDecl (Alignment, RawCmmStatics) Instr)
 </span><a href="GHC.CmmToAsm.X86.CodeGen.html#generateJumpTableForInstr"><span class="hs-identifier hs-var">X86.generateJumpTableForInstr</span></a></span><span> </span><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span><span>
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span><span>
 </span><span id="line-32"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">getJumpDestBlockId :: JumpDest -&gt; Maybe BlockId
 </span><a href="GHC.CmmToAsm.Monad.html#getJumpDestBlockId"><span class="hs-identifier hs-var">getJumpDestBlockId</span></a></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">JumpDest -&gt; Maybe BlockId
 </span><a href="GHC.CmmToAsm.X86.Instr.html#getJumpDestBlockId"><span class="hs-identifier hs-var">X86.getJumpDestBlockId</span></a></span><span>
@@ -58,15 +58,15 @@
 </span><span id="line-36"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pprNatCmmDecl :: NatCmmDecl (Alignment, RawCmmStatics) Instr -&gt; SDoc
 </span><a href="GHC.CmmToAsm.Monad.html#pprNatCmmDecl"><span class="hs-identifier hs-var">pprNatCmmDecl</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; NatCmmDecl (Alignment, RawCmmStatics) Instr -&gt; SDoc
 </span><a href="GHC.CmmToAsm.X86.Ppr.html#pprNatCmmDecl"><span class="hs-identifier hs-var">X86.pprNatCmmDecl</span></a></span><span> </span><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span><span>
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span><span>
 </span><span id="line-37"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">maxSpillSlots :: Int
 </span><a href="GHC.CmmToAsm.Monad.html#maxSpillSlots"><span class="hs-identifier hs-var">maxSpillSlots</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; Int
 </span><a href="GHC.CmmToAsm.X86.Instr.html#maxSpillSlots"><span class="hs-identifier hs-var">X86.maxSpillSlots</span></a></span><span> </span><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span><span>
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span><span>
 </span><span id="line-38"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">allocatableRegs :: [RealReg]
 </span><a href="GHC.CmmToAsm.Monad.html#allocatableRegs"><span class="hs-identifier hs-var">allocatableRegs</span></a></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; [RealReg]
 </span><a href="GHC.CmmToAsm.X86.Regs.html#allocatableRegs"><span class="hs-identifier hs-var">X86.allocatableRegs</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681250228"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681250231"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-39"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ncgAllocMoreStack :: Int
 -&gt; NatCmmDecl (Alignment, RawCmmStatics) Instr
 -&gt; UniqSM
@@ -77,7 +77,7 @@ Platform
 -&gt; NatCmmDecl statics Instr
 -&gt; UniqSM (NatCmmDecl statics Instr, [(BlockId, BlockId)])
 </span><a href="GHC.CmmToAsm.X86.Instr.html#allocMoreStack"><span class="hs-identifier hs-var">X86.allocMoreStack</span></a></span><span> </span><span class="annot"><span class="annottext">Platform
-</span><a href="#local-6989586621681250228"><span class="hs-identifier hs-var">platform</span></a></span><span>
+</span><a href="#local-6989586621681250231"><span class="hs-identifier hs-var">platform</span></a></span><span>
 </span><span id="line-40"></span><span>   </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ncgExpandTop :: [NatCmmDecl (Alignment, RawCmmStatics) Instr]
 -&gt; [NatCmmDecl (Alignment, RawCmmStatics) Instr]
 </span><a href="GHC.CmmToAsm.Monad.html#ncgExpandTop"><span class="hs-identifier hs-var">ncgExpandTop</span></a></span><span>              </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; a
@@ -100,59 +100,59 @@ Maybe CFG
 </span><a href="GHC.CmmToAsm.X86.CodeGen.html#invertCondBranches"><span class="hs-identifier hs-var">X86.invertCondBranches</span></a></span><span>
 </span><span id="line-44"></span><span>   </span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span>      </span><span id="local-6989586621681250228"><span class="annot"><span class="annottext">platform :: Platform
-</span><a href="#local-6989586621681250228"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; Platform
+</span><span id="line-46"></span><span>      </span><span id="local-6989586621681250231"><span class="annot"><span class="annottext">platform :: Platform
+</span><a href="#local-6989586621681250231"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; Platform
 </span><a href="GHC.CmmToAsm.Config.html#ncgPlatform"><span class="hs-identifier hs-var">ncgPlatform</span></a></span><span> </span><span class="annot"><span class="annottext">NCGConfig
-</span><a href="#local-6989586621681250249"><span class="hs-identifier hs-var">config</span></a></span><span>
+</span><a href="#local-6989586621681250252"><span class="hs-identifier hs-var">config</span></a></span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span class="hs-comment">-- | Instruction instance for x86 instruction set.</span><span>
 </span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.Instr.html#Instruction"><span class="hs-identifier hs-type">Instruction</span></a></span><span> </span><span class="annot"><a href="GHC.CmmToAsm.X86.Instr.html#Instr"><span class="hs-identifier hs-type">X86.Instr</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span>   </span><span id="local-6989586621681250198"><span class="annot"><span class="annottext">regUsageOfInstr :: Platform -&gt; Instr -&gt; RegUsage
+</span><span id="line-50"></span><span>   </span><span id="local-6989586621681250201"><span class="annot"><span class="annottext">regUsageOfInstr :: Platform -&gt; Instr -&gt; RegUsage
 </span><a href="GHC.CmmToAsm.Instr.html#regUsageOfInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">regUsageOfInstr</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Instr -&gt; RegUsage
 </span><a href="GHC.CmmToAsm.X86.Instr.html#regUsageOfInstr"><span class="hs-identifier hs-var">X86.regUsageOfInstr</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621681250195"><span class="annot"><span class="annottext">patchRegsOfInstr :: Instr -&gt; (Reg -&gt; Reg) -&gt; Instr
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621681250198"><span class="annot"><span class="annottext">patchRegsOfInstr :: Instr -&gt; (Reg -&gt; Reg) -&gt; Instr
 </span><a href="GHC.CmmToAsm.Instr.html#patchRegsOfInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">patchRegsOfInstr</span></a></span></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; (Reg -&gt; Reg) -&gt; Instr
 </span><a href="GHC.CmmToAsm.X86.Instr.html#patchRegsOfInstr"><span class="hs-identifier hs-var">X86.patchRegsOfInstr</span></a></span><span>
-</span><span id="line-52"></span><span>   </span><span id="local-6989586621681250192"><span class="annot"><span class="annottext">isJumpishInstr :: Instr -&gt; Bool
+</span><span id="line-52"></span><span>   </span><span id="local-6989586621681250195"><span class="annot"><span class="annottext">isJumpishInstr :: Instr -&gt; Bool
 </span><a href="GHC.CmmToAsm.Instr.html#isJumpishInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">isJumpishInstr</span></a></span></span><span>          </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; Bool
 </span><a href="GHC.CmmToAsm.X86.Instr.html#isJumpishInstr"><span class="hs-identifier hs-var">X86.isJumpishInstr</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span id="local-6989586621681250189"><span class="annot"><span class="annottext">jumpDestsOfInstr :: Instr -&gt; [BlockId]
+</span><span id="line-53"></span><span>   </span><span id="local-6989586621681250192"><span class="annot"><span class="annottext">jumpDestsOfInstr :: Instr -&gt; [BlockId]
 </span><a href="GHC.CmmToAsm.Instr.html#jumpDestsOfInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">jumpDestsOfInstr</span></a></span></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; [BlockId]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#jumpDestsOfInstr"><span class="hs-identifier hs-var">X86.jumpDestsOfInstr</span></a></span><span>
-</span><span id="line-54"></span><span>   </span><span id="local-6989586621681250186"><span class="annot"><span class="annottext">patchJumpInstr :: Instr -&gt; (BlockId -&gt; BlockId) -&gt; Instr
+</span><span id="line-54"></span><span>   </span><span id="local-6989586621681250189"><span class="annot"><span class="annottext">patchJumpInstr :: Instr -&gt; (BlockId -&gt; BlockId) -&gt; Instr
 </span><a href="GHC.CmmToAsm.Instr.html#patchJumpInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">patchJumpInstr</span></a></span></span><span>          </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; (BlockId -&gt; BlockId) -&gt; Instr
 </span><a href="GHC.CmmToAsm.X86.Instr.html#patchJumpInstr"><span class="hs-identifier hs-var">X86.patchJumpInstr</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621681250183"><span class="annot"><span class="annottext">mkSpillInstr :: NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621681250186"><span class="annot"><span class="annottext">mkSpillInstr :: NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkSpillInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkSpillInstr</span></a></span></span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkSpillInstr"><span class="hs-identifier hs-var">X86.mkSpillInstr</span></a></span><span>
-</span><span id="line-56"></span><span>   </span><span id="local-6989586621681250180"><span class="annot"><span class="annottext">mkLoadInstr :: NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
+</span><span id="line-56"></span><span>   </span><span id="local-6989586621681250183"><span class="annot"><span class="annottext">mkLoadInstr :: NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkLoadInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkLoadInstr</span></a></span></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NCGConfig -&gt; Reg -&gt; Int -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkLoadInstr"><span class="hs-identifier hs-var">X86.mkLoadInstr</span></a></span><span>
-</span><span id="line-57"></span><span>   </span><span id="local-6989586621681250177"><span class="annot"><span class="annottext">takeDeltaInstr :: Instr -&gt; Maybe Int
+</span><span id="line-57"></span><span>   </span><span id="local-6989586621681250180"><span class="annot"><span class="annottext">takeDeltaInstr :: Instr -&gt; Maybe Int
 </span><a href="GHC.CmmToAsm.Instr.html#takeDeltaInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">takeDeltaInstr</span></a></span></span><span>          </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; Maybe Int
 </span><a href="GHC.CmmToAsm.X86.Instr.html#takeDeltaInstr"><span class="hs-identifier hs-var">X86.takeDeltaInstr</span></a></span><span>
-</span><span id="line-58"></span><span>   </span><span id="local-6989586621681250174"><span class="annot"><span class="annottext">isMetaInstr :: Instr -&gt; Bool
+</span><span id="line-58"></span><span>   </span><span id="local-6989586621681250177"><span class="annot"><span class="annottext">isMetaInstr :: Instr -&gt; Bool
 </span><a href="GHC.CmmToAsm.Instr.html#isMetaInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">isMetaInstr</span></a></span></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; Bool
 </span><a href="GHC.CmmToAsm.X86.Instr.html#isMetaInstr"><span class="hs-identifier hs-var">X86.isMetaInstr</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621681250171"><span class="annot"><span class="annottext">mkRegRegMoveInstr :: Platform -&gt; Reg -&gt; Reg -&gt; Instr
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621681250174"><span class="annot"><span class="annottext">mkRegRegMoveInstr :: Platform -&gt; Reg -&gt; Reg -&gt; Instr
 </span><a href="GHC.CmmToAsm.Instr.html#mkRegRegMoveInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkRegRegMoveInstr</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Reg -&gt; Reg -&gt; Instr
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkRegRegMoveInstr"><span class="hs-identifier hs-var">X86.mkRegRegMoveInstr</span></a></span><span>
-</span><span id="line-60"></span><span>   </span><span id="local-6989586621681250168"><span class="annot"><span class="annottext">takeRegRegMoveInstr :: Instr -&gt; Maybe (Reg, Reg)
+</span><span id="line-60"></span><span>   </span><span id="local-6989586621681250171"><span class="annot"><span class="annottext">takeRegRegMoveInstr :: Instr -&gt; Maybe (Reg, Reg)
 </span><a href="GHC.CmmToAsm.Instr.html#takeRegRegMoveInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">takeRegRegMoveInstr</span></a></span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Instr -&gt; Maybe (Reg, Reg)
 </span><a href="GHC.CmmToAsm.X86.Instr.html#takeRegRegMoveInstr"><span class="hs-identifier hs-var">X86.takeRegRegMoveInstr</span></a></span><span>
-</span><span id="line-61"></span><span>   </span><span id="local-6989586621681250165"><span class="annot"><span class="annottext">mkJumpInstr :: BlockId -&gt; [Instr]
+</span><span id="line-61"></span><span>   </span><span id="local-6989586621681250168"><span class="annot"><span class="annottext">mkJumpInstr :: BlockId -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkJumpInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkJumpInstr</span></a></span></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">BlockId -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkJumpInstr"><span class="hs-identifier hs-var">X86.mkJumpInstr</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621681250162"><span class="annot"><span class="annottext">mkStackAllocInstr :: Platform -&gt; Int -&gt; [Instr]
+</span><span id="line-62"></span><span>   </span><span id="local-6989586621681250165"><span class="annot"><span class="annottext">mkStackAllocInstr :: Platform -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkStackAllocInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkStackAllocInstr</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkStackAllocInstr"><span class="hs-identifier hs-var">X86.mkStackAllocInstr</span></a></span><span>
-</span><span id="line-63"></span><span>   </span><span id="local-6989586621681250159"><span class="annot"><span class="annottext">mkStackDeallocInstr :: Platform -&gt; Int -&gt; [Instr]
+</span><span id="line-63"></span><span>   </span><span id="local-6989586621681250162"><span class="annot"><span class="annottext">mkStackDeallocInstr :: Platform -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkStackDeallocInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkStackDeallocInstr</span></a></span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Int -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.X86.Instr.html#mkStackDeallocInstr"><span class="hs-identifier hs-var">X86.mkStackDeallocInstr</span></a></span><span>
-</span><span id="line-64"></span><span>   </span><span id="local-6989586621681250156"><span class="annot"><span class="annottext">pprInstr :: Platform -&gt; Instr -&gt; SDoc
+</span><span id="line-64"></span><span>   </span><span id="local-6989586621681250159"><span class="annot"><span class="annottext">pprInstr :: Platform -&gt; Instr -&gt; SDoc
 </span><a href="GHC.CmmToAsm.Instr.html#pprInstr"><span class="hs-identifier hs-var hs-var hs-var hs-var">pprInstr</span></a></span></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Platform -&gt; Instr -&gt; SDoc
 </span><a href="GHC.CmmToAsm.X86.Ppr.html#pprInstr"><span class="hs-identifier hs-var">X86.pprInstr</span></a></span><span>
-</span><span id="line-65"></span><span>   </span><span id="local-6989586621681250153"><span class="annot"><span class="annottext">mkComment :: SDoc -&gt; [Instr]
+</span><span id="line-65"></span><span>   </span><span id="local-6989586621681250156"><span class="annot"><span class="annottext">mkComment :: SDoc -&gt; [Instr]
 </span><a href="GHC.CmmToAsm.Instr.html#mkComment"><span class="hs-identifier hs-var hs-var hs-var hs-var">mkComment</span></a></span></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a b. a -&gt; b -&gt; a
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#const"><span class="hs-identifier hs-var">const</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-66"></span></pre></body></html>

@@ -49,7 +49,7 @@
 </span><span id="line-46"></span><span>        </span><span class="hs-comment">-- If specified, the Phase indicates how to compile this file</span><span>
 </span><span id="line-47"></span><span>        </span><span class="hs-comment">-- (which phase to start from).  Nothing indicates the starting phase</span><span>
 </span><span id="line-48"></span><span>        </span><span class="hs-comment">-- should be determined from the suffix of the filename.</span><span>
-</span><span id="line-49"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621681129708"><span id="local-6989586621681129718"><span class="annot"><span class="annottext">TargetId -&gt; TargetId -&gt; Bool
+</span><span id="line-49"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621681129711"><span id="local-6989586621681129721"><span class="annot"><span class="annottext">TargetId -&gt; TargetId -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: TargetId -&gt; TargetId -&gt; Bool
 $c/= :: TargetId -&gt; TargetId -&gt; Bool
@@ -62,39 +62,39 @@ $c== :: TargetId -&gt; TargetId -&gt; Bool
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span class="annot"><a href="GHC.Types.Target.html#pprTarget"><span class="hs-identifier hs-type">pprTarget</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Target.html#Target"><span class="hs-identifier hs-type">Target</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#SDoc"><span class="hs-identifier hs-type">SDoc</span></a></span><span>
 </span><span id="line-55"></span><span id="pprTarget"><span class="annot"><span class="annottext">pprTarget :: Target -&gt; SDoc
-</span><a href="GHC.Types.Target.html#pprTarget"><span class="hs-identifier hs-var hs-var">pprTarget</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#Target"><span class="hs-identifier hs-type">Target</span></a></span><span> </span><span id="local-6989586621681129704"><span class="annot"><span class="annottext">TargetId
-</span><a href="#local-6989586621681129704"><span class="hs-identifier hs-var">id</span></a></span></span><span> </span><span id="local-6989586621681129703"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681129703"><span class="hs-identifier hs-var">obj</span></a></span></span><span> </span><span class="annot"><span class="annottext">Maybe (InputFileBuffer, UTCTime)
+</span><a href="GHC.Types.Target.html#pprTarget"><span class="hs-identifier hs-var hs-var">pprTarget</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#Target"><span class="hs-identifier hs-type">Target</span></a></span><span> </span><span id="local-6989586621681129707"><span class="annot"><span class="annottext">TargetId
+</span><a href="#local-6989586621681129707"><span class="hs-identifier hs-var">id</span></a></span></span><span> </span><span id="local-6989586621681129706"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621681129706"><span class="hs-identifier hs-var">obj</span></a></span></span><span> </span><span class="annot"><span class="annottext">Maybe (InputFileBuffer, UTCTime)
 </span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-56"></span><span>    </span><span class="hs-special">(</span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621681129703"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">SDoc
+</span><a href="#local-6989586621681129706"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">SDoc
 </span><a href="GHC.Utils.Outputable.html#empty"><span class="hs-identifier hs-var">empty</span></a></span><span> </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">Char -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#char"><span class="hs-identifier hs-var">char</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'*'</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; SDoc -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#%3C%3E"><span class="hs-operator hs-var">&lt;&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">TargetId -&gt; SDoc
 </span><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var">pprTargetId</span></a></span><span> </span><span class="annot"><span class="annottext">TargetId
-</span><a href="#local-6989586621681129704"><span class="hs-identifier hs-var">id</span></a></span><span>
+</span><a href="#local-6989586621681129707"><span class="hs-identifier hs-var">id</span></a></span><span>
 </span><span id="line-57"></span><span>
 </span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Types.Target.html#Target"><span class="hs-identifier hs-type">Target</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621681129696"><span class="annot"><span class="annottext">ppr :: Target -&gt; SDoc
+</span><span id="line-59"></span><span>    </span><span id="local-6989586621681129699"><span class="annot"><span class="annottext">ppr :: Target -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Target -&gt; SDoc
 </span><a href="GHC.Types.Target.html#pprTarget"><span class="hs-identifier hs-var">pprTarget</span></a></span><span>
 </span><span id="line-60"></span><span>
 </span><span id="line-61"></span><span class="annot"><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-type">pprTargetId</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Types.Target.html#TargetId"><span class="hs-identifier hs-type">TargetId</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#SDoc"><span class="hs-identifier hs-type">SDoc</span></a></span><span>
 </span><span id="line-62"></span><span id="pprTargetId"><span class="annot"><span class="annottext">pprTargetId :: TargetId -&gt; SDoc
-</span><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var hs-var">pprTargetId</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#TargetModule"><span class="hs-identifier hs-type">TargetModule</span></a></span><span> </span><span id="local-6989586621681129694"><span class="annot"><span class="annottext">ModuleName
-</span><a href="#local-6989586621681129694"><span class="hs-identifier hs-var">m</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
+</span><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var hs-var">pprTargetId</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#TargetModule"><span class="hs-identifier hs-type">TargetModule</span></a></span><span> </span><span id="local-6989586621681129697"><span class="annot"><span class="annottext">ModuleName
+</span><a href="#local-6989586621681129697"><span class="hs-identifier hs-var">m</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Outputable a =&gt; a -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#ppr"><span class="hs-identifier hs-var">ppr</span></a></span><span> </span><span class="annot"><span class="annottext">ModuleName
-</span><a href="#local-6989586621681129694"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-63"></span><span class="annot"><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var">pprTargetId</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#TargetFile"><span class="hs-identifier hs-type">TargetFile</span></a></span><span> </span><span id="local-6989586621681129693"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621681129693"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Maybe Phase
+</span><a href="#local-6989586621681129697"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-63"></span><span class="annot"><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var">pprTargetId</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GHC.Types.Target.html#TargetFile"><span class="hs-identifier hs-type">TargetFile</span></a></span><span> </span><span id="local-6989586621681129696"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621681129696"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Maybe Phase
 </span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621681129693"><span class="hs-identifier hs-var">f</span></a></span><span>
+</span><a href="#local-6989586621681129696"><span class="hs-identifier hs-var">f</span></a></span><span>
 </span><span id="line-64"></span><span>
 </span><span id="line-65"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><a href="GHC.Utils.Outputable.html#Outputable"><span class="hs-identifier hs-type">Outputable</span></a></span><span> </span><span class="annot"><a href="GHC.Types.Target.html#TargetId"><span class="hs-identifier hs-type">TargetId</span></a></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621681129689"><span class="annot"><span class="annottext">ppr :: TargetId -&gt; SDoc
-</span><a href="#local-6989586621681129689"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TargetId -&gt; SDoc
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621681129692"><span class="annot"><span class="annottext">ppr :: TargetId -&gt; SDoc
+</span><a href="#local-6989586621681129692"><span class="hs-identifier hs-var hs-var hs-var hs-var">ppr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TargetId -&gt; SDoc
 </span><a href="GHC.Types.Target.html#pprTargetId"><span class="hs-identifier hs-var">pprTargetId</span></a></span><span>
 </span><span id="line-67"></span><span>
 </span><span id="line-68"></span></pre></body></html>

@@ -44,11 +44,11 @@
 </span><span id="line-44"></span><span class="hs-comment">-- | Create a ImmLit containing this string.</span><span>
 </span><span id="line-45"></span><span class="annot"><a href="GHC.CmmToAsm.SPARC.Imm.html#strImmLit"><span class="hs-identifier hs-type">strImmLit</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../base-4.16.4.0/src/GHC-Base.html#String"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.SPARC.Imm.html#Imm"><span class="hs-identifier hs-type">Imm</span></a></span><span>
 </span><span id="line-46"></span><span id="strImmLit"><span class="annot"><span class="annottext">strImmLit :: String -&gt; Imm
-</span><a href="GHC.CmmToAsm.SPARC.Imm.html#strImmLit"><span class="hs-identifier hs-var hs-var">strImmLit</span></a></span></span><span> </span><span id="local-6989586621681212592"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681212592"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; Imm
+</span><a href="GHC.CmmToAsm.SPARC.Imm.html#strImmLit"><span class="hs-identifier hs-var hs-var">strImmLit</span></a></span></span><span> </span><span id="local-6989586621681212595"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621681212595"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">SDoc -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmLit"><span class="hs-identifier hs-var">ImmLit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; SDoc
 </span><a href="GHC.Utils.Outputable.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621681212592"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681212595"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span>
 </span><span id="line-49"></span><span class="hs-comment">-- | Convert a CmmLit to an Imm.</span><span>
@@ -58,54 +58,54 @@
 </span><span id="line-53"></span><span class="hs-comment">--</span><span>
 </span><span id="line-54"></span><span class="annot"><a href="GHC.CmmToAsm.SPARC.Imm.html#litToImm"><span class="hs-identifier hs-type">litToImm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLit"><span class="hs-identifier hs-type">CmmLit</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GHC.CmmToAsm.SPARC.Imm.html#Imm"><span class="hs-identifier hs-type">Imm</span></a></span><span>
 </span><span id="line-55"></span><span id="litToImm"><span class="annot"><span class="annottext">litToImm :: CmmLit -&gt; Imm
-</span><a href="GHC.CmmToAsm.SPARC.Imm.html#litToImm"><span class="hs-identifier hs-var hs-var">litToImm</span></a></span></span><span> </span><span id="local-6989586621681212590"><span class="annot"><span class="annottext">CmmLit
-</span><a href="#local-6989586621681212590"><span class="hs-identifier hs-var">lit</span></a></span></span><span>
+</span><a href="GHC.CmmToAsm.SPARC.Imm.html#litToImm"><span class="hs-identifier hs-var hs-var">litToImm</span></a></span></span><span> </span><span id="local-6989586621681212593"><span class="annot"><span class="annottext">CmmLit
+</span><a href="#local-6989586621681212593"><span class="hs-identifier hs-var">lit</span></a></span></span><span>
 </span><span id="line-56"></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">CmmLit
-</span><a href="#local-6989586621681212590"><span class="hs-identifier hs-var">lit</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-57"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmInt"><span class="hs-identifier hs-type">CmmInt</span></a></span><span> </span><span id="local-6989586621681212588"><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621681212588"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span id="local-6989586621681212587"><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681212587"><span class="hs-identifier hs-var">w</span></a></span></span><span>              </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Integer -&gt; Imm
+</span><a href="#local-6989586621681212593"><span class="hs-identifier hs-var">lit</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-57"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmInt"><span class="hs-identifier hs-type">CmmInt</span></a></span><span> </span><span id="local-6989586621681212591"><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621681212591"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span id="local-6989586621681212590"><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681212590"><span class="hs-identifier hs-var">w</span></a></span></span><span>              </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Integer -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmInteger"><span class="hs-identifier hs-var">ImmInteger</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Width -&gt; Integer -&gt; Integer
 </span><a href="GHC.Cmm.Type.html#narrowS"><span class="hs-identifier hs-var">narrowS</span></a></span><span> </span><span class="annot"><span class="annottext">Width
-</span><a href="#local-6989586621681212587"><span class="hs-identifier hs-var">w</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
-</span><a href="#local-6989586621681212588"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmFloat"><span class="hs-identifier hs-type">CmmFloat</span></a></span><span> </span><span id="local-6989586621681212584"><span class="annot"><span class="annottext">Rational
-</span><a href="#local-6989586621681212584"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681212590"><span class="hs-identifier hs-var">w</span></a></span><span> </span><span class="annot"><span class="annottext">Integer
+</span><a href="#local-6989586621681212591"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-58"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmFloat"><span class="hs-identifier hs-type">CmmFloat</span></a></span><span> </span><span id="local-6989586621681212587"><span class="annot"><span class="annottext">Rational
+</span><a href="#local-6989586621681212587"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W32"><span class="hs-identifier hs-var">W32</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Rational -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmFloat"><span class="hs-identifier hs-var">ImmFloat</span></a></span><span> </span><span class="annot"><span class="annottext">Rational
-</span><a href="#local-6989586621681212584"><span class="hs-identifier hs-var">f</span></a></span><span>
-</span><span id="line-59"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmFloat"><span class="hs-identifier hs-type">CmmFloat</span></a></span><span> </span><span id="local-6989586621681212582"><span class="annot"><span class="annottext">Rational
-</span><a href="#local-6989586621681212582"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
+</span><a href="#local-6989586621681212587"><span class="hs-identifier hs-var">f</span></a></span><span>
+</span><span id="line-59"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmFloat"><span class="hs-identifier hs-type">CmmFloat</span></a></span><span> </span><span id="local-6989586621681212585"><span class="annot"><span class="annottext">Rational
+</span><a href="#local-6989586621681212585"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
 </span><a href="GHC.Cmm.Type.html#W64"><span class="hs-identifier hs-var">W64</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Rational -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmDouble"><span class="hs-identifier hs-var">ImmDouble</span></a></span><span> </span><span class="annot"><span class="annottext">Rational
-</span><a href="#local-6989586621681212582"><span class="hs-identifier hs-var">f</span></a></span><span>
-</span><span id="line-60"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabel"><span class="hs-identifier hs-type">CmmLabel</span></a></span><span> </span><span id="local-6989586621681212579"><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212579"><span class="hs-identifier hs-var">l</span></a></span></span><span>              </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">CLabel -&gt; Imm
+</span><a href="#local-6989586621681212585"><span class="hs-identifier hs-var">f</span></a></span><span>
+</span><span id="line-60"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabel"><span class="hs-identifier hs-type">CmmLabel</span></a></span><span> </span><span id="local-6989586621681212582"><span class="annot"><span class="annottext">CLabel
+</span><a href="#local-6989586621681212582"><span class="hs-identifier hs-var">l</span></a></span></span><span>              </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">CLabel -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmCLbl"><span class="hs-identifier hs-var">ImmCLbl</span></a></span><span> </span><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212579"><span class="hs-identifier hs-var">l</span></a></span><span>
-</span><span id="line-61"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabelOff"><span class="hs-identifier hs-type">CmmLabelOff</span></a></span><span> </span><span id="local-6989586621681212577"><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212577"><span class="hs-identifier hs-var">l</span></a></span></span><span> </span><span id="local-6989586621681212576"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681212576"><span class="hs-identifier hs-var">off</span></a></span></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">CLabel -&gt; Int -&gt; Imm
+</span><a href="#local-6989586621681212582"><span class="hs-identifier hs-var">l</span></a></span><span>
+</span><span id="line-61"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabelOff"><span class="hs-identifier hs-type">CmmLabelOff</span></a></span><span> </span><span id="local-6989586621681212580"><span class="annot"><span class="annottext">CLabel
+</span><a href="#local-6989586621681212580"><span class="hs-identifier hs-var">l</span></a></span></span><span> </span><span id="local-6989586621681212579"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681212579"><span class="hs-identifier hs-var">off</span></a></span></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">CLabel -&gt; Int -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmIndex"><span class="hs-identifier hs-var">ImmIndex</span></a></span><span> </span><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212577"><span class="hs-identifier hs-var">l</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681212576"><span class="hs-identifier hs-var">off</span></a></span><span>
+</span><a href="#local-6989586621681212580"><span class="hs-identifier hs-var">l</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681212579"><span class="hs-identifier hs-var">off</span></a></span><span>
 </span><span id="line-62"></span><span>
-</span><span id="line-63"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabelDiffOff"><span class="hs-identifier hs-type">CmmLabelDiffOff</span></a></span><span> </span><span id="local-6989586621681212574"><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212574"><span class="hs-identifier hs-var">l1</span></a></span></span><span> </span><span id="local-6989586621681212573"><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212573"><span class="hs-identifier hs-var">l2</span></a></span></span><span> </span><span id="local-6989586621681212572"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681212572"><span class="hs-identifier hs-var">off</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
+</span><span id="line-63"></span><span>        </span><span class="annot"><a href="GHC.Cmm.Expr.html#CmmLabelDiffOff"><span class="hs-identifier hs-type">CmmLabelDiffOff</span></a></span><span> </span><span id="local-6989586621681212577"><span class="annot"><span class="annottext">CLabel
+</span><a href="#local-6989586621681212577"><span class="hs-identifier hs-var">l1</span></a></span></span><span> </span><span id="local-6989586621681212576"><span class="annot"><span class="annottext">CLabel
+</span><a href="#local-6989586621681212576"><span class="hs-identifier hs-var">l2</span></a></span></span><span> </span><span id="local-6989586621681212575"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621681212575"><span class="hs-identifier hs-var">off</span></a></span></span><span> </span><span class="annot"><span class="annottext">Width
 </span><span class="hs-identifier">_</span></span><span>
 </span><span id="line-64"></span><span>         </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Imm -&gt; Imm -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmConstantSum"><span class="hs-identifier hs-var">ImmConstantSum</span></a></span><span>
 </span><span id="line-65"></span><span>                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Imm -&gt; Imm -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmConstantDiff"><span class="hs-identifier hs-var">ImmConstantDiff</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CLabel -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmCLbl"><span class="hs-identifier hs-var">ImmCLbl</span></a></span><span> </span><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212574"><span class="hs-identifier hs-var">l1</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CLabel -&gt; Imm
+</span><a href="#local-6989586621681212577"><span class="hs-identifier hs-var">l1</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">CLabel -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmCLbl"><span class="hs-identifier hs-var">ImmCLbl</span></a></span><span> </span><span class="annot"><span class="annottext">CLabel
-</span><a href="#local-6989586621681212573"><span class="hs-identifier hs-var">l2</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681212576"><span class="hs-identifier hs-var">l2</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-66"></span><span>                </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; Imm
 </span><a href="GHC.CmmToAsm.SPARC.Imm.html#ImmInt"><span class="hs-identifier hs-var">ImmInt</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621681212572"><span class="hs-identifier hs-var">off</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621681212575"><span class="hs-identifier hs-var">off</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-67"></span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">CmmLit
 </span><span class="hs-identifier">_</span></span><span>               </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; a

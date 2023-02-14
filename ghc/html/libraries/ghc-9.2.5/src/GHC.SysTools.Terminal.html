@@ -44,15 +44,15 @@
 </span><span id="line-41"></span><span id="stderrSupportsAnsiColors%27"><span class="annot"><span class="annottext">stderrSupportsAnsiColors' :: IO Bool
 </span><a href="GHC.SysTools.Terminal.html#stderrSupportsAnsiColors%27"><span class="hs-identifier hs-var hs-var">stderrSupportsAnsiColors'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span class="hs-cpp">
 #if defined(MIN_VERSION_terminfo)
-</span><span>    </span><span id="local-6989586621680963441"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621680963441"><span class="hs-identifier hs-var">stderr_available</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Fd -&gt; IO Bool
+</span><span>    </span><span id="local-6989586621680963444"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621680963444"><span class="hs-identifier hs-var">stderr_available</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Fd -&gt; IO Bool
 </span><a href="../../unix-2.7.2.2/src/System-Posix-Terminal-Common.html#queryTerminal"><span class="hs-identifier hs-var">queryTerminal</span></a></span><span> </span><span class="annot"><span class="annottext">Fd
 </span><a href="../../unix-2.7.2.2/src/System-Posix-IO-Common.html#stdError"><span class="hs-identifier hs-var">stdError</span></a></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621680963441"><span class="hs-identifier hs-var">stderr_available</span></a></span><span> </span><span class="hs-keyword">then</span><span>
+</span><a href="#local-6989586621680963444"><span class="hs-identifier hs-var">stderr_available</span></a></span><span> </span><span class="hs-keyword">then</span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#fmap"><span class="hs-identifier hs-var">fmap</span></a></span><span> </span><span class="annot"><span class="annottext">Terminal -&gt; Bool
-</span><a href="#local-6989586621680963440"><span class="hs-identifier hs-var">termSupportsColors</span></a></span><span> </span><span class="annot"><span class="annottext">IO Terminal
+</span><a href="#local-6989586621680963443"><span class="hs-identifier hs-var">termSupportsColors</span></a></span><span> </span><span class="annot"><span class="annottext">IO Terminal
 </span><a href="../../terminfo-0.4.1.5/src/System-Console-Terminfo-Base.html#setupTermFromEnv"><span class="hs-identifier hs-var">setupTermFromEnv</span></a></span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">forall e a. Exception e =&gt; IO a -&gt; (e -&gt; IO a) -&gt; IO a
 </span><a href="../../base-4.16.4.0/src/GHC-IO.html#catch"><span class="hs-operator hs-var">`catch`</span></a></span><span> </span><span class="hs-glyph">\</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">SetupTermError
@@ -64,14 +64,14 @@
 </span><a href="../../base-4.16.4.0/src/GHC-Base.html#pure"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span>
 </span><span id="line-49"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span>    </span><span class="annot"><a href="#local-6989586621680963440"><span class="hs-identifier hs-type">termSupportsColors</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../terminfo-0.4.1.5/src/System-Console-Terminfo-Base.html#Terminal"><span class="hs-identifier hs-type">Terminal</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621680963440"><span class="annot"><span class="annottext">termSupportsColors :: Terminal -&gt; Bool
-</span><a href="#local-6989586621680963440"><span class="hs-identifier hs-var hs-var">termSupportsColors</span></a></span></span><span> </span><span id="local-6989586621680963439"><span class="annot"><span class="annottext">Terminal
-</span><a href="#local-6989586621680963439"><span class="hs-identifier hs-var">term</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a -&gt; a
+</span><span id="line-50"></span><span>    </span><span class="annot"><a href="#local-6989586621680963443"><span class="hs-identifier hs-type">termSupportsColors</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../terminfo-0.4.1.5/src/System-Console-Terminfo-Base.html#Terminal"><span class="hs-identifier hs-type">Terminal</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621680963443"><span class="annot"><span class="annottext">termSupportsColors :: Terminal -&gt; Bool
+</span><a href="#local-6989586621680963443"><span class="hs-identifier hs-var hs-var">termSupportsColors</span></a></span></span><span> </span><span id="local-6989586621680963442"><span class="annot"><span class="annottext">Terminal
+</span><a href="#local-6989586621680963442"><span class="hs-identifier hs-var">term</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a -&gt; a
 </span><a href="../../base-4.16.4.0/src/Data-Maybe.html#fromMaybe"><span class="hs-identifier hs-var">fromMaybe</span></a></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a. Terminal -&gt; Capability a -&gt; Maybe a
 </span><a href="../../terminfo-0.4.1.5/src/System-Console-Terminfo-Base.html#getCapability"><span class="hs-identifier hs-var">getCapability</span></a></span><span> </span><span class="annot"><span class="annottext">Terminal
-</span><a href="#local-6989586621680963439"><span class="hs-identifier hs-var">term</span></a></span><span> </span><span class="annot"><span class="annottext">Capability Int
+</span><a href="#local-6989586621680963442"><span class="hs-identifier hs-var">term</span></a></span><span> </span><span class="annot"><span class="annottext">Capability Int
 </span><a href="../../terminfo-0.4.1.5/src/System-Console-Terminfo-Color.html#termColors"><span class="hs-identifier hs-var">termColors</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">0</span></span><span class="hs-cpp">
