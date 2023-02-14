@@ -43,6 +43,7 @@ basic = testNested "Basic" [
     , goldenPir "letFunForall" letFunForall
     , goldenPir "letAppMulti" letAppMulti
     , goldenPir "letOverAppMulti" letOverAppMulti
+    , goldenPir "letFunConstMulti" letFunConstMulti
 --   , goldenPir "monoK" monoK
 --   , goldenPir "letFun" letFun
 --   , goldenPir "nonstrictLet" nonstrictLet
@@ -188,6 +189,15 @@ letOverAppMulti = plc (Proxy @"letOverAppMulti")(
         {-# NOINLINE k #-}
         k = funApp
     in k (k idFun) 6
+    )
+
+letFunConstMulti :: CompiledCode (Integer -> Integer)
+letFunConstMulti = plc (Proxy @"letFunConstMulti")(
+    let
+        constFun :: Integer -> Integer -> Integer
+        {-# NOINLINE constFun #-}
+        constFun x y = x
+    in constFun (constFun 3 5)
     )
 
 monoK :: CompiledCode (Integer -> Integer -> Integer)
