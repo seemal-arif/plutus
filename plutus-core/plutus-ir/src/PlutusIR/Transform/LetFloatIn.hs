@@ -388,16 +388,16 @@ floatInBinding ver letAnn = \b ->
             | Set.disjoint declaredUniqs (typeUniqs ty) ->
                 -- We float into lambdas only if `_ctxtInManyOccRhs = False`.
                 -- See Note [Float-in] #4
-                ifM
-                    (asks _ctxtInManyOccRhs)
-                    giveup
+                -- ifM
+                --     (asks _ctxtInManyOccRhs)
+                --     giveup
                     (LamAbs (a, usBind <> usBody) n ty <$> go b lamAbsBody)
         TyAbs (a, usBody) n k tyAbsBody ->
             -- We float into type abstractions only if `_ctxtInManyOccRhs = False`.
             -- See Note [Float-in] #4
-            ifM
-                (asks _ctxtInManyOccRhs)
-                giveup
+            -- ifM
+            --     (asks _ctxtInManyOccRhs)
+            --     giveup
                 (TyAbs (a, usBind <> usBody) n k <$> go b tyAbsBody)
         TyInst (a, usBody) tyInstBody ty
             | Set.disjoint declaredUniqs (typeUniqs ty) ->
@@ -409,34 +409,34 @@ floatInBinding ver letAnn = \b ->
             -- bindings of the `Let` do not mention `var`.
             | Set.disjoint declaredUniqs (foldMap bindingUniqs bs) ->
                 Let (a, usBind <> usBody) NonRec bs <$> go b letBody
-            | Set.disjoint declaredUniqs (termUniqs letBody)
-            , Just (before, TermBind (a', usBind') s' var' rhs', after) <-
-                splitBindings declaredUniqs (NonEmpty.toList bs) -> do
-                -- `letBody` does not mention `var`, and there is exactly one
-                -- RHS in `bs` that mentions `var`, so we can place `b`
-                -- inside one of the RHSs in `bs`.
-                ctxt <- ask
-                let usageCnt = Usages.getUsageCount var' (ctxt ^. ctxtUsages)
-                    safe = case s' of
-                        Strict -> True
-                        NonStrict ->
-                            not (ctxt ^. ctxtInManyOccRhs)
-                                -- Descending into a non-strict binding whose LHS is used
-                                -- more than once should be avoided, regardless of
-                                -- `ctxtInManyOccRhs`.
-                                -- See Note [Float-in] #4
-                                && usageCnt <= 1
-                    inManyOccRhs = usageCnt > 1
-                if safe
-                    then do
-                        b'' <-
-                            TermBind (a', usBind <> usBind') s' var'
-                                <$> local
-                                    (over ctxtInManyOccRhs (|| inManyOccRhs))
-                                    (go b rhs')
-                        let bs' = NonEmpty.appendr before (b'' :| after)
-                        pure $ Let (a, usBind <> usBody) NonRec bs' letBody
-                    else giveup
+            -- | Set.disjoint declaredUniqs (termUniqs letBody)
+            -- , Just (before, TermBind (a', usBind') s' var' rhs', after) <-
+            --     splitBindings declaredUniqs (NonEmpty.toList bs) -> do
+            --     -- `letBody` does not mention `var`, and there is exactly one
+            --     -- RHS in `bs` that mentions `var`, so we can place `b`
+            --     -- inside one of the RHSs in `bs`.
+            --     ctxt <- ask
+            --     let usageCnt = Usages.getUsageCount var' (ctxt ^. ctxtUsages)
+            --         safe = case s' of
+            --             Strict -> True
+            --             NonStrict ->
+            --                 not (ctxt ^. ctxtInManyOccRhs)
+            --                     -- Descending into a non-strict binding whose LHS is used
+            --                     -- more than once should be avoided, regardless of
+            --                     -- `ctxtInManyOccRhs`.
+            --                     -- See Note [Float-in] #4
+            --                     && usageCnt <= 1
+            --         inManyOccRhs = usageCnt > 1
+            --     if safe
+            --         then do
+            --             b'' <-
+            --                 TermBind (a', usBind <> usBind') s' var'
+            --                     <$> local
+            --                         (over ctxtInManyOccRhs (|| inManyOccRhs))
+            --                         (go b rhs')
+            --             let bs' = NonEmpty.appendr before (b'' :| after)
+            --             pure $ Let (a, usBind <> usBody) NonRec bs' letBody
+            --         else giveup
         IWrap (a, usBody) ty1 ty2 iwrapBody
             | Set.disjoint declaredUniqs (typeUniqs ty1)
             , Set.disjoint declaredUniqs (typeUniqs ty2) ->
