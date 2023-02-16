@@ -14,13 +14,13 @@
 </span><span id="line-14"></span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- | Turns a PIR 'Term' with no remaining PIR-specific features into a PLC 'PLC.Term' by simply</span><span>
 </span><span id="line-16"></span><span class="hs-comment">-- translating the constructors across.</span><span>
-</span><span id="line-17"></span><span id="local-6989586621681154362"><span id="local-6989586621681154363"><span id="local-6989586621681154364"><span id="local-6989586621681154365"><span id="local-6989586621681154366"><span class="annot"><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-type">lowerTerm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="PlutusIR.Compiler.Types.html#Compiling"><span class="hs-identifier hs-type">Compiling</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154366"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154365"><span class="hs-identifier hs-type">e</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154364"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154363"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154362"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="PlutusIR.Compiler.Types.html#PIRTerm"><span class="hs-identifier hs-type">PIRTerm</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154364"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154363"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154362"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621681154366"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="PlutusIR.Compiler.Types.html#PLCTerm"><span class="hs-identifier hs-type">PLCTerm</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154364"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154363"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681154362"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span></span></span></span></span><span>
+</span><span id="line-17"></span><span id="local-6989586621681155277"><span id="local-6989586621681155278"><span id="local-6989586621681155279"><span id="local-6989586621681155280"><span id="local-6989586621681155281"><span class="annot"><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-type">lowerTerm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="PlutusIR.Compiler.Types.html#Compiling"><span class="hs-identifier hs-type">Compiling</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155281"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155280"><span class="hs-identifier hs-type">e</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155279"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155278"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155277"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="PlutusIR.Compiler.Types.html#PIRTerm"><span class="hs-identifier hs-type">PIRTerm</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155279"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155278"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155277"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621681155281"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="PlutusIR.Compiler.Types.html#PLCTerm"><span class="hs-identifier hs-type">PLCTerm</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155279"><span class="hs-identifier hs-type">uni</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155278"><span class="hs-identifier hs-type">fun</span></a></span><span> </span><span class="annot"><a href="#local-6989586621681155277"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span></span></span></span></span><span>
 </span><span id="line-18"></span><span id="lowerTerm"><span class="annot"><span class="annottext">lowerTerm :: forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var hs-var">lowerTerm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-glyph">\</span><span class="hs-glyph">case</span><span>
-</span><span id="line-19"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Let"><span class="hs-identifier hs-type">Let</span></a></span><span> </span><span id="local-6989586621681154194"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154194"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="annottext">Recursivity
+</span><span id="line-19"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Let"><span class="hs-identifier hs-type">Let</span></a></span><span> </span><span id="local-6989586621681155109"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155109"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="annottext">Recursivity
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">NonEmpty (Binding TyName Name uni fun (Provenance a))
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
 </span><span class="hs-identifier">_</span></span><span>     </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall e (m :: * -&gt; *) t x.
@@ -32,148 +32,148 @@ Prism' r (Error uni fun a)
 </span><a href="PlutusIR.Error.html#_Error"><span class="hs-identifier hs-var">_Error</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall (uni :: * -&gt; *) fun a. a -&gt; Text -&gt; Error uni fun a
 </span><a href="PlutusIR.Error.html#CompilationError"><span class="hs-identifier hs-var">CompilationError</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154194"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621681155109"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;Let bindings should have been eliminated before lowering&quot;</span></span><span>
-</span><span id="line-20"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621681154189"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154189"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154188"><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681154188"><span class="hs-identifier hs-var">n</span></a></span></span><span>         </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><span id="line-20"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621681155104"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155104"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155103"><span class="annot"><span class="annottext">Name
+</span><a href="#local-6989586621681155103"><span class="hs-identifier hs-var">n</span></a></span></span><span>         </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann -&gt; name -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Var"><span class="hs-identifier hs-var">PLC.Var</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154189"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681154188"><span class="hs-identifier hs-var">n</span></a></span><span>
-</span><span id="line-21"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#TyAbs"><span class="hs-identifier hs-type">TyAbs</span></a></span><span> </span><span id="local-6989586621681154185"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154185"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154184"><span class="annot"><span class="annottext">TyName
-</span><a href="#local-6989586621681154184"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621681154183"><span class="annot"><span class="annottext">Kind (Provenance a)
-</span><a href="#local-6989586621681154183"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621681154182"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154182"><span class="hs-identifier hs-var">t</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155104"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Name
+</span><a href="#local-6989586621681155103"><span class="hs-identifier hs-var">n</span></a></span><span>
+</span><span id="line-21"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#TyAbs"><span class="hs-identifier hs-type">TyAbs</span></a></span><span> </span><span id="local-6989586621681155100"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155100"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155099"><span class="annot"><span class="annottext">TyName
+</span><a href="#local-6989586621681155099"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621681155098"><span class="annot"><span class="annottext">Kind (Provenance a)
+</span><a href="#local-6989586621681155098"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621681155097"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155097"><span class="hs-identifier hs-var">t</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann
 -&gt; tyname
 -&gt; Kind ann
 -&gt; Term tyname name uni fun ann
 -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#TyAbs"><span class="hs-identifier hs-var">PLC.TyAbs</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154185"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">TyName
-</span><a href="#local-6989586621681154184"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Kind (Provenance a)
-</span><a href="#local-6989586621681154183"><span class="hs-identifier hs-var">k</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155100"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">TyName
+</span><a href="#local-6989586621681155099"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Kind (Provenance a)
+</span><a href="#local-6989586621681155098"><span class="hs-identifier hs-var">k</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154182"><span class="hs-identifier hs-var">t</span></a></span><span>
-</span><span id="line-22"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#LamAbs"><span class="hs-identifier hs-type">LamAbs</span></a></span><span> </span><span id="local-6989586621681154178"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154178"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154177"><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681154177"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621681154176"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154176"><span class="hs-identifier hs-var">ty</span></a></span></span><span> </span><span id="local-6989586621681154175"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154175"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155097"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><span id="line-22"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#LamAbs"><span class="hs-identifier hs-type">LamAbs</span></a></span><span> </span><span id="local-6989586621681155093"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155093"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155092"><span class="annot"><span class="annottext">Name
+</span><a href="#local-6989586621681155092"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621681155091"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155091"><span class="hs-identifier hs-var">ty</span></a></span></span><span> </span><span id="local-6989586621681155090"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155090"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann
 -&gt; name
 -&gt; Type tyname uni ann
 -&gt; Term tyname name uni fun ann
 -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#LamAbs"><span class="hs-identifier hs-var">PLC.LamAbs</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154178"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Name
-</span><a href="#local-6989586621681154177"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154176"><span class="hs-identifier hs-var">ty</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155093"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Name
+</span><a href="#local-6989586621681155092"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155091"><span class="hs-identifier hs-var">ty</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154175"><span class="hs-identifier hs-var">t</span></a></span><span>
-</span><span id="line-23"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Apply"><span class="hs-identifier hs-type">Apply</span></a></span><span> </span><span id="local-6989586621681154172"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154172"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154171"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154171"><span class="hs-identifier hs-var">t1</span></a></span></span><span> </span><span id="local-6989586621681154170"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154170"><span class="hs-identifier hs-var">t2</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155090"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><span id="line-23"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Apply"><span class="hs-identifier hs-type">Apply</span></a></span><span> </span><span id="local-6989586621681155087"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155087"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155086"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155086"><span class="hs-identifier hs-var">t1</span></a></span></span><span> </span><span id="local-6989586621681155085"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155085"><span class="hs-identifier hs-var">t2</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann
 -&gt; Term tyname name uni fun ann
 -&gt; Term tyname name uni fun ann
 -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Apply"><span class="hs-identifier hs-var">PLC.Apply</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154172"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155087"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154171"><span class="hs-identifier hs-var">t1</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155086"><span class="hs-identifier hs-var">t1</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154170"><span class="hs-identifier hs-var">t2</span></a></span><span>
-</span><span id="line-24"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Constant"><span class="hs-identifier hs-type">Constant</span></a></span><span> </span><span id="local-6989586621681154167"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154167"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154166"><span class="annot"><span class="annottext">Some (ValueOf uni)
-</span><a href="#local-6989586621681154166"><span class="hs-identifier hs-var">c</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><a href="#local-6989586621681155085"><span class="hs-identifier hs-var">t2</span></a></span><span>
+</span><span id="line-24"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Constant"><span class="hs-identifier hs-type">Constant</span></a></span><span> </span><span id="local-6989586621681155082"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155082"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155081"><span class="annot"><span class="annottext">Some (ValueOf uni)
+</span><a href="#local-6989586621681155081"><span class="hs-identifier hs-var">c</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann -&gt; Some (ValueOf uni) -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Constant"><span class="hs-identifier hs-var">PLC.Constant</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154167"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Some (ValueOf uni)
-</span><a href="#local-6989586621681154166"><span class="hs-identifier hs-var">c</span></a></span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Builtin"><span class="hs-identifier hs-type">Builtin</span></a></span><span> </span><span id="local-6989586621681154163"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154163"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154162"><span class="annot"><span class="annottext">fun
-</span><a href="#local-6989586621681154162"><span class="hs-identifier hs-var">bi</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><a href="#local-6989586621681155082"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Some (ValueOf uni)
+</span><a href="#local-6989586621681155081"><span class="hs-identifier hs-var">c</span></a></span><span>
+</span><span id="line-25"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Builtin"><span class="hs-identifier hs-type">Builtin</span></a></span><span> </span><span id="local-6989586621681155078"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155078"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155077"><span class="annot"><span class="annottext">fun
+</span><a href="#local-6989586621681155077"><span class="hs-identifier hs-var">bi</span></a></span></span><span>    </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann -&gt; fun -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Builtin"><span class="hs-identifier hs-var">PLC.Builtin</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154163"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">fun
-</span><a href="#local-6989586621681154162"><span class="hs-identifier hs-var">bi</span></a></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#TyInst"><span class="hs-identifier hs-type">TyInst</span></a></span><span> </span><span id="local-6989586621681154159"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154159"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154158"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154158"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span id="local-6989586621681154157"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154157"><span class="hs-identifier hs-var">ty</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155078"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">fun
+</span><a href="#local-6989586621681155077"><span class="hs-identifier hs-var">bi</span></a></span><span>
+</span><span id="line-26"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#TyInst"><span class="hs-identifier hs-type">TyInst</span></a></span><span> </span><span id="local-6989586621681155074"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155074"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155073"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155073"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span id="local-6989586621681155072"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155072"><span class="hs-identifier hs-var">ty</span></a></span></span><span>   </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann
 -&gt; Term tyname name uni fun ann
 -&gt; Type tyname uni ann
 -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#TyInst"><span class="hs-identifier hs-var">PLC.TyInst</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154159"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155074"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154158"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155073"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154157"><span class="hs-identifier hs-var">ty</span></a></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span> </span><span id="local-6989586621681154154"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154154"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154153"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154153"><span class="hs-identifier hs-var">ty</span></a></span></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
+</span><a href="#local-6989586621681155072"><span class="hs-identifier hs-var">ty</span></a></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span> </span><span id="local-6989586621681155069"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155069"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155068"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155068"><span class="hs-identifier hs-var">ty</span></a></span></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">pure</span></a></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann -&gt; Type tyname uni ann -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Error"><span class="hs-identifier hs-var">PLC.Error</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154154"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154153"><span class="hs-identifier hs-var">ty</span></a></span><span>
-</span><span id="line-28"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#IWrap"><span class="hs-identifier hs-type">IWrap</span></a></span><span> </span><span id="local-6989586621681154150"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154150"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154149"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154149"><span class="hs-identifier hs-var">tn</span></a></span></span><span> </span><span id="local-6989586621681154148"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154148"><span class="hs-identifier hs-var">ty</span></a></span></span><span> </span><span id="local-6989586621681154147"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154147"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155069"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155068"><span class="hs-identifier hs-var">ty</span></a></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#IWrap"><span class="hs-identifier hs-type">IWrap</span></a></span><span> </span><span id="local-6989586621681155065"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155065"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155064"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155064"><span class="hs-identifier hs-var">tn</span></a></span></span><span> </span><span id="local-6989586621681155063"><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155063"><span class="hs-identifier hs-var">ty</span></a></span></span><span> </span><span id="local-6989586621681155062"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155062"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann
 -&gt; Type tyname uni ann
 -&gt; Type tyname uni ann
 -&gt; Term tyname name uni fun ann
 -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#IWrap"><span class="hs-identifier hs-var">PLC.IWrap</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154150"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154149"><span class="hs-identifier hs-var">tn</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
-</span><a href="#local-6989586621681154148"><span class="hs-identifier hs-var">ty</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155065"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155064"><span class="hs-identifier hs-var">tn</span></a></span><span> </span><span class="annot"><span class="annottext">Type TyName uni (Provenance a)
+</span><a href="#local-6989586621681155063"><span class="hs-identifier hs-var">ty</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154147"><span class="hs-identifier hs-var">t</span></a></span><span>
-</span><span id="line-29"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Unwrap"><span class="hs-identifier hs-type">Unwrap</span></a></span><span> </span><span id="local-6989586621681154144"><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154144"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681154143"><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154143"><span class="hs-identifier hs-var">t</span></a></span></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
+</span><a href="#local-6989586621681155062"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><span id="line-29"></span><span>    </span><span class="annot"><a href="PlutusIR.Core.Type.html#Unwrap"><span class="hs-identifier hs-type">Unwrap</span></a></span><span> </span><span id="local-6989586621681155059"><span class="annot"><span class="annottext">Provenance a
+</span><a href="#local-6989586621681155059"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621681155058"><span class="annot"><span class="annottext">PIRTerm uni fun a
+</span><a href="#local-6989586621681155058"><span class="hs-identifier hs-var">t</span></a></span></span><span>      </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall tyname name (uni :: * -&gt; *) fun ann.
 ann -&gt; Term tyname name uni fun ann -&gt; Term tyname name uni fun ann
 </span><a href="PlutusCore.Core.Type.html#Unwrap"><span class="hs-identifier hs-var">PLC.Unwrap</span></a></span><span> </span><span class="annot"><span class="annottext">Provenance a
-</span><a href="#local-6989586621681154144"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621681155059"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) e (uni :: * -&gt; *) fun a.
 Compiling m e uni fun a =&gt;
 PIRTerm uni fun a -&gt; m (PLCTerm uni fun a)
 </span><a href="PlutusIR.Compiler.Lower.html#lowerTerm"><span class="hs-identifier hs-var">lowerTerm</span></a></span><span> </span><span class="annot"><span class="annottext">PIRTerm uni fun a
-</span><a href="#local-6989586621681154143"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><a href="#local-6989586621681155058"><span class="hs-identifier hs-var">t</span></a></span><span>
 </span><span id="line-30"></span></pre></body></html>

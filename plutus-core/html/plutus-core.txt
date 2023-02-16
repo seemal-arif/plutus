@@ -6992,6 +6992,7 @@ SrcSpan :: FilePath -> Int -> Int -> Int -> Int -> SrcSpan
 --   more than the column of the last character of the thing this
 --   <tt>SrcSpan</tt> is for (unless the last character is the line break).
 [srcSpanECol] :: SrcSpan -> Int
+data SrcSpans
 
 -- | Existential. This is type is useful to hide GADTs' parameters.
 --   
@@ -9119,6 +9120,31 @@ module PlutusCore.Compiler.Erase
 eraseTerm :: Term tyname name uni fun ann -> Term name uni fun ann
 eraseProgram :: Program tyname name uni fun ann -> Program name uni fun ann
 
+module UntypedPlutusCore.Core.Zip
+
+-- | Zip two programs using a combinator function for annotations.
+--   
+--   Throws an error if the input programs are not "equal" modulo
+--   annotations. Note that the function is "left-biased", so in case that
+--   the 2 input programs contain <tt>Name</tt>s, the output program will
+--   contain just the <tt>Name</tt>s of the first input program.
+pzipWith :: forall p name uni fun ann1 ann2 ann3 m. (p ~ Program name uni fun, Eq (Term name uni fun ()), MonadError String m) => (ann1 -> ann2 -> ann3) -> p ann1 -> p ann2 -> m (p ann3)
+
+-- | Zip 2 programs by pairing their annotations
+pzip :: (p ~ Program name uni fun, Eq (Term name uni fun ()), MonadError String m) => p ann1 -> p ann2 -> m (p (ann1, ann2))
+
+-- | Zip two terms using a combinator function for annotations.
+--   
+--   Throws an error if the input terms are not "equal" modulo annotations.
+--   Note that the function is "left-biased", so in case that the 2 input
+--   terms contain <tt>Name</tt>s, the output term will contain just the
+--   <tt>Name</tt>s of the first input term. TODO: this is not an optimal
+--   implementation
+tzipWith :: forall t name uni fun ann1 ann2 ann3 m. (t ~ Term name uni fun, Eq (t ()), MonadError String m) => (ann1 -> ann2 -> ann3) -> t ann1 -> t ann2 -> m (t ann3)
+
+-- | Zip 2 terms by pairing their annotations
+tzip :: (t ~ Term name uni fun, Eq (t ()), MonadError String m) => t ann1 -> t ann2 -> m (t (ann1, ann2))
+
 
 -- | Support for using de Bruijn indices for term names.
 module UntypedPlutusCore.DeBruijn
@@ -10141,8 +10167,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a8vBL a_a8vBM. Lens' (SimplifyOpts name_a8vBL a_a8vBM) Int
-soInlineHints :: forall name_a8vBL a_a8vBM name_a8vDn a_a8vDo. Lens (SimplifyOpts name_a8vBL a_a8vBM) (SimplifyOpts name_a8vDn a_a8vDo) (InlineHints name_a8vBL a_a8vBM) (InlineHints name_a8vDn a_a8vDo)
+soMaxSimplifierIterations :: forall name_a8vQv a_a8vQw. Lens' (SimplifyOpts name_a8vQv a_a8vQw) Int
+soInlineHints :: forall name_a8vQv a_a8vQw name_a8vS7 a_a8vS8. Lens (SimplifyOpts name_a8vQv a_a8vQw) (SimplifyOpts name_a8vS7 a_a8vS8) (InlineHints name_a8vQv a_a8vQw) (InlineHints name_a8vS7 a_a8vS8)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -10214,6 +10240,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a8wcb a_a8wcc name_a8wdz a_a8wdA. Iso (CompilationOpts name_a8wcb a_a8wcc) (CompilationOpts name_a8wdz a_a8wdA) (SimplifyOpts name_a8wcb a_a8wcc) (SimplifyOpts name_a8wdz a_a8wdA)
+coSimplifyOpts :: forall name_a8wqV a_a8wqW name_a8wsj a_a8wsk. Iso (CompilationOpts name_a8wqV a_a8wqW) (CompilationOpts name_a8wsj a_a8wsk) (SimplifyOpts name_a8wqV a_a8wqW) (SimplifyOpts name_a8wsj a_a8wsk)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
