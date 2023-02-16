@@ -7747,8 +7747,8 @@ Program :: ann -> Term tyname name uni fun ann -> Program tyname name uni fun an
 applyProgram :: Monoid a => Program tyname name uni fun a -> Program tyname name uni fun a -> Program tyname name uni fun a
 termAnn :: Term tyname name uni fun a -> a
 bindingAnn :: Binding tyname name uni fun a -> a
-progAnn :: forall tyname_a6Kz8 name_a6Kz9 uni_a6Kza fun_a6Kzb ann_a6Kzc. Lens' (Program tyname_a6Kz8 name_a6Kz9 uni_a6Kza fun_a6Kzb ann_a6Kzc) ann_a6Kzc
-progTerm :: forall tyname_a6Kz8 name_a6Kz9 uni_a6Kza fun_a6Kzb ann_a6Kzc tyname_a6Mii name_a6Mij uni_a6Mik fun_a6Mil. Lens (Program tyname_a6Kz8 name_a6Kz9 uni_a6Kza fun_a6Kzb ann_a6Kzc) (Program tyname_a6Mii name_a6Mij uni_a6Mik fun_a6Mil ann_a6Kzc) (Term tyname_a6Kz8 name_a6Kz9 uni_a6Kza fun_a6Kzb ann_a6Kzc) (Term tyname_a6Mii name_a6Mij uni_a6Mik fun_a6Mil ann_a6Kzc)
+progAnn :: forall tyname_a6KMV name_a6KMW uni_a6KMX fun_a6KMY ann_a6KMZ. Lens' (Program tyname_a6KMV name_a6KMW uni_a6KMX fun_a6KMY ann_a6KMZ) ann_a6KMZ
+progTerm :: forall tyname_a6KMV name_a6KMW uni_a6KMX fun_a6KMY ann_a6KMZ tyname_a6Mw5 name_a6Mw6 uni_a6Mw7 fun_a6Mw8. Lens (Program tyname_a6KMV name_a6KMW uni_a6KMX fun_a6KMY ann_a6KMZ) (Program tyname_a6Mw5 name_a6Mw6 uni_a6Mw7 fun_a6Mw8 ann_a6KMZ) (Term tyname_a6KMV name_a6KMW uni_a6KMX fun_a6KMY ann_a6KMZ) (Term tyname_a6Mw5 name_a6Mw6 uni_a6Mw7 fun_a6Mw8 ann_a6KMZ)
 instance GHC.Generics.Generic (PlutusIR.Core.Type.Datatype tyname name uni a)
 instance (GHC.Show.Show a, GHC.Show.Show tyname, GHC.Show.Show name, Data.GADT.Internal.GShow uni) => GHC.Show.Show (PlutusIR.Core.Type.Datatype tyname name uni a)
 instance GHC.Base.Functor (PlutusIR.Core.Type.Datatype tyname name uni)
@@ -8347,16 +8347,16 @@ _FreeTypeVariableE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5q
 _FreeVariableE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, Name)
 _UnknownBuiltinFunctionE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, fun_a5qTe)
 data TypeError term uni fun ann
-class AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O | r_a7hhd -> uni_a7h9N ann_a7h9O
-_TypeErrorExt :: AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O => Prism' r_a7hhd (TypeErrorExt uni_a7h9N ann_a7h9O)
-_MalformedDataConstrResType :: AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O => Prism' r_a7hhd (ann_a7h9O, Type TyName uni_a7h9N ann_a7h9O)
-class AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw | r_a7hlO -> uni_a7hhu fun_a7hhv a_a7hhw
-_Error :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (Error uni_a7hhu fun_a7hhv a_a7hhw)
-_CompilationError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (a_a7hhw, Text)
-_UnsupportedError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (a_a7hhw, Text)
-_PLCError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (Error uni_a7hhu fun_a7hhv a_a7hhw)
-_PLCTypeError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (TypeError (Term TyName Name uni_a7hhu fun_a7hhv ()) uni_a7hhu fun_a7hhv a_a7hhw)
-_PIRTypeError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (TypeErrorExt uni_a7hhu a_a7hhw)
+class AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB | r_a7hv0 -> uni_a7hnA ann_a7hnB
+_TypeErrorExt :: AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB => Prism' r_a7hv0 (TypeErrorExt uni_a7hnA ann_a7hnB)
+_MalformedDataConstrResType :: AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB => Prism' r_a7hv0 (ann_a7hnB, Type TyName uni_a7hnA ann_a7hnB)
+class AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj | r_a7hzB -> uni_a7hvh fun_a7hvi a_a7hvj
+_Error :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (Error uni_a7hvh fun_a7hvi a_a7hvj)
+_CompilationError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (a_a7hvj, Text)
+_UnsupportedError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (a_a7hvj, Text)
+_PLCError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (Error uni_a7hvh fun_a7hvi a_a7hvj)
+_PLCTypeError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (TypeError (Term TyName Name uni_a7hvh fun_a7hvi ()) uni_a7hvh fun_a7hvi a_a7hvj)
+_PIRTypeError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (TypeErrorExt uni_a7hvh a_a7hvj)
 data TypeErrorExt uni ann
 MalformedDataConstrResType :: !ann -> !Type TyName uni ann -> TypeErrorExt uni ann
 newtype Normalized a
@@ -8599,10 +8599,10 @@ data Subst tyname name uni fun a
 Subst :: TermEnv tyname name uni fun a -> TypeEnv tyname uni a -> Subst tyname name uni fun a
 [_termEnv] :: Subst tyname name uni fun a -> TermEnv tyname name uni fun a
 [_typeEnv] :: Subst tyname name uni fun a -> TypeEnv tyname uni a
-unTermEnv :: forall tyname_a7Ftj name_a7Ftk uni_a7Ftl fun_a7Ftm a_a7Ftn tyname_a7FO2 name_a7FO3 uni_a7FO4 fun_a7FO5 a_a7FO6. Iso (TermEnv tyname_a7Ftj name_a7Ftk uni_a7Ftl fun_a7Ftm a_a7Ftn) (TermEnv tyname_a7FO2 name_a7FO3 uni_a7FO4 fun_a7FO5 a_a7FO6) (UniqueMap TermUnique (InlineTerm tyname_a7Ftj name_a7Ftk uni_a7Ftl fun_a7Ftm a_a7Ftn)) (UniqueMap TermUnique (InlineTerm tyname_a7FO2 name_a7FO3 uni_a7FO4 fun_a7FO5 a_a7FO6))
-unTypeEnv :: forall tyname_a7Ftg uni_a7Fth a_a7Fti tyname_a7FPz uni_a7FPA a_a7FPB. Iso (TypeEnv tyname_a7Ftg uni_a7Fth a_a7Fti) (TypeEnv tyname_a7FPz uni_a7FPA a_a7FPB) (UniqueMap TypeUnique (Dupable (Type tyname_a7Ftg uni_a7Fth a_a7Fti))) (UniqueMap TypeUnique (Dupable (Type tyname_a7FPz uni_a7FPA a_a7FPB)))
-typeEnv :: forall tyname_a7Ftb name_a7Ftc uni_a7Ftd fun_a7Fte a_a7Ftf. Lens' (Subst tyname_a7Ftb name_a7Ftc uni_a7Ftd fun_a7Fte a_a7Ftf) (TypeEnv tyname_a7Ftb uni_a7Ftd a_a7Ftf)
-termEnv :: forall tyname_a7Ftb name_a7Ftc uni_a7Ftd fun_a7Fte a_a7Ftf name_a7FQO fun_a7FQP. Lens (Subst tyname_a7Ftb name_a7Ftc uni_a7Ftd fun_a7Fte a_a7Ftf) (Subst tyname_a7Ftb name_a7FQO uni_a7Ftd fun_a7FQP a_a7Ftf) (TermEnv tyname_a7Ftb name_a7Ftc uni_a7Ftd fun_a7Fte a_a7Ftf) (TermEnv tyname_a7Ftb name_a7FQO uni_a7Ftd fun_a7FQP a_a7Ftf)
+unTermEnv :: forall tyname_a7FH6 name_a7FH7 uni_a7FH8 fun_a7FH9 a_a7FHa tyname_a7G1P name_a7G1Q uni_a7G1R fun_a7G1S a_a7G1T. Iso (TermEnv tyname_a7FH6 name_a7FH7 uni_a7FH8 fun_a7FH9 a_a7FHa) (TermEnv tyname_a7G1P name_a7G1Q uni_a7G1R fun_a7G1S a_a7G1T) (UniqueMap TermUnique (InlineTerm tyname_a7FH6 name_a7FH7 uni_a7FH8 fun_a7FH9 a_a7FHa)) (UniqueMap TermUnique (InlineTerm tyname_a7G1P name_a7G1Q uni_a7G1R fun_a7G1S a_a7G1T))
+unTypeEnv :: forall tyname_a7FH3 uni_a7FH4 a_a7FH5 tyname_a7G3m uni_a7G3n a_a7G3o. Iso (TypeEnv tyname_a7FH3 uni_a7FH4 a_a7FH5) (TypeEnv tyname_a7G3m uni_a7G3n a_a7G3o) (UniqueMap TypeUnique (Dupable (Type tyname_a7FH3 uni_a7FH4 a_a7FH5))) (UniqueMap TypeUnique (Dupable (Type tyname_a7G3m uni_a7G3n a_a7G3o)))
+typeEnv :: forall tyname_a7FGY name_a7FGZ uni_a7FH0 fun_a7FH1 a_a7FH2. Lens' (Subst tyname_a7FGY name_a7FGZ uni_a7FH0 fun_a7FH1 a_a7FH2) (TypeEnv tyname_a7FGY uni_a7FH0 a_a7FH2)
+termEnv :: forall tyname_a7FGY name_a7FGZ uni_a7FH0 fun_a7FH1 a_a7FH2 name_a7G4B fun_a7G4C. Lens (Subst tyname_a7FGY name_a7FGZ uni_a7FH0 fun_a7FH1 a_a7FH2) (Subst tyname_a7FGY name_a7G4B uni_a7FH0 fun_a7G4C a_a7FH2) (TermEnv tyname_a7FGY name_a7FGZ uni_a7FH0 fun_a7FH1 a_a7FH2) (TermEnv tyname_a7FGY name_a7G4B uni_a7FH0 fun_a7G4C a_a7FH2)
 
 -- | Look up the unprocessed variable in the substitution.
 lookupTerm :: HasUnique name TermUnique => name -> Subst tyname name uni fun a -> Maybe (InlineTerm tyname name uni fun a)
@@ -8634,10 +8634,10 @@ InlineInfo :: StrictnessMap -> Usages -> InlineHints name a -> BuiltinVersion fu
 
 -- | the builtin version.
 [_iiBuiltinVer] :: InlineInfo name fun a -> BuiltinVersion fun
-iiUsages :: forall name_a7FRd fun_a7FRe a_a7FRf. Lens' (InlineInfo name_a7FRd fun_a7FRe a_a7FRf) Usages
-iiStrictnessMap :: forall name_a7FRd fun_a7FRe a_a7FRf. Lens' (InlineInfo name_a7FRd fun_a7FRe a_a7FRf) StrictnessMap
-iiHints :: forall name_a7FRd fun_a7FRe a_a7FRf name_a7G1q a_a7G1r. Lens (InlineInfo name_a7FRd fun_a7FRe a_a7FRf) (InlineInfo name_a7G1q fun_a7FRe a_a7G1r) (InlineHints name_a7FRd a_a7FRf) (InlineHints name_a7G1q a_a7G1r)
-iiBuiltinVer :: forall name_a7FRd fun_a7FRe a_a7FRf fun_a7G1p. Lens (InlineInfo name_a7FRd fun_a7FRe a_a7FRf) (InlineInfo name_a7FRd fun_a7G1p a_a7FRf) (BuiltinVersion fun_a7FRe) (BuiltinVersion fun_a7G1p)
+iiUsages :: forall name_a7G50 fun_a7G51 a_a7G52. Lens' (InlineInfo name_a7G50 fun_a7G51 a_a7G52) Usages
+iiStrictnessMap :: forall name_a7G50 fun_a7G51 a_a7G52. Lens' (InlineInfo name_a7G50 fun_a7G51 a_a7G52) StrictnessMap
+iiHints :: forall name_a7G50 fun_a7G51 a_a7G52 name_a7Gfd a_a7Gfe. Lens (InlineInfo name_a7G50 fun_a7G51 a_a7G52) (InlineInfo name_a7Gfd fun_a7G51 a_a7Gfe) (InlineHints name_a7G50 a_a7G52) (InlineHints name_a7Gfd a_a7Gfe)
+iiBuiltinVer :: forall name_a7G50 fun_a7G51 a_a7G52 fun_a7Gfc. Lens (InlineInfo name_a7G50 fun_a7G51 a_a7G52) (InlineInfo name_a7G50 fun_a7Gfc a_a7G52) (BuiltinVersion fun_a7G51) (BuiltinVersion fun_a7Gfc)
 
 -- | The monad the inliner runs in.
 type InlineM tyname name uni fun a = ReaderT (InlineInfo name fun a) (StateT (Subst tyname name uni fun a) Quote)
@@ -8718,13 +8718,13 @@ UnsupportedError :: !a -> !Text -> Error uni fun a
 PLCError :: !Error uni fun a -> Error uni fun a
 PLCTypeError :: !TypeError (Term TyName Name uni fun ()) uni fun a -> Error uni fun a
 PIRTypeError :: !TypeErrorExt uni a -> Error uni fun a
-class AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw | r_a7hlO -> uni_a7hhu fun_a7hhv a_a7hhw
-_Error :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (Error uni_a7hhu fun_a7hhv a_a7hhw)
-_CompilationError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (a_a7hhw, Text)
-_UnsupportedError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (a_a7hhw, Text)
-_PLCError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (Error uni_a7hhu fun_a7hhv a_a7hhw)
-_PLCTypeError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (TypeError (Term TyName Name uni_a7hhu fun_a7hhv ()) uni_a7hhu fun_a7hhv a_a7hhw)
-_PIRTypeError :: AsError r_a7hlO uni_a7hhu fun_a7hhv a_a7hhw => Prism' r_a7hlO (TypeErrorExt uni_a7hhu a_a7hhw)
+class AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj | r_a7hzB -> uni_a7hvh fun_a7hvi a_a7hvj
+_Error :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (Error uni_a7hvh fun_a7hvi a_a7hvj)
+_CompilationError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (a_a7hvj, Text)
+_UnsupportedError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (a_a7hvj, Text)
+_PLCError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (Error uni_a7hvh fun_a7hvi a_a7hvj)
+_PLCTypeError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (TypeError (Term TyName Name uni_a7hvh fun_a7hvi ()) uni_a7hvh fun_a7hvi a_a7hvj)
+_PIRTypeError :: AsError r_a7hzB uni_a7hvh fun_a7hvi a_a7hvj => Prism' r_a7hzB (TypeErrorExt uni_a7hvh a_a7hvj)
 class AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf | r_a5tlq -> term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf
 _TypeError :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (TypeError term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf)
 _KindMismatch :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, Type TyName uni_a5qTd (), Kind (), Kind ())
@@ -8734,9 +8734,9 @@ _NameMismatch :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf =>
 _FreeTypeVariableE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, TyName)
 _FreeVariableE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, Name)
 _UnknownBuiltinFunctionE :: AsTypeError r_a5tlq term_a5qTc uni_a5qTd fun_a5qTe ann_a5qTf => Prism' r_a5tlq (ann_a5qTf, fun_a5qTe)
-class AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O | r_a7hhd -> uni_a7h9N ann_a7h9O
-_TypeErrorExt :: AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O => Prism' r_a7hhd (TypeErrorExt uni_a7h9N ann_a7h9O)
-_MalformedDataConstrResType :: AsTypeErrorExt r_a7hhd uni_a7h9N ann_a7h9O => Prism' r_a7hhd (ann_a7h9O, Type TyName uni_a7h9N ann_a7h9O)
+class AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB | r_a7hv0 -> uni_a7hnA ann_a7hnB
+_TypeErrorExt :: AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB => Prism' r_a7hv0 (TypeErrorExt uni_a7hnA ann_a7hnB)
+_MalformedDataConstrResType :: AsTypeErrorExt r_a7hv0 uni_a7hnA ann_a7hnB => Prism' r_a7hv0 (ann_a7hnB, Type TyName uni_a7hnA ann_a7hnB)
 
 -- | Indicates where a value comes from.
 --   
@@ -8766,21 +8766,21 @@ DatatypeType :: DatatypeComponent
 PatternFunctor :: DatatypeComponent
 noProvenance :: Provenance a
 data CompilationOpts a
-coOptimize :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coPedantic :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coVerbose :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coDebug :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coMaxSimplifierIterations :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Int
-coDoSimplifierUnwrapCancel :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coDoSimplifierBeta :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coDoSimplifierInline :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
-coInlineHints :: forall a_a7t36 a_a7t9I. Lens (CompilationOpts a_a7t36) (CompilationOpts a_a7t9I) (InlineHints Name (Provenance a_a7t36)) (InlineHints Name (Provenance a_a7t9I))
-coProfile :: forall a_a7t36. Lens' (CompilationOpts a_a7t36) Bool
+coOptimize :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coPedantic :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coVerbose :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coDebug :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coMaxSimplifierIterations :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Int
+coDoSimplifierUnwrapCancel :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coDoSimplifierBeta :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coDoSimplifierInline :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
+coInlineHints :: forall a_a7tgT a_a7tnv. Lens (CompilationOpts a_a7tgT) (CompilationOpts a_a7tnv) (InlineHints Name (Provenance a_a7tgT)) (InlineHints Name (Provenance a_a7tnv))
+coProfile :: forall a_a7tgT. Lens' (CompilationOpts a_a7tgT) Bool
 defaultCompilationOpts :: CompilationOpts a
 data CompilationCtx uni fun a
-ccOpts :: forall uni_a7tbW fun_a7tbX a_a7tbY. Lens' (CompilationCtx uni_a7tbW fun_a7tbX a_a7tbY) (CompilationOpts a_a7tbY)
-ccEnclosing :: forall uni_a7tbW fun_a7tbX a_a7tbY. Lens' (CompilationCtx uni_a7tbW fun_a7tbX a_a7tbY) (Provenance a_a7tbY)
-ccTypeCheckConfig :: forall uni_a7tbW fun_a7tbX a_a7tbY uni_a7tj0. Lens (CompilationCtx uni_a7tbW fun_a7tbX a_a7tbY) (CompilationCtx uni_a7tj0 fun_a7tbX a_a7tbY) (Maybe (PirTCConfig uni_a7tbW fun_a7tbX)) (Maybe (PirTCConfig uni_a7tj0 fun_a7tbX))
+ccOpts :: forall uni_a7tpJ fun_a7tpK a_a7tpL. Lens' (CompilationCtx uni_a7tpJ fun_a7tpK a_a7tpL) (CompilationOpts a_a7tpL)
+ccEnclosing :: forall uni_a7tpJ fun_a7tpK a_a7tpL. Lens' (CompilationCtx uni_a7tpJ fun_a7tpK a_a7tpL) (Provenance a_a7tpL)
+ccTypeCheckConfig :: forall uni_a7tpJ fun_a7tpK a_a7tpL uni_a7twN. Lens (CompilationCtx uni_a7tpJ fun_a7tpK a_a7tpL) (CompilationCtx uni_a7twN fun_a7tpK a_a7tpL) (Maybe (PirTCConfig uni_a7tpJ fun_a7tpK)) (Maybe (PirTCConfig uni_a7twN fun_a7tpK))
 
 -- | extending the plc typecheck config with AllowEscape
 data PirTCConfig uni fun
@@ -9028,9 +9028,9 @@ Program :: ann -> Version -> Term name uni fun ann -> Program name uni fun ann
 [_progAnn] :: Program name uni fun ann -> ann
 [_progVer] :: Program name uni fun ann -> Version
 [_progTerm] :: Program name uni fun ann -> Term name uni fun ann
-progAnn :: forall name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO. Lens' (Program name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO) ann_a7OlO
-progVer :: forall name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO. Lens' (Program name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO) Version
-progTerm :: forall name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO name_a7P63 uni_a7P64 fun_a7P65. Lens (Program name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO) (Program name_a7P63 uni_a7P64 fun_a7P65 ann_a7OlO) (Term name_a7OlL uni_a7OlM fun_a7OlN ann_a7OlO) (Term name_a7P63 uni_a7P64 fun_a7P65 ann_a7OlO)
+progAnn :: forall name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB. Lens' (Program name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB) ann_a7OzB
+progVer :: forall name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB. Lens' (Program name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB) Version
+progTerm :: forall name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB name_a7PjQ uni_a7PjR fun_a7PjS. Lens (Program name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB) (Program name_a7PjQ uni_a7PjR fun_a7PjS ann_a7OzB) (Term name_a7Ozy uni_a7Ozz fun_a7OzA ann_a7OzB) (Term name_a7PjQ uni_a7PjR fun_a7PjS ann_a7OzB)
 bindFunM :: Monad m => (ann -> fun -> m (Term name uni fun' ann)) -> Term name uni fun ann -> m (Term name uni fun' ann)
 bindFun :: (ann -> fun -> Term name uni fun' ann) -> Term name uni fun ann -> Term name uni fun' ann
 mapFun :: (ann -> fun -> fun') -> Term name uni fun ann -> Term name uni fun' ann
@@ -9043,8 +9043,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a7P6s ann_a7P6t name_a7Pis. Lens (UVarDecl name_a7P6s ann_a7P6t) (UVarDecl name_a7Pis ann_a7P6t) name_a7P6s name_a7Pis
-uvarDeclAnn :: forall name_a7P6s ann_a7P6t ann_a7Pir. Lens (UVarDecl name_a7P6s ann_a7P6t) (UVarDecl name_a7P6s ann_a7Pir) ann_a7P6t ann_a7Pir
+uvarDeclName :: forall name_a7Pkf ann_a7Pkg name_a7Pwf. Lens (UVarDecl name_a7Pkf ann_a7Pkg) (UVarDecl name_a7Pwf ann_a7Pkg) name_a7Pkf name_a7Pwf
+uvarDeclAnn :: forall name_a7Pkf ann_a7Pkg ann_a7Pwe. Lens (UVarDecl name_a7Pkf ann_a7Pkg) (UVarDecl name_a7Pkf ann_a7Pwe) ann_a7Pkg ann_a7Pwe
 instance GHC.Generics.Generic (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance (GHC.Show.Show ann, GHC.Show.Show name) => GHC.Show.Show (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance GHC.Base.Functor (UntypedPlutusCore.Core.Type.UVarDecl name)
@@ -9080,15 +9080,15 @@ termSubtermsDeep :: Fold (Term name uni fun ann) (Term name uni fun ann)
 
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>.
 termUniquesDeep :: HasUniques (Term name uni fun ann) => Fold (Term name uni fun ann) Unique
-data TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-VarF :: !ann_i7Ss0 -> !name_i7SrX -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-LamAbsF :: !ann_i7Ss0 -> !name_i7SrX -> !r_a7STv -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-ApplyF :: !ann_i7Ss0 -> !r_a7STv -> !r_a7STv -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-ForceF :: !ann_i7Ss0 -> !r_a7STv -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-DelayF :: !ann_i7Ss0 -> !r_a7STv -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-ConstantF :: !ann_i7Ss0 -> !Some (ValueOf uni_i7SrY) -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-BuiltinF :: !ann_i7Ss0 -> !fun_i7SrZ -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
-ErrorF :: !ann_i7Ss0 -> TermF (name_i7SrX :: Type) (uni_i7SrY :: Type -> Type) (fun_i7SrZ :: Type) (ann_i7Ss0 :: Type) r_a7STv
+data TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+VarF :: !ann_i7SFN -> !name_i7SFK -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+LamAbsF :: !ann_i7SFN -> !name_i7SFK -> !r_a7T7i -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+ApplyF :: !ann_i7SFN -> !r_a7T7i -> !r_a7T7i -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+ForceF :: !ann_i7SFN -> !r_a7T7i -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+DelayF :: !ann_i7SFN -> !r_a7T7i -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+ConstantF :: !ann_i7SFN -> !Some (ValueOf uni_i7SFL) -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+BuiltinF :: !ann_i7SFN -> !fun_i7SFM -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
+ErrorF :: !ann_i7SFN -> TermF (name_i7SFK :: Type) (uni_i7SFL :: Type -> Type) (fun_i7SFM :: Type) (ann_i7SFN :: Type) r_a7T7i
 
 -- | Using 4 bits to encode term tags.
 termTagWidth :: NumBits
@@ -10034,8 +10034,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a7P6s ann_a7P6t name_a7Pis. Lens (UVarDecl name_a7P6s ann_a7P6t) (UVarDecl name_a7Pis ann_a7P6t) name_a7P6s name_a7Pis
-uvarDeclAnn :: forall name_a7P6s ann_a7P6t ann_a7Pir. Lens (UVarDecl name_a7P6s ann_a7P6t) (UVarDecl name_a7P6s ann_a7Pir) ann_a7P6t ann_a7Pir
+uvarDeclName :: forall name_a7Pkf ann_a7Pkg name_a7Pwf. Lens (UVarDecl name_a7Pkf ann_a7Pkg) (UVarDecl name_a7Pwf ann_a7Pkg) name_a7Pkf name_a7Pwf
+uvarDeclAnn :: forall name_a7Pkf ann_a7Pkg ann_a7Pwe. Lens (UVarDecl name_a7Pkf ann_a7Pkg) (UVarDecl name_a7Pkf ann_a7Pwe) ann_a7Pkg ann_a7Pwe
 
 -- | Make a <a>Var</a> referencing the given <tt>VarDecl</tt>.
 mkVar :: ann -> UVarDecl name ann -> Term name uni fun ann
@@ -10140,8 +10140,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a8v3K a_a8v3L. Lens' (SimplifyOpts name_a8v3K a_a8v3L) Int
-soInlineHints :: forall name_a8v3K a_a8v3L name_a8v5m a_a8v5n. Lens (SimplifyOpts name_a8v3K a_a8v3L) (SimplifyOpts name_a8v5m a_a8v5n) (InlineHints name_a8v3K a_a8v3L) (InlineHints name_a8v5m a_a8v5n)
+soMaxSimplifierIterations :: forall name_a8vhx a_a8vhy. Lens' (SimplifyOpts name_a8vhx a_a8vhy) Int
+soInlineHints :: forall name_a8vhx a_a8vhy name_a8vj9 a_a8vja. Lens (SimplifyOpts name_a8vhx a_a8vhy) (SimplifyOpts name_a8vj9 a_a8vja) (InlineHints name_a8vhx a_a8vhy) (InlineHints name_a8vj9 a_a8vja)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -10213,6 +10213,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a8vEa a_a8vEb name_a8vFy a_a8vFz. Iso (CompilationOpts name_a8vEa a_a8vEb) (CompilationOpts name_a8vFy a_a8vFz) (SimplifyOpts name_a8vEa a_a8vEb) (SimplifyOpts name_a8vFy a_a8vFz)
+coSimplifyOpts :: forall name_a8vRX a_a8vRY name_a8vTl a_a8vTm. Iso (CompilationOpts name_a8vRX a_a8vRY) (CompilationOpts name_a8vTl a_a8vTm) (SimplifyOpts name_a8vRX a_a8vRY) (SimplifyOpts name_a8vTl a_a8vTm)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
