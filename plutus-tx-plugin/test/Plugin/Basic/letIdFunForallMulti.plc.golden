@@ -1,24 +1,31 @@
 (program
-  (let
-    (nonrec)
-    (termbind
-      (strict)
-      (vardecl idFun (all a (type) (fun a a)))
-      (abs a (type) (lam x a x))
+  1.0.0
+  [
+    (lam
+      idFun_i0
+      [
+        [
+          [
+            (lam addInteger_i0 addInteger_i1)
+            (lam
+              x_i0
+              (lam
+                y_i0
+                [
+                  [
+                    [ (lam addInteger_i0 addInteger_i1) (builtin addInteger) ]
+                    x_i2
+                  ]
+                  y_i1
+                ]
+              )
+            )
+          ]
+          [ (force idFun_i1) (con integer 3) ]
+        ]
+        [ (force idFun_i1) (con integer 3) ]
+      ]
     )
-    (termbind
-      (strict)
-      (vardecl addInteger (fun (con integer) (fun (con integer) (con integer))))
-      (builtin addInteger)
-    )
-    (termbind
-      (strict)
-      (vardecl addInteger (fun (con integer) (fun (con integer) (con integer))))
-      (lam x (con integer) (lam y (con integer) [ [ addInteger x ] y ]))
-    )
-    [
-      [ addInteger [ { idFun (con integer) } (con integer 3) ] ]
-      [ { idFun (con integer) } (con integer 3) ]
-    ]
-  )
+    (delay (lam x_i0 x_i1))
+  ]
 )

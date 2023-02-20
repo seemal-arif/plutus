@@ -1,36 +1,22 @@
 (program
-  (let
-    (nonrec)
-    (termbind
-      (strict)
-      (vardecl idFun (fun (con integer) (con integer)))
-      (lam y (con integer) y)
-    )
-    (termbind
-      (strict)
-      (vardecl
-        funApp
-        (fun
-          (fun (con integer) (con integer)) (fun (con integer) (con integer))
-        )
-      )
+  1.0.0
+  [
+    [
       (lam
-        x
-        (fun (con integer) (con integer))
-        (idFun)
+        idFun_i0
+        [
+          (lam
+            funApp_i0
+            [
+              (lam k_i0 [ (force k_i1) [ (force k_i1) idFun_i3 ] ])
+              (delay funApp_i1)
+            ]
+          )
+          (lam x_i0 idFun_i2)
+        ]
       )
-    )
-    (termbind
-      (strict)
-      (vardecl
-        k
-        (fun
-          (fun (con integer) (con integer)) (fun (con integer) (con integer))
-        )
-      )
-      (funApp)
-      )
-    )
-    [ [ k idFun ] (con integer 6) ]
-  )
+      (lam y_i0 y_i1)
+    ]
+    (con integer 6)
+  ]
 )

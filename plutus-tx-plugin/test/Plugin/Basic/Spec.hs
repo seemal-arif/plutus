@@ -44,6 +44,25 @@ basic = testNested "Basic" [
     , goldenPir "letAppMulti" letAppMulti
     , goldenPir "letOverAppMulti" letOverAppMulti
     , goldenPir "letFunConstMulti" letFunConstMulti
+    , goldenPir "cl1" cl1
+    , goldenPir "cl2" cl2
+    , goldenPir "cl3" cl3
+    , goldenUPlc "letApp" letApp
+    , goldenUPlc "letIdFunForall" letIdFunForall
+    , goldenUPlc "letIdFunForallMulti" letIdFunForallMulti
+    , goldenUPlc "letIdFunForallMultiNotSat" letIdFunForallMultiNotSat
+    , goldenUPlc "letFunEg2" letFun2
+    , goldenUPlc "letFunInFunAllMulti" letFunInFunAllMulti
+    , goldenUPlc "letFunInFunMulti" letFunInFunMulti
+    , goldenUPlc "letFunInFunMultiFullyApplied" letFunInFunMultiFullyApplied
+    , goldenUPlc "letFunForall" letFunForall
+    , goldenUPlc "letAppMulti" letAppMulti
+    , goldenUPlc "letOverAppMulti" letOverAppMulti
+    , goldenUPlc "letFunConstMulti" letFunConstMulti
+    , goldenUPlc "cl1" cl1
+    , goldenUPlc "cl2" cl2
+    , goldenUPlc "cl3" cl3
+
 --   , goldenPir "monoK" monoK
 --   , goldenPir "letFun" letFun
 --   , goldenPir "nonstrictLet" nonstrictLet
@@ -58,6 +77,27 @@ basic = testNested "Basic" [
 --   , goldenPir "patternMatchDo" patternMatchDo
 --   , goldenUPlcCatch "patternMatchFailure" patternMatchFailure
   ]
+
+cl1 :: CompiledCode (Integer -> Integer -> Integer -> Integer)
+cl1 = plc (Proxy @"cl1") (
+    \x y z -> x
+    )
+
+cl2 :: CompiledCode (Integer -> Integer -> Integer -> (Integer -> Integer))
+cl2 = plc (Proxy @"cl1") (
+    \x y z -> (\k -> x)
+    )
+
+cl3 :: CompiledCode (Integer -> Integer -> Integer -> Integer )
+cl3 = plc (Proxy @"cl1") (
+    \x y z -> ((\k -> x) 3)
+    )
+
+cl4 :: forall a . CompiledCode (a -> a -> a -> a )
+cl4 = plc (Proxy @"cl1") (
+    \x y z -> x
+    )
+
 
 letApp :: CompiledCode Integer
 {-# NOINLINE letApp #-}

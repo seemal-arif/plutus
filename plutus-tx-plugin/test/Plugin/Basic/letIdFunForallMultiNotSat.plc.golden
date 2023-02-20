@@ -1,11 +1,6 @@
 (program
-  (let
-    (nonrec)
-    (termbind
-      (strict)
-      (vardecl idFun (all a (type) (fun a a)))
-      (abs a (type) (lam x a x))
-    )
-    [ { idFun (fun (con integer) (con integer)) } { idFun (con integer) } ]
-  )
+  1.0.0
+  [
+    (lam idFun_i0 [ (force idFun_i1) (force idFun_i1) ]) (delay (lam x_i0 x_i1))
+  ]
 )

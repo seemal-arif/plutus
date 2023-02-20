@@ -1,25 +1,16 @@
 (program
-  (let
-    (nonrec)
-    (termbind
-      (strict)
-      (vardecl idFun (fun (con integer) (con integer)))
-      (lam x (con integer) x)
-    )
-    (termbind
-      (strict)
-      (vardecl
-        g
-        (fun
-          (fun (con integer) (con integer)) (fun (con integer) (con integer))
-        )
-      )
+  1.0.0
+  [
+    [
       (lam
-        y
-        (fun (con integer) (con integer))
-        (lam eta (con integer) [ idFun eta ])
+        idFun_i0
+        [
+          [ (lam g_i0 g_i1) (lam y_i0 (lam eta_i0 [ idFun_i3 eta_i1 ])) ]
+          idFun_i1
+        ]
       )
-    )
-    [ [ g idFun ] (con integer 1) ]
-  )
+      (lam x_i0 x_i1)
+    ]
+    (con integer 1)
+  ]
 )

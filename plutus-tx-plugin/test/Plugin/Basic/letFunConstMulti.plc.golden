@@ -1,11 +1,10 @@
 (program
-  (let
-    (nonrec)
-    (termbind
-      (strict)
-      (vardecl constFun (fun (con integer) (fun (con integer) (con integer))))
-      (lam x (con integer) (lam y (con integer) x))
+  1.0.0
+  [
+    (lam
+      constFun_i0
+      [ constFun_i1 [ [ constFun_i1 (con integer 3) ] (con integer 5) ] ]
     )
-    [ constFun [ [ constFun (con integer 3) ] (con integer 5) ] ]
-  )
+    (lam x_i0 (lam y_i0 x_i2))
+  ]
 )
