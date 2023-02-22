@@ -209,6 +209,7 @@ library
     PlutusCore.Builtin.KnownKind
     PlutusCore.Builtin.KnownType
     PlutusCore.Builtin.KnownTypeAst
+    PlutusCore.Builtin.KnownTypeAstInstance
     PlutusCore.Builtin.Meaning
     PlutusCore.Builtin.Polymorphism
     PlutusCore.Builtin.Runtime

@@ -11,34 +11,27 @@
 {-# LANGUAGE UndecidableInstances     #-}
 
 module PlutusCore.Builtin.KnownTypeAst
-    ( TyNameRep (..)
+    ( DeferredType
+    , TyNameRep (..)
     , TyVarRep
     , TyAppRep
     , TyForallRep
     , Hole
     , RepHole
     , TypeHole
+    , BuiltinHead
     , KnownBuiltinTypeAst
     , KnownTypeAst (..)
     , Delete
     , Merge
     ) where
 
-import PlutusCore.Builtin.Emitter
-import PlutusCore.Builtin.KnownKind
 import PlutusCore.Builtin.Polymorphism
-import PlutusCore.Core
-import PlutusCore.Evaluation.Result
-import PlutusCore.MkPlc hiding (error)
 import PlutusCore.Name
 
 import Data.Kind qualified as GHC (Constraint, Type)
 import Data.Proxy
 import Data.Some.GADT qualified as GADT
-import Data.Text qualified as Text
-import Data.Type.Bool
-import GHC.TypeLits
-import Universe
 
 {- Note [Rep vs Type context]
 Say you define an @Id@ built-in function and specify its Haskell type signature:
@@ -129,6 +122,9 @@ is determined by some other part of the signature. We don't have that either, fo
 For the user defining a builtin this all is pretty much invisible.
 -}
 
+type DeferredType :: GHC.Type -> (GHC.Type -> GHC.Type) -> GHC.Type -> GHC.Type
+type family DeferredType
+
 -- See Note [Rep vs Type context].
 -- | The kind of holes.
 data Hole
@@ -184,89 +180,9 @@ class KnownTypeAst uni x where
     type ToBinds x = ToBinds (ElaborateBuiltin x)
 
     -- | The type representing @a@ used on the PLC side.
-    toTypeAst :: proxy x -> Type TyName uni ()
-    default toTypeAst :: KnownBuiltinTypeAst uni x => proxy x -> Type TyName uni ()
+    toTypeAst :: proxy x -> DeferredType TyName uni ()
+    default toTypeAst :: KnownBuiltinTypeAst uni x => proxy x -> DeferredType TyName uni ()
     toTypeAst _ = toTypeAst $ Proxy @(ElaborateBuiltin x)
-    {-# INLINE toTypeAst #-}
-
-instance KnownTypeAst uni a => KnownTypeAst uni (EvaluationResult a) where
-    type IsBuiltin (EvaluationResult a) = 'False
-    type ToHoles (EvaluationResult a) = '[TypeHole a]
-    type ToBinds (EvaluationResult a) = ToBinds a
-    toTypeAst _ = toTypeAst $ Proxy @a
-    {-# INLINE toTypeAst #-}
-
-instance KnownTypeAst uni a => KnownTypeAst uni (Emitter a) where
-    type IsBuiltin (Emitter a) = 'False
-    type ToHoles (Emitter a) = '[TypeHole a]
-    type ToBinds (Emitter a) = ToBinds a
-    toTypeAst _ = toTypeAst $ Proxy @a
-    {-# INLINE toTypeAst #-}
-
-instance KnownTypeAst uni rep => KnownTypeAst uni (SomeConstant uni rep) where
-    type IsBuiltin (SomeConstant uni rep) = 'False
-    type ToHoles (SomeConstant _ rep) = '[RepHole rep]
-    type ToBinds (SomeConstant _ rep) = ToBinds rep
-    toTypeAst _ = toTypeAst $ Proxy @rep
-    {-# INLINE toTypeAst #-}
-
-instance KnownTypeAst uni rep => KnownTypeAst uni (Opaque val rep) where
-    type IsBuiltin (Opaque val rep) = 'False
-    type ToHoles (Opaque _ rep) = '[RepHole rep]
-    type ToBinds (Opaque _ rep) = ToBinds rep
-    toTypeAst _ = toTypeAst $ Proxy @rep
-    {-# INLINE toTypeAst #-}
-
-toTyNameAst
-    :: forall text uniq. (KnownSymbol text, KnownNat uniq)
-    => Proxy ('TyNameRep text uniq) -> TyName
-toTyNameAst _ =
-    TyName $ Name
-        (Text.pack $ symbolVal @text Proxy)
-        (Unique . fromIntegral $ natVal @uniq Proxy)
-{-# INLINE toTyNameAst #-}
-
-instance uni `Contains` f => KnownTypeAst uni (BuiltinHead f) where
-    type IsBuiltin (BuiltinHead f) = 'True
-    type ToHoles (BuiltinHead f) = '[]
-    type ToBinds (BuiltinHead f) = '[]
-    toTypeAst _ = mkTyBuiltin @_ @f ()
-    {-# INLINE toTypeAst #-}
-
-instance (KnownTypeAst uni a, KnownTypeAst uni b) => KnownTypeAst uni (a -> b) where
-    type IsBuiltin (a -> b) = 'False
-    type ToHoles (a -> b) = '[TypeHole a, TypeHole b]
-    type ToBinds (a -> b) = Merge (ToBinds a) (ToBinds b)
-    toTypeAst _ = TyFun () (toTypeAst $ Proxy @a) (toTypeAst $ Proxy @b)
-    {-# INLINE toTypeAst #-}
-
-instance (name ~ 'TyNameRep text uniq, KnownSymbol text, KnownNat uniq) =>
-            KnownTypeAst uni (TyVarRep name) where
-    type IsBuiltin (TyVarRep name) = 'False
-    type ToHoles (TyVarRep name) = '[]
-    type ToBinds (TyVarRep name) = '[ 'GADT.Some name ]
-    toTypeAst _ = TyVar () . toTyNameAst $ Proxy @('TyNameRep text uniq)
-    {-# INLINE toTypeAst #-}
-
-instance (KnownTypeAst uni fun, KnownTypeAst uni arg) => KnownTypeAst uni (TyAppRep fun arg) where
-    type IsBuiltin (TyAppRep fun arg) = IsBuiltin fun && IsBuiltin arg
-    type ToHoles (TyAppRep fun arg) = '[RepHole fun, RepHole arg]
-    type ToBinds (TyAppRep fun arg) = Merge (ToBinds fun) (ToBinds arg)
-    toTypeAst _ = TyApp () (toTypeAst $ Proxy @fun) (toTypeAst $ Proxy @arg)
-    {-# INLINE toTypeAst #-}
-
-instance
-        ( name ~ 'TyNameRep @kind text uniq, KnownSymbol text, KnownNat uniq
-        , KnownKind kind, KnownTypeAst uni a
-        ) => KnownTypeAst uni (TyForallRep name a) where
-    type IsBuiltin (TyForallRep name a) = 'False
-    type ToHoles (TyForallRep name a) = '[RepHole a]
-    type ToBinds (TyForallRep name a) = Delete ('GADT.Some name) (ToBinds a)
-    toTypeAst _ =
-        TyForall ()
-            (toTyNameAst $ Proxy @('TyNameRep text uniq))
-            (demoteKind $ knownKind @kind)
-            (toTypeAst $ Proxy @a)
     {-# INLINE toTypeAst #-}
 
 -- Utils

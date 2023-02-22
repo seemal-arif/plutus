@@ -26,10 +26,8 @@ import PlutusCore.Builtin.KnownType
 import PlutusCore.Builtin.KnownTypeAst
 import PlutusCore.Builtin.Runtime
 import PlutusCore.Builtin.TypeScheme
-import PlutusCore.Core
 import PlutusCore.Evaluation.Machine.ExBudget
 import PlutusCore.Evaluation.Machine.ExMemory
-import PlutusCore.Name
 
 import Control.DeepSeq
 import Data.Array
@@ -38,6 +36,7 @@ import Data.Proxy
 import Data.Some.GADT
 import GHC.Exts (inline, lazy, oneShot)
 import GHC.TypeLits
+import Universe (UniOf)
 
 -- | Turn a list of Haskell types @args@ into a functional type ending in @res@.
 --
@@ -81,11 +80,6 @@ class (Typeable uni, Typeable fun, Bounded fun, Enum fun, Ix fun, Default (Built
 
     -- | Get the 'BuiltinMeaning' of a built-in function.
     toBuiltinMeaning :: HasMeaningIn uni val => BuiltinVersion fun -> fun -> BuiltinMeaning val (CostingPart uni fun)
-
--- | Get the type of a built-in function.
-typeOfBuiltinFunction :: forall uni fun. ToBuiltinMeaning uni fun => BuiltinVersion fun -> fun -> Type TyName uni ()
-typeOfBuiltinFunction ver fun = case toBuiltinMeaning @_ @_ @(Term TyName Name uni fun ()) ver fun of
-    BuiltinMeaning sch _ _ -> typeSchemeToType sch
 
 {- Note [Versioned builtins]
 The purpose of the "versioned builtins" feature is to provide multiple, different denotations (implementations)

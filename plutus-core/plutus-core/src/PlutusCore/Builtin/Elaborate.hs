@@ -19,12 +19,12 @@ module PlutusCore.Builtin.Elaborate
 
 import PlutusCore.Builtin.KnownTypeAst
 import PlutusCore.Builtin.Polymorphism
-import PlutusCore.Core.Type
 
 import Data.Kind qualified as GHC
 import Data.Type.Bool
 import Data.Type.Equality
 import GHC.TypeLits
+import Universe (UniOf)
 
 -- The 'TryUnify' gadget explained in detail in https://github.com/effectfully/sketches/tree/master/poly-type-of-saga/part1-try-unify
 

@@ -156,9 +156,6 @@ data Program tyname name uni fun ann = Program
     deriving anyclass (NFData)
 makeLenses ''Program
 
--- | Extract the universe from a type.
-type family UniOf a :: GHC.Type -> GHC.Type
-
 type instance UniOf (Term tyname name uni fun ann) = uni
 
 -- | A "type variable declaration", i.e. a name and a kind for a type variable.

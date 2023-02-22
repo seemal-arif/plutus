@@ -18,7 +18,8 @@
 {-# LANGUAGE UndecidableSuperClasses  #-}
 
 module Universe.Core
-    ( Esc
+    ( UniOf
+    , Esc
     , Some (..)
     , SomeTypeIn (..)
     , Kinded (..)
@@ -64,6 +65,9 @@ import Data.Some.Newtype
 import Data.Type.Equality
 import Text.Show.Deriving
 import Type.Reflection
+
+-- | Extract the universe from a type.
+type family UniOf a :: Type -> Type
 
 {- Note [Universes]
 A universe is a collection of tags for types. It can be finite like
