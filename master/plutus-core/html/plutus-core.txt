@@ -8410,7 +8410,14 @@ computeCek :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann
 returnCek :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann s) => WordArray -> Context uni fun ann -> CekValue uni fun ann -> CekM uni fun s (CekState uni fun ann)
 
 -- | The state transition function of the machine.
-handleStep :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann s) => CekState uni fun ann -> CekM uni fun s (CekState uni fun ann)
+handleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s c
+
+-- | As <a>handleStep</a> but captures any exception during a single-state
+--   transition
+--   
+--   Note that we use the "pure" MonadError.tryError and not the
+--   MonadCatch.tryError. See Note [Throwing exceptions in ST]
+tryHandleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s (Either (CekEvaluationException NamedDeBruijn uni fun) c)
 
 -- | The parameterized type of results various evaluation engines return.
 --   On the PLC side this becomes (via <tt>makeKnown</tt>) either a call to
@@ -8593,7 +8600,14 @@ StepF :: CekState uni fun ann -> (CekState uni fun ann -> a) -> DebugF uni fun a
 UpdateClientF :: CekState uni fun ann -> a -> DebugF uni fun ann bps a
 
 -- | The state transition function of the machine.
-handleStep :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann s) => CekState uni fun ann -> CekM uni fun s (CekState uni fun ann)
+handleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s c
+
+-- | As <a>handleStep</a> but captures any exception during a single-state
+--   transition
+--   
+--   Note that we use the "pure" MonadError.tryError and not the
+--   MonadCatch.tryError. See Note [Throwing exceptions in ST]
+tryHandleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s (Either (CekEvaluationException NamedDeBruijn uni fun) c)
 
 -- | Monads provide substitution (<a>fmap</a>) and renormalization
 --   (<a>join</a>):
@@ -9018,8 +9032,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7qYQ a_a7qYR. Lens' (SimplifyOpts name_a7qYQ a_a7qYR) Int
-soInlineHints :: forall name_a7qYQ a_a7qYR name_a7r0s a_a7r0t. Lens (SimplifyOpts name_a7qYQ a_a7qYR) (SimplifyOpts name_a7r0s a_a7r0t) (InlineHints name_a7qYQ a_a7qYR) (InlineHints name_a7r0s a_a7r0t)
+soMaxSimplifierIterations :: forall name_a7r1m a_a7r1n. Lens' (SimplifyOpts name_a7r1m a_a7r1n) Int
+soInlineHints :: forall name_a7r1m a_a7r1n name_a7r2Y a_a7r2Z. Lens (SimplifyOpts name_a7r1m a_a7r1n) (SimplifyOpts name_a7r2Y a_a7r2Z) (InlineHints name_a7r1m a_a7r1n) (InlineHints name_a7r2Y a_a7r2Z)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9091,6 +9105,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7rzn a_a7rzo name_a7rAL a_a7rAM. Iso (CompilationOpts name_a7rzn a_a7rzo) (CompilationOpts name_a7rAL a_a7rAM) (SimplifyOpts name_a7rzn a_a7rzo) (SimplifyOpts name_a7rAL a_a7rAM)
+coSimplifyOpts :: forall name_a7rBT a_a7rBU name_a7rDh a_a7rDi. Iso (CompilationOpts name_a7rBT a_a7rBU) (CompilationOpts name_a7rDh a_a7rDi) (SimplifyOpts name_a7rBT a_a7rBU) (SimplifyOpts name_a7rDh a_a7rDi)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
