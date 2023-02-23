@@ -73,7 +73,7 @@ C_unit_22 :: T_TyCon_12
 C_bool_24 :: T_TyCon_12
 C_list_26 :: AgdaAny -> T_TyCon_12
 C_pair_28 :: AgdaAny -> AgdaAny -> T_TyCon_12
-C_Data_30 :: T_TyCon_12
+C_pdata_30 :: T_TyCon_12
 
 module MAlonzo.Code.Agda.Primitive
 type T_Level_14 = ()
@@ -14161,13 +14161,13 @@ pattern C_bytestring_914 :: () => Esc a ~ Esc ByteString => a -> Some (ValueOf D
 pattern C_string_916 :: () => Esc a ~ Esc Text => a -> Some (ValueOf DefaultUni)
 pattern C_bool_918 :: () => Esc a ~ Esc Bool => a -> Some (ValueOf DefaultUni)
 pattern C_unit_920 :: forall {a}. () => Esc a ~ Esc () => Some (ValueOf DefaultUni)
-pattern C_Data_922 :: () => Esc a ~ Esc Data => a -> Some (ValueOf DefaultUni)
+pattern C_pdata_922 :: () => Esc a ~ Esc Data => a -> Some (ValueOf DefaultUni)
 check_integer_912 :: Integer -> T_TermCon_910
 check_bytestring_914 :: T_ByteString_890 -> T_TermCon_910
 check_string_916 :: T_String_6 -> T_TermCon_910
 check_bool_918 :: Bool -> T_TermCon_910
 check_unit_920 :: T_TermCon_910
-check_Data_922 :: T_DATA_892 -> T_TermCon_910
+check_pdata_922 :: T_DATA_892 -> T_TermCon_910
 cover_TermCon_910 :: TermCon -> ()
 
 module MAlonzo.Code.Type
@@ -14264,7 +14264,7 @@ d_sub'8801'β_148 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8
 d_sub'8801'βTyCon_156 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866''8902'__20) -> T_TyCon_12 -> T_TyCon_12 -> T__'8801'βTyCon__30 -> T__'8801'βTyCon__30
 
 module MAlonzo.Code.Type.BetaNormal
-d_TyCon_10 :: p -> ()
+d_TyCon_8 :: p -> ()
 d__'8866'Nf'8902'__44 :: p -> p -> ()
 data T__'8866'Nf'8902'__44
 C_Π_92 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
@@ -14273,7 +14273,7 @@ C_ƛ_96 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
 C_ne_98 :: T__'8866'Ne'8902'__86 -> T__'8866'Nf'8902'__44
 C_con_100 :: T_TyCon_12 -> T__'8866'Nf'8902'__44
 C_μ_102 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
-d_TyCon_52 :: p -> ()
+d_TyCon_50 :: p -> ()
 d__'8866'Ne'8902'__86 :: p -> p -> ()
 data T__'8866'Ne'8902'__86
 C_'96'_88 :: T__'8715''8902'__14 -> T__'8866'Ne'8902'__86
@@ -14294,8 +14294,8 @@ d_renTyCon'45'embNf_250 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'
 d_ren'45'embNe_280 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T_Kind_898 -> T__'8866'Ne'8902'__86 -> T__'8801'__12
 
 module MAlonzo.Code.Type.BetaNBE
-d_TyCon_10 :: p -> ()
-d_TyCon_50 :: p -> ()
+d_TyCon_8 :: p -> ()
+d_TyCon_48 :: p -> ()
 d_Val_84 :: T_Ctx'8902'_2 -> T_Kind_898 -> ()
 d_reflect_100 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Ne'8902'__86 -> AgdaAny
 du_reflect_100 :: T_Kind_898 -> T__'8866'Ne'8902'__86 -> AgdaAny
@@ -14317,7 +14317,7 @@ du_idEnv_306 :: T_Kind_898 -> T__'8715''8902'__14 -> AgdaAny
 d_nf_314 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> T__'8866'Nf'8902'__44
 
 module MAlonzo.Code.Type.BetaNBE.Soundness
-d_TyCon_12 :: p -> ()
+d_TyCon_10 :: p -> ()
 d_SR_50 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> AgdaAny -> ()
 d_reflectSR_90 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> T__'8866'Ne'8902'__86 -> T__'8801'β__28 -> AgdaAny
 du_reflectSR_90 :: T_Kind_898 -> T__'8801'β__28 -> AgdaAny
@@ -14343,8 +14343,8 @@ du_idSR_466 :: T_Kind_898 -> AgdaAny
 d_soundness_474 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> T__'8801'β__28
 
 module MAlonzo.Code.Type.BetaNBE.Completeness
-d_TyCon_12 :: p -> ()
-d_TyCon_52 :: p -> ()
+d_TyCon_10 :: p -> ()
+d_TyCon_50 :: p -> ()
 d_CR_90 :: T_Ctx'8902'_2 -> T_Kind_898 -> AgdaAny -> AgdaAny -> ()
 d_Unif_140 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Kind_898 -> (T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> AgdaAny -> AgdaAny) -> (T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> AgdaAny -> AgdaAny) -> T_Ctx'8902'_2 -> T_Kind_898 -> T_Kind_898 -> (T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> AgdaAny -> AgdaAny) -> ()
 d_symCR_176 :: T_Ctx'8902'_2 -> T_Kind_898 -> AgdaAny -> AgdaAny -> AgdaAny -> AgdaAny
@@ -14418,6 +14418,31 @@ d_sub'45'nf'45'Π_508 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'87
 d_sub'45'nf'45'μ_526 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Kind_898 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12
 d_subNf'45'cons'45''91''93'Nf_546 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12
 
+module MAlonzo.Code.Signature
+d__'8866''9839'_2 :: p -> ()
+data T__'8866''9839'_2
+C_'96'_28 :: T_Fin_6 -> T__'8866''9839'_2
+C_con_32 :: T_TyCon_12 -> T__'8866''9839'_2
+d_TyCon_6 :: p -> ()
+d_Args_34 :: Integer -> ()
+d_Sig_38 :: ()
+data T_Sig_38
+C_sig_52 :: Integer -> T_List'8314'_24 -> T__'8866''9839'_2 -> T_Sig_38
+d_fv'9839'_46 :: T_Sig_38 -> Integer
+d_args_48 :: T_Sig_38 -> T_List'8314'_24
+d_result_50 :: T_Sig_38 -> T__'8866''9839'_2
+d_'9839'2'42'_80 :: () -> (AgdaAny -> ()) -> (Integer -> AgdaAny) -> (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny) -> Integer -> T__'8866''9839'_2 -> AgdaAny
+du_'9839'2'42'_80 :: (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> Integer -> T__'8866''9839'_2 -> AgdaAny
+d_sig2type'45'aux_92 :: () -> (AgdaAny -> ()) -> (Integer -> AgdaAny) -> (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny) -> Integer -> T_List'8314'_24 -> AgdaAny -> AgdaAny
+du_sig2type'45'aux_92 :: (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> Integer -> T_List'8314'_24 -> AgdaAny -> AgdaAny
+d_sig2type'45'aux2_108 :: () -> (AgdaAny -> ()) -> (Integer -> AgdaAny) -> (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny) -> Integer -> AgdaAny -> AgdaAny
+du_sig2type'45'aux2_108 :: (Integer -> AgdaAny -> AgdaAny) -> Integer -> AgdaAny -> AgdaAny
+d_sig2type_116 :: () -> (AgdaAny -> ()) -> (Integer -> AgdaAny) -> (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny) -> T_Sig_38 -> AgdaAny
+du_sig2type_116 :: (Integer -> T_Fin_6 -> AgdaAny) -> (Integer -> T_TyCon_12 -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny -> AgdaAny) -> (Integer -> AgdaAny -> AgdaAny) -> T_Sig_38 -> AgdaAny
+d_nat2Ctx'8902'_122 :: Integer -> T_Ctx'8902'_2
+d_fin2'8712''8902'_128 :: Integer -> T_Fin_6 -> T__'8715''8902'__14
+du_fin2'8712''8902'_128 :: T_Fin_6 -> T__'8715''8902'__14
+
 module MAlonzo.Code.Builtin.Constant.Term
 d_TermCon_22 :: p -> p -> p -> p -> p -> p -> p -> ()
 data T_TermCon_22
@@ -14426,290 +14451,314 @@ C_bytestring_32 :: T_ByteString_890 -> T_TermCon_22
 C_string_36 :: T_String_6 -> T_TermCon_22
 C_bool_40 :: Bool -> T_TermCon_22
 C_unit_42 :: T_TermCon_22
-C_Data_44 :: T_DATA_892 -> T_TermCon_22
+C_pdata_44 :: T_DATA_892 -> T_TermCon_22
 
 module MAlonzo.Code.Builtin
 emitterResultToMaybe :: (EvaluationResult a, b) -> Maybe a
-d_Builtin_2 :: ()
-type T_Builtin_2 = DefaultFun
-pattern C_addInteger_4 :: DefaultFun
-pattern C_subtractInteger_6 :: DefaultFun
-pattern C_multiplyInteger_8 :: DefaultFun
-pattern C_divideInteger_10 :: DefaultFun
-pattern C_quotientInteger_12 :: DefaultFun
-pattern C_remainderInteger_14 :: DefaultFun
-pattern C_modInteger_16 :: DefaultFun
-pattern C_equalsInteger_18 :: DefaultFun
-pattern C_lessThanInteger_20 :: DefaultFun
-pattern C_lessThanEqualsInteger_22 :: DefaultFun
-pattern C_appendByteString_24 :: DefaultFun
-pattern C_consByteString_26 :: DefaultFun
-pattern C_sliceByteString_28 :: DefaultFun
-pattern C_lengthOfByteString_30 :: DefaultFun
-pattern C_indexByteString_32 :: DefaultFun
-pattern C_equalsByteString_34 :: DefaultFun
-pattern C_lessThanByteString_36 :: DefaultFun
-pattern C_lessThanEqualsByteString_38 :: DefaultFun
-pattern C_sha2'45'256_40 :: DefaultFun
-pattern C_sha3'45'256_42 :: DefaultFun
-pattern C_blake2b'45'256_44 :: DefaultFun
-pattern C_verifyEd25519Signature_46 :: DefaultFun
-pattern C_verifyEcdsaSecp256k1Signature_48 :: DefaultFun
-pattern C_verifySchnorrSecp256k1Signature_50 :: DefaultFun
-pattern C_appendString_52 :: DefaultFun
-pattern C_equalsString_54 :: DefaultFun
-pattern C_encodeUtf8_56 :: DefaultFun
-pattern C_decodeUtf8_58 :: DefaultFun
-pattern C_ifThenElse_60 :: DefaultFun
-pattern C_chooseUnit_62 :: DefaultFun
-pattern C_trace_64 :: DefaultFun
-pattern C_fstPair_66 :: DefaultFun
-pattern C_sndPair_68 :: DefaultFun
-pattern C_chooseList_70 :: DefaultFun
-pattern C_mkCons_72 :: DefaultFun
-pattern C_headList_74 :: DefaultFun
-pattern C_tailList_76 :: DefaultFun
-pattern C_nullList_78 :: DefaultFun
-pattern C_chooseData_80 :: DefaultFun
-pattern C_constrData_82 :: DefaultFun
-pattern C_mapData_84 :: DefaultFun
-pattern C_listData_86 :: DefaultFun
-pattern C_iData_88 :: DefaultFun
-pattern C_bData_90 :: DefaultFun
-pattern C_unConstrData_92 :: DefaultFun
-pattern C_unMapData_94 :: DefaultFun
-pattern C_unListData_96 :: DefaultFun
-pattern C_unIData_98 :: DefaultFun
-pattern C_unBData_100 :: DefaultFun
-pattern C_equalsData_102 :: DefaultFun
-pattern C_serialiseData_104 :: DefaultFun
-pattern C_mkPairData_106 :: DefaultFun
-pattern C_mkNilData_108 :: DefaultFun
-pattern C_mkNilPairData_110 :: DefaultFun
-check_addInteger_4 :: T_Builtin_2
-check_subtractInteger_6 :: T_Builtin_2
-check_multiplyInteger_8 :: T_Builtin_2
-check_divideInteger_10 :: T_Builtin_2
-check_quotientInteger_12 :: T_Builtin_2
-check_remainderInteger_14 :: T_Builtin_2
-check_modInteger_16 :: T_Builtin_2
-check_equalsInteger_18 :: T_Builtin_2
-check_lessThanInteger_20 :: T_Builtin_2
-check_lessThanEqualsInteger_22 :: T_Builtin_2
-check_appendByteString_24 :: T_Builtin_2
-check_consByteString_26 :: T_Builtin_2
-check_sliceByteString_28 :: T_Builtin_2
-check_lengthOfByteString_30 :: T_Builtin_2
-check_indexByteString_32 :: T_Builtin_2
-check_equalsByteString_34 :: T_Builtin_2
-check_lessThanByteString_36 :: T_Builtin_2
-check_lessThanEqualsByteString_38 :: T_Builtin_2
-check_sha2'45'256_40 :: T_Builtin_2
-check_sha3'45'256_42 :: T_Builtin_2
-check_blake2b'45'256_44 :: T_Builtin_2
-check_verifyEd25519Signature_46 :: T_Builtin_2
-check_verifyEcdsaSecp256k1Signature_48 :: T_Builtin_2
-check_verifySchnorrSecp256k1Signature_50 :: T_Builtin_2
-check_appendString_52 :: T_Builtin_2
-check_equalsString_54 :: T_Builtin_2
-check_encodeUtf8_56 :: T_Builtin_2
-check_decodeUtf8_58 :: T_Builtin_2
-check_ifThenElse_60 :: T_Builtin_2
-check_chooseUnit_62 :: T_Builtin_2
-check_trace_64 :: T_Builtin_2
-check_fstPair_66 :: T_Builtin_2
-check_sndPair_68 :: T_Builtin_2
-check_chooseList_70 :: T_Builtin_2
-check_mkCons_72 :: T_Builtin_2
-check_headList_74 :: T_Builtin_2
-check_tailList_76 :: T_Builtin_2
-check_nullList_78 :: T_Builtin_2
-check_chooseData_80 :: T_Builtin_2
-check_constrData_82 :: T_Builtin_2
-check_mapData_84 :: T_Builtin_2
-check_listData_86 :: T_Builtin_2
-check_iData_88 :: T_Builtin_2
-check_bData_90 :: T_Builtin_2
-check_unConstrData_92 :: T_Builtin_2
-check_unMapData_94 :: T_Builtin_2
-check_unListData_96 :: T_Builtin_2
-check_unIData_98 :: T_Builtin_2
-check_unBData_100 :: T_Builtin_2
-check_equalsData_102 :: T_Builtin_2
-check_serialiseData_104 :: T_Builtin_2
-check_mkPairData_106 :: T_Builtin_2
-check_mkNilData_108 :: T_Builtin_2
-check_mkNilPairData_110 :: T_Builtin_2
-cover_Builtin_2 :: DefaultFun -> ()
-d_length_112 :: T_ByteString_890 -> Integer
-d_index_114 :: T_ByteString_890 -> Integer -> Integer
-d_div_116 :: Integer -> Integer -> Integer
-d_quot_118 :: Integer -> Integer -> Integer
-d_rem_120 :: Integer -> Integer -> Integer
-d_mod_122 :: Integer -> Integer -> Integer
-d_TRACE_126 :: forall xa. () -> T_String_6 -> xa -> xa
-d_concat_128 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890
-d_cons_130 :: Integer -> T_ByteString_890 -> T_ByteString_890
-d_slice_132 :: Integer -> Integer -> T_ByteString_890 -> T_ByteString_890
-d_B'60'_134 :: T_ByteString_890 -> T_ByteString_890 -> Bool
-d_B'60''61'_136 :: T_ByteString_890 -> T_ByteString_890 -> Bool
-d_SHA2'45'256_138 :: T_ByteString_890 -> T_ByteString_890
-d_SHA3'45'256_140 :: T_ByteString_890 -> T_ByteString_890
-d_BLAKE2B'45'256_142 :: T_ByteString_890 -> T_ByteString_890
-d_verifyEd25519Sig_144 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
-d_verifyEcdsaSecp256k1Sig_146 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
-d_verifySchnorrSecp256k1Sig_148 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
-d_equals_150 :: T_ByteString_890 -> T_ByteString_890 -> Bool
-d_ENCODEUTF8_152 :: T_String_6 -> T_ByteString_890
-d_DECODEUTF8_154 :: T_ByteString_890 -> T_Maybe_4 T_String_6
-d_serialiseDATA_156 :: a
+d_TyCon_4 :: p -> ()
+d_Builtin_40 :: ()
+type T_Builtin_40 = DefaultFun
+pattern C_addInteger_42 :: DefaultFun
+pattern C_subtractInteger_44 :: DefaultFun
+pattern C_multiplyInteger_46 :: DefaultFun
+pattern C_divideInteger_48 :: DefaultFun
+pattern C_quotientInteger_50 :: DefaultFun
+pattern C_remainderInteger_52 :: DefaultFun
+pattern C_modInteger_54 :: DefaultFun
+pattern C_equalsInteger_56 :: DefaultFun
+pattern C_lessThanInteger_58 :: DefaultFun
+pattern C_lessThanEqualsInteger_60 :: DefaultFun
+pattern C_appendByteString_62 :: DefaultFun
+pattern C_consByteString_64 :: DefaultFun
+pattern C_sliceByteString_66 :: DefaultFun
+pattern C_lengthOfByteString_68 :: DefaultFun
+pattern C_indexByteString_70 :: DefaultFun
+pattern C_equalsByteString_72 :: DefaultFun
+pattern C_lessThanByteString_74 :: DefaultFun
+pattern C_lessThanEqualsByteString_76 :: DefaultFun
+pattern C_sha2'45'256_78 :: DefaultFun
+pattern C_sha3'45'256_80 :: DefaultFun
+pattern C_blake2b'45'256_82 :: DefaultFun
+pattern C_verifyEd25519Signature_84 :: DefaultFun
+pattern C_verifyEcdsaSecp256k1Signature_86 :: DefaultFun
+pattern C_verifySchnorrSecp256k1Signature_88 :: DefaultFun
+pattern C_appendString_90 :: DefaultFun
+pattern C_equalsString_92 :: DefaultFun
+pattern C_encodeUtf8_94 :: DefaultFun
+pattern C_decodeUtf8_96 :: DefaultFun
+pattern C_ifThenElse_98 :: DefaultFun
+pattern C_chooseUnit_100 :: DefaultFun
+pattern C_trace_102 :: DefaultFun
+pattern C_fstPair_104 :: DefaultFun
+pattern C_sndPair_106 :: DefaultFun
+pattern C_chooseList_108 :: DefaultFun
+pattern C_mkCons_110 :: DefaultFun
+pattern C_headList_112 :: DefaultFun
+pattern C_tailList_114 :: DefaultFun
+pattern C_nullList_116 :: DefaultFun
+pattern C_chooseData_118 :: DefaultFun
+pattern C_constrData_120 :: DefaultFun
+pattern C_mapData_122 :: DefaultFun
+pattern C_listData_124 :: DefaultFun
+pattern C_iData_126 :: DefaultFun
+pattern C_bData_128 :: DefaultFun
+pattern C_unConstrData_130 :: DefaultFun
+pattern C_unMapData_132 :: DefaultFun
+pattern C_unListData_134 :: DefaultFun
+pattern C_unIData_136 :: DefaultFun
+pattern C_unBData_138 :: DefaultFun
+pattern C_equalsData_140 :: DefaultFun
+pattern C_serialiseData_142 :: DefaultFun
+pattern C_mkPairData_144 :: DefaultFun
+pattern C_mkNilData_146 :: DefaultFun
+pattern C_mkNilPairData_148 :: DefaultFun
+check_addInteger_42 :: T_Builtin_40
+check_subtractInteger_44 :: T_Builtin_40
+check_multiplyInteger_46 :: T_Builtin_40
+check_divideInteger_48 :: T_Builtin_40
+check_quotientInteger_50 :: T_Builtin_40
+check_remainderInteger_52 :: T_Builtin_40
+check_modInteger_54 :: T_Builtin_40
+check_equalsInteger_56 :: T_Builtin_40
+check_lessThanInteger_58 :: T_Builtin_40
+check_lessThanEqualsInteger_60 :: T_Builtin_40
+check_appendByteString_62 :: T_Builtin_40
+check_consByteString_64 :: T_Builtin_40
+check_sliceByteString_66 :: T_Builtin_40
+check_lengthOfByteString_68 :: T_Builtin_40
+check_indexByteString_70 :: T_Builtin_40
+check_equalsByteString_72 :: T_Builtin_40
+check_lessThanByteString_74 :: T_Builtin_40
+check_lessThanEqualsByteString_76 :: T_Builtin_40
+check_sha2'45'256_78 :: T_Builtin_40
+check_sha3'45'256_80 :: T_Builtin_40
+check_blake2b'45'256_82 :: T_Builtin_40
+check_verifyEd25519Signature_84 :: T_Builtin_40
+check_verifyEcdsaSecp256k1Signature_86 :: T_Builtin_40
+check_verifySchnorrSecp256k1Signature_88 :: T_Builtin_40
+check_appendString_90 :: T_Builtin_40
+check_equalsString_92 :: T_Builtin_40
+check_encodeUtf8_94 :: T_Builtin_40
+check_decodeUtf8_96 :: T_Builtin_40
+check_ifThenElse_98 :: T_Builtin_40
+check_chooseUnit_100 :: T_Builtin_40
+check_trace_102 :: T_Builtin_40
+check_fstPair_104 :: T_Builtin_40
+check_sndPair_106 :: T_Builtin_40
+check_chooseList_108 :: T_Builtin_40
+check_mkCons_110 :: T_Builtin_40
+check_headList_112 :: T_Builtin_40
+check_tailList_114 :: T_Builtin_40
+check_nullList_116 :: T_Builtin_40
+check_chooseData_118 :: T_Builtin_40
+check_constrData_120 :: T_Builtin_40
+check_mapData_122 :: T_Builtin_40
+check_listData_124 :: T_Builtin_40
+check_iData_126 :: T_Builtin_40
+check_bData_128 :: T_Builtin_40
+check_unConstrData_130 :: T_Builtin_40
+check_unMapData_132 :: T_Builtin_40
+check_unListData_134 :: T_Builtin_40
+check_unIData_136 :: T_Builtin_40
+check_unBData_138 :: T_Builtin_40
+check_equalsData_140 :: T_Builtin_40
+check_serialiseData_142 :: T_Builtin_40
+check_mkPairData_144 :: T_Builtin_40
+check_mkNilData_146 :: T_Builtin_40
+check_mkNilPairData_148 :: T_Builtin_40
+cover_Builtin_40 :: DefaultFun -> ()
+d_'8729'_152 :: Integer
+d_'8704'a_154 :: Integer
+d_'8704'b'44'a_156 :: Integer
+d_integer_160 :: Integer -> T__'8866''9839'_2
+du_integer_160 :: T__'8866''9839'_2
+d_bool_164 :: Integer -> T__'8866''9839'_2
+du_bool_164 :: T__'8866''9839'_2
+d_bytestring_168 :: Integer -> T__'8866''9839'_2
+du_bytestring_168 :: T__'8866''9839'_2
+d_string_172 :: Integer -> T__'8866''9839'_2
+du_string_172 :: T__'8866''9839'_2
+d_unit_176 :: Integer -> T__'8866''9839'_2
+du_unit_176 :: T__'8866''9839'_2
+d_pdata_180 :: Integer -> T__'8866''9839'_2
+du_pdata_180 :: T__'8866''9839'_2
+d_pair_184 :: Integer -> T__'8866''9839'_2 -> T__'8866''9839'_2 -> T__'8866''9839'_2
+du_pair_184 :: T__'8866''9839'_2 -> T__'8866''9839'_2 -> T__'8866''9839'_2
+d_list_192 :: Integer -> T__'8866''9839'_2 -> T__'8866''9839'_2
+du_list_192 :: T__'8866''9839'_2 -> T__'8866''9839'_2
+d_a_198 :: Integer -> T__'8866''9839'_2
+du_a_198 :: T__'8866''9839'_2
+d_b_202 :: Integer -> T__'8866''9839'_2
+du_b_202 :: T__'8866''9839'_2
+d__'93''10230'__206 :: Integer -> T__'8866''9839'_2 -> T__'8866''9839'_2 -> T_Σ_14
+du__'93''10230'__206 :: T__'8866''9839'_2 -> T__'8866''9839'_2 -> T_Σ_14
+d__'91'__214 :: Integer -> T_Σ_14 -> T_Sig_38
+d__'44'__224 :: Integer -> T__'8866''9839'_2 -> T_Σ_14 -> T_Σ_14
+du__'44'__224 :: T__'8866''9839'_2 -> T_Σ_14 -> T_Σ_14
+d_signature_232 :: T_Builtin_40 -> T_Sig_38
+d_length_234 :: T_ByteString_890 -> Integer
+d_index_236 :: T_ByteString_890 -> Integer -> Integer
+d_div_238 :: Integer -> Integer -> Integer
+d_quot_240 :: Integer -> Integer -> Integer
+d_rem_242 :: Integer -> Integer -> Integer
+d_mod_244 :: Integer -> Integer -> Integer
+d_TRACE_248 :: forall xa. () -> T_String_6 -> xa -> xa
+d_concat_250 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890
+d_cons_252 :: Integer -> T_ByteString_890 -> T_ByteString_890
+d_slice_254 :: Integer -> Integer -> T_ByteString_890 -> T_ByteString_890
+d_B'60'_256 :: T_ByteString_890 -> T_ByteString_890 -> Bool
+d_B'60''61'_258 :: T_ByteString_890 -> T_ByteString_890 -> Bool
+d_SHA2'45'256_260 :: T_ByteString_890 -> T_ByteString_890
+d_SHA3'45'256_262 :: T_ByteString_890 -> T_ByteString_890
+d_BLAKE2B'45'256_264 :: T_ByteString_890 -> T_ByteString_890
+d_verifyEd25519Sig_266 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
+d_verifyEcdsaSecp256k1Sig_268 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
+d_verifySchnorrSecp256k1Sig_270 :: T_ByteString_890 -> T_ByteString_890 -> T_ByteString_890 -> T_Maybe_4 Bool
+d_equals_272 :: T_ByteString_890 -> T_ByteString_890 -> Bool
+d_ENCODEUTF8_274 :: T_String_6 -> T_ByteString_890
+d_DECODEUTF8_276 :: T_ByteString_890 -> T_Maybe_4 T_String_6
+d_serialiseDATA_278 :: a
 
 module MAlonzo.Code.Declarative
 d_TermCon_4 :: p -> p -> ()
-d_Ctx_20 :: p -> ()
-data T_Ctx_20
-C_'8709'_22 :: T_Ctx_20
-C__'44''8902'__26 :: T_Ctx_20 -> T_Ctx_20
-C__'44'__30 :: T_Ctx_20 -> T__'8866''8902'__20 -> T_Ctx_20
-d__'8715'__38 :: p -> p -> p -> ()
-data T__'8715'__38
-C_Z_40 :: T__'8715'__38
-C_S_42 :: T__'8715'__38 -> T__'8715'__38
-C_T_44 :: T__'8866''8902'__20 -> T__'8715'__38 -> T__'8715'__38
-d_sig_48 :: T_Builtin_2 -> T_Σ_14
-d_isig2type_52 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20
-d_btype_72 :: T_Ctx'8902'_2 -> T_Builtin_2 -> T__'8866''8902'__20
-d_btype'45'ren_86 :: a
-d_btype'45'sub_92 :: a
-d__'8866'__98 :: p -> p -> p -> ()
-data T__'8866'__98
-C_'96'_102 :: T__'8715'__38 -> T__'8866'__98
-C_ƛ_104 :: T__'8866'__98 -> T__'8866'__98
-C__'183'__106 :: T__'8866''8902'__20 -> T__'8866'__98 -> T__'8866'__98 -> T__'8866'__98
-C_Λ_108 :: T__'8866'__98 -> T__'8866'__98
-C__'183''8902'__112 :: T_Kind_898 -> T__'8866''8902'__20 -> T__'8866'__98 -> T__'8866''8902'__20 -> T__'8866'__98
-C_wrap_118 :: T__'8866'__98 -> T__'8866'__98
-C_unwrap_120 :: T__'8866'__98 -> T__'8866'__98
-C_conv_122 :: T__'8866''8902'__20 -> T__'8801'β__28 -> T__'8866'__98 -> T__'8866'__98
-C_con_126 :: T_TermCon_22 -> T__'8866'__98
-C_builtin_130 :: T_Builtin_2 -> T__'8866'__98
-C_error_134 :: T__'8866'__98
-d_conv'8715'_136 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__38 -> T__'8715'__38
-du_conv'8715'_136 :: T__'8715'__38 -> T__'8715'__38
-d_conv'8866'_140 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__98 -> T__'8866'__98
-du_conv'8866'_140 :: T__'8866'__98 -> T__'8866'__98
-d_typeOf_146 :: T_Ctx'8902'_2 -> T__'8866''8902'__20 -> T_Ctx_20 -> T__'8866'__98 -> T__'8866''8902'__20
-du_typeOf_146 :: T__'8866''8902'__20 -> T__'8866''8902'__20
-d_typeOf'8715'_152 :: T_Ctx'8902'_2 -> T__'8866''8902'__20 -> T_Ctx_20 -> T__'8715'__38 -> T__'8866''8902'__20
-du_typeOf'8715'_152 :: T__'8866''8902'__20 -> T__'8866''8902'__20
-d_piBody_158 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866'__98 -> T__'8866''8902'__20
-du_piBody_158 :: T__'8866''8902'__20 -> T__'8866''8902'__20
-d_muPat_164 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8866'__98 -> T__'8866''8902'__20
-du_muPat_164 :: T__'8866''8902'__20 -> T__'8866''8902'__20
-d_muArg_170 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8866'__98 -> T__'8866''8902'__20
-du_muArg_170 :: T__'8866''8902'__20 -> T__'8866''8902'__20
+d_Ctx_28 :: p -> ()
+data T_Ctx_28
+C_'8709'_30 :: T_Ctx_28
+C__'44''8902'__34 :: T_Ctx_28 -> T_Ctx_28
+C__'44'__38 :: T_Ctx_28 -> T__'8866''8902'__20 -> T_Ctx_28
+d__'8715'__46 :: p -> p -> p -> ()
+data T__'8715'__46
+C_Z_48 :: T__'8715'__46
+C_S_50 :: T__'8715'__46 -> T__'8715'__46
+C_T_52 :: T__'8866''8902'__20 -> T__'8715'__46 -> T__'8715'__46
+d_btype_54 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866''8902'__20
+d_btype'45'ren_62 :: a
+d_btype'45'sub_68 :: a
+d__'8866'__74 :: p -> p -> p -> ()
+data T__'8866'__74
+C_'96'_78 :: T__'8715'__46 -> T__'8866'__74
+C_ƛ_80 :: T__'8866'__74 -> T__'8866'__74
+C__'183'__82 :: T__'8866''8902'__20 -> T__'8866'__74 -> T__'8866'__74 -> T__'8866'__74
+C_Λ_84 :: T__'8866'__74 -> T__'8866'__74
+C__'183''8902'__88 :: T_Kind_898 -> T__'8866''8902'__20 -> T__'8866'__74 -> T__'8866''8902'__20 -> T__'8866'__74
+C_wrap_94 :: T__'8866'__74 -> T__'8866'__74
+C_unwrap_96 :: T__'8866'__74 -> T__'8866'__74
+C_conv_98 :: T__'8866''8902'__20 -> T__'8801'β__28 -> T__'8866'__74 -> T__'8866'__74
+C_con_102 :: T_TermCon_22 -> T__'8866'__74
+C_builtin_106 :: T_Builtin_40 -> T__'8866'__74
+C_error_110 :: T__'8866'__74
+d_conv'8715'_112 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__46 -> T__'8715'__46
+du_conv'8715'_112 :: T__'8715'__46 -> T__'8715'__46
+d_conv'8866'_116 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__74 -> T__'8866'__74
+du_conv'8866'_116 :: T__'8866'__74 -> T__'8866'__74
+d_typeOf_122 :: T_Ctx'8902'_2 -> T__'8866''8902'__20 -> T_Ctx_28 -> T__'8866'__74 -> T__'8866''8902'__20
+du_typeOf_122 :: T__'8866''8902'__20 -> T__'8866''8902'__20
+d_typeOf'8715'_128 :: T_Ctx'8902'_2 -> T__'8866''8902'__20 -> T_Ctx_28 -> T__'8715'__46 -> T__'8866''8902'__20
+du_typeOf'8715'_128 :: T__'8866''8902'__20 -> T__'8866''8902'__20
+d_piBody_134 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866'__74 -> T__'8866''8902'__20
+du_piBody_134 :: T__'8866''8902'__20 -> T__'8866''8902'__20
+d_muPat_140 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8866'__74 -> T__'8866''8902'__20
+du_muPat_140 :: T__'8866''8902'__20 -> T__'8866''8902'__20
+d_muArg_146 :: T_Ctx'8902'_2 -> T_Kind_898 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8866'__74 -> T__'8866''8902'__20
+du_muArg_146 :: T__'8866''8902'__20 -> T__'8866''8902'__20
 
 module MAlonzo.Code.Algorithmic
 d_TermCon_4 :: p -> p -> ()
-d_TyCon_24 :: p -> ()
-d_Ctx_44 :: p -> ()
-data T_Ctx_44
-C_'8709'_46 :: T_Ctx_44
-C__'44''8902'__52 :: T_Ctx_44 -> T_Ctx_44
-C__'44'__58 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Ctx_44
-d__'8715'__64 :: p -> p -> p -> ()
-data T__'8715'__64
-C_Z_72 :: T__'8715'__64
-C_S_82 :: T__'8715'__64 -> T__'8715'__64
-C_T_92 :: T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-d_sig_96 :: T_Builtin_2 -> T_Σ_14
-d_sig2type_100 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
-d_btype_122 :: T_Ctx'8902'_2 -> T_Builtin_2 -> T__'8866'Nf'8902'__44
-d_btype'45'ren_140 :: a
-d_btype'45'sub_150 :: a
-d__'8866'__156 :: p -> p -> p -> ()
-data T__'8866'__156
-C_'96'_164 :: T__'8715'__64 -> T__'8866'__156
-C_ƛ_170 :: T__'8866'__156 -> T__'8866'__156
-C__'183'__176 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156
-C_Λ_182 :: T__'8866'__156 -> T__'8866'__156
-C__'183''8902'_'47'__192 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156
-C_wrap_200 :: T__'8866'__156 -> T__'8866'__156
-C_unwrap_210 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-C_con_214 :: T_TermCon_22 -> T__'8866'__156
-C_builtin_'47'__220 :: T_Builtin_2 -> T__'8866'__156
-C_error_224 :: T__'8866'__156
-d_conv'8715'_236 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__64 -> T__'8715'__64
-du_conv'8715'_236 :: T__'8715'__64 -> T__'8715'__64
-d_conv'8866'_250 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__156 -> T__'8866'__156
-du_conv'8866'_250 :: T__'8866'__156 -> T__'8866'__156
-d_Ctx2type_258 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
-d_Arg_274 :: ()
-data T_Arg_274
-C_Term_276 :: T_Arg_274
-C_Type_278 :: T_Arg_274
-d_Arity_280 :: ()
-d_ctx2bwdarity_286 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Bwd_190
-d_arity_296 :: T_Builtin_2 -> [T_Arg_274]
+d_Ctx_52 :: p -> ()
+data T_Ctx_52
+C_'8709'_54 :: T_Ctx_52
+C__'44''8902'__58 :: T_Ctx_52 -> T_Ctx_52
+C__'44'__62 :: T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_Ctx_52
+d__'8715'__66 :: p -> p -> p -> ()
+data T__'8715'__66
+C_Z_72 :: T__'8715'__66
+C_S_80 :: T__'8715'__66 -> T__'8715'__66
+C_T_88 :: T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+d_btype_90 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866'Nf'8902'__44
+d_btype'45'ren_102 :: a
+d_btype'45'sub_112 :: a
+d__'8866'__118 :: p -> p -> p -> ()
+data T__'8866'__118
+C_'96'_124 :: T__'8715'__66 -> T__'8866'__118
+C_ƛ_130 :: T__'8866'__118 -> T__'8866'__118
+C__'183'__136 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118
+C_Λ_142 :: T__'8866'__118 -> T__'8866'__118
+C__'183''8902'_'47'__152 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118
+C_wrap_160 :: T__'8866'__118 -> T__'8866'__118
+C_unwrap_170 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+C_con_174 :: T_TermCon_22 -> T__'8866'__118
+C_builtin_'47'__180 :: T_Builtin_40 -> T__'8866'__118
+C_error_184 :: T__'8866'__118
+d_conv'8715'_194 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__66 -> T__'8715'__66
+du_conv'8715'_194 :: T__'8715'__66 -> T__'8715'__66
+d_conv'8866'_206 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__118 -> T__'8866'__118
+du_conv'8866'_206 :: T__'8866'__118 -> T__'8866'__118
+d_Ctx2type_212 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
+d_Arg_228 :: ()
+data T_Arg_228
+C_Term_230 :: T_Arg_228
+C_Type_232 :: T_Arg_228
+d_Arity_234 :: ()
+d_arity_236 :: T_Builtin_40 -> [T_Arg_228]
 
 module MAlonzo.Code.Algorithmic.RenamingSubstitution
 d_TermCon_6 :: p -> p -> ()
-d_Ren_26 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T_Ctx_44 -> T_Ctx_44 -> ()
-d_ext_50 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-du_ext_50 :: (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-d_ext'8902'_76 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-du_ext'8902'_76 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8715'__64 -> T__'8715'__64
+d_Ren_26 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T_Ctx_52 -> T_Ctx_52 -> ()
+d_ext_50 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+du_ext_50 :: (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+d_ext'8902'_76 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+du_ext'8902'_76 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8715'__66 -> T__'8715'__66
 d_renTermCon_94 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T_TermCon_22
 du_renTermCon_94 :: T_TermCon_22 -> T_TermCon_22
-d_ren_132 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-du_ren_132 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-d_weaken_216 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-du_weaken_216 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-d_weaken'8902'_228 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Kind_898 -> T__'8866'__156 -> T__'8866'__156
-du_weaken'8902'_228 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T_Kind_898 -> T__'8866'__156 -> T__'8866'__156
-d_Sub_238 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T_Ctx_44 -> T_Ctx_44 -> ()
-d_exts_262 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_exts_262 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-d_exts'8902'_288 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_exts'8902'_288 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T_Kind_898 -> T__'8715'__64 -> T__'8866'__156
+d_ren_132 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+du_ren_132 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+d_weaken_216 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+du_weaken_216 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+d_weaken'8902'_228 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_Kind_898 -> T__'8866'__118 -> T__'8866'__118
+du_weaken'8902'_228 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T_Kind_898 -> T__'8866'__118 -> T__'8866'__118
+d_Sub_238 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T_Ctx_52 -> T_Ctx_52 -> ()
+d_exts_262 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_exts_262 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+d_exts'8902'_288 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_exts'8902'_288 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T_Kind_898 -> T__'8715'__66 -> T__'8866'__118
 d_subTermCon_308 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T_TermCon_22
 du_subTermCon_308 :: T_TermCon_22 -> T_TermCon_22
-d_sub_346 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-du_sub_346 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-d_subcons_442 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_subcons_442 :: (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-d__'91'_'93'_466 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156
-du__'91'_'93'_466 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156
-d_lem_490 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_lem_490 :: T__'8715'__64 -> T__'8866'__156
-d__'91'_'93''8902'_504 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156
-du__'91'_'93''8902'_504 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156
-d_Ren'738'_512 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> ()
-d_ext'738'_530 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-du_ext'738'_530 :: (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-d_ext'738''8902'_548 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64
-du_ext'738''8902'_548 :: (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8715'__64 -> T__'8715'__64
-d_ren'738'_564 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-du_ren'738'_564 :: T_Ctx'8902'_2 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-d_weaken'738'_626 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-du_weaken'738'_626 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156
-d_ext'738''45'id_640 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12
-d_ext'738''45'comp_662 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8715'__64 -> T__'8801'__12
-d_ext'738''8902''45'id_676 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12
-d_ext'738''8902''45'comp_698 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8715'__64 -> T__'8801'__12
-d_ext'738''45'cong_722 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12
-d_ext'738''8902''45'cong_750 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12
-d_ren'738''45'cong_774 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12) -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8801'__12
-d_ren'738''45'id_840 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8801'__12
-d_ren'738''45'comp_894 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8715'__64) -> T__'8866'__156 -> T__'8801'__12
-d_Sub'738'_934 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> ()
-d_exts'738'_952 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_exts'738'_952 :: T_Ctx'8902'_2 -> (T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156) -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
+d_sub_346 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+du_sub_346 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+d_subcons_442 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_subcons_442 :: (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+d__'91'_'93'_466 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118
+du__'91'_'93'_466 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118
+d_lem_490 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_lem_490 :: T__'8715'__66 -> T__'8866'__118
+d__'91'_'93''8902'_504 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118
+du__'91'_'93''8902'_504 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118
+d_Ren'738'_512 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> ()
+d_ext'738'_530 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+du_ext'738'_530 :: (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+d_ext'738''8902'_548 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66
+du_ext'738''8902'_548 :: (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8715'__66 -> T__'8715'__66
+d_ren'738'_564 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+du_ren'738'_564 :: T_Ctx'8902'_2 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+d_weaken'738'_626 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+du_weaken'738'_626 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118
+d_ext'738''45'id_640 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12
+d_ext'738''45'comp_662 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8715'__66 -> T__'8801'__12
+d_ext'738''8902''45'id_676 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12
+d_ext'738''8902''45'comp_698 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8715'__66 -> T__'8801'__12
+d_ext'738''45'cong_722 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12
+d_ext'738''8902''45'cong_750 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12) -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12
+d_ren'738''45'cong_774 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12) -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8801'__12
+d_ren'738''45'id_840 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8801'__12
+d_ren'738''45'comp_894 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8715'__66) -> T__'8866'__118 -> T__'8801'__12
+d_Sub'738'_934 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> ()
+d_exts'738'_952 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_exts'738'_952 :: T_Ctx'8902'_2 -> (T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118) -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
 
 module MAlonzo.Code.Algorithmic.Properties
-d_lem'45''183''8902'_28 :: T_Kind_898 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T_Σ_14
+d_lem'45''183''8902'_28 :: T_Kind_898 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T_Σ_14
 du_lem'45''183''8902'_28 :: T_Σ_14
-d_lem'45'unwrap_54 :: T_Kind_898 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T_Σ_14
+d_lem'45'unwrap_54 :: T_Kind_898 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T_Σ_14
 du_lem'45'unwrap_54 :: T_Σ_14
 
 module MAlonzo.Code.Algorithmic.ReductionEC
@@ -14721,46 +14770,46 @@ C_V'45'ƛ_108 :: T_Value_48
 C_V'45'Λ_116 :: T_Value_48
 C_V'45'wrap_126 :: T_Value_48 -> T_Value_48
 C_V'45'con_132 :: T_Value_48
-C_V'45'I'8658'_148 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
-C_V'45'IΠ_162 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
+C_V'45'I'8658'_148 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
+C_V'45'IΠ_162 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
 d_BApp_58 :: p -> p -> p -> p -> p -> p -> ()
 data T_BApp_58
 C_base_66 :: T_BApp_58
 C_step_82 :: T_BApp_58 -> T_Value_48 -> T_BApp_58
 C_step'8902'_100 :: T_BApp_58 -> T_BApp_58
-d_deval_168 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8866'__156
-du_deval_168 :: T__'8866'__156 -> T__'8866'__156
-d_tval_176 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8866'Nf'8902'__44
+d_deval_168 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8866'__118
+du_deval_168 :: T__'8866'__118 -> T__'8866'__118
+d_tval_176 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8866'Nf'8902'__44
 du_tval_176 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
-d_convBApp_194 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_58
+d_convBApp_194 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_58
 du_convBApp_194 :: T_BApp_58 -> T_BApp_58
-d_BUILTIN_216 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_BApp_58 -> T__'8866'__156
-du_BUILTIN_216 :: T_Builtin_2 -> T__'8866'__156 -> T_BApp_58 -> T__'8866'__156
-d_BUILTIN''_558 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T__'8866'__156
-du_BUILTIN''_558 :: T_Builtin_2 -> T__'8866'__156 -> T_BApp_58 -> T__'8866'__156
+d_BUILTIN_216 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_BApp_58 -> T__'8866'__118
+du_BUILTIN_216 :: T_Builtin_40 -> T__'8866'__118 -> T_BApp_58 -> T__'8866'__118
+d_BUILTIN''_558 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T__'8866'__118
+du_BUILTIN''_558 :: T_Builtin_40 -> T__'8866'__118 -> T_BApp_58 -> T__'8866'__118
 d_Error_592 :: p -> p -> p -> p -> ()
 data T_Error_592
 C_E'45'error_600 :: T_Error_592
-d_convVal_610 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T_Value_48
+d_convVal_610 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T_Value_48
 du_convVal_610 :: T_Value_48 -> T_Value_48
-d_convVal''_622 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T_Value_48
+d_convVal''_622 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T_Value_48
 du_convVal''_622 :: T_Value_48 -> T_Value_48
-d_convBApp1_642 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_58
+d_convBApp1_642 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_58
 du_convBApp1_642 :: T_BApp_58 -> T_BApp_58
-d_convBApp1''_664 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_58
+d_convBApp1''_664 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_58
 du_convBApp1''_664 :: T_BApp_58 -> T_BApp_58
 d_Frame_674 :: p -> p -> ()
 data T_Frame_674
-C_'45''183'__680 :: T__'8866'__156 -> T_Frame_674
-C__'183''45'_688 :: T__'8866'__156 -> T_Value_48 -> T_Frame_674
+C_'45''183'__680 :: T__'8866'__118 -> T_Frame_674
+C__'183''45'_688 :: T__'8866'__118 -> T_Value_48 -> T_Frame_674
 C_'45''183''8902'_696 :: T__'8866'Nf'8902'__44 -> T_Frame_674
 C_wrap'45'_704 :: T_Frame_674
 C_unwrap'45'_712 :: T_Frame_674
 d_EC_718 :: p -> p -> ()
 data T_EC_718
 C_'91''93'_722 :: T_EC_718
-C__l'183'__730 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_EC_718
-C__'183'r__740 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T_EC_718 -> T_EC_718
+C__l'183'__730 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_EC_718
+C__'183'r__740 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T_EC_718 -> T_EC_718
 C__'183''8902'_'47'__752 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'Nf'8902'__44 -> T_EC_718
 C_wrap_762 :: T_EC_718 -> T_EC_718
 C_unwrap_'47'__774 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718
@@ -14769,96 +14818,96 @@ data T__'8212''8594''8902'__778
 C_β'45'ƛ_788 :: T_Value_48 -> T__'8212''8594''8902'__778
 C_β'45'Λ_804 :: T__'8212''8594''8902'__778
 C_β'45'wrap_820 :: T_Value_48 -> T__'8212''8594''8902'__778
-C_β'45'sbuiltin_840 :: T_Builtin_2 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48 -> T__'8212''8594''8902'__778
-C_β'45'sbuiltin'8902'_860 :: T_Builtin_2 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T__'8212''8594''8902'__778
-d__'91'_'93''7473'_866 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8866'__156
-du__'91'_'93''7473'_866 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8866'__156
-d_lemΛE_914 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8773'__22 -> T_Σ_14
+C_β'45'sbuiltin_840 :: T_Builtin_40 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48 -> T__'8212''8594''8902'__778
+C_β'45'sbuiltin'8902'_860 :: T_Builtin_40 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T__'8212''8594''8902'__778
+d__'91'_'93''7473'_866 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8866'__118
+du__'91'_'93''7473'_866 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8866'__118
+d_lemΛE_914 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8773'__22 -> T_Σ_14
 du_lemΛE_914 :: T_EC_718 -> T_Σ_14
-d_lemΛE''_950 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T__'8801'__12 -> T_Σ_14
+d_lemΛE''_950 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T__'8801'__12 -> T_Σ_14
 du_lemΛE''_950 :: T_EC_718 -> T_Σ_14
-d_lemΛE''''_968 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T__'8773'__22 -> T_Σ_14
+d_lemΛE''''_968 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T__'8773'__22 -> T_Σ_14
 du_lemΛE''''_968 :: T_EC_718 -> T_Σ_14
-d__'91'_'93''7584'_974 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__156 -> T__'8866'__156
-du__'91'_'93''7584'_974 :: T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__156 -> T__'8866'__156
+d__'91'_'93''7584'_974 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__118 -> T__'8866'__118
+du__'91'_'93''7584'_974 :: T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__118 -> T__'8866'__118
 d__'8212''8594'__994 :: p -> p -> p -> ()
 data T__'8212''8594'__994
-C_ruleEC_1010 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8212''8594''8902'__778 -> T__'8212''8594'__994
+C_ruleEC_1010 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8212''8594''8902'__778 -> T__'8212''8594'__994
 C_ruleErr_1020 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8212''8594'__994
 d__'8212''8608'__1024 :: p -> p -> p -> ()
 data T__'8212''8608'__1024
 C_refl'8212''8608'_1030 :: T__'8212''8608'__1024
-C_trans'8212''8608'_1040 :: T__'8866'__156 -> T__'8212''8594'__994 -> T__'8212''8608'__1024 -> T__'8212''8608'__1024
+C_trans'8212''8608'_1040 :: T__'8866'__118 -> T__'8212''8594'__994 -> T__'8212''8608'__1024 -> T__'8212''8608'__1024
 d_Progress_1046 :: p -> p -> ()
 data T_Progress_1046
-C_step_1054 :: T__'8866'__156 -> T__'8212''8594'__994 -> T_Progress_1046
+C_step_1054 :: T__'8866'__118 -> T__'8212''8594'__994 -> T_Progress_1046
 C_done_1056 :: T_Value_48 -> T_Progress_1046
 C_error_1058 :: T_Error_592 -> T_Progress_1046
-d_bappTermLem_1076 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_274] -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
-du_bappTermLem_1076 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
-d_bappTypeLem_1804 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_274] -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
-du_bappTypeLem_1804 :: T_Builtin_2 -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
-d_V'45'I_2592 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Arg_274 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T_BApp_58 -> T_Value_48
-du_V'45'I_2592 :: T_Builtin_2 -> T_Arg_274 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T_BApp_58 -> T_Value_48
-d_ival_2628 :: T_Builtin_2 -> T_Value_48
-d_progress_2634 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Progress_1046
-d__'8595'_2864 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> ()
-d_lemma51_2880 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8846'__30
-d_progress''_3092 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Progress_1046
-d_subst'60''62''62''8712'_3136 :: T_Builtin_2 -> T_Builtin_2 -> [T_Arg_274] -> [T_Arg_274] -> T_Bwd_190 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T__'60''62''62'_'8712'__290
-du_subst'60''62''62''8712'_3136 :: T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290
-d_uniqueVal_3148 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T_Value_48 -> T__'8801'__12
-d_uniqueBApp_3166 :: T__'8866'Nf'8902'__44 -> T_Builtin_2 -> [T_Arg_274] -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_58 -> T__'8801'__12
-d_uniqueBApp''_3256 :: T__'8866'Nf'8902'__44 -> T_Builtin_2 -> T_Builtin_2 -> [T_Arg_274] -> [T_Arg_274] -> T_Bwd_190 -> T_Bwd_190 -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T_Σ_14
-du_uniqueBApp''_3256 :: T_Bwd_190 -> T_Bwd_190 -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T_Σ_14
-d_lemV'183'_3414 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
-d_lemV'''183'_3444 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
-d_lemVunwrap_3478 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T_'8869'_4
-d_lemV'183''8902'_3500 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
-d_lemBAppβ_3538 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T__'8866'__156 -> T_BApp_58 -> T_'8869'_4
-d_lemBAppβ'8902'_3564 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_BApp_58 -> T_'8869'_4
-d_lemVβ_3576 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T_'8869'_4
-d_lemVβ'8902'_3602 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_Value_48 -> T_'8869'_4
-d_lemVE_3624 :: a
-d_lemBE_3644 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> [T_Arg_274] -> T_Arg_274 -> T_Bwd_190 -> T_Builtin_2 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
-du_lemBE_3644 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> [T_Arg_274] -> T_Arg_274 -> T_Bwd_190 -> T_Builtin_2 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
-d_subst'45'l'183'_3730 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T__'8801'__12
-d_subst'45''183'r_3752 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T__'8801'__12 -> T__'8801'__12
-d_proj'183'_3780 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156 -> T__'8801'__12 -> T_Σ_14
-du_proj'183'_3780 :: T_Σ_14
-d_valred_3788 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8594''8902'__778 -> T_'8869'_4
-d_valerr_4010 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Error_592 -> T_Value_48 -> T_'8869'_4
-d_errred_4026 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Error_592 -> T__'8212''8594''8902'__778 -> T_'8869'_4
-d_substƛVal_4040 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8801'__12 -> T_Value_48
-du_substƛVal_4040 :: T_Value_48
-d_BUILTIN'45'eq_4062 :: T__'8866'Nf'8902'__44 -> T_Builtin_2 -> T_Builtin_2 -> T_Bwd_190 -> T_Bwd_190 -> T__'8866'__156 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T__'8801'__12
-d_determinism'8902'_4110 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156 -> T__'8212''8594''8902'__778 -> T__'8212''8594''8902'__778 -> T__'8801'__12
-d_Redex_4150 :: p -> p -> ()
-data T_Redex_4150
-C_β_4158 :: T__'8866'__156 -> T__'8212''8594''8902'__778 -> T_Redex_4150
-C_err_4160 :: T_Redex_4150
-d_valredex_4166 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T_Redex_4150 -> T_'8869'_4
-d_RProgress_4178 :: p -> p -> ()
-data T_RProgress_4178
-C_step_4200 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_RProgress_4178
-C_done_4202 :: T_Value_48 -> T_RProgress_4178
-d_U'183''8902'1_4224 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14
-du_U'183''8902'1_4224 :: T_EC_718 -> T_Σ_14
-d_U'183''8902'2_4320 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-du_U'183''8902'2_4320 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-d_U'183''8902'3_4390 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14
-du_U'183''8902'3_4390 :: T_EC_718 -> T_Σ_14
-d_Uwrap_4436 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-du_Uwrap_4436 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-d_Uunwrap1_4524 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-du_Uunwrap1_4524 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14) -> T_Σ_14
-d_Uunwrap2_4574 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Value_48 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12 -> T_Redex_4150 -> T_Σ_14
-du_Uunwrap2_4574 :: T_EC_718 -> T_Σ_14
-d_rlemma51'33'_4614 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_RProgress_4178
-d_unique'45'EC_5012 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> T__'8801'__12 -> T__'8801'__12
-d_unique'45'EC''_5120 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> T__'8801'__12 -> T_Σ_14
-d_notVAL_5212 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8594'__994 -> T_'8869'_4
-d_determinism_5234 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8866'__156 -> T__'8212''8594'__994 -> T__'8212''8594'__994 -> T__'8801'__12
+d_bappTermLem_1076 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_228] -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
+du_bappTermLem_1076 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
+d_bappTypeLem_1804 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_228] -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
+du_bappTypeLem_1804 :: T_Builtin_40 -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Σ_14
+d_V'45'I_2588 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Arg_228 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T_BApp_58 -> T_Value_48
+du_V'45'I_2588 :: T_Builtin_40 -> T_Arg_228 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T_BApp_58 -> T_Value_48
+d_ival_2624 :: T_Builtin_40 -> T_Value_48
+d_progress_2630 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Progress_1046
+d__'8595'_2860 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> ()
+d_lemma51_2876 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8846'__30
+d_progress''_3088 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Progress_1046
+d_subst'60''62''62''8712'_3132 :: T_Builtin_40 -> T_Builtin_40 -> [T_Arg_228] -> [T_Arg_228] -> T_Bwd_190 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T__'60''62''62'_'8712'__290
+du_subst'60''62''62''8712'_3132 :: T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290
+d_uniqueVal_3144 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T_Value_48 -> T__'8801'__12
+d_uniqueBApp_3162 :: T__'8866'Nf'8902'__44 -> T_Builtin_40 -> [T_Arg_228] -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_58 -> T__'8801'__12
+d_uniqueBApp''_3252 :: T__'8866'Nf'8902'__44 -> T_Builtin_40 -> T_Builtin_40 -> [T_Arg_228] -> [T_Arg_228] -> T_Bwd_190 -> T_Bwd_190 -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T_Σ_14
+du_uniqueBApp''_3252 :: T_Bwd_190 -> T_Bwd_190 -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T_Σ_14
+d_lemV'183'_3410 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
+d_lemV'''183'_3440 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
+d_lemVunwrap_3474 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T_'8869'_4
+d_lemV'183''8902'_3496 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> (T_Value_48 -> T_'8869'_4) -> T_Value_48 -> T_'8869'_4
+d_lemBAppβ_3534 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T__'8866'__118 -> T_BApp_58 -> T_'8869'_4
+d_lemBAppβ'8902'_3560 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_BApp_58 -> T_'8869'_4
+d_lemVβ_3572 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T_'8869'_4
+d_lemVβ'8902'_3598 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_Value_48 -> T_'8869'_4
+d_lemVE_3620 :: a
+d_lemBE_3640 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> [T_Arg_228] -> T_Arg_228 -> T_Bwd_190 -> T_Builtin_40 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
+du_lemBE_3640 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> [T_Arg_228] -> T_Arg_228 -> T_Bwd_190 -> T_Builtin_40 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_Value_48
+d_subst'45'l'183'_3726 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T__'8801'__12
+d_subst'45''183'r_3748 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T__'8801'__12 -> T__'8801'__12
+d_proj'183'_3776 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118 -> T__'8801'__12 -> T_Σ_14
+du_proj'183'_3776 :: T_Σ_14
+d_valred_3784 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8594''8902'__778 -> T_'8869'_4
+d_valerr_4006 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Error_592 -> T_Value_48 -> T_'8869'_4
+d_errred_4022 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Error_592 -> T__'8212''8594''8902'__778 -> T_'8869'_4
+d_substƛVal_4036 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8801'__12 -> T_Value_48
+du_substƛVal_4036 :: T_Value_48
+d_BUILTIN'45'eq_4058 :: T__'8866'Nf'8902'__44 -> T_Builtin_40 -> T_Builtin_40 -> T_Bwd_190 -> T_Bwd_190 -> T__'8866'__118 -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_58 -> T_BApp_58 -> T__'8801'__12
+d_determinism'8902'_4106 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118 -> T__'8212''8594''8902'__778 -> T__'8212''8594''8902'__778 -> T__'8801'__12
+d_Redex_4146 :: p -> p -> ()
+data T_Redex_4146
+C_β_4154 :: T__'8866'__118 -> T__'8212''8594''8902'__778 -> T_Redex_4146
+C_err_4156 :: T_Redex_4146
+d_valredex_4162 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T_Redex_4146 -> T_'8869'_4
+d_RProgress_4174 :: p -> p -> ()
+data T_RProgress_4174
+C_step_4196 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_RProgress_4174
+C_done_4198 :: T_Value_48 -> T_RProgress_4174
+d_U'183''8902'1_4220 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14
+du_U'183''8902'1_4220 :: T_EC_718 -> T_Σ_14
+d_U'183''8902'2_4316 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+du_U'183''8902'2_4316 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+d_U'183''8902'3_4386 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14
+du_U'183''8902'3_4386 :: T_EC_718 -> T_Σ_14
+d_Uwrap_4432 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+du_Uwrap_4432 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+d_Uunwrap1_4520 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+du_Uunwrap1_4520 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> (T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14) -> T_Σ_14
+d_Uunwrap2_4570 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Value_48 -> T__'8801'__12 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12 -> T_Redex_4146 -> T_Σ_14
+du_Uunwrap2_4570 :: T_EC_718 -> T_Σ_14
+d_rlemma51'33'_4610 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_RProgress_4174
+d_unique'45'EC_5008 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> T__'8801'__12 -> T__'8801'__12
+d_unique'45'EC''_5116 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> T__'8801'__12 -> T_Σ_14
+d_notVAL_5208 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8594'__994 -> T_'8869'_4
+d_determinism_5230 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8866'__118 -> T__'8212''8594'__994 -> T__'8212''8594'__994 -> T__'8801'__12
 
 module MAlonzo.Code.Algorithmic.Evaluation
 d_Gas_4 :: ()
@@ -14871,12 +14920,12 @@ C_out'45'of'45'gas_22 :: T_Finished_12
 C_error_26 :: T_Error_592 -> T_Finished_12
 d_Steps_30 :: p -> p -> ()
 data T_Steps_30
-C_steps_38 :: T__'8866'__156 -> T__'8212''8608'__1024 -> T_Finished_12 -> T_Steps_30
-d_eval'8212''8594'_46 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T__'8212''8594'__994 -> T_Steps_30 -> T_Steps_30
-du_eval'8212''8594'_46 :: T__'8866'__156 -> T__'8212''8594'__994 -> T_Steps_30 -> T_Steps_30
-d_eval_58 :: T__'8866'Nf'8902'__44 -> T_Gas_4 -> T__'8866'__156 -> T_Steps_30
-d_evalProg_64 :: T__'8866'Nf'8902'__44 -> T_Gas_4 -> T__'8866'__156 -> T_Progress_1046 -> T_Steps_30
-d_stepper_88 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> Integer -> T_Either_44 T_RuntimeError_882 T__'8866'__156
+C_steps_38 :: T__'8866'__118 -> T__'8212''8608'__1024 -> T_Finished_12 -> T_Steps_30
+d_eval'8212''8594'_46 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T__'8212''8594'__994 -> T_Steps_30 -> T_Steps_30
+du_eval'8212''8594'_46 :: T__'8866'__118 -> T__'8212''8594'__994 -> T_Steps_30 -> T_Steps_30
+d_eval_58 :: T__'8866'Nf'8902'__44 -> T_Gas_4 -> T__'8866'__118 -> T_Steps_30
+d_evalProg_64 :: T__'8866'Nf'8902'__44 -> T_Gas_4 -> T__'8866'__118 -> T_Progress_1046 -> T_Steps_30
+d_stepper_88 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> Integer -> T_Either_44 T_RuntimeError_882 T__'8866'__118
 
 module MAlonzo.Code.Algorithmic.CC
 d_dissect_12 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8846'__30
@@ -14892,15 +14941,15 @@ du_compEC''_460 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 ->
 d_compEC'45'eq_500 :: a
 d_compEC'''45''91''93'_508 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8801'__12
 d_compEC'''45'extEC_526 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718 -> T_Frame_674 -> T__'8801'__12
-d_extEC'45''91''93''7473'_592 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_Frame_674 -> T__'8866'__156 -> T__'8801'__12
-d_compEC'45''91''93''7473'_666 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718 -> T__'8866'__156 -> T__'8801'__12
+d_extEC'45''91''93''7473'_592 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_Frame_674 -> T__'8866'__118 -> T__'8801'__12
+d_compEC'45''91''93''7473'_666 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_EC_718 -> T__'8866'__118 -> T__'8801'__12
 d_State_718 :: p -> ()
 data T_State_718
-C__'9659'__724 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_State_718
-C__'9669'__730 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T_State_718
-C_'9633'_734 :: T__'8866'__156 -> T_Value_48 -> T_State_718
+C__'9659'__724 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_State_718
+C__'9669'__730 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T_State_718
+C_'9633'_734 :: T__'8866'__118 -> T_Value_48 -> T_State_718
 C_'9670'_738 :: T__'8866'Nf'8902'__44 -> T_State_718
-d_stepV_750 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8846'__30 -> T_State_718
+d_stepV_750 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8846'__30 -> T_State_718
 d_stepT_830 :: T__'8866'Nf'8902'__44 -> T_State_718 -> T_State_718
 d__'45''8594's__886 :: p -> p -> p -> ()
 data T__'45''8594's__886
@@ -14910,40 +14959,40 @@ d_step'42''42'_910 :: T__'8866'Nf'8902'__44 -> T_State_718 -> T_State_718 -> T_S
 du_step'42''42'_910 :: T__'45''8594's__886 -> T__'45''8594's__886 -> T__'45''8594's__886
 d_dissect'45'lemma_930 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_Frame_674 -> T__'8801'__12
 d_lemV_994 :: a
-d_lem62_1008 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T__'45''8594's__886
-du_lem62_1008 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T__'45''8594's__886
-d_unwindVE_1068 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T__'8801'__12 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886
-du_unwindVE_1068 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886
-d_unwindE_1386 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T__'8801'__12 -> T_Value_48 -> T__'45''8594's__886
-du_unwindE_1386 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_EC_718 -> T_Value_48 -> T__'45''8594's__886
+d_lem62_1008 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T__'45''8594's__886
+du_lem62_1008 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T__'45''8594's__886
+d_unwindVE_1068 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T__'8801'__12 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886
+du_unwindVE_1068 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886
+d_unwindE_1386 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T__'8801'__12 -> T_Value_48 -> T__'45''8594's__886
+du_unwindE_1386 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_EC_718 -> T_Value_48 -> T__'45''8594's__886
 d_Focussing_1410 :: p -> p -> p -> p -> p -> p -> ()
 data T_Focussing_1410
-C_local_1432 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> T_EC_718 -> T_Focussing_1410
-C_nonlocal_1440 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> T_Value_48 -> T_Focussing_1410
-d_focus_1454 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T__'8866'__156 -> T__'8212''8594'__994 -> T_Focussing_1410
-du_focus_1454 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_Focussing_1410
+C_local_1432 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> T_EC_718 -> T_Focussing_1410
+C_nonlocal_1440 :: T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> T_Value_48 -> T_Focussing_1410
+d_focus_1454 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T__'8866'__118 -> T__'8212''8594'__994 -> T_Focussing_1410
+du_focus_1454 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_Focussing_1410
 d_ReFocussing_1606 :: p -> p -> p -> p -> p -> p -> p -> p -> p -> p -> ()
 data T_ReFocussing_1606
 C_locate_1640 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T_Frame_674 -> T_EC_718 -> T_Value_48 -> T_EC_718 -> T_ReFocussing_1606
-d_refocus_1662 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T_Redex_4150 -> T__'8801'__12 -> T_ReFocussing_1606
-d_lem'45''8594's'8902'_3444 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8866'__156 -> T__'8212''8594''8902'__778 -> T__'45''8594's__886
-du_lem'45''8594's'8902'_3444 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__156 -> T__'8212''8594''8902'__778 -> T__'45''8594's__886
-d_lemmaF''_3538 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Frame_674 -> T_EC_718 -> T_EC_718 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8594''8902'__778 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T__'45''8594's__886
-du_lemmaF''_3538 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Frame_674 -> T_EC_718 -> T_EC_718 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8594''8902'__778 -> T__'8801'__12 -> T__'45''8594's__886
-d_err'8212''8594'_4912 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8212''8594'__994 -> T__'8801'__12
-d_err'8212''8608'_4922 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8212''8608'__1024 -> T__'8801'__12
-d_thm1_4946 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
-du_thm1_4946 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_EC_718 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
-d_thm2_5118 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
-du_thm2_5118 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
-d_box2box_5140 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886 -> T_Σ_14
+d_refocus_1662 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T_Redex_4146 -> T__'8801'__12 -> T_ReFocussing_1606
+d_lem'45''8594's'8902'_3444 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8866'__118 -> T__'8212''8594''8902'__778 -> T__'45''8594's__886
+du_lem'45''8594's'8902'_3444 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_EC_718 -> T__'8866'__118 -> T__'8212''8594''8902'__778 -> T__'45''8594's__886
+d_lemmaF''_3538 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Frame_674 -> T_EC_718 -> T_EC_718 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8594''8902'__778 -> (T_Value_48 -> T_'8869'_4) -> T__'8801'__12 -> T__'45''8594's__886
+du_lemmaF''_3538 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Frame_674 -> T_EC_718 -> T_EC_718 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8594''8902'__778 -> T__'8801'__12 -> T__'45''8594's__886
+d_err'8212''8594'_4912 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8212''8594'__994 -> T__'8801'__12
+d_err'8212''8608'_4922 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8212''8608'__1024 -> T__'8801'__12
+d_thm1_4946 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
+du_thm1_4946 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_EC_718 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
+d_thm2_5118 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
+du_thm2_5118 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8212''8608'__1024 -> T__'45''8594's__886
+d_box2box_5140 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__886 -> T_Σ_14
 du_box2box_5140 :: T__'45''8594's__886 -> T_Σ_14
-d_diamond2box_5164 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T_'8869'_4
-d_thm1b_5186 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
-du_thm1b_5186 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
-d_thm1bV_5204 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8866'__156 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
-du_thm1bV_5204 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8866'__156 -> T_EC_718 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
-d_thm2b_5662 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
+d_diamond2box_5164 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T_'8869'_4
+d_thm1b_5186 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
+du_thm1b_5186 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
+d_thm1bV_5204 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8866'__118 -> T_EC_718 -> T__'8801'__12 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
+du_thm1bV_5204 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8866'__118 -> T_EC_718 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
+d_thm2b_5662 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__886 -> T__'8212''8608'__1024
 
 module MAlonzo.Code.Algorithmic.CK
 d_TermCon_16 :: p -> p -> ()
@@ -14953,18 +15002,18 @@ C_ε_40 :: T_Stack_36
 C__'44'__48 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Frame_674 -> T_Stack_36
 d_State_52 :: p -> ()
 data T_State_52
-C__'9659'__58 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T_State_52
-C__'9669'__64 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T_Value_48 -> T_State_52
-C_'9633'_68 :: T__'8866'__156 -> T_Value_48 -> T_State_52
+C__'9659'__58 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T_State_52
+C__'9669'__64 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T_Value_48 -> T_State_52
+C_'9633'_68 :: T__'8866'__118 -> T_Value_48 -> T_State_52
 C_'9670'_72 :: T__'8866'Nf'8902'__44 -> T_State_52
-d_closeFrame_78 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__156 -> T__'8866'__156
-du_closeFrame_78 :: T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__156 -> T__'8866'__156
-d_closeStack_102 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T__'8866'__156
-du_closeStack_102 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T__'8866'__156
-d_closeState_114 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T__'8866'__156
-du_closeState_114 :: T_State_52 -> T__'8866'__156
-d_discharge_136 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'8866'__156
-du_discharge_136 :: T__'8866'__156 -> T__'8866'__156
+d_closeFrame_78 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__118 -> T__'8866'__118
+du_closeFrame_78 :: T__'8866'Nf'8902'__44 -> T_Frame_674 -> T__'8866'__118 -> T__'8866'__118
+d_closeStack_102 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T__'8866'__118
+du_closeStack_102 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T__'8866'__118
+d_closeState_114 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T__'8866'__118
+du_closeState_114 :: T_State_52 -> T__'8866'__118
+d_discharge_136 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'8866'__118
+du_discharge_136 :: T__'8866'__118 -> T__'8866'__118
 d_step_142 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T_State_52
 du_step_142 :: T_State_52 -> T_State_52
 d_stepper_266 :: Integer -> T__'8866'Nf'8902'__44 -> T_State_52 -> T_Either_44 T_RuntimeError_882 T_State_52
@@ -14988,10 +15037,10 @@ d_thm64b_714 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T_State_52 -> T__'45''859
 du_thm64b_714 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T__'45''8594's__392 -> T__'45''8594's__886
 d_test_932 :: T_State_52
 d_lemV_944 :: a
-d_lem'9633'_958 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__392 -> T_Σ_14
+d_lem'9633'_958 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Value_48 -> T_Value_48 -> T__'45''8594's__392 -> T_Σ_14
 du_lem'9633'_958 :: T__'45''8594's__392 -> T_Σ_14
 d_lem'9670'_974 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'45''8594's__392 -> T__'8801'__12
-d_lem'9670'''_986 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T__'45''8594's__392 -> T_'8869'_4
+d_lem'9670'''_986 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T__'45''8594's__392 -> T_'8869'_4
 
 module MAlonzo.Code.Algorithmic.CEKV
 d_TyCon_8 :: p -> ()
@@ -15007,119 +15056,119 @@ C_app_138 :: T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_Value_60 -> T_BApp_56
 C_app'8902'_154 :: T_Kind_898 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T__'8866'Nf'8902'__44 -> T_BApp_56
 d_Value_60 :: p -> ()
 data T_Value_60
-C_V'45'ƛ_70 :: T_Ctx_44 -> T__'8866'__156 -> T_Env_46 -> T_Value_60
-C_V'45'Λ_80 :: T_Ctx_44 -> T__'8866'__156 -> T_Env_46 -> T_Value_60
+C_V'45'ƛ_70 :: T_Ctx_52 -> T__'8866'__118 -> T_Env_46 -> T_Value_60
+C_V'45'Λ_80 :: T_Ctx_52 -> T__'8866'__118 -> T_Env_46 -> T_Value_60
 C_V'45'wrap_88 :: T_Value_60 -> T_Value_60
 C_V'45'con_94 :: T_TermCon_22 -> T_Value_60
-C_V'45'I'8658'_108 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
-C_V'45'IΠ_122 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
-d_lookup_168 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T_Env_46 -> T_Value_60
-du_lookup_168 :: T_Ctx_44 -> T__'8715'__64 -> T_Env_46 -> T_Value_60
+C_V'45'I'8658'_108 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
+C_V'45'IΠ_122 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
+d_lookup_168 :: T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T_Env_46 -> T_Value_60
+du_lookup_168 :: T_Ctx_52 -> T__'8715'__66 -> T_Env_46 -> T_Value_60
 d_convValue_186 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_Value_60 -> T_Value_60
 du_convValue_186 :: T_Value_60 -> T_Value_60
 d_Error_190 :: p -> ()
 data T_Error_190
 C_E'45'error_194 :: T_Error_190
-d_discharge_198 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T__'8866'__156
-d_env2sub_202 :: T_Ctx_44 -> T_Env_46 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8866'__156
-du_env2sub_202 :: T_Ctx_44 -> T_Env_46 -> T__'8715'__64 -> T__'8866'__156
-d_dischargeBody_220 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Env_46 -> T__'8866'__156
-du_dischargeBody_220 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Env_46 -> T__'8866'__156
-d_dischargeBody'8902'_234 :: T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Env_46 -> T__'8866'__156
-d_dischargeB_256 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__156
-du_dischargeB_256 :: T_Builtin_2 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__156
-d_BUILTIN_298 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_60
-d_convBApp_532 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_BApp_56
+d_discharge_198 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T__'8866'__118
+d_env2sub_202 :: T_Ctx_52 -> T_Env_46 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8866'__118
+du_env2sub_202 :: T_Ctx_52 -> T_Env_46 -> T__'8715'__66 -> T__'8866'__118
+d_dischargeBody_220 :: T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Env_46 -> T__'8866'__118
+du_dischargeBody_220 :: T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Env_46 -> T__'8866'__118
+d_dischargeBody'8902'_234 :: T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Env_46 -> T__'8866'__118
+d_dischargeB_256 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__118
+du_dischargeB_256 :: T_Builtin_40 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__118
+d_BUILTIN_298 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_60
+d_convBApp_532 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_BApp_56
 du_convBApp_532 :: T_BApp_56 -> T_BApp_56
-d_BUILTIN''_554 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__156
-du_BUILTIN''_554 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T__'8866'__156
-d_bappTermLem_616 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
-du_bappTermLem_616 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
-d_bappTypeLem_2172 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
-du_bappTypeLem_2172 :: T_Builtin_2 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
-d_V'45'I_4018 :: T_Builtin_2 -> T__'8866'Nf'8902'__44 -> T_Arg_274 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
-du_V'45'I_4018 :: T_Builtin_2 -> T_Arg_274 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
-d_Frame_4056 :: p -> p -> ()
-data T_Frame_4056
-C_'45''183'_4064 :: T_Ctx_44 -> T__'8866'__156 -> T_Env_46 -> T_Frame_4056
-C__'183''45'_4070 :: T_Value_60 -> T_Frame_4056
-C_'45''183''8902'_4078 :: T__'8866'Nf'8902'__44 -> T_Frame_4056
-C_wrap'45'_4086 :: T_Frame_4056
-C_unwrap'45'_4094 :: T_Frame_4056
-d_Stack_4100 :: p -> p -> ()
-data T_Stack_4100
-C_ε_4104 :: T_Stack_4100
-C__'44'__4110 :: T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T_Frame_4056 -> T_Stack_4100
-d_State_4114 :: p -> ()
-data T_State_4114
-C__'894'_'9659'__4122 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T_Env_46 -> T__'8866'__156 -> T_State_4114
-C__'9669'__4126 :: T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T_Value_60 -> T_State_4114
-C_'9633'_4128 :: T_Value_60 -> T_State_4114
-C_'9670'_4130 :: T__'8866'Nf'8902'__44 -> T_State_4114
-d_ival_4134 :: T_Builtin_2 -> T_Value_60
-d_step_4138 :: T__'8866'Nf'8902'__44 -> T_State_4114 -> T_State_4114
-du_step_4138 :: T_State_4114 -> T_State_4114
-d_stepper_4300 :: Integer -> T__'8866'Nf'8902'__44 -> T_State_4114 -> T_Either_44 T_RuntimeError_882 T_State_4114
-du_stepper_4300 :: Integer -> T_State_4114 -> T_Either_44 T_RuntimeError_882 T_State_4114
-d_ck2cekVal_4346 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Value_48 -> T_Value_60
-d_ck2cekBApp_4360 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_56
-du_ck2cekBApp_4360 :: T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8866'__156 -> T_BApp_58 -> T_BApp_56
-d_ck2cekFrame_4396 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T_Frame_4056
-d_ck2cekStack_4408 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4100
-du_ck2cekStack_4408 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4100
-d_ck2cekState_4416 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T_State_4114
-d_cek2ckVal_4434 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T_Value_48
-d_cek2ckBApp_4448 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_BApp_58
-du_cek2ckBApp_4448 :: T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_BApp_58
-d_cek2ckClos_4488 :: T__'8866'Nf'8902'__44 -> T_Ctx_44 -> T__'8866'__156 -> T_Env_46 -> T__'8866'__156
-d_cek2ckFrame_4540 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_4056 -> T_Frame_674
-d_cek2ckStack_4554 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T_Stack_36
-du_cek2ckStack_4554 :: T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T_Stack_36
-d_cek2ckState_4562 :: T__'8866'Nf'8902'__44 -> T_State_4114 -> T_State_52
-d__'45''8594's__4580 :: p -> p -> p -> ()
-data T__'45''8594's__4580
-C_base_4586 :: T__'45''8594's__4580
-C_step'42'_4594 :: T_State_4114 -> T__'45''8594's__4580 -> T__'45''8594's__4580
-d_step'42''42'_4604 :: T__'8866'Nf'8902'__44 -> T_State_4114 -> T_State_4114 -> T_State_4114 -> T__'45''8594's__4580 -> T__'45''8594's__4580 -> T__'45''8594's__4580
-du_step'42''42'_4604 :: T__'45''8594's__4580 -> T__'45''8594's__4580 -> T__'45''8594's__4580
-d_ival'45'lem_4620 :: a
-d_dischargeBody'45'lem''_4634 :: a
-d_dischargeBody'45'lem_4652 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T_Env_46 -> T_Value_60 -> T__'8801'__12
-d_discharge'45'lem_4666 :: a
-d_dischargeBody'8902''45'lem''_4680 :: a
-d_dischargeBody'8902''45'lem_4698 :: T_Ctx_44 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__156 -> T_Env_46 -> T__'8801'__12
-d_dischargeB'45'lem_4728 :: a
-d_dischargeB'''45'lem_4748 :: a
-d_dischargeB'45'lem''_4764 :: a
-d_dischargeB'45'lem''''_4780 :: a
-d_BUILTIN'45'lem_4792 :: a
-d_thm65a_4800 :: T__'8866'Nf'8902'__44 -> T_State_4114 -> T_State_4114 -> T__'45''8594's__4580 -> T__'45''8594's__392
-du_thm65a_4800 :: T__'8866'Nf'8902'__44 -> T_State_4114 -> T__'45''8594's__4580 -> T__'45''8594's__392
-d_clos'45'lem_5054 :: a
-d_lem'9633'_5062 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T_Value_60 -> T__'45''8594's__4580 -> T__'8801'__12
-d_cek2ckClos'45''183'lem_5090 :: a
-d_cek2ckClos'45'ƛlem_5112 :: a
-d_cek2ckClos'45''183''8902'lem_5130 :: a
-d_cek2ckClos'45'Λlem_5152 :: a
-d_cek2ckClos'45'wraplem_5178 :: a
-d_cek2ckClos'45'unwraplem_5198 :: a
-d_cek2ckClos'45'conlem_5212 :: a
-d_cek2ckClos'45'ibuiltinlem_5228 :: a
-d_cek2ckStack'45'εlem_5234 :: T__'8866'Nf'8902'__44 -> T_Stack_4100 -> T__'8801'__12 -> T__'8801'__12
-d_cek2ckStack'45''44'lem_5258 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4100 -> T_Frame_674 -> T__'8801'__12 -> T_Σ_14
-du_cek2ckStack'45''44'lem_5258 :: T_Stack_4100 -> T_Σ_14
-d_cek2ckFrame'45''183''45'lem_5278 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_4056 -> T__'8866'__156 -> T_Value_48 -> T__'8801'__12 -> T_Σ_14
-du_cek2ckFrame'45''183''45'lem_5278 :: T_Frame_4056 -> T_Σ_14
-d_cek2ckFrame'45''45''183'lem_5296 :: a
-d_cek2ckFrame'45''45''183''8902'lem_5306 :: a
-d_cek2ckFrame'45'unwrap'45'lem_5316 :: a
-d_cek2ckFrame'45'wrap'45'lem_5326 :: a
-d_thm65bV_5352 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Stack_36 -> T_Value_48 -> T_Value_48 -> T_Value_60 -> T_Stack_4100 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T__'45''8594's__392 -> T_Σ_14
-du_thm65bV_5352 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'__156 -> T_Stack_36 -> T_Value_48 -> T_Value_48 -> T_Value_60 -> T_Stack_4100 -> T__'45''8594's__392 -> T_Σ_14
-d_substLem_5368 :: () -> (AgdaAny -> ()) -> AgdaAny -> AgdaAny -> T__'8801'__12 -> T__'8801'__12 -> AgdaAny -> T__'8801'__12
-d_fast'45'forward_5386 :: a
-d_thm65b_5412 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Ctx_44 -> T__'8866'__156 -> T_Stack_36 -> T_Value_48 -> T__'8866'__156 -> T_Env_46 -> T_Stack_4100 -> T__'8801'__12 -> T__'8801'__12 -> T__'45''8594's__392 -> T_Σ_14
-du_thm65b_5412 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Ctx_44 -> T__'8866'__156 -> T_Stack_36 -> T_Value_48 -> T__'8866'__156 -> T_Env_46 -> T_Stack_4100 -> T__'45''8594's__392 -> T_Σ_14
+d_BUILTIN''_554 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T__'8866'__118
+du_BUILTIN''_554 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T__'8866'__118
+d_bappTermLem_616 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
+du_bappTermLem_616 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
+d_bappTypeLem_2172 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
+du_bappTypeLem_2172 :: T_Builtin_40 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Σ_14
+d_V'45'I_4014 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_Arg_228 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
+du_V'45'I_4014 :: T_Builtin_40 -> T_Arg_228 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_Value_60
+d_Frame_4052 :: p -> p -> ()
+data T_Frame_4052
+C_'45''183'_4060 :: T_Ctx_52 -> T__'8866'__118 -> T_Env_46 -> T_Frame_4052
+C__'183''45'_4066 :: T_Value_60 -> T_Frame_4052
+C_'45''183''8902'_4074 :: T__'8866'Nf'8902'__44 -> T_Frame_4052
+C_wrap'45'_4082 :: T_Frame_4052
+C_unwrap'45'_4090 :: T_Frame_4052
+d_Stack_4096 :: p -> p -> ()
+data T_Stack_4096
+C_ε_4100 :: T_Stack_4096
+C__'44'__4106 :: T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T_Frame_4052 -> T_Stack_4096
+d_State_4110 :: p -> ()
+data T_State_4110
+C__'894'_'9659'__4118 :: T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T_Env_46 -> T__'8866'__118 -> T_State_4110
+C__'9669'__4122 :: T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T_Value_60 -> T_State_4110
+C_'9633'_4124 :: T_Value_60 -> T_State_4110
+C_'9670'_4126 :: T__'8866'Nf'8902'__44 -> T_State_4110
+d_ival_4130 :: T_Builtin_40 -> T_Value_60
+d_step_4134 :: T__'8866'Nf'8902'__44 -> T_State_4110 -> T_State_4110
+du_step_4134 :: T_State_4110 -> T_State_4110
+d_stepper_4296 :: Integer -> T__'8866'Nf'8902'__44 -> T_State_4110 -> T_Either_44 T_RuntimeError_882 T_State_4110
+du_stepper_4296 :: Integer -> T_State_4110 -> T_Either_44 T_RuntimeError_882 T_State_4110
+d_ck2cekVal_4342 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Value_48 -> T_Value_60
+d_ck2cekBApp_4356 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_56
+du_ck2cekBApp_4356 :: T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T__'8866'__118 -> T_BApp_58 -> T_BApp_56
+d_ck2cekFrame_4392 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_674 -> T_Frame_4052
+d_ck2cekStack_4404 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4096
+du_ck2cekStack_4404 :: T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4096
+d_ck2cekState_4412 :: T__'8866'Nf'8902'__44 -> T_State_52 -> T_State_4110
+d_cek2ckVal_4430 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T_Value_48
+d_cek2ckBApp_4444 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'8866'Nf'8902'__44 -> T_BApp_56 -> T_BApp_58
+du_cek2ckBApp_4444 :: T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_56 -> T_BApp_58
+d_cek2ckClos_4484 :: T__'8866'Nf'8902'__44 -> T_Ctx_52 -> T__'8866'__118 -> T_Env_46 -> T__'8866'__118
+d_cek2ckFrame_4536 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_4052 -> T_Frame_674
+d_cek2ckStack_4550 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T_Stack_36
+du_cek2ckStack_4550 :: T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T_Stack_36
+d_cek2ckState_4558 :: T__'8866'Nf'8902'__44 -> T_State_4110 -> T_State_52
+d__'45''8594's__4576 :: p -> p -> p -> ()
+data T__'45''8594's__4576
+C_base_4582 :: T__'45''8594's__4576
+C_step'42'_4590 :: T_State_4110 -> T__'45''8594's__4576 -> T__'45''8594's__4576
+d_step'42''42'_4600 :: T__'8866'Nf'8902'__44 -> T_State_4110 -> T_State_4110 -> T_State_4110 -> T__'45''8594's__4576 -> T__'45''8594's__4576 -> T__'45''8594's__4576
+du_step'42''42'_4600 :: T__'45''8594's__4576 -> T__'45''8594's__4576 -> T__'45''8594's__4576
+d_ival'45'lem_4616 :: a
+d_dischargeBody'45'lem''_4630 :: a
+d_dischargeBody'45'lem_4648 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T_Env_46 -> T_Value_60 -> T__'8801'__12
+d_discharge'45'lem_4662 :: a
+d_dischargeBody'8902''45'lem''_4676 :: a
+d_dischargeBody'8902''45'lem_4694 :: T_Ctx_52 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T__'8866'__118 -> T_Env_46 -> T__'8801'__12
+d_dischargeB'45'lem_4724 :: a
+d_dischargeB'''45'lem_4744 :: a
+d_dischargeB'45'lem''_4760 :: a
+d_dischargeB'45'lem''''_4776 :: a
+d_BUILTIN'45'lem_4788 :: a
+d_thm65a_4796 :: T__'8866'Nf'8902'__44 -> T_State_4110 -> T_State_4110 -> T__'45''8594's__4576 -> T__'45''8594's__392
+du_thm65a_4796 :: T__'8866'Nf'8902'__44 -> T_State_4110 -> T__'45''8594's__4576 -> T__'45''8594's__392
+d_clos'45'lem_5050 :: a
+d_lem'9633'_5058 :: T__'8866'Nf'8902'__44 -> T_Value_60 -> T_Value_60 -> T__'45''8594's__4576 -> T__'8801'__12
+d_cek2ckClos'45''183'lem_5086 :: a
+d_cek2ckClos'45'ƛlem_5108 :: a
+d_cek2ckClos'45''183''8902'lem_5126 :: a
+d_cek2ckClos'45'Λlem_5148 :: a
+d_cek2ckClos'45'wraplem_5174 :: a
+d_cek2ckClos'45'unwraplem_5194 :: a
+d_cek2ckClos'45'conlem_5208 :: a
+d_cek2ckClos'45'ibuiltinlem_5224 :: a
+d_cek2ckStack'45'εlem_5230 :: T__'8866'Nf'8902'__44 -> T_Stack_4096 -> T__'8801'__12 -> T__'8801'__12
+d_cek2ckStack'45''44'lem_5254 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Stack_36 -> T_Stack_4096 -> T_Frame_674 -> T__'8801'__12 -> T_Σ_14
+du_cek2ckStack'45''44'lem_5254 :: T_Stack_4096 -> T_Σ_14
+d_cek2ckFrame'45''183''45'lem_5274 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Frame_4052 -> T__'8866'__118 -> T_Value_48 -> T__'8801'__12 -> T_Σ_14
+du_cek2ckFrame'45''183''45'lem_5274 :: T_Frame_4052 -> T_Σ_14
+d_cek2ckFrame'45''45''183'lem_5292 :: a
+d_cek2ckFrame'45''45''183''8902'lem_5302 :: a
+d_cek2ckFrame'45'unwrap'45'lem_5312 :: a
+d_cek2ckFrame'45'wrap'45'lem_5322 :: a
+d_thm65bV_5348 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Stack_36 -> T_Value_48 -> T_Value_48 -> T_Value_60 -> T_Stack_4096 -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12 -> T__'45''8594's__392 -> T_Σ_14
+du_thm65bV_5348 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'__118 -> T_Stack_36 -> T_Value_48 -> T_Value_48 -> T_Value_60 -> T_Stack_4096 -> T__'45''8594's__392 -> T_Σ_14
+d_substLem_5364 :: () -> (AgdaAny -> ()) -> AgdaAny -> AgdaAny -> T__'8801'__12 -> T__'8801'__12 -> AgdaAny -> T__'8801'__12
+d_fast'45'forward_5382 :: a
+d_thm65b_5408 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Ctx_52 -> T__'8866'__118 -> T_Stack_36 -> T_Value_48 -> T__'8866'__118 -> T_Env_46 -> T_Stack_4096 -> T__'8801'__12 -> T__'8801'__12 -> T__'45''8594's__392 -> T_Σ_14
+du_thm65b_5408 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Ctx_52 -> T__'8866'__118 -> T_Stack_36 -> T_Value_48 -> T__'8866'__118 -> T_Env_46 -> T_Stack_4096 -> T__'45''8594's__392 -> T_Σ_14
 
 module MAlonzo.Code.Raw
 d_RawTy_2 :: ()
@@ -15148,7 +15197,7 @@ pattern C_unit_26 :: RTyCon
 pattern C_bool_28 :: RTyCon
 pattern C_list_30 :: RType -> RTyCon
 pattern C_pair_32 :: RType -> RType -> RTyCon
-pattern C_Data_34 :: RTyCon
+pattern C_pdata_34 :: RTyCon
 check_integer_20 :: T_RawTyCon_4
 check_bytestring_22 :: T_RawTyCon_4
 check_string_24 :: T_RawTyCon_4
@@ -15156,7 +15205,7 @@ check_unit_26 :: T_RawTyCon_4
 check_bool_28 :: T_RawTyCon_4
 check_list_30 :: T_RawTy_2 -> T_RawTyCon_4
 check_pair_32 :: T_RawTy_2 -> T_RawTy_2 -> T_RawTyCon_4
-check_Data_34 :: T_RawTyCon_4
+check_pdata_34 :: T_RawTyCon_4
 cover_RawTyCon_4 :: RTyCon -> ()
 d_RawTm_36 :: ()
 type T_RawTm_36 = RTerm
@@ -15177,13 +15226,13 @@ check_ƛ_44 :: T_RawTy_2 -> T_RawTm_36 -> T_RawTm_36
 check__'183'__46 :: T_RawTm_36 -> T_RawTm_36 -> T_RawTm_36
 check_con_48 :: T_TermCon_910 -> T_RawTm_36
 check_error_50 :: T_RawTy_2 -> T_RawTm_36
-check_builtin_52 :: T_Builtin_2 -> T_RawTm_36
+check_builtin_52 :: T_Builtin_40 -> T_RawTm_36
 check_wrap_54 :: T_RawTy_2 -> T_RawTy_2 -> T_RawTm_36 -> T_RawTm_36
 check_unwrap_56 :: T_RawTm_36 -> T_RawTm_36
 cover_RawTm_36 :: RTerm -> ()
 d_decRTyCon_62 :: T_RawTyCon_4 -> T_RawTyCon_4 -> Bool
 d_decTermCon_68 :: T_TermCon_910 -> T_TermCon_910 -> Bool
-d_decBuiltin_150 :: T_Builtin_2 -> T_Builtin_2 -> Bool
+d_decBuiltin_150 :: T_Builtin_40 -> T_Builtin_40 -> Bool
 d_decRKi_156 :: T_Kind_898 -> T_Kind_898 -> Bool
 d_decRTy_218 :: T_RawTy_2 -> T_RawTy_2 -> Bool
 d_decRTm_784 :: T_RawTm_36 -> T_RawTm_36 -> Bool
@@ -15201,7 +15250,7 @@ C__'183'__64 :: T_ScopedTy_14 -> T_ScopedTy_14 -> T_ScopedTy_14
 C_con_66 :: T_TyCon_12 -> T_ScopedTy_14
 C_μ_68 :: T_ScopedTy_14 -> T_ScopedTy_14 -> T_ScopedTy_14
 C_missing_70 :: T_ScopedTy_14
-d_TyCon_20 :: p -> ()
+d_TyCon_18 :: p -> ()
 d_Tel'8902'_72 :: Integer -> Integer -> ()
 d_Weirdℕ_78 :: p -> ()
 data T_Weirdℕ_78
@@ -15247,7 +15296,7 @@ C_ƛ_450 :: T_ScopedTy_14 -> T_ScopedTm_438 -> T_ScopedTm_438
 C__'183'__452 :: T_ScopedTm_438 -> T_ScopedTm_438 -> T_ScopedTm_438
 C_con_454 :: T_TermCon_910 -> T_ScopedTm_438
 C_error_456 :: T_ScopedTy_14 -> T_ScopedTm_438
-C_builtin_460 :: T_Builtin_2 -> T_ScopedTm_438
+C_builtin_460 :: T_Builtin_40 -> T_ScopedTm_438
 C_wrap_462 :: T_ScopedTy_14 -> T_ScopedTy_14 -> T_ScopedTm_438 -> T_ScopedTm_438
 C_unwrap_464 :: T_ScopedTm_438 -> T_ScopedTm_438
 type T_FreeVariableError_470 = FreeVariableError
@@ -15272,14 +15321,14 @@ d_uglyWeirdFin_704 :: Integer -> T_Weirdℕ_78 -> T_WeirdFin_92 -> T_String_6
 du_uglyWeirdFin_704 :: T_Weirdℕ_78 -> T_WeirdFin_92 -> T_String_6
 d_uglyTermCon_710 :: T_TermCon_910 -> T_String_6
 d_showNat_718 :: Integer -> T_String_6
-d_uglyBuiltin_720 :: T_Builtin_2 -> T_String_6
+d_uglyBuiltin_720 :: T_Builtin_40 -> T_String_6
 d_ugly_726 :: Integer -> T_Weirdℕ_78 -> T_ScopedTm_438 -> T_String_6
 du_ugly_726 :: T_Weirdℕ_78 -> T_ScopedTm_438 -> T_String_6
 
 module MAlonzo.Code.Scoped.Extrication
-d_TyCon_10 :: p -> ()
-d_TyCon_48 :: p -> ()
-d_TermCon_86 :: p -> p -> ()
+d_TyCon_8 :: p -> ()
+d_TyCon_46 :: p -> ()
+d_TermCon_84 :: p -> p -> ()
 d_len'8902'_112 :: T_Ctx'8902'_2 -> Integer
 d_extricateVar'8902'_124 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8715''8902'__14 -> T_Fin_6
 du_extricateVar'8902'_124 :: T_Ctx'8902'_2 -> T__'8715''8902'__14 -> T_Fin_6
@@ -15287,18 +15336,18 @@ d_extricateNf'8902'_134 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Nf'8902'__44 
 d_extricateNe'8902'_142 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Ne'8902'__86 -> T_ScopedTy_14
 du_extricateNe'8902'_142 :: T_Ctx'8902'_2 -> T__'8866'Ne'8902'__86 -> T_ScopedTy_14
 d_extricateTyConNf'8902'_148 :: T_Ctx'8902'_2 -> T_TyCon_12 -> T_TyCon_12
-d_len_184 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Weirdℕ_78
-d_extricateVar_200 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T_WeirdFin_92
-du_extricateVar_200 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8715'__64 -> T_WeirdFin_92
+d_len_184 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Weirdℕ_78
+d_extricateVar_200 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T_WeirdFin_92
+du_extricateVar_200 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8715'__66 -> T_WeirdFin_92
 d_extricateC_210 :: T_Ctx'8902'_2 -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T_TermCon_910
 du_extricateC_210 :: T_TermCon_22 -> T_TermCon_910
 d_extricateSub_228 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> (T_Kind_898 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T_Vec_24
-d_extricate_246 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_ScopedTm_438
+d_extricate_246 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_ScopedTm_438
 
 module MAlonzo.Code.Check
-d_TyCon_18 :: p -> ()
-d_TyCon_56 :: p -> ()
-d_TermCon_94 :: p -> p -> ()
+d_TyCon_16 :: p -> ()
+d_TyCon_54 :: p -> ()
+d_TermCon_92 :: p -> p -> ()
 d_len'8902'_120 :: T_Ctx'8902'_2 -> Integer
 d_inferTyVar_132 :: T_Ctx'8902'_2 -> T_Fin_6 -> T_Σ_14
 d_'8846'bind_154 :: () -> () -> () -> T__'8846'__30 -> (AgdaAny -> T__'8846'__30) -> T__'8846'__30
@@ -15322,11 +15371,11 @@ d_isFunKind_294 :: T_Ctx'8902'_2 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Eit
 du_isFunKind_294 :: T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 d_isPat_316 :: T_Ctx'8902'_2 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 du_isPat_316 :: T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_isPi_358 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_isPi_358 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 du_isPi_358 :: T_Ctx'8902'_2 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_isFunType_400 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_isFunType_400 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 du_isFunType_400 :: T_Ctx'8902'_2 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_isMu_452 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_isMu_452 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 du_isMu_452 :: T_Ctx'8902'_2 -> T_Either_44 T_TypeError_164 T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 d_checkKind_498 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_Kind_898 -> T_Either_44 T_TypeError_164 T__'8866'Nf'8902'__44
 d_inferKind_506 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_Either_44 T_TypeError_164 T_Σ_14
@@ -15335,8 +15384,8 @@ d_'46'extendedlambda10_600 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_ScopedTy_14 ->
 du_'46'extendedlambda10_600 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 d_'46'extendedlambda11_622 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_ScopedTy_14 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 du_'46'extendedlambda11_622 :: T_Ctx'8902'_2 -> T_ScopedTy_14 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_len_634 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Weirdℕ_78
-d_inferVarType_650 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_WeirdFin_92 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_len_634 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Weirdℕ_78
+d_inferVarType_650 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_WeirdFin_92 -> T_Either_44 T_TypeError_164 T_Σ_14
 d_meqTyVar_688 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8715''8902'__14 -> T__'8715''8902'__14 -> T_Either_44 (T__'8801'__12 -> T_'8869'_4) T__'8801'__12
 du_meqTyVar_688 :: T_Ctx'8902'_2 -> T__'8715''8902'__14 -> T__'8715''8902'__14 -> T_Either_44 (T__'8801'__12 -> T_'8869'_4) T__'8801'__12
 d_meqNfTy_712 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T_Either_44 (T__'8801'__12 -> T_'8869'_4) T__'8801'__12
@@ -15354,12 +15403,12 @@ d_inv'45'complete_994 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> T
 du_inv'45'complete_994 :: T_Ctx'8902'_2 -> T_Kind_898 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'β__28
 d_inferTypeCon_1006 :: T_Ctx'8902'_2 -> T_TermCon_910 -> T_Σ_14
 du_inferTypeCon_1006 :: T_TermCon_910 -> T_Σ_14
-d_checkType_1024 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTm_438 -> T__'8866'Nf'8902'__44 -> T_Either_44 T_TypeError_164 T__'8866'__156
-d_inferType_1032 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTm_438 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_'46'extendedlambda25_1108 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTm_438 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-du_'46'extendedlambda25_1108 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-d_'46'extendedlambda26_1146 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTy_14 -> T_ScopedTy_14 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
-du_'46'extendedlambda26_1146 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_ScopedTy_14 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_checkType_1024 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTm_438 -> T__'8866'Nf'8902'__44 -> T_Either_44 T_TypeError_164 T__'8866'__118
+d_inferType_1032 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTm_438 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_'46'extendedlambda25_1108 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTm_438 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+du_'46'extendedlambda25_1108 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+d_'46'extendedlambda26_1146 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTy_14 -> T_ScopedTy_14 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
+du_'46'extendedlambda26_1146 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_ScopedTy_14 -> T_ScopedTm_438 -> T_Σ_14 -> T_Either_44 T_TypeError_164 T_Σ_14
 
 module Scoped
 data ScKind
@@ -15401,11 +15450,11 @@ C__'183'__22 :: T__'8866'_14 -> T__'8866'_14 -> T__'8866'_14
 C_force_24 :: T__'8866'_14 -> T__'8866'_14
 C_delay_26 :: T__'8866'_14 -> T__'8866'_14
 C_con_28 :: T_TermCon_910 -> T__'8866'_14
-C_builtin_32 :: T_Builtin_2 -> T__'8866'_14
+C_builtin_32 :: T_Builtin_40 -> T__'8866'_14
 C_error_34 :: T__'8866'_14
 d_uglyTermCon_52 :: T_TermCon_910 -> T_String_6
 d_showNat_62 :: Integer -> T_String_6
-d_uglyBuiltin_64 :: T_Builtin_2 -> T_String_6
+d_uglyBuiltin_64 :: T_Builtin_40 -> T_String_6
 d_ugly_68 :: () -> T__'8866'_14 -> T_String_6
 du_ugly_68 :: T__'8866'_14 -> T_String_6
 d_Untyped_86 :: ()
@@ -15423,7 +15472,7 @@ check_ULambda_90 :: T_Untyped_86 -> T_Untyped_86
 check_UApp_92 :: T_Untyped_86 -> T_Untyped_86 -> T_Untyped_86
 check_UCon_94 :: T_TermCon_910 -> T_Untyped_86
 check_UError_96 :: T_Untyped_86
-check_UBuiltin_98 :: T_Builtin_2 -> T_Untyped_86
+check_UBuiltin_98 :: T_Builtin_40 -> T_Untyped_86
 check_UDelay_100 :: T_Untyped_86 -> T_Untyped_86
 check_UForce_102 :: T_Untyped_86 -> T_Untyped_86
 cover_Untyped_86 :: UTerm -> ()
@@ -15480,8 +15529,8 @@ data T_Value_4
 C_V'45'ƛ_24 :: T_Env_6 -> T__'8866'_14 -> T_Value_4
 C_V'45'con_26 :: T_TermCon_910 -> T_Value_4
 C_V'45'delay_30 :: T_Env_6 -> T__'8866'_14 -> T_Value_4
-C_V'45'I'8658'_40 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
-C_V'45'IΠ_50 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
+C_V'45'I'8658'_40 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
+C_V'45'IΠ_50 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
 d_Env_6 :: p -> ()
 data T_Env_6
 C_'91''93'_8 :: T_Env_6
@@ -15494,8 +15543,8 @@ C_app'8902'_70 :: T_BApp_20 -> T_BApp_20
 d_env2sub_74 :: () -> T_Env_6 -> AgdaAny -> T__'8866'_14
 du_env2sub_74 :: T_Env_6 -> AgdaAny -> T__'8866'_14
 d_discharge_76 :: T_Value_4 -> T__'8866'_14
-d_dischargeB_86 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
-du_dischargeB_86 :: T_Builtin_2 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
+d_dischargeB_86 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
+du_dischargeB_86 :: T_Builtin_40 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
 d_Frame_132 :: ()
 data T_Frame_132
 C_'45''183'_136 :: T_Env_6 -> T__'8866'_14 -> T_Frame_132
@@ -15513,34 +15562,34 @@ C_'9633'_156 :: T_Value_4 -> T_State_148
 C_'9670'_158 :: T_State_148
 d_lookup_162 :: () -> T_Env_6 -> AgdaAny -> T_Value_4
 du_lookup_162 :: T_Env_6 -> AgdaAny -> T_Value_4
-d_V'45'I_184 :: T_Builtin_2 -> T_Arg_274 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
-d_BUILTIN_200 :: T_Builtin_2 -> T_BApp_20 -> T_Either_44 T_RuntimeError_882 T_Value_4
-d_convBApp_470 :: T_Builtin_2 -> T_Bwd_190 -> [T_Arg_274] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_BApp_20
+d_V'45'I_184 :: T_Builtin_40 -> T_Arg_228 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_Value_4
+d_BUILTIN_200 :: T_Builtin_40 -> T_BApp_20 -> T_Either_44 T_RuntimeError_882 T_Value_4
+d_convBApp_470 :: T_Builtin_40 -> T_Bwd_190 -> [T_Arg_228] -> T__'60''62''62'_'8712'__290 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T_BApp_20
 du_convBApp_470 :: T_BApp_20 -> T_BApp_20
-d_BUILTIN''_490 :: T_Builtin_2 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
-du_BUILTIN''_490 :: T_Builtin_2 -> T_BApp_20 -> T__'8866'_14
-d_ival_538 :: T_Builtin_2 -> T_Value_4
+d_BUILTIN''_490 :: T_Builtin_40 -> T_Bwd_190 -> T__'60''62''62'_'8712'__290 -> T_BApp_20 -> T__'8866'_14
+du_BUILTIN''_490 :: T_Builtin_40 -> T_BApp_20 -> T__'8866'_14
+d_ival_538 :: T_Builtin_40 -> T_Value_4
 d_step_540 :: T_State_148 -> T_State_148
 d_stepper_692 :: Integer -> T_State_148 -> T_Either_44 T_RuntimeError_882 T_State_148
 
 module MAlonzo.Code.Algorithmic.Erasure
-d_TermCon_8 :: p -> p -> ()
-d_TermCon_38 :: p -> p -> ()
+d_TermCon_6 :: p -> p -> ()
+d_TermCon_36 :: p -> p -> ()
 d_len'8902'_64 :: T_Ctx'8902'_2 -> ()
-d_len_72 :: T_Ctx'8902'_2 -> T_Ctx_44 -> ()
-d_eraseVar_88 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> AgdaAny
-du_eraseVar_88 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8715'__64 -> AgdaAny
-d_eraseTC_100 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T_TermCon_910
+d_len_72 :: T_Ctx'8902'_2 -> T_Ctx_52 -> ()
+d_eraseVar_88 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> AgdaAny
+du_eraseVar_88 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8715'__66 -> AgdaAny
+d_eraseTC_100 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T_TermCon_910
 du_eraseTC_100 :: T_TermCon_22 -> T_TermCon_910
-d_erase_118 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8866'_14
-d_lenLemma_154 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T__'8801'__12
+d_erase_118 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8866'_14
+d_lenLemma_154 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T__'8801'__12
 d_lenLemma'8902'_166 :: T_Ctx'8902'_2 -> T__'8801'__12
 d_lemzero_178 :: () -> () -> T__'8801'__12 -> T__'8801'__12
 d_lemsuc_190 :: () -> () -> T__'8801'__12 -> T__'8801'__12 -> AgdaAny -> T__'8801'__12
-d_sameTC_202 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T__'8866''8902'__20 -> T_TermCon_22 -> T__'8801'__12
-d_lem'8801'Ctx_220 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T__'8801'__12 -> T__'8801'__12
-d_lem'45'conv'8715'_238 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__64 -> T__'8801'__12
-d_sameVar_250 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8715'__38 -> T__'8801'__12
+d_sameTC_202 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T__'8866''8902'__20 -> T_TermCon_22 -> T__'8801'__12
+d_lem'8801'Ctx_220 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T__'8801'__12 -> T__'8801'__12
+d_lem'45'conv'8715'_238 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__66 -> T__'8801'__12
+d_sameVar_250 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8715'__46 -> T__'8801'__12
 d_lemVar_272 :: () -> () -> T__'8801'__12 -> AgdaAny -> T__'8801'__12
 d_lemƛ_286 :: () -> () -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'_14 -> T__'8801'__12
 d_lem'183'_300 :: () -> () -> T__'8801'__12 -> T__'8866'_14 -> T__'8866'_14 -> T__'8801'__12
@@ -15548,17 +15597,17 @@ d_lem'45'delay_314 :: () -> () -> T__'8801'__12 -> T__'8866'_14 -> T__'8801'__12
 d_lem'45'force_326 :: () -> () -> T__'8801'__12 -> T__'8866'_14 -> T__'8801'__12
 d_lemcon''_338 :: () -> () -> T__'8801'__12 -> T_TermCon_910 -> T__'8801'__12
 d_lemerror_348 :: () -> () -> T__'8801'__12 -> T__'8801'__12
-d_lembuiltin_358 :: () -> () -> T_Builtin_2 -> T__'8801'__12 -> T__'8801'__12
-d_lem'45'erase_378 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__156 -> T__'8801'__12
+d_lembuiltin_358 :: () -> () -> T_Builtin_40 -> T__'8801'__12 -> T__'8801'__12
+d_lem'45'erase_378 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8801'__12 -> T__'8866'__118 -> T__'8801'__12
 d_lem'45'subst_388 :: () -> T__'8866'_14 -> T__'8801'__12 -> T__'8801'__12
-d_lem'45'erase''_404 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__156 -> T__'8801'__12
-d_same_420 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866'__98 -> T__'8801'__12
+d_lem'45'erase''_404 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T__'8866'__118 -> T__'8801'__12
+d_same_420 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866'__74 -> T__'8801'__12
 d_'43'cancel_430 :: Integer -> Integer -> Integer -> Integer -> T__'8801'__12 -> T__'8801'__12 -> T__'8801'__12
-d_same''Len_500 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8801'__12
-d_lem'45'Dconv'8715'_526 :: T_Ctx'8902'_2 -> T_Ctx_20 -> T_Ctx_20 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__38 -> T__'8801'__12
-d_same''Var_538 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8715'__64 -> T__'8801'__12
-d_same''TC_560 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T__'8801'__12
-d_same''_580 :: T_Ctx'8902'_2 -> T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T__'8801'__12
+d_same''Len_500 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8801'__12
+d_lem'45'Dconv'8715'_526 :: T_Ctx'8902'_2 -> T_Ctx_28 -> T_Ctx_28 -> T__'8866''8902'__20 -> T__'8866''8902'__20 -> T__'8801'__12 -> T__'8801'__12 -> T__'8715'__46 -> T__'8801'__12
+d_same''Var_538 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8715'__66 -> T__'8801'__12
+d_same''TC_560 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T_TermCon_22 -> T__'8801'__12
+d_same''_580 :: T_Ctx'8902'_2 -> T_Ctx_52 -> T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T__'8801'__12
 
 module MAlonzo.Code.Main
 d_putStrLn_12 :: T_String_6 -> T_IO_8 () T_'8868'_6
@@ -15644,8 +15693,8 @@ d_parseUPLC_158 :: T_ProgramNU_66 -> T_Either_44 T_ERROR_104 T__'8866'_14
 d_typeCheckPLC_166 :: T_ScopedTm_438 -> T_Either_44 T_TypeError_164 T_Σ_14
 d_maxsteps_170 :: Integer
 d_reportError_172 :: T_ERROR_104 -> T_String_6
-d_checkError_178 :: T__'8866'Nf'8902'__44 -> T__'8866'__156 -> T_Either_44 T_ERROR_104 T__'8866'__156
-du_checkError_178 :: T__'8866'__156 -> T_Either_44 T_ERROR_104 T__'8866'__156
+d_checkError_178 :: T__'8866'Nf'8902'__44 -> T__'8866'__118 -> T_Either_44 T_ERROR_104 T__'8866'__118
+du_checkError_178 :: T__'8866'__118 -> T_Either_44 T_ERROR_104 T__'8866'__118
 d_executePLC_182 :: T_EvalMode_94 -> T_ScopedTm_438 -> T_Either_44 T_ERROR_104 T_String_6
 d_executeUPLC_240 :: T__'8866'_14 -> T_Either_44 T_ERROR_104 T_String_6
 d_evalProgramNU_248 :: T_ProgramNU_66 -> T_Either_44 T_ERROR_104 T_String_6
