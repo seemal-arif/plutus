@@ -6,7 +6,7 @@
 --   
 --   Various strict container types
 @package cardano-strict-containers
-@version 0.1.1.0
+@version 0.1.2.0
 
 
 -- | Strict version of the <a>Maybe</a> type.
@@ -257,6 +257,8 @@ instance Data.Foldable.Foldable Data.Sequence.Strict.StrictSeq
 instance GHC.Show.Show a => GHC.Show.Show (Data.Sequence.Strict.StrictSeq a)
 instance GHC.Classes.Ord a => GHC.Classes.Ord (Data.Sequence.Strict.StrictSeq a)
 instance GHC.Classes.Eq a => GHC.Classes.Eq (Data.Sequence.Strict.StrictSeq a)
+instance Cardano.Binary.ToCBOR.ToCBOR a => Cardano.Binary.ToCBOR.ToCBOR (Data.Sequence.Strict.StrictSeq a)
+instance Cardano.Binary.FromCBOR.FromCBOR a => Cardano.Binary.FromCBOR.FromCBOR (Data.Sequence.Strict.StrictSeq a)
 instance GHC.Base.Functor Data.Sequence.Strict.StrictSeq
 instance Data.Traversable.Traversable Data.Sequence.Strict.StrictSeq
 instance NoThunks.Class.NoThunks a => NoThunks.Class.NoThunks (Data.Sequence.Strict.StrictSeq a)

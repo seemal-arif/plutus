@@ -6,7 +6,7 @@
 --   
 --   Type classes abstracting over cryptography primitives for Cardano
 @package cardano-crypto-class
-@version 2.0.0.1
+@version 2.1.0.0
 
 module Cardano.Crypto.Libsodium.Constants
 type CRYPTO_SHA256_BYTES = 32
@@ -193,6 +193,7 @@ instance GHC.Generics.Generic (Cardano.Crypto.Hash.Class.Hash h a)
 instance GHC.Classes.Ord (Cardano.Crypto.Hash.Class.Hash h a)
 instance GHC.Classes.Eq (Cardano.Crypto.Hash.Class.Hash h a)
 instance Cardano.Crypto.Hash.Class.HashAlgorithm h => Data.String.IsString (Language.Haskell.TH.Syntax.Q (Language.Haskell.TH.Syntax.TExp (Cardano.Crypto.Hash.Class.Hash h a)))
+instance Cardano.Crypto.Hash.Class.HashAlgorithm h => Data.String.IsString (Language.Haskell.TH.Syntax.Code Language.Haskell.TH.Syntax.Q (Cardano.Crypto.Hash.Class.Hash h a))
 instance GHC.Show.Show (Cardano.Crypto.Hash.Class.Hash h a)
 instance Cardano.Crypto.Hash.Class.HashAlgorithm h => GHC.Read.Read (Cardano.Crypto.Hash.Class.Hash h a)
 instance Cardano.Crypto.Hash.Class.HashAlgorithm h => Data.String.IsString (Cardano.Crypto.Hash.Class.Hash h a)
@@ -516,7 +517,7 @@ encodedVerKeyDSIGNSizeExpr :: forall v. DSIGNAlgorithm v => Proxy (VerKeyDSIGN v
 
 -- | <a>Size</a> expression for <a>SignKeyDSIGN</a> which is using
 --   <a>sizeSignKeyDSIGN</a> encoded as <a>Size</a>.
-encodedSignKeyDESIGNSizeExpr :: forall v. DSIGNAlgorithm v => Proxy (SignKeyDSIGN v) -> Size
+encodedSignKeyDSIGNSizeExpr :: forall v. DSIGNAlgorithm v => Proxy (SignKeyDSIGN v) -> Size
 
 -- | <a>Size</a> expression for <a>SigDSIGN</a> which is using
 --   <a>sizeSigDSIGN</a> encoded as <a>Size</a>.
@@ -1034,6 +1035,7 @@ instance GHC.Show.Show (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n)
 instance GHC.TypeNats.KnownNat n => GHC.Classes.Eq (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n)
 instance GHC.TypeNats.KnownNat n => GHC.Classes.Ord (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n)
 instance GHC.TypeNats.KnownNat n => Data.String.IsString (Language.Haskell.TH.Syntax.Q (Language.Haskell.TH.Syntax.TExp (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n)))
+instance GHC.TypeNats.KnownNat n => Data.String.IsString (Language.Haskell.TH.Syntax.Code Language.Haskell.TH.Syntax.Q (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n))
 instance GHC.TypeNats.KnownNat n => Foreign.Storable.Storable (Cardano.Crypto.PinnedSizedBytes.PinnedSizedBytes n)
 
 module Cardano.Crypto.DSIGN.EcdsaSecp256k1
