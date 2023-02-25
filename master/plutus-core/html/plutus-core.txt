@@ -6,7 +6,7 @@
 --   
 --   Pretty-printer, parser, and typechecker for Plutus Core.
 @package plutus-core
-@version 1.1.1.0
+@version 1.2.0.0
 
 
 -- | Hash functions for lazy [[Data.ByteString.ByteString]]s
@@ -4062,18 +4062,18 @@ typeAnn :: Type tyname uni ann -> ann
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
-tyVarDeclAnn :: forall tyname_a4q84 ann_a4q85. Lens' (TyVarDecl tyname_a4q84 ann_a4q85) ann_a4q85
-tyVarDeclName :: forall tyname_a4q84 ann_a4q85 tyname_a4qhE. Lens (TyVarDecl tyname_a4q84 ann_a4q85) (TyVarDecl tyname_a4qhE ann_a4q85) tyname_a4q84 tyname_a4qhE
-tyVarDeclKind :: forall tyname_a4q84 ann_a4q85. Lens' (TyVarDecl tyname_a4q84 ann_a4q85) (Kind ann_a4q85)
-varDeclAnn :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5. Lens' (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) ann_a4qi5
-varDeclName :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5 name_a4qrt. Lens (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) (VarDecl tyname_a4qi2 name_a4qrt uni_a4qi4 ann_a4qi5) name_a4qi3 name_a4qrt
-varDeclType :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5 tyname_a4qru uni_a4qrv. Lens (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) (VarDecl tyname_a4qru name_a4qi3 uni_a4qrv ann_a4qi5) (Type tyname_a4qi2 uni_a4qi4 ann_a4qi5) (Type tyname_a4qru uni_a4qrv ann_a4qi5)
-tyDeclAnn :: forall tyname_a4qrT uni_a4qrU ann_a4qrV. Lens' (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) ann_a4qrV
-tyDeclType :: forall tyname_a4qrT uni_a4qrU ann_a4qrV tyname_a4qBB uni_a4qBC. Lens (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) (TyDecl tyname_a4qBB uni_a4qBC ann_a4qrV) (Type tyname_a4qrT uni_a4qrU ann_a4qrV) (Type tyname_a4qBB uni_a4qBC ann_a4qrV)
-tyDeclKind :: forall tyname_a4qrT uni_a4qrU ann_a4qrV. Lens' (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) (Kind ann_a4qrV)
-progAnn :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h. Lens' (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) ann_a4o6h
-progVer :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h. Lens' (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) Version
-progTerm :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F. Lens (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) (Program tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F ann_a4o6h) (Term tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) (Term tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F ann_a4o6h)
+tyVarDeclAnn :: forall tyname_a4q82 ann_a4q83. Lens' (TyVarDecl tyname_a4q82 ann_a4q83) ann_a4q83
+tyVarDeclName :: forall tyname_a4q82 ann_a4q83 tyname_a4qhC. Lens (TyVarDecl tyname_a4q82 ann_a4q83) (TyVarDecl tyname_a4qhC ann_a4q83) tyname_a4q82 tyname_a4qhC
+tyVarDeclKind :: forall tyname_a4q82 ann_a4q83. Lens' (TyVarDecl tyname_a4q82 ann_a4q83) (Kind ann_a4q83)
+varDeclAnn :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3. Lens' (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) ann_a4qi3
+varDeclName :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3 name_a4qrr. Lens (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) (VarDecl tyname_a4qi0 name_a4qrr uni_a4qi2 ann_a4qi3) name_a4qi1 name_a4qrr
+varDeclType :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3 tyname_a4qrs uni_a4qrt. Lens (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) (VarDecl tyname_a4qrs name_a4qi1 uni_a4qrt ann_a4qi3) (Type tyname_a4qi0 uni_a4qi2 ann_a4qi3) (Type tyname_a4qrs uni_a4qrt ann_a4qi3)
+tyDeclAnn :: forall tyname_a4qrR uni_a4qrS ann_a4qrT. Lens' (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) ann_a4qrT
+tyDeclType :: forall tyname_a4qrR uni_a4qrS ann_a4qrT tyname_a4qBz uni_a4qBA. Lens (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) (TyDecl tyname_a4qBz uni_a4qBA ann_a4qrT) (Type tyname_a4qrR uni_a4qrS ann_a4qrT) (Type tyname_a4qBz uni_a4qBA ann_a4qrT)
+tyDeclKind :: forall tyname_a4qrR uni_a4qrS ann_a4qrT. Lens' (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) (Kind ann_a4qrT)
+progAnn :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f. Lens' (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) ann_a4o6f
+progVer :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f. Lens' (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) Version
+progTerm :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D. Lens (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) (Program tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D ann_a4o6f) (Term tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) (Term tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D ann_a4o6f)
 kindSubkinds :: Traversal' (Kind ann) (Kind ann)
 kindSubkindsDeep :: Fold (Kind ann) (Kind ann)
 
@@ -7477,18 +7477,18 @@ Normalized :: a -> Normalized a
 defaultVersion :: Version
 termAnn :: Term tyname name uni fun ann -> ann
 typeAnn :: Type tyname uni ann -> ann
-tyVarDeclAnn :: forall tyname_a4q84 ann_a4q85. Lens' (TyVarDecl tyname_a4q84 ann_a4q85) ann_a4q85
-tyVarDeclName :: forall tyname_a4q84 ann_a4q85 tyname_a4qhE. Lens (TyVarDecl tyname_a4q84 ann_a4q85) (TyVarDecl tyname_a4qhE ann_a4q85) tyname_a4q84 tyname_a4qhE
-tyVarDeclKind :: forall tyname_a4q84 ann_a4q85. Lens' (TyVarDecl tyname_a4q84 ann_a4q85) (Kind ann_a4q85)
-varDeclAnn :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5. Lens' (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) ann_a4qi5
-varDeclName :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5 name_a4qrt. Lens (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) (VarDecl tyname_a4qi2 name_a4qrt uni_a4qi4 ann_a4qi5) name_a4qi3 name_a4qrt
-varDeclType :: forall tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5 tyname_a4qru uni_a4qrv. Lens (VarDecl tyname_a4qi2 name_a4qi3 uni_a4qi4 ann_a4qi5) (VarDecl tyname_a4qru name_a4qi3 uni_a4qrv ann_a4qi5) (Type tyname_a4qi2 uni_a4qi4 ann_a4qi5) (Type tyname_a4qru uni_a4qrv ann_a4qi5)
-tyDeclAnn :: forall tyname_a4qrT uni_a4qrU ann_a4qrV. Lens' (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) ann_a4qrV
-tyDeclType :: forall tyname_a4qrT uni_a4qrU ann_a4qrV tyname_a4qBB uni_a4qBC. Lens (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) (TyDecl tyname_a4qBB uni_a4qBC ann_a4qrV) (Type tyname_a4qrT uni_a4qrU ann_a4qrV) (Type tyname_a4qBB uni_a4qBC ann_a4qrV)
-tyDeclKind :: forall tyname_a4qrT uni_a4qrU ann_a4qrV. Lens' (TyDecl tyname_a4qrT uni_a4qrU ann_a4qrV) (Kind ann_a4qrV)
-progAnn :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h. Lens' (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) ann_a4o6h
-progVer :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h. Lens' (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) Version
-progTerm :: forall tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F. Lens (Program tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) (Program tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F ann_a4o6h) (Term tyname_a4o6d name_a4o6e uni_a4o6f fun_a4o6g ann_a4o6h) (Term tyname_a4q7C name_a4q7D uni_a4q7E fun_a4q7F ann_a4o6h)
+tyVarDeclAnn :: forall tyname_a4q82 ann_a4q83. Lens' (TyVarDecl tyname_a4q82 ann_a4q83) ann_a4q83
+tyVarDeclName :: forall tyname_a4q82 ann_a4q83 tyname_a4qhC. Lens (TyVarDecl tyname_a4q82 ann_a4q83) (TyVarDecl tyname_a4qhC ann_a4q83) tyname_a4q82 tyname_a4qhC
+tyVarDeclKind :: forall tyname_a4q82 ann_a4q83. Lens' (TyVarDecl tyname_a4q82 ann_a4q83) (Kind ann_a4q83)
+varDeclAnn :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3. Lens' (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) ann_a4qi3
+varDeclName :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3 name_a4qrr. Lens (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) (VarDecl tyname_a4qi0 name_a4qrr uni_a4qi2 ann_a4qi3) name_a4qi1 name_a4qrr
+varDeclType :: forall tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3 tyname_a4qrs uni_a4qrt. Lens (VarDecl tyname_a4qi0 name_a4qi1 uni_a4qi2 ann_a4qi3) (VarDecl tyname_a4qrs name_a4qi1 uni_a4qrt ann_a4qi3) (Type tyname_a4qi0 uni_a4qi2 ann_a4qi3) (Type tyname_a4qrs uni_a4qrt ann_a4qi3)
+tyDeclAnn :: forall tyname_a4qrR uni_a4qrS ann_a4qrT. Lens' (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) ann_a4qrT
+tyDeclType :: forall tyname_a4qrR uni_a4qrS ann_a4qrT tyname_a4qBz uni_a4qBA. Lens (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) (TyDecl tyname_a4qBz uni_a4qBA ann_a4qrT) (Type tyname_a4qrR uni_a4qrS ann_a4qrT) (Type tyname_a4qBz uni_a4qBA ann_a4qrT)
+tyDeclKind :: forall tyname_a4qrR uni_a4qrS ann_a4qrT. Lens' (TyDecl tyname_a4qrR uni_a4qrS ann_a4qrT) (Kind ann_a4qrT)
+progAnn :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f. Lens' (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) ann_a4o6f
+progVer :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f. Lens' (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) Version
+progTerm :: forall tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D. Lens (Program tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) (Program tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D ann_a4o6f) (Term tyname_a4o6b name_a4o6c uni_a4o6d fun_a4o6e ann_a4o6f) (Term tyname_a4q7A name_a4q7B uni_a4q7C fun_a4q7D ann_a4o6f)
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
@@ -9032,8 +9032,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7qYe a_a7qYf. Lens' (SimplifyOpts name_a7qYe a_a7qYf) Int
-soInlineHints :: forall name_a7qYe a_a7qYf name_a7qZQ a_a7qZR. Lens (SimplifyOpts name_a7qYe a_a7qYf) (SimplifyOpts name_a7qZQ a_a7qZR) (InlineHints name_a7qYe a_a7qYf) (InlineHints name_a7qZQ a_a7qZR)
+soMaxSimplifierIterations :: forall name_a7qYw a_a7qYx. Lens' (SimplifyOpts name_a7qYw a_a7qYx) Int
+soInlineHints :: forall name_a7qYw a_a7qYx name_a7r08 a_a7r09. Lens (SimplifyOpts name_a7qYw a_a7qYx) (SimplifyOpts name_a7r08 a_a7r09) (InlineHints name_a7qYw a_a7qYx) (InlineHints name_a7r08 a_a7r09)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9105,6 +9105,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7ryL a_a7ryM name_a7rA9 a_a7rAa. Iso (CompilationOpts name_a7ryL a_a7ryM) (CompilationOpts name_a7rA9 a_a7rAa) (SimplifyOpts name_a7ryL a_a7ryM) (SimplifyOpts name_a7rA9 a_a7rAa)
+coSimplifyOpts :: forall name_a7rz3 a_a7rz4 name_a7rAr a_a7rAs. Iso (CompilationOpts name_a7rz3 a_a7rz4) (CompilationOpts name_a7rAr a_a7rAs) (SimplifyOpts name_a7rz3 a_a7rz4) (SimplifyOpts name_a7rAr a_a7rAs)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)

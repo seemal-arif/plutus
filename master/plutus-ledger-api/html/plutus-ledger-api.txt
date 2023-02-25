@@ -6,7 +6,7 @@
 --   
 --   Interface to the Plutus scripting support for the Cardano ledger.
 @package plutus-ledger-api
-@version 1.1.1.0
+@version 1.2.0.0
 
 
 -- | This module contains the protocol versions and plutus versions as
