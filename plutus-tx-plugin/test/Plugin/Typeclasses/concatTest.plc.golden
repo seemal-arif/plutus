@@ -60,81 +60,211 @@
             )
           )
         )
-        (let
-          (rec)
-          (termbind
-            (strict)
-            (vardecl
-              fFoldableNil_cfoldMap
-              (all
-                m
-                (type)
-                (all
-                  a (type) (fun [ Monoid m ] (fun (fun a m) (fun [ List a ] m)))
-                )
-              )
-            )
-            (abs
+        (termbind
+          (strict)
+          (vardecl
+            fFoldableNil_cfoldMap
+            (all
               m
               (type)
-              (abs
-                a
-                (type)
-                (lam
-                  dMonoid
-                  [ Monoid m ]
+              (all
+                a (type) (fun [ Monoid m ] (fun (fun a m) (fun [ List a ] m)))
+              )
+            )
+          )
+          (abs
+            m
+            (type)
+            (abs
+              a
+              (type)
+              (lam
+                dMonoid
+                [ Monoid m ]
+                (let
+                  (nonrec)
+                  (termbind
+                    (nonstrict)
+                    (vardecl dSemigroup [ (lam a (type) (fun a (fun a a))) m ])
+                    [ { p1Monoid m } dMonoid ]
+                  )
                   (lam
                     eta
                     (fun a m)
-                    (lam
-                      eta
-                      [ List a ]
-                      {
-                        [
-                          [
-                            { [ { Nil_match a } eta ] (all dead (type) m) }
-                            (abs dead (type) [ { mempty m } dMonoid ])
-                          ]
-                          (lam
-                            x
-                            a
-                            (lam
-                              xs
-                              [ List a ]
-                              (abs
-                                dead
-                                (type)
-                                [
-                                  [ [ { p1Monoid m } dMonoid ] [ eta x ] ]
-                                  [
-                                    [
-                                      [
-                                        { { fFoldableNil_cfoldMap m } a }
-                                        dMonoid
-                                      ]
-                                      eta
-                                    ]
-                                    xs
-                                  ]
-                                ]
+                    (let
+                      (rec)
+                      (termbind
+                        (strict)
+                        (vardecl go (fun [ List a ] m))
+                        (lam
+                          ds
+                          [ List a ]
+                          {
+                            [
+                              [
+                                { [ { Nil_match a } ds ] (all dead (type) m) }
+                                (abs dead (type) [ { mempty m } dMonoid ])
+                              ]
+                              (lam
+                                x
+                                a
+                                (lam
+                                  xs
+                                  [ List a ]
+                                  (abs
+                                    dead
+                                    (type)
+                                    [ [ dSemigroup [ eta x ] ] [ go xs ] ]
+                                  )
+                                )
                               )
-                            )
-                          )
-                        ]
-                        (all dead (type) dead)
-                      }
+                            ]
+                            (all dead (type) dead)
+                          }
+                        )
+                      )
+                      (lam eta [ List a ] [ go eta ])
                     )
                   )
                 )
               )
             )
           )
-          (let
-            (nonrec)
-            (termbind
-              (nonstrict)
-              (vardecl
-                fFoldableNil
+        )
+        (termbind
+          (nonstrict)
+          (vardecl
+            fFoldableNil
+            [
+              (lam
+                t
+                (fun (type) (type))
+                (all
+                  m
+                  (type)
+                  (all
+                    a (type) (fun [ Monoid m ] (fun (fun a m) (fun [ t a ] m)))
+                  )
+                )
+              )
+              List
+            ]
+          )
+          fFoldableNil_cfoldMap
+        )
+        (termbind
+          (strict)
+          (vardecl
+            fSemigroupEndo_c
+            (all
+              a
+              (type)
+              (fun
+                [ (lam a (type) (fun a a)) a ]
+                (fun
+                  [ (lam a (type) (fun a a)) a ] [ (lam a (type) (fun a a)) a ]
+                )
+              )
+            )
+          )
+          (abs
+            a
+            (type)
+            (lam
+              ds
+              [ (lam a (type) (fun a a)) a ]
+              (lam ds [ (lam a (type) (fun a a)) a ] (lam x a [ ds [ ds x ] ]))
+            )
+          )
+        )
+        (termbind
+          (strict)
+          (vardecl id (all a (type) (fun a a)))
+          (abs a (type) (lam x a x))
+        )
+        (termbind
+          (strict)
+          (vardecl
+            fMonoidEndo (all a (type) [ Monoid [ (lam a (type) (fun a a)) a ] ])
+          )
+          (abs
+            a
+            (type)
+            [
+              [
+                { CConsMonoid [ (lam a (type) (fun a a)) a ] }
+                { fSemigroupEndo_c a }
+              ]
+              { id a }
+            ]
+          )
+        )
+        (termbind
+          (strict)
+          (vardecl
+            build
+            (all
+              a
+              (type)
+              (fun (all b (type) (fun (fun a (fun b b)) (fun b b))) [ List a ])
+            )
+          )
+          (abs
+            a
+            (type)
+            (lam
+              g
+              (all b (type) (fun (fun a (fun b b)) (fun b b)))
+              [
+                [
+                  { g [ List a ] }
+                  (lam ds a (lam ds [ List a ] [ [ { Cons a } ds ] ds ]))
+                ]
+                { Nil a }
+              ]
+            )
+          )
+        )
+        (termbind
+          (strict)
+          (vardecl
+            concat
+            (all
+              t
+              (fun (type) (type))
+              (all
+                a
+                (type)
+                (fun
+                  [
+                    (lam
+                      t
+                      (fun (type) (type))
+                      (all
+                        m
+                        (type)
+                        (all
+                          a
+                          (type)
+                          (fun [ Monoid m ] (fun (fun a m) (fun [ t a ] m)))
+                        )
+                      )
+                    )
+                    t
+                  ]
+                  (fun [ t [ List a ] ] [ List a ])
+                )
+              )
+            )
+          )
+          (abs
+            t
+            (fun (type) (type))
+            (abs
+              a
+              (type)
+              (lam
+                dFoldable
                 [
                   (lam
                     t
@@ -149,285 +279,166 @@
                       )
                     )
                   )
-                  List
-                ]
-              )
-              fFoldableNil_cfoldMap
-            )
-            (termbind
-              (strict)
-              (vardecl
-                fSemigroupEndo_c
-                (all
-                  a
-                  (type)
-                  (fun
-                    [ (lam a (type) (fun a a)) a ]
-                    (fun
-                      [ (lam a (type) (fun a a)) a ]
-                      [ (lam a (type) (fun a a)) a ]
-                    )
-                  )
-                )
-              )
-              (abs
-                a
-                (type)
-                (lam
-                  ds
-                  [ (lam a (type) (fun a a)) a ]
-                  (lam
-                    ds [ (lam a (type) (fun a a)) a ] (lam x a [ ds [ ds x ] ])
-                  )
-                )
-              )
-            )
-            (termbind
-              (strict)
-              (vardecl id (all a (type) (fun a a)))
-              (abs a (type) (lam x a x))
-            )
-            (termbind
-              (strict)
-              (vardecl
-                fMonoidEndo
-                (all a (type) [ Monoid [ (lam a (type) (fun a a)) a ] ])
-              )
-              (abs
-                a
-                (type)
-                [
-                  [
-                    { CConsMonoid [ (lam a (type) (fun a a)) a ] }
-                    { fSemigroupEndo_c a }
-                  ]
-                  { id a }
-                ]
-              )
-            )
-            (termbind
-              (strict)
-              (vardecl
-                build
-                (all
-                  a
-                  (type)
-                  (fun
-                    (all b (type) (fun (fun a (fun b b)) (fun b b))) [ List a ]
-                  )
-                )
-              )
-              (abs
-                a
-                (type)
-                (lam
-                  g
-                  (all b (type) (fun (fun a (fun b b)) (fun b b)))
-                  [
-                    [
-                      { g [ List a ] }
-                      (lam ds a (lam ds [ List a ] [ [ { Cons a } ds ] ds ]))
-                    ]
-                    { Nil a }
-                  ]
-                )
-              )
-            )
-            (termbind
-              (strict)
-              (vardecl
-                concat
-                (all
                   t
-                  (fun (type) (type))
-                  (all
-                    a
-                    (type)
-                    (fun
-                      [
-                        (lam
-                          t
-                          (fun (type) (type))
-                          (all
-                            m
-                            (type)
-                            (all
-                              a
-                              (type)
-                              (fun [ Monoid m ] (fun (fun a m) (fun [ t a ] m)))
+                ]
+                (lam
+                  xs
+                  [ t [ List a ] ]
+                  [
+                    { build a }
+                    (abs
+                      b
+                      (type)
+                      (lam
+                        c
+                        (fun a (fun b b))
+                        (let
+                          (rec)
+                          (termbind
+                            (strict)
+                            (vardecl
+                              go (fun [ List a ] [ (lam a (type) (fun a a)) b ])
+                            )
+                            (lam
+                              ds
+                              [ List a ]
+                              {
+                                [
+                                  [
+                                    {
+                                      [ { Nil_match a } ds ]
+                                      (all
+                                        dead
+                                        (type)
+                                        [ (lam a (type) (fun a a)) b ]
+                                      )
+                                    }
+                                    (abs dead (type) { id b })
+                                  ]
+                                  (lam
+                                    x
+                                    a
+                                    (let
+                                      (nonrec)
+                                      (termbind
+                                        (nonstrict)
+                                        (vardecl ds (fun b b))
+                                        [ c x ]
+                                      )
+                                      (lam
+                                        xs
+                                        [ List a ]
+                                        (abs
+                                          dead
+                                          (type)
+                                          (lam x b [ ds [ [ go xs ] x ] ])
+                                        )
+                                      )
+                                    )
+                                  )
+                                ]
+                                (all dead (type) dead)
+                              }
                             )
                           )
-                        )
-                        t
-                      ]
-                      (fun [ t [ List a ] ] [ List a ])
-                    )
-                  )
-                )
-              )
-              (abs
-                t
-                (fun (type) (type))
-                (abs
-                  a
-                  (type)
-                  (lam
-                    dFoldable
-                    [
-                      (lam
-                        t
-                        (fun (type) (type))
-                        (all
-                          m
-                          (type)
-                          (all
-                            a
-                            (type)
-                            (fun [ Monoid m ] (fun (fun a m) (fun [ t a ] m)))
-                          )
-                        )
-                      )
-                      t
-                    ]
-                    (lam
-                      xs
-                      [ t [ List a ] ]
-                      [
-                        { build a }
-                        (abs
-                          b
-                          (type)
                           (lam
-                            c
-                            (fun a (fun b b))
-                            (lam
-                              n
-                              b
+                            n
+                            b
+                            [
                               [
                                 [
                                   [
-                                    [
+                                    {
                                       {
-                                        {
-                                          dFoldable
-                                          [ (lam a (type) (fun a a)) b ]
-                                        }
-                                        [ List a ]
+                                        dFoldable [ (lam a (type) (fun a a)) b ]
                                       }
-                                      { fMonoidEndo b }
-                                    ]
-                                    (lam
-                                      x
                                       [ List a ]
-                                      (lam
-                                        y
-                                        b
-                                        [
-                                          [
-                                            [
-                                              [
-                                                {
-                                                  {
-                                                    fFoldableNil_cfoldMap
-                                                    [
-                                                      (lam a (type) (fun a a)) b
-                                                    ]
-                                                  }
-                                                  a
-                                                }
-                                                { fMonoidEndo b }
-                                              ]
-                                              c
-                                            ]
-                                            x
-                                          ]
-                                          y
-                                        ]
-                                      )
-                                    )
+                                    }
+                                    { fMonoidEndo b }
                                   ]
-                                  xs
+                                  (lam x [ List a ] (lam y b [ [ go x ] y ]))
                                 ]
-                                n
+                                xs
+                              ]
+                              n
+                            ]
+                          )
+                        )
+                      )
+                    )
+                  ]
+                )
+              )
+            )
+          )
+        )
+        [
+          [ { { concat List } (con integer) } fFoldableNil ]
+          [
+            { build [ List (con integer) ] }
+            (abs
+              a
+              (type)
+              (lam
+                c
+                (fun [ List (con integer) ] (fun a a))
+                (lam
+                  n
+                  a
+                  [
+                    [
+                      c
+                      [
+                        { build (con integer) }
+                        (abs
+                          a
+                          (type)
+                          (lam
+                            c
+                            (fun (con integer) (fun a a))
+                            (lam
+                              n
+                              a
+                              [
+                                [ c (con integer 1) ]
+                                [ [ c (con integer 2) ] n ]
                               ]
                             )
                           )
                         )
                       ]
-                    )
-                  )
+                    ]
+                    [
+                      [
+                        c
+                        [
+                          { build (con integer) }
+                          (abs
+                            a
+                            (type)
+                            (lam
+                              c
+                              (fun (con integer) (fun a a))
+                              (lam
+                                n
+                                a
+                                [
+                                  [ c (con integer 3) ]
+                                  [ [ c (con integer 4) ] n ]
+                                ]
+                              )
+                            )
+                          )
+                        ]
+                      ]
+                      n
+                    ]
+                  ]
                 )
               )
             )
-            [
-              [ { { concat List } (con integer) } fFoldableNil ]
-              [
-                { build [ List (con integer) ] }
-                (abs
-                  a
-                  (type)
-                  (lam
-                    c
-                    (fun [ List (con integer) ] (fun a a))
-                    (lam
-                      n
-                      a
-                      [
-                        [
-                          c
-                          [
-                            { build (con integer) }
-                            (abs
-                              a
-                              (type)
-                              (lam
-                                c
-                                (fun (con integer) (fun a a))
-                                (lam
-                                  n
-                                  a
-                                  [
-                                    [ c (con integer 1) ]
-                                    [ [ c (con integer 2) ] n ]
-                                  ]
-                                )
-                              )
-                            )
-                          ]
-                        ]
-                        [
-                          [
-                            c
-                            [
-                              { build (con integer) }
-                              (abs
-                                a
-                                (type)
-                                (lam
-                                  c
-                                  (fun (con integer) (fun a a))
-                                  (lam
-                                    n
-                                    a
-                                    [
-                                      [ c (con integer 3) ]
-                                      [ [ c (con integer 4) ] n ]
-                                    ]
-                                  )
-                                )
-                              )
-                            ]
-                          ]
-                          n
-                        ]
-                      ]
-                    )
-                  )
-                )
-              ]
-            ]
-          )
-        )
+          ]
+        ]
       )
     )
   )

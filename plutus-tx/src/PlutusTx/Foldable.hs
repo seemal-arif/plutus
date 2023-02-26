@@ -65,8 +65,11 @@ class Foldable t where
 
 instance Foldable [] where
     {-# INLINABLE foldMap #-}
-    foldMap _ []     = mempty
-    foldMap f (x:xs) = f x <> foldMap f xs
+    -- foldMap _ []     = mempty
+    -- foldMap f (x:xs) = f x <> foldMap f xs
+    foldMap f = go where
+        go []     = mempty
+        go (x:xs) = f x <> go xs
 
 instance Foldable Maybe where
     {-# INLINABLE foldMap #-}

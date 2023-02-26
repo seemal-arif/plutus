@@ -14,6 +14,14 @@
       (nonrec)
       (datatypebind
         (datatype
+          (tyvardecl Bool (type))
+
+          Bool_match
+          (vardecl True Bool) (vardecl False Bool)
+        )
+      )
+      (datatypebind
+        (datatype
           (tyvardecl Monoid (fun (type) (type)))
           (tyvardecl a (type))
           Monoid_match
@@ -23,218 +31,194 @@
           )
         )
       )
-      (let
-        (rec)
-        (termbind
-          (strict)
+      (datatypebind
+        (datatype
+          (tyvardecl MultiplicativeMonoid (fun (type) (type)))
+          (tyvardecl a (type))
+          MultiplicativeMonoid_match
           (vardecl
-            fFoldableNil_cfoldMap
-            (all
-              m
-              (type)
-              (all
-                a (type) (fun [ Monoid m ] (fun (fun a m) (fun [ List a ] m)))
-              )
-            )
-          )
-          (abs
-            m
-            (type)
-            (abs
-              a
-              (type)
-              (lam
-                dMonoid
-                [ Monoid m ]
-                (lam
-                  eta
-                  (fun a m)
-                  (lam
-                    eta
-                    [ List a ]
-                    {
-                      [
-                        [
-                          { [ { Nil_match a } eta ] (all dead (type) m) }
-                          (abs
-                            dead
-                            (type)
-                            [
-                              { [ { Monoid_match m } dMonoid ] m }
-                              (lam
-                                v
-                                [ (lam a (type) (fun a (fun a a))) m ]
-                                (lam v m v)
-                              )
-                            ]
-                          )
-                        ]
-                        (lam
-                          x
-                          a
-                          (lam
-                            xs
-                            [ List a ]
-                            (abs
-                              dead
-                              (type)
-                              [
-                                [
-                                  [
-                                    {
-                                      [ { Monoid_match m } dMonoid ]
-                                      [ (lam a (type) (fun a (fun a a))) m ]
-                                    }
-                                    (lam
-                                      v
-                                      [ (lam a (type) (fun a (fun a a))) m ]
-                                      (lam v m v)
-                                    )
-                                  ]
-                                  [ eta x ]
-                                ]
-                                [
-                                  [
-                                    [
-                                      { { fFoldableNil_cfoldMap m } a } dMonoid
-                                    ]
-                                    eta
-                                  ]
-                                  xs
-                                ]
-                              ]
-                            )
-                          )
-                        )
-                      ]
-                      (all dead (type) dead)
-                    }
-                  )
-                )
-              )
+            CConsMultiplicativeMonoid
+            (fun
+              [ (lam a (type) (fun a (fun a a))) a ]
+              (fun a [ MultiplicativeMonoid a ])
             )
           )
         )
-        (let
-          (nonrec)
-          (datatypebind
-            (datatype
-              (tyvardecl Bool (type))
-
-              Bool_match
-              (vardecl True Bool) (vardecl False Bool)
-            )
-          )
-          (datatypebind
-            (datatype
-              (tyvardecl MultiplicativeMonoid (fun (type) (type)))
-              (tyvardecl a (type))
-              MultiplicativeMonoid_match
-              (vardecl
-                CConsMultiplicativeMonoid
-                (fun
-                  [ (lam a (type) (fun a (fun a a))) a ]
-                  (fun a [ MultiplicativeMonoid a ])
-                )
-              )
-            )
-          )
+      )
+      [
+        [
           [
-            [
-              [
-                {
-                  { fFoldableNil_cfoldMap [ (lam a (type) a) Bool ] }
-                  (con integer)
-                }
-                (let
-                  (nonrec)
-                  (termbind
-                    (strict)
-                    (vardecl v [ MultiplicativeMonoid Bool ])
-                    [
-                      [
-                        { CConsMultiplicativeMonoid Bool }
-                        (lam
-                          l
-                          Bool
+            {
+              (let
+                (nonrec)
+                (typebind (tyvardecl m (type)) [ (lam a (type) a) Bool ])
+                (abs
+                  a
+                  (type)
+                  (lam
+                    dMonoid
+                    [ Monoid m ]
+                    (lam
+                      eta
+                      (fun a m)
+                      (let
+                        (rec)
+                        (termbind
+                          (strict)
+                          (vardecl go (fun [ List a ] m))
                           (lam
-                            r
-                            Bool
+                            ds
+                            [ List a ]
                             {
                               [
                                 [
-                                  { [ Bool_match l ] (all dead (type) Bool) }
-                                  (abs dead (type) r)
+                                  { [ { Nil_match a } ds ] (all dead (type) m) }
+                                  (abs
+                                    dead
+                                    (type)
+                                    [
+                                      { [ { Monoid_match m } dMonoid ] m }
+                                      (lam
+                                        v
+                                        [ (lam a (type) (fun a (fun a a))) m ]
+                                        (lam v m v)
+                                      )
+                                    ]
+                                  )
                                 ]
-                                (abs dead (type) False)
+                                (lam
+                                  x
+                                  a
+                                  (lam
+                                    xs
+                                    [ List a ]
+                                    (abs
+                                      dead
+                                      (type)
+                                      [
+                                        [
+                                          [
+                                            {
+                                              [ { Monoid_match m } dMonoid ]
+                                              [
+                                                (lam a (type) (fun a (fun a a)))
+                                                m
+                                              ]
+                                            }
+                                            (lam
+                                              v
+                                              [
+                                                (lam a (type) (fun a (fun a a)))
+                                                m
+                                              ]
+                                              (lam v m v)
+                                            )
+                                          ]
+                                          [ eta x ]
+                                        ]
+                                        [ go xs ]
+                                      ]
+                                    )
+                                  )
+                                )
                               ]
                               (all dead (type) dead)
                             }
                           )
                         )
-                      ]
-                      True
-                    ]
+                        (lam eta [ List a ] [ go eta ])
+                      )
+                    )
                   )
-                  [
-                    [
-                      { CConsMonoid [ (lam a (type) a) Bool ] }
-                      (lam
-                        eta
-                        [ (lam a (type) a) Bool ]
-                        (lam
-                          eta
-                          [ (lam a (type) a) Bool ]
-                          [
-                            [
-                              [
-                                {
-                                  [ { MultiplicativeMonoid_match Bool } v ]
-                                  [ (lam a (type) (fun a (fun a a))) Bool ]
-                                }
-                                (lam
-                                  v
-                                  [ (lam a (type) (fun a (fun a a))) Bool ]
-                                  (lam v Bool v)
-                                )
-                              ]
-                              eta
-                            ]
-                            eta
-                          ]
-                        )
-                      )
-                    ]
-                    [
-                      { [ { MultiplicativeMonoid_match Bool } v ] Bool }
-                      (lam
-                        v
-                        [ (lam a (type) (fun a (fun a a))) Bool ]
-                        (lam v Bool v)
-                      )
-                    ]
-                  ]
                 )
-              ]
-              (lam
-                v
-                (con integer)
+              )
+              (con integer)
+            }
+            (let
+              (nonrec)
+              (termbind
+                (strict)
+                (vardecl v [ MultiplicativeMonoid Bool ])
                 [
                   [
-                    [
-                      { (builtin ifThenElse) Bool }
-                      [ [ (builtin lessThanEqualsInteger) (con integer 1) ] v ]
-                    ]
-                    False
+                    { CConsMultiplicativeMonoid Bool }
+                    (lam
+                      l
+                      Bool
+                      (lam
+                        r
+                        Bool
+                        {
+                          [
+                            [
+                              { [ Bool_match l ] (all dead (type) Bool) }
+                              (abs dead (type) r)
+                            ]
+                            (abs dead (type) False)
+                          ]
+                          (all dead (type) dead)
+                        }
+                      )
+                    )
                   ]
                   True
                 ]
               )
-            ]
-            { Nil (con integer) }
+              [
+                [
+                  { CConsMonoid [ (lam a (type) a) Bool ] }
+                  (lam
+                    eta
+                    [ (lam a (type) a) Bool ]
+                    (lam
+                      eta
+                      [ (lam a (type) a) Bool ]
+                      [
+                        [
+                          [
+                            {
+                              [ { MultiplicativeMonoid_match Bool } v ]
+                              [ (lam a (type) (fun a (fun a a))) Bool ]
+                            }
+                            (lam
+                              v
+                              [ (lam a (type) (fun a (fun a a))) Bool ]
+                              (lam v Bool v)
+                            )
+                          ]
+                          eta
+                        ]
+                        eta
+                      ]
+                    )
+                  )
+                ]
+                [
+                  { [ { MultiplicativeMonoid_match Bool } v ] Bool }
+                  (lam
+                    v [ (lam a (type) (fun a (fun a a))) Bool ] (lam v Bool v)
+                  )
+                ]
+              ]
+            )
           ]
-        )
-      )
+          (lam
+            v
+            (con integer)
+            [
+              [
+                [
+                  { (builtin ifThenElse) Bool }
+                  [ [ (builtin lessThanEqualsInteger) (con integer 1) ] v ]
+                ]
+                False
+              ]
+              True
+            ]
+          )
+        ]
+        { Nil (con integer) }
+      ]
     )
   )
 )
