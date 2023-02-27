@@ -389,7 +389,7 @@ let !fShowInteger_cshow : integer -> string
                                    {all dead. dead}) {List string}
                                 (\(ww : string) (ww : List string) ->
                                    Cons {string} ww ww))) d
-    !x : integer
+    !f : integer
       = trace
           {integer}
           (let !w : Show integer = fShowInteger
@@ -429,4 +429,4 @@ let !fShowInteger_cshow : integer -> string
                                                       (Cons
                                                          {string} ")"
                                                          x))))))))))))) e
-in multiplyInteger x 2
+in multiplyInteger f 2

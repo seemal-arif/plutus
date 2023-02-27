@@ -52,6 +52,7 @@ import PlutusCore qualified as PLC
 import PlutusCore.MkPlc qualified as PLC
 import PlutusCore.Pretty qualified as PP
 import PlutusCore.Subst qualified as PLC
+import PlutusIR.Core.Instance.Pretty.Readable
 
 import Control.Lens hiding (index, strict)
 import Control.Monad
@@ -59,12 +60,14 @@ import Control.Monad.Reader (ask, asks)
 import Data.Array qualified as Array
 import Data.ByteString qualified as BS
 import Data.List (elemIndex)
+import Data.List qualified as List
 import Data.List.NonEmpty qualified as NE
 import Data.Map qualified as Map
 import Data.Set qualified as Set
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as TE
 import Data.Traversable
+import System.IO.Unsafe
 
 {- Note [System FC and System FW]
 Haskell uses system FC, which includes type equalities and coercions.
@@ -100,6 +103,9 @@ first transformation has fired. So we need to do something with the function.
 So we use a horrible hack and match on `build . unpackFoldrCString#` to "undo" the original rewrite
 rule.
 -}
+
+dbg :: GHC.Outputable a => a -> String
+dbg = GHC.showSDocUnsafe . GHC.ppr
 
 compileLiteral
     :: CompilingDefault uni fun m ann
@@ -468,7 +474,12 @@ hoistExpr var t = do
                 mempty
 
             t' <- maybeProfileRhs var' =<< addSpan (compileExpr t)
-            ver <- asks ccBuiltinVer
+            ver <- unsafePerformIO $ do
+                -- when ("any" `List.isInfixOf` dbg var || "Fold" `List.isInfixOf` dbg var) $ do
+                --     putStrLn $ "@@@@@@@var == " <> dbg var
+                --     putStrLn $ "****** t == " <> dbg t
+                --     putStrLn $ "+++++++++ t' === " <> PP.render (prettyPirReadableNoUnique t')
+                pure $ asks ccBuiltinVer
             -- See Note [Non-strict let-bindings]
             let strict = PIR.isPure ver (const PIR.NonStrict) t'
 

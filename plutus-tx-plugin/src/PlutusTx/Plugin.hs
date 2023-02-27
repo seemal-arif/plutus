@@ -101,6 +101,9 @@ This started to happen after a seemingly innocent PR (#4552), and it eventually 
 PIRs, PLCs and UPLCs, causing test failures. Replacing them with `coerce` avoids the problem.
 -}
 
+dbg :: GHC.Outputable a => a -> String
+dbg = GHC.showSDocUnsafe . GHC.ppr
+
 plugin :: GHC.Plugin
 plugin = GHC.defaultPlugin { GHC.pluginRecompile = GHC.flagRecompile
                            , GHC.installCoreToDos = install
@@ -166,7 +169,7 @@ mkSimplPass flags logger =
             , GHC.sm_pre_inline = True
             , GHC.sm_logger = logger
             -- You might think you would need this, but apparently not
-            , GHC.sm_inline = False
+            , GHC.sm_inline = True
             , GHC.sm_case_case = False
             , GHC.sm_eta_expand = False
             }
@@ -312,6 +315,7 @@ emitRuntimeError codeTy e = do
 -- to be injected back to the Haskell program.
 compileMarkedExpr :: String -> GHC.Type -> GHC.CoreExpr -> PluginM PLC.DefaultUni PLC.DefaultFun GHC.CoreExpr
 compileMarkedExpr locStr codeTy origE = do
+    liftIO $ putStrLn $ "&&&& origE == " <> dbg origE
     flags <- GHC.getDynFlags
     famEnvs <- asks pcFamEnvs
     opts <- asks pcOpts

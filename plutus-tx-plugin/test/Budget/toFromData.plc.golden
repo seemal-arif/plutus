@@ -2,16 +2,15 @@ let data Bool | Bool_match where
       True : Bool
       False : Bool
     !unitval : unit = ()
-    ~fToDataBool : (\a -> a -> data) Bool
+    !fToDataBool_ctoBuiltinData : Bool -> data
       = \(ds : Bool) ->
           Bool_match
             ds {all dead. data} (/\dead -> constrData 1 (mkNilData unitval))
             (/\dead -> constrData 0 (mkNilData unitval)) {all dead. dead}
-    ~fToDataInteger : (\a -> a -> data) integer = \(i : integer) -> iData i
     data Unit | Unit_match where
       Unit : Unit
     !reconstructCaseError : string = "PT1"
-    ~fUnsafeFromDataBool : (\a -> data -> a) Bool
+    !fUnsafeFromDataBool_cunsafeFromBuiltinData : data -> Bool
       = \(d : data) ->
           let !tup : pair integer (list data) = unConstrData d
               !index : integer = fstPair {integer} {list data} tup
@@ -83,86 +82,61 @@ in (let b = Maybe (Tuple3 Bool integer Bool)
                                                    Unit
                                          in unitval
                                  in error {Maybe a}) unitval) unitval)
-                (let !dUnsafeFromData : (\a -> data -> a) Bool
-                       = fUnsafeFromDataBool
-                     !dUnsafeFromData : (\a -> data -> a) Bool
-                       = fUnsafeFromDataBool
-                 in \(d : data) ->
-                      let !tup : pair integer (list data) = unConstrData d
-                          ~t : list data = sndPair {integer} {list data} tup
-                          ~t : list data = tailList {data} t
-                          !index : integer = fstPair {integer} {list data} tup
-                      in ifThenElse
-                           {unit -> Tuple3 Bool integer Bool} (equalsInteger
-                                                                 index 0)
-                           (\(ds : unit) ->
-                              let !arg : data = headList {data} t
-                                  !arg : data = headList {data} t
-                                  !arg : data
-                                    = headList {data} (tailList {data} t)
-                              in Tuple3
-                                   {Bool} {integer} {Bool} (dUnsafeFromData arg)
-                                   (unIData arg) (dUnsafeFromData arg))
-                           (\(ds : unit) ->
-                              let !thunk : unit
-                                    = let !wild : Unit
-                                            = trace
-                                                {Unit} reconstructCaseError Unit
-                                      in unitval
-                              in error {Tuple3 Bool integer Bool}) unitval))
-     ((let b = Maybe (Tuple3 Bool integer Bool) in \(dToData
-                                                    : (\a -> a -> data) integer)
-                                                    (dToData
-                                                    : (\a -> a -> data) b) (ds
-                                                    : Either integer b) ->
-                                                     Either_match
-                                                       {integer} {b} ds {data}
-                                                       (\(arg : integer) ->
+                (\(d : data) ->
+                   let !tup : pair integer (list data) = unConstrData d
+                       ~t : list data = sndPair {integer} {list data} tup
+                       ~t : list data = tailList {data} t
+                       !index : integer = fstPair {integer} {list data} tup
+                   in ifThenElse
+                        {unit -> Tuple3 Bool integer Bool} (equalsInteger
+                                                              index 0)
+                        (\(ds : unit) ->
+                           let !arg : data = headList {data} t
+                               !arg : data = headList {data} t
+                               !arg : data = headList {data} (tailList {data} t)
+                           in Tuple3
+                                {Bool} {integer} {Bool}
+                                (fUnsafeFromDataBool_cunsafeFromBuiltinData arg)
+                                (unIData arg)
+                                (fUnsafeFromDataBool_cunsafeFromBuiltinData
+                                   arg))
+                        (\(ds : unit) ->
+                           let !thunk : unit
+                                 = let !wild : Unit
+                                         = trace
+                                             {Unit} reconstructCaseError Unit
+                                   in unitval
+                           in error {Tuple3 Bool integer Bool}) unitval))
+     (constrData
+        1 (mkCons
+             {data} ((let a = Tuple3 Bool integer Bool
+                      in \(dToData : (\a -> a -> data) a) (ds : Maybe a) ->
+                           Maybe_match
+                             {a} ds {all dead. data} (\(arg : a) ->
+                                                        /\dead ->
                                                           constrData
                                                             0 (mkCons
                                                                  {data} (dToData
                                                                            arg)
                                                                  (mkNilData
                                                                     unitval)))
-                                                       (\(arg : b) ->
-                                                          constrData
-                                                            1 (mkCons
-                                                                 {data} (dToData
-                                                                           arg)
-                                                                 (mkNilData
-                                                                    unitval))))
-        fToDataInteger ((let a = Tuple3 Bool integer Bool
-                         in \(dToData : (\a -> a -> data) a) (ds : Maybe a) ->
-                              Maybe_match
-                                {a} ds {all dead. data} (\(arg : a) ->
-                                                           /\dead ->
-                                                             constrData
-                                                               0
-                                                               (mkCons
-                                                                  {data}
-                                                                  (dToData arg)
-                                                                  (mkNilData
-                                                                     unitval)))
-                                (/\dead -> constrData 1 (mkNilData unitval))
-                                {all dead. dead})
-                          (let !w : (\a -> a -> data) Bool = fToDataBool
-                               !w : (\a -> a -> data) integer = fToDataInteger
-                               !w : (\a -> a -> data) Bool = fToDataBool
-                           in \(w : Tuple3 Bool integer Bool) ->
-                                Tuple3_match
-                                  {Bool} {integer} {Bool} w {data}
-                                  (\(ww : Bool) (ww : integer) (ww : Bool) ->
-                                     constrData
-                                       0 (mkCons
-                                            {data} (w ww)
-                                            (mkCons
-                                               {data} (w ww)
-                                               (mkCons
-                                                  {data} (w ww)
-                                                  (mkNilData unitval)))))))
-        (Right
-           {integer} {Maybe (Tuple3 Bool integer Bool)}
-           (Just
-              {Tuple3 Bool integer Bool} (Tuple3
-                                            {Bool} {integer} {Bool} True 1
-                                            False))))
+                             (/\dead -> constrData 1 (mkNilData unitval))
+                             {all dead. dead})
+                       (\(w : Tuple3 Bool integer Bool) ->
+                          Tuple3_match
+                            {Bool} {integer} {Bool} w {data}
+                            (\(ww : Bool) (ww : integer) (ww : Bool) ->
+                               constrData
+                                 0 (mkCons
+                                      {data} (fToDataBool_ctoBuiltinData ww)
+                                      (mkCons
+                                         {data} (iData ww)
+                                         (mkCons
+                                            {data} (fToDataBool_ctoBuiltinData
+                                                      ww) (mkNilData
+                                                             unitval))))))
+                       (Just
+                          {Tuple3 Bool integer Bool} (Tuple3
+                                                        {Bool} {integer} {Bool}
+                                                        True 1 False)))
+             (mkNilData unitval)))

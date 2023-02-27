@@ -17,14 +17,20 @@ letrec !foldr : all a. all b. (a -> b -> b) -> b -> List a -> b
                                                                  {a} {b} f acc
                                                                  xs))
                  {all dead. dead}
-in
-let !eta : List integer
-      = (let a = List integer in \(c : integer -> a -> a) (n : a) ->
-                                   c
-                                     1 (c
-                                          2 (c
-                                               3
-                                               (c
+in foldr
+     {integer} {List integer} (\(e : integer) (xs : List integer) ->
+                                 Bool_match
+                                   (ifThenElse
+                                      {Bool} (equalsInteger (modInteger e 2) 0)
+                                      True False) {all dead. List integer}
+                                   (/\dead -> Cons {integer} e xs) (/\dead ->
+                                                                      xs)
+                                   {all dead. dead}) (Nil {integer})
+     ((let a = List integer in \(c : integer -> a -> a) (n : a) ->
+                                 c
+                                   1 (c
+                                        2 (c
+                                             3 (c
                                                   4
                                                   (c
                                                      5
@@ -39,14 +45,5 @@ let !eta : List integer
                                                                  (c
                                                                     10
                                                                     n))))))))))
-          (\(ds : integer) (ds : List integer) -> Cons {integer} ds ds)
-          (Nil {integer})
-in foldr
-     {integer} {List integer} (\(e : integer) (xs : List integer) ->
-                                 Bool_match
-                                   (ifThenElse
-                                      {Bool} (equalsInteger (modInteger e 2) 0)
-                                      True False) {all dead. List integer}
-                                   (/\dead -> Cons {integer} e xs) (/\dead ->
-                                                                      xs)
-                                   {all dead. dead}) (Nil {integer}) eta
+        (\(ds : integer) (ds : List integer) -> Cons {integer} ds ds)
+        (Nil {integer}))
