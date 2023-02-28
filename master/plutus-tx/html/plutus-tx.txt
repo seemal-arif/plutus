@@ -1695,8 +1695,8 @@ module PlutusTx.Foldable
 -- | Plutus Tx version of <a>Foldable</a>.
 class Foldable t
 
--- | Plutus Tx version of <a>foldMap</a>.
-foldMap :: (Foldable t, Monoid m) => (a -> m) -> t a -> m
+-- | Plutus Tx version of <a>foldr</a>.
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 
 -- | Plutus Tx version of <a>foldrM</a>.
 foldrM :: (Foldable t, Monad m) => (a -> b -> m b) -> b -> t a -> m b
@@ -1746,11 +1746,11 @@ notElem :: (Foldable t, Eq a) => a -> t a -> Bool
 -- | Plutus Tx version of <a>find</a>.
 find :: Foldable t => (a -> Bool) -> t a -> Maybe a
 
+-- | Plutus Tx version of <a>foldMap</a>.
+foldMap :: (Foldable t, Monoid m) => (a -> m) -> t a -> m
+
 -- | Plutus Tx version of <a>fold</a>.
 fold :: (Foldable t, Monoid m) => t m -> m
-
--- | Plutus Tx version of <a>foldr</a>.
-foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 
 -- | Plutus Tx version of <a>foldl</a>.
 foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
