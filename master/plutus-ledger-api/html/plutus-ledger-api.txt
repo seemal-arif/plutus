@@ -382,9 +382,14 @@ module PlutusLedgerApi.V1.Interval
 --   
 --   The interval can also be unbounded on either side.
 --   
---   The <a>Eq</a>uality of two intervals is specified as the canonical,
---   structural equality and not the equality of the elements of their two
---   underlying sets; the same holds for <a>Ord</a>.
+--   The <a>Eq</a> instance gives equality of the intervals, not structural
+--   equality. There is no <a>Ord</a> instance, but <a>contains</a> gives a
+--   partial order.
+--   
+--   Note that some of the functions on <a>Interval</a> rely on <a>Enum</a>
+--   in order to handle non-inclusive endpoints. For this reason, it may
+--   not be safe to use <a>Interval</a>s with non-inclusive endpoints on
+--   types whose <a>Enum</a> instances have partial methods.
 data Interval a
 Interval :: LowerBound a -> UpperBound a -> Interval a
 [ivFrom] :: Interval a -> LowerBound a
@@ -408,7 +413,7 @@ PosInf :: Extended a
 type Closure = Bool
 
 -- | Check whether a value is in an interval.
-member :: Ord a => a -> Interval a -> Bool
+member :: (Enum a, Ord a) => a -> Interval a -> Bool
 
 -- | <tt>interval a b</tt> includes all values that are greater than or
 --   equal to <tt>a</tt> and smaller than or equal to <tt>b</tt>. Therefore
@@ -439,11 +444,11 @@ singleton :: a -> Interval a
 
 -- | 'hull a b' is the smallest interval containing <tt>a</tt> and
 --   <tt>b</tt>.
-hull :: Ord a => Interval a -> Interval a -> Interval a
+hull :: (Enum a, Ord a) => Interval a -> Interval a -> Interval a
 
 -- | 'intersection a b' is the largest interval that is contained in
 --   <tt>a</tt> and in <tt>b</tt>, if it exists.
-intersection :: Ord a => Interval a -> Interval a -> Interval a
+intersection :: (Enum a, Ord a) => Interval a -> Interval a -> Interval a
 
 -- | Check whether two intervals overlap, that is, whether there is a value
 --   that is a member of both intervals.
@@ -453,20 +458,16 @@ overlaps :: (Enum a, Ord a) => Interval a -> Interval a -> Bool
 --   is entirely contained in <tt>a</tt>. That is, <tt>a <a>contains</a>
 --   b</tt> if for every entry <tt>s</tt>, if <tt>member s b</tt> then
 --   <tt>member s a</tt>.
-contains :: Ord a => Interval a -> Interval a -> Bool
+contains :: (Enum a, Ord a) => Interval a -> Interval a -> Bool
 
 -- | Check if an <a>Interval</a> is empty.
---   
---   There can be many empty intervals, given a set of values. Two
---   <a>Interval</a>s being empty does not imply that they are <a>Eq</a>ual
---   to each other.
 isEmpty :: (Enum a, Ord a) => Interval a -> Bool
 
 -- | Check if a value is earlier than the beginning of an <a>Interval</a>.
-before :: Ord a => a -> Interval a -> Bool
+before :: (Enum a, Ord a) => a -> Interval a -> Bool
 
 -- | Check if a value is later than the end of an <a>Interval</a>.
-after :: Ord a => a -> Interval a -> Bool
+after :: (Enum a, Ord a) => a -> Interval a -> Bool
 
 -- | Construct a lower bound from a value.
 --   
@@ -494,16 +495,23 @@ strictUpperBound :: a -> UpperBound a
 instance PlutusTx.Lift.Class.Typeable PlutusCore.Default.Universe.DefaultUni PlutusLedgerApi.V1.Interval.Interval
 instance (PlutusTx.Lift.Class.Typeable PlutusCore.Default.Universe.DefaultUni a, PlutusTx.Lift.Class.Lift PlutusCore.Default.Universe.DefaultUni (PlutusLedgerApi.V1.Interval.LowerBound a), PlutusTx.Lift.Class.Lift PlutusCore.Default.Universe.DefaultUni (PlutusLedgerApi.V1.Interval.UpperBound a)) => PlutusTx.Lift.Class.Lift PlutusCore.Default.Universe.DefaultUni (PlutusLedgerApi.V1.Interval.Interval a)
 instance PlutusTx.Eq.Eq a => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.Extended a)
+instance PlutusTx.Eq.Eq a => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.Extended a)
 instance PlutusTx.Ord.Ord a => PlutusTx.Ord.Ord (PlutusLedgerApi.V1.Interval.Extended a)
-instance PlutusTx.Eq.Eq a => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.UpperBound a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Ord.Ord (PlutusLedgerApi.V1.Interval.UpperBound a)
-instance PlutusTx.Eq.Eq a => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.LowerBound a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Ord.Ord (PlutusLedgerApi.V1.Interval.LowerBound a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Lattice.JoinSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Lattice.BoundedJoinSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Lattice.MeetSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
-instance PlutusTx.Ord.Ord a => PlutusTx.Lattice.BoundedMeetSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
-instance PlutusTx.Eq.Eq a => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.Interval a)
+instance PlutusTx.Ord.Ord a => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.Extended a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Eq.Eq a) => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.UpperBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Eq.Eq a) => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.UpperBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Ord.Ord (PlutusLedgerApi.V1.Interval.UpperBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.UpperBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Eq.Eq a) => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.LowerBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Eq.Eq a) => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.LowerBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Ord.Ord (PlutusLedgerApi.V1.Interval.LowerBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.LowerBound a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Lattice.JoinSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Lattice.BoundedJoinSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Lattice.MeetSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Lattice.BoundedMeetSemiLattice (PlutusLedgerApi.V1.Interval.Interval a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => PlutusTx.Eq.Eq (PlutusLedgerApi.V1.Interval.Interval a)
+instance (PlutusTx.Enum.Enum a, PlutusTx.Ord.Ord a) => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.Interval a)
 instance PlutusTx.Lift.Class.Typeable PlutusCore.Default.Universe.DefaultUni PlutusLedgerApi.V1.Interval.UpperBound
 instance (PlutusTx.Lift.Class.Typeable PlutusCore.Default.Universe.DefaultUni a, PlutusTx.Lift.Class.Lift PlutusCore.Default.Universe.DefaultUni (PlutusLedgerApi.V1.Interval.Extended a)) => PlutusTx.Lift.Class.Lift PlutusCore.Default.Universe.DefaultUni (PlutusLedgerApi.V1.Interval.UpperBound a)
 instance PlutusTx.Lift.Class.Typeable PlutusCore.Default.Universe.DefaultUni PlutusLedgerApi.V1.Interval.LowerBound
@@ -525,23 +533,15 @@ instance PlutusTx.IsData.Class.UnsafeFromData a => PlutusTx.IsData.Class.UnsafeF
 instance Control.DeepSeq.NFData a => Control.DeepSeq.NFData (PlutusLedgerApi.V1.Interval.Extended a)
 instance GHC.Generics.Generic (PlutusLedgerApi.V1.Interval.Extended a)
 instance GHC.Show.Show a => GHC.Show.Show (PlutusLedgerApi.V1.Interval.Extended a)
-instance GHC.Classes.Ord a => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.Extended a)
-instance GHC.Classes.Eq a => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.Extended a)
 instance Control.DeepSeq.NFData a => Control.DeepSeq.NFData (PlutusLedgerApi.V1.Interval.UpperBound a)
 instance GHC.Generics.Generic (PlutusLedgerApi.V1.Interval.UpperBound a)
 instance GHC.Show.Show a => GHC.Show.Show (PlutusLedgerApi.V1.Interval.UpperBound a)
-instance GHC.Classes.Ord a => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.UpperBound a)
-instance GHC.Classes.Eq a => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.UpperBound a)
 instance Control.DeepSeq.NFData a => Control.DeepSeq.NFData (PlutusLedgerApi.V1.Interval.LowerBound a)
 instance GHC.Generics.Generic (PlutusLedgerApi.V1.Interval.LowerBound a)
 instance GHC.Show.Show a => GHC.Show.Show (PlutusLedgerApi.V1.Interval.LowerBound a)
-instance GHC.Classes.Ord a => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.LowerBound a)
-instance GHC.Classes.Eq a => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.LowerBound a)
 instance Control.DeepSeq.NFData a => Control.DeepSeq.NFData (PlutusLedgerApi.V1.Interval.Interval a)
 instance GHC.Generics.Generic (PlutusLedgerApi.V1.Interval.Interval a)
 instance GHC.Show.Show a => GHC.Show.Show (PlutusLedgerApi.V1.Interval.Interval a)
-instance GHC.Classes.Ord a => GHC.Classes.Ord (PlutusLedgerApi.V1.Interval.Interval a)
-instance GHC.Classes.Eq a => GHC.Classes.Eq (PlutusLedgerApi.V1.Interval.Interval a)
 instance PlutusTx.Functor.Functor PlutusLedgerApi.V1.Interval.Interval
 instance Prettyprinter.Internal.Pretty a => Prettyprinter.Internal.Pretty (PlutusLedgerApi.V1.Interval.Interval a)
 instance PlutusTx.Functor.Functor PlutusLedgerApi.V1.Interval.LowerBound
@@ -3024,9 +3024,14 @@ TxInInfo :: TxOutRef -> TxOut -> TxInInfo
 --   
 --   The interval can also be unbounded on either side.
 --   
---   The <a>Eq</a>uality of two intervals is specified as the canonical,
---   structural equality and not the equality of the elements of their two
---   underlying sets; the same holds for <a>Ord</a>.
+--   The <a>Eq</a> instance gives equality of the intervals, not structural
+--   equality. There is no <a>Ord</a> instance, but <a>contains</a> gives a
+--   partial order.
+--   
+--   Note that some of the functions on <a>Interval</a> rely on <a>Enum</a>
+--   in order to handle non-inclusive endpoints. For this reason, it may
+--   not be safe to use <a>Interval</a>s with non-inclusive endpoints on
+--   types whose <a>Enum</a> instances have partial methods.
 data Interval a
 Interval :: LowerBound a -> UpperBound a -> Interval a
 [ivFrom] :: Interval a -> LowerBound a
@@ -3803,9 +3808,14 @@ OutputDatum :: Datum -> OutputDatum
 --   
 --   The interval can also be unbounded on either side.
 --   
---   The <a>Eq</a>uality of two intervals is specified as the canonical,
---   structural equality and not the equality of the elements of their two
---   underlying sets; the same holds for <a>Ord</a>.
+--   The <a>Eq</a> instance gives equality of the intervals, not structural
+--   equality. There is no <a>Ord</a> instance, but <a>contains</a> gives a
+--   partial order.
+--   
+--   Note that some of the functions on <a>Interval</a> rely on <a>Enum</a>
+--   in order to handle non-inclusive endpoints. For this reason, it may
+--   not be safe to use <a>Interval</a>s with non-inclusive endpoints on
+--   types whose <a>Enum</a> instances have partial methods.
 data Interval a
 Interval :: LowerBound a -> UpperBound a -> Interval a
 [ivFrom] :: Interval a -> LowerBound a
@@ -4586,9 +4596,14 @@ OutputDatum :: Datum -> OutputDatum
 --   
 --   The interval can also be unbounded on either side.
 --   
---   The <a>Eq</a>uality of two intervals is specified as the canonical,
---   structural equality and not the equality of the elements of their two
---   underlying sets; the same holds for <a>Ord</a>.
+--   The <a>Eq</a> instance gives equality of the intervals, not structural
+--   equality. There is no <a>Ord</a> instance, but <a>contains</a> gives a
+--   partial order.
+--   
+--   Note that some of the functions on <a>Interval</a> rely on <a>Enum</a>
+--   in order to handle non-inclusive endpoints. For this reason, it may
+--   not be safe to use <a>Interval</a>s with non-inclusive endpoints on
+--   types whose <a>Enum</a> instances have partial methods.
 data Interval a
 Interval :: LowerBound a -> UpperBound a -> Interval a
 [ivFrom] :: Interval a -> LowerBound a

@@ -1864,11 +1864,19 @@ module PlutusTx.Enum
 -- | Class <a>Enum</a> defines operations on sequentially ordered types.
 class Enum a
 
--- | the successor of a value. For numeric types, <a>succ</a> adds 1.
+-- | The successor of a value. For numeric types, <a>succ</a> adds 1.
+--   
+--   For types that implement <a>Ord</a>, <tt>succ x</tt> should be the
+--   least element that is greater than <tt>x</tt>, and <a>error</a> if
+--   there is none.
 succ :: Enum a => a -> a
 
--- | the predecessor of a value. For numeric types, <a>pred</a> subtracts
+-- | The predecessor of a value. For numeric types, <a>pred</a> subtracts
 --   1.
+--   
+--   For types that implement <a>Ord</a>, <tt>pred x</tt> should be the
+--   greatest element that is less than <tt>x</tt>, and <a>error</a> if
+--   there is none.
 pred :: Enum a => a -> a
 
 -- | Convert from an <a>Integer</a>.
