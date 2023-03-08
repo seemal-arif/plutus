@@ -1698,12 +1698,6 @@ class Foldable t
 -- | Plutus Tx version of <a>foldr</a>.
 foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 
--- | Plutus Tx version of <a>foldrM</a>.
-foldrM :: (Foldable t, Monad m) => (a -> b -> m b) -> b -> t a -> m b
-
--- | Plutus Tx version of <a>foldlM</a>.
-foldlM :: (Foldable t, Monad m) => (b -> a -> m b) -> b -> t a -> m b
-
 -- | Plutus Tx version of <a>traverse_</a>.
 traverse_ :: (Foldable t, Applicative f) => (a -> f b) -> t a -> f ()
 
@@ -1713,14 +1707,8 @@ for_ :: (Foldable t, Applicative f) => t a -> (a -> f b) -> f ()
 -- | Plutus Tx version of <a>sequenceA_</a>.
 sequenceA_ :: (Foldable t, Applicative f) => t (f a) -> f ()
 
--- | Plutus Tx version of <a>sequence_</a>.
-sequence_ :: (Foldable t, Monad m) => t (m a) -> m ()
-
 -- | Plutus Tx version of <a>asum</a>.
 asum :: (Foldable t, Alternative f) => t (f a) -> f a
-
--- | Plutus Tx version of <a>mapM_</a>.
-mapM_ :: (Foldable t, Monad m) => (a -> m b) -> t a -> m ()
 
 -- | Plutus Tx version of <a>concat</a>.
 concat :: Foldable t => t [a] -> [a]
