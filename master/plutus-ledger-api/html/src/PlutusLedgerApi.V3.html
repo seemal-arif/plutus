@@ -119,27 +119,27 @@
 </span><span id="line-119"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../plutus-core/html/src"><span class="hs-identifier">PlutusCore.Data</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PLC</span></span><span>
 </span><span id="line-120"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../plutus-tx/html/src"><span class="hs-identifier">PlutusTx.AssocMap</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../plutus-tx/html/src"><span class="hs-identifier">Map</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../plutus-tx/html/src"><span class="hs-identifier">fromList</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-121"></span><span>
-</span><span id="line-122"></span><span class="hs-comment">-- | An alias to the language version this module exposes at runtime.</span><span>
+</span><span id="line-122"></span><span class="hs-comment">-- | An alias to the Plutus ledger language this module exposes at runtime.</span><span>
 </span><span id="line-123"></span><span class="hs-comment">--  MAYBE: Use CPP '__FILE__' + some TH to automate this.</span><span>
-</span><span id="line-124"></span><span class="annot"><a href="PlutusLedgerApi.V3.html#thisPlutusVersion"><span class="hs-identifier hs-type">thisPlutusVersion</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.Versions.html#LedgerPlutusVersion"><span class="hs-identifier hs-type">LedgerPlutusVersion</span></a></span><span>
-</span><span id="line-125"></span><span id="thisPlutusVersion"><span class="annot"><span class="annottext">thisPlutusVersion :: LedgerPlutusVersion
-</span><a href="PlutusLedgerApi.V3.html#thisPlutusVersion"><span class="hs-identifier hs-var hs-var">thisPlutusVersion</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
+</span><span id="line-124"></span><span class="annot"><a href="PlutusLedgerApi.V3.html#thisLedgerLanguage"><span class="hs-identifier hs-type">thisLedgerLanguage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.Versions.html#PlutusLedgerLanguage"><span class="hs-identifier hs-type">PlutusLedgerLanguage</span></a></span><span>
+</span><span id="line-125"></span><span id="thisLedgerLanguage"><span class="annot"><span class="annottext">thisLedgerLanguage :: PlutusLedgerLanguage
+</span><a href="PlutusLedgerApi.V3.html#thisLedgerLanguage"><span class="hs-identifier hs-var hs-var">thisLedgerLanguage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
 </span><a href="PlutusLedgerApi.Common.Versions.html#PlutusV3"><span class="hs-identifier hs-var">PlutusV3</span></a></span><span>
 </span><span id="line-126"></span><span>
 </span><span id="line-127"></span><span class="hs-comment">-- | Check if a 'Script' is &quot;valid&quot; according to a protocol version. At the moment this means &quot;deserialises correctly&quot;, which in particular</span><span>
 </span><span id="line-128"></span><span class="hs-comment">-- implies that it is (almost certainly) an encoded script and the script does not mention any builtins unavailable in the given protocol version.</span><span>
-</span><span id="line-129"></span><span id="local-6989586621679961812"><span class="annot"><a href="PlutusLedgerApi.V3.html#assertScriptWellFormed"><span class="hs-identifier hs-type">assertScriptWellFormed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../mtl/html/src"><span class="hs-identifier hs-type">MonadError</span></a></span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.SerialisedScript.html#ScriptDecodeError"><span class="hs-identifier hs-type">ScriptDecodeError</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679961812"><span class="hs-identifier hs-type">m</span></a></span><span>
+</span><span id="line-129"></span><span id="local-6989586621679962623"><span class="annot"><a href="PlutusLedgerApi.V3.html#assertScriptWellFormed"><span class="hs-identifier hs-type">assertScriptWellFormed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../mtl/html/src"><span class="hs-identifier hs-type">MonadError</span></a></span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.SerialisedScript.html#ScriptDecodeError"><span class="hs-identifier hs-type">ScriptDecodeError</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679962623"><span class="hs-identifier hs-type">m</span></a></span><span>
 </span><span id="line-130"></span><span>                       </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.ProtocolVersions.html#ProtocolVersion"><span class="hs-identifier hs-type">ProtocolVersion</span></a></span><span> </span><span class="hs-comment">-- ^ which protocol version to run the operation in</span><span>
 </span><span id="line-131"></span><span>                       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.SerialisedScript.html#SerialisedScript"><span class="hs-identifier hs-type">SerialisedScript</span></a></span><span> </span><span class="hs-comment">-- ^ the script to check for well-formedness</span><span>
-</span><span id="line-132"></span><span>                       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679961812"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-132"></span><span>                       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679962623"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-133"></span><span id="assertScriptWellFormed"><span class="annot"><span class="annottext">assertScriptWellFormed :: forall (m :: * -&gt; *).
 MonadError ScriptDecodeError m =&gt;
 ProtocolVersion -&gt; SerialisedScript -&gt; m ()
 </span><a href="PlutusLedgerApi.V3.html#assertScriptWellFormed"><span class="hs-identifier hs-var hs-var">assertScriptWellFormed</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *).
 MonadError ScriptDecodeError m =&gt;
-LedgerPlutusVersion -&gt; ProtocolVersion -&gt; SerialisedScript -&gt; m ()
-</span><a href="PlutusLedgerApi.Common.SerialisedScript.html#assertScriptWellFormed"><span class="hs-identifier hs-var">Common.assertScriptWellFormed</span></a></span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
-</span><a href="PlutusLedgerApi.V3.html#thisPlutusVersion"><span class="hs-identifier hs-var">thisPlutusVersion</span></a></span><span>
+PlutusLedgerLanguage -&gt; ProtocolVersion -&gt; SerialisedScript -&gt; m ()
+</span><a href="PlutusLedgerApi.Common.SerialisedScript.html#assertScriptWellFormed"><span class="hs-identifier hs-var">Common.assertScriptWellFormed</span></a></span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
+</span><a href="PlutusLedgerApi.V3.html#thisLedgerLanguage"><span class="hs-identifier hs-var">thisLedgerLanguage</span></a></span><span>
 </span><span id="line-134"></span><span>
 </span><span id="line-135"></span><span class="hs-comment">-- | Evaluates a script, returning the minimum budget that the script would need</span><span>
 </span><span id="line-136"></span><span class="hs-comment">-- to evaluate successfully. This will take as long as the script takes, if you need to</span><span>
@@ -158,15 +158,15 @@ LedgerPlutusVersion -&gt; ProtocolVersion -&gt; SerialisedScript -&gt; m ()
 -&gt; SerialisedScript
 -&gt; [Data]
 -&gt; (LogOutput, Either EvaluationError ExBudget)
-</span><a href="PlutusLedgerApi.V3.html#evaluateScriptCounting"><span class="hs-identifier hs-var hs-var">evaluateScriptCounting</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
+</span><a href="PlutusLedgerApi.V3.html#evaluateScriptCounting"><span class="hs-identifier hs-var hs-var">evaluateScriptCounting</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
 -&gt; ProtocolVersion
 -&gt; VerboseMode
 -&gt; EvaluationContext
 -&gt; SerialisedScript
 -&gt; [Data]
 -&gt; (LogOutput, Either EvaluationError ExBudget)
-</span><a href="PlutusLedgerApi.Common.Eval.html#evaluateScriptCounting"><span class="hs-identifier hs-var">Common.evaluateScriptCounting</span></a></span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
-</span><a href="PlutusLedgerApi.V3.html#thisPlutusVersion"><span class="hs-identifier hs-var">thisPlutusVersion</span></a></span><span>
+</span><a href="PlutusLedgerApi.Common.Eval.html#evaluateScriptCounting"><span class="hs-identifier hs-var">Common.evaluateScriptCounting</span></a></span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
+</span><a href="PlutusLedgerApi.V3.html#thisLedgerLanguage"><span class="hs-identifier hs-var">thisLedgerLanguage</span></a></span><span>
 </span><span id="line-147"></span><span>
 </span><span id="line-148"></span><span class="hs-comment">-- | Evaluates a script, with a cost model and a budget that restricts how many</span><span>
 </span><span id="line-149"></span><span class="hs-comment">-- resources it can use according to the cost model. Also returns the budget that</span><span>
@@ -189,7 +189,7 @@ LedgerPlutusVersion -&gt; ProtocolVersion -&gt; SerialisedScript -&gt; m ()
 -&gt; SerialisedScript
 -&gt; [Data]
 -&gt; (LogOutput, Either EvaluationError ExBudget)
-</span><a href="PlutusLedgerApi.V3.html#evaluateScriptRestricting"><span class="hs-identifier hs-var hs-var">evaluateScriptRestricting</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
+</span><a href="PlutusLedgerApi.V3.html#evaluateScriptRestricting"><span class="hs-identifier hs-var hs-var">evaluateScriptRestricting</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
 -&gt; ProtocolVersion
 -&gt; VerboseMode
 -&gt; EvaluationContext
@@ -197,6 +197,6 @@ LedgerPlutusVersion -&gt; ProtocolVersion -&gt; SerialisedScript -&gt; m ()
 -&gt; SerialisedScript
 -&gt; [Data]
 -&gt; (LogOutput, Either EvaluationError ExBudget)
-</span><a href="PlutusLedgerApi.Common.Eval.html#evaluateScriptRestricting"><span class="hs-identifier hs-var">Common.evaluateScriptRestricting</span></a></span><span> </span><span class="annot"><span class="annottext">LedgerPlutusVersion
-</span><a href="PlutusLedgerApi.V3.html#thisPlutusVersion"><span class="hs-identifier hs-var">thisPlutusVersion</span></a></span><span>
+</span><a href="PlutusLedgerApi.Common.Eval.html#evaluateScriptRestricting"><span class="hs-identifier hs-var">Common.evaluateScriptRestricting</span></a></span><span> </span><span class="annot"><span class="annottext">PlutusLedgerLanguage
+</span><a href="PlutusLedgerApi.V3.html#thisLedgerLanguage"><span class="hs-identifier hs-var">thisLedgerLanguage</span></a></span><span>
 </span><span id="line-163"></span></pre></body></html>

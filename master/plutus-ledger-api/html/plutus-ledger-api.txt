@@ -9,8 +9,14 @@
 @version 1.3.0.0
 
 
--- | This module contains the protocol versions and plutus versions as
---   witnessed by the cardano ledger.
+-- | This module contains the code for handling the various kinds of
+--   version that we care about:
+--   
+--   <ul>
+--   <li>Protocol versions</li>
+--   <li>Plutus ledger languages</li>
+--   <li>Plutus Core language versions</li>
+--   </ul>
 module PlutusLedgerApi.Common.Versions
 
 -- | This represents the Cardano protocol version, with its major and minor
@@ -40,11 +46,23 @@ alonzoPV :: ProtocolVersion
 -- | Vasil era was introduced in protocol version 7.0
 vasilPV :: ProtocolVersion
 
--- | Chang era is not yet published. It will probably be introduced in
---   protocol version 8.0
-changPV :: ProtocolVersion
+-- | Protocol version 8.0 was the Valentine intra-era HF
+valentinePV :: ProtocolVersion
 
--- | The ledger Plutus versions. These are entirely different script
+-- | The set of protocol versions that are "known", i.e. that have been
+--   released and have actual differences associated with them.
+knownPVs :: Set ProtocolVersion
+
+-- | This is a placeholder for when we don't yet know what protocol version
+--   will be used for something. It's a very high protocol version that
+--   should never appear in reality.
+--   
+--   We should not assign names to future protocol versions until it's
+--   confirmed that they are correct, otherwise we could accidentally
+--   associate something with the wrong protocol version.
+futurePV :: ProtocolVersion
+
+-- | The Plutus ledger language. These are entirely different script
 --   languages from the ledger's perspective, which on our side are
 --   interpreted in very similar ways.
 --   
@@ -52,52 +70,92 @@ changPV :: ProtocolVersion
 --   components as in protocol version) and the <b>ordering of
 --   constructors</b> is essential for deriving Enum,Ord,Bounded.
 --   
---   IMPORTANT: this is different from the AST's <a>Version</a>
-data LedgerPlutusVersion
+--   IMPORTANT: this is different from the Plutus Core language version,
+--   <a>Version</a>
+data PlutusLedgerLanguage
 
 -- | introduced in shelley era
-PlutusV1 :: LedgerPlutusVersion
+PlutusV1 :: PlutusLedgerLanguage
 
 -- | introduced in vasil era
-PlutusV2 :: LedgerPlutusVersion
+PlutusV2 :: PlutusLedgerLanguage
 
--- | not yet enabled, probably will be introduced in chang era
-PlutusV3 :: LedgerPlutusVersion
+-- | not yet enabled
+PlutusV3 :: PlutusLedgerLanguage
 
--- | Query the protocol version that a specific ledger Plutus version was
+-- | The version of Plutus Core used by this program.
+--   
+--   The intention is to convey different levels of backwards compatibility
+--   for existing scripts: - Major version changes are
+--   backwards-incompatible - Minor version changes are
+--   backwards-compatible - Patch version changes should be entirely
+--   invisible (and we will likely not use this level)
+--   
+--   The version used should be changed only when the <i>language
+--   itself</i> changes. For example, adding a new kind of term to the
+--   language would require a minor version bump; removing a kind of term
+--   would require a major version bump.
+--   
+--   Similarly, changing the semantics of the language will require a
+--   version bump, typically a major one. This is the main reason why the
+--   version is actually tracked in the AST: we can have two language
+--   versions with identical ASTs but different semantics, so we need to
+--   track the version explicitly.
+--   
+--   Compatibility is about compatibility for specific scripts, not about
+--   e.g. tools which consume scripts. Adding a new kind of term does not
+--   change how existing scripts behave, but does change what tools would
+--   need to do to process scripts.
+data Version
+Version :: Natural -> Natural -> Natural -> Version
+[_versionMajor] :: Version -> Natural
+[_versionMinor] :: Version -> Natural
+[_versionPatch] :: Version -> Natural
+
+-- | Query the protocol version that a specific Plutus ledger language was
 --   first introduced in.
---   
---   <i>Introduction</i> in this context means the enablement/allowance of
---   scripts of that ledger Plutus version to be executed on-chain.
-languageIntroducedIn :: LedgerPlutusVersion -> ProtocolVersion
+ledgerLanguageIntroducedIn :: PlutusLedgerLanguage -> ProtocolVersion
 
--- | Given a protocol version return a set of all available ledger Plutus
---   versions that are enabled/allowed to run.
+-- | Which Plutus language versions are available in the given
+--   <a>ProtocolVersion</a>?
 --   
---   Assumes that the ledger Plutus versions once introduced/enabled, will
---   never be disabled in the future.
-languagesAvailableIn :: ProtocolVersion -> Set LedgerPlutusVersion
+--   See Note [New builtins/language versions and protocol versions]
+ledgerLanguagesAvailableIn :: ProtocolVersion -> Set PlutusLedgerLanguage
+
+-- | A map indicating which Plutus Core versions were introduced in which
+--   <a>ProtocolVersion</a> and <a>PlutusLedgerLanguage</a>. Each version
+--   should appear at most once.
+--   
+--   This <b>must</b> be updated when new versions are added. See Note [New
+--   builtins/language versions and protocol versions]
+plcVersionsIntroducedIn :: Map (PlutusLedgerLanguage, ProtocolVersion) (Set Version)
+
+-- | Which Plutus Core language versions are available in the given
+--   <a>PlutusLedgerLanguage</a> and <a>ProtocolVersion</a>?
+--   
+--   See Note [New builtins/language versions and protocol versions]
+plcVersionsAvailableIn :: PlutusLedgerLanguage -> ProtocolVersion -> Set Version
 
 -- | A map indicating which builtin functions were introduced in which
 --   <a>ProtocolVersion</a>. Each builtin function should appear at most
 --   once.
 --   
 --   This <b>must</b> be updated when new builtins are added. See Note [New
---   builtins and protocol versions]
-builtinsIntroducedIn :: Map (LedgerPlutusVersion, ProtocolVersion) (Set DefaultFun)
+--   builtins/language versions and protocol versions]
+builtinsIntroducedIn :: Map (PlutusLedgerLanguage, ProtocolVersion) (Set DefaultFun)
 
--- | Which builtin functions are available in the given
---   <a>ProtocolVersion</a>?
+-- | Which builtin functions are available in the given given
+--   <a>PlutusLedgerLanguage</a> and <a>ProtocolVersion</a>?
 --   
---   See Note [New builtins and protocol versions]
-builtinsAvailableIn :: LedgerPlutusVersion -> ProtocolVersion -> Set DefaultFun
-instance GHC.Enum.Bounded PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance GHC.Enum.Enum PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance GHC.Generics.Generic PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance GHC.Show.Show PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance GHC.Classes.Ord PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance GHC.Classes.Eq PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
-instance Prettyprinter.Internal.Pretty PlutusLedgerApi.Common.Versions.LedgerPlutusVersion
+--   See Note [New builtins/language versions and protocol versions]
+builtinsAvailableIn :: PlutusLedgerLanguage -> ProtocolVersion -> Set DefaultFun
+instance GHC.Enum.Bounded PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance GHC.Enum.Enum PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance GHC.Generics.Generic PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance GHC.Show.Show PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance GHC.Classes.Ord PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance GHC.Classes.Eq PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
+instance Prettyprinter.Internal.Pretty PlutusLedgerApi.Common.Versions.PlutusLedgerLanguage
 
 
 -- | The types and functions that are common among all ledger Plutus
@@ -130,10 +188,10 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !LedgerPlutusVersion -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
 -- | the script's plutus version
-[sdeAffectedLang] :: ScriptDecodeError -> !LedgerPlutusVersion
+[sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
 -- | the protocol version that will first introduce/enable the plutus
 --   version
@@ -150,7 +208,7 @@ LanguageNotAvailableError :: !LedgerPlutusVersion -> !ProtocolVersion -> !Protoc
 --   
 --   Note: Parameterized over the ledger-plutus-version since the builtins
 --   allowed (during decoding) differs.
-assertScriptWellFormed :: MonadError ScriptDecodeError m => LedgerPlutusVersion -> ProtocolVersion -> SerialisedScript -> m ()
+assertScriptWellFormed :: MonadError ScriptDecodeError m => PlutusLedgerLanguage -> ProtocolVersion -> SerialisedScript -> m ()
 
 -- | Evaluates a script, returning the minimum budget that the script would
 --   need to evaluate successfully. This will take as long as the script
@@ -160,7 +218,7 @@ assertScriptWellFormed :: MonadError ScriptDecodeError m => LedgerPlutusVersion 
 --   
 --   Note: Parameterized over the ledger-plutus-version since the builtins
 --   allowed (during decoding) differs.
-evaluateScriptCounting :: LedgerPlutusVersion -> ProtocolVersion -> VerboseMode -> EvaluationContext -> SerialisedScript -> [Data] -> (LogOutput, Either EvaluationError ExBudget)
+evaluateScriptCounting :: PlutusLedgerLanguage -> ProtocolVersion -> VerboseMode -> EvaluationContext -> SerialisedScript -> [Data] -> (LogOutput, Either EvaluationError ExBudget)
 
 -- | Evaluates a script, with a cost model and a budget that restricts how
 --   many resources it can use according to the cost model. Also returns
@@ -170,9 +228,10 @@ evaluateScriptCounting :: LedgerPlutusVersion -> ProtocolVersion -> VerboseMode 
 --   you must give a limit to guard against scripts that run for a long
 --   time or loop.
 --   
---   Note: Parameterized over the ledger-plutus-version since the builtins
---   allowed (during decoding) differs.
-evaluateScriptRestricting :: LedgerPlutusVersion -> ProtocolVersion -> VerboseMode -> EvaluationContext -> ExBudget -> SerialisedScript -> [Data] -> (LogOutput, Either EvaluationError ExBudget)
+--   Note: Parameterized over the <tt>LedgerPlutusVersion</tt> since 1. The
+--   builtins allowed (during decoding) differ, and 2. The Plutus language
+--   versions allowed differ.
+evaluateScriptRestricting :: PlutusLedgerLanguage -> ProtocolVersion -> VerboseMode -> EvaluationContext -> ExBudget -> SerialisedScript -> [Data] -> (LogOutput, Either EvaluationError ExBudget)
 
 -- | A simple toggle indicating whether or not we should accumulate logs
 --   during script execution.
@@ -243,7 +302,7 @@ ProtocolVersion :: Int -> Int -> ProtocolVersion
 -- | the minor component
 [pvMinor] :: ProtocolVersion -> Int
 
--- | The ledger Plutus versions. These are entirely different script
+-- | The Plutus ledger language. These are entirely different script
 --   languages from the ledger's perspective, which on our side are
 --   interpreted in very similar ways.
 --   
@@ -251,31 +310,61 @@ ProtocolVersion :: Int -> Int -> ProtocolVersion
 --   components as in protocol version) and the <b>ordering of
 --   constructors</b> is essential for deriving Enum,Ord,Bounded.
 --   
---   IMPORTANT: this is different from the AST's <a>Version</a>
-data LedgerPlutusVersion
+--   IMPORTANT: this is different from the Plutus Core language version,
+--   <a>Version</a>
+data PlutusLedgerLanguage
 
 -- | introduced in shelley era
-PlutusV1 :: LedgerPlutusVersion
+PlutusV1 :: PlutusLedgerLanguage
 
 -- | introduced in vasil era
-PlutusV2 :: LedgerPlutusVersion
+PlutusV2 :: PlutusLedgerLanguage
 
--- | not yet enabled, probably will be introduced in chang era
-PlutusV3 :: LedgerPlutusVersion
+-- | not yet enabled
+PlutusV3 :: PlutusLedgerLanguage
+
+-- | The version of Plutus Core used by this program.
+--   
+--   The intention is to convey different levels of backwards compatibility
+--   for existing scripts: - Major version changes are
+--   backwards-incompatible - Minor version changes are
+--   backwards-compatible - Patch version changes should be entirely
+--   invisible (and we will likely not use this level)
+--   
+--   The version used should be changed only when the <i>language
+--   itself</i> changes. For example, adding a new kind of term to the
+--   language would require a minor version bump; removing a kind of term
+--   would require a major version bump.
+--   
+--   Similarly, changing the semantics of the language will require a
+--   version bump, typically a major one. This is the main reason why the
+--   version is actually tracked in the AST: we can have two language
+--   versions with identical ASTs but different semantics, so we need to
+--   track the version explicitly.
+--   
+--   Compatibility is about compatibility for specific scripts, not about
+--   e.g. tools which consume scripts. Adding a new kind of term does not
+--   change how existing scripts behave, but does change what tools would
+--   need to do to process scripts.
+data Version
+Version :: Natural -> Natural -> Natural -> Version
+[_versionMajor] :: Version -> Natural
+[_versionMinor] :: Version -> Natural
+[_versionPatch] :: Version -> Natural
 
 -- | A map indicating which builtin functions were introduced in which
 --   <a>ProtocolVersion</a>. Each builtin function should appear at most
 --   once.
 --   
 --   This <b>must</b> be updated when new builtins are added. See Note [New
---   builtins and protocol versions]
-builtinsIntroducedIn :: Map (LedgerPlutusVersion, ProtocolVersion) (Set DefaultFun)
+--   builtins/language versions and protocol versions]
+builtinsIntroducedIn :: Map (PlutusLedgerLanguage, ProtocolVersion) (Set DefaultFun)
 
--- | Which builtin functions are available in the given
---   <a>ProtocolVersion</a>?
+-- | Which builtin functions are available in the given given
+--   <a>PlutusLedgerLanguage</a> and <a>ProtocolVersion</a>?
 --   
---   See Note [New builtins and protocol versions]
-builtinsAvailableIn :: LedgerPlutusVersion -> ProtocolVersion -> Set DefaultFun
+--   See Note [New builtins/language versions and protocol versions]
+builtinsAvailableIn :: PlutusLedgerLanguage -> ProtocolVersion -> Set DefaultFun
 
 -- | A raw representation of the ledger's cost model parameters.
 --   
@@ -369,7 +458,7 @@ toMachineParameters :: ProtocolVersion -> EvaluationContext -> DefaultMachinePar
 --   applies the term to a list of <a>Data</a> arguments (e.g. Datum,
 --   Redeemer, <tt>ScriptContext</tt>) 3) checks that the applied-term is
 --   well-scoped 4) returns the applied-term
-mkTermToEvaluate :: MonadError EvaluationError m => LedgerPlutusVersion -> ProtocolVersion -> SerialisedScript -> [Data] -> m (Term NamedDeBruijn DefaultUni DefaultFun ())
+mkTermToEvaluate :: MonadError EvaluationError m => PlutusLedgerLanguage -> ProtocolVersion -> SerialisedScript -> [Data] -> m (Term NamedDeBruijn DefaultUni DefaultFun ())
 
 
 -- | A type for intervals and associated functions.
@@ -3217,10 +3306,10 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !LedgerPlutusVersion -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
 -- | the script's plutus version
-[sdeAffectedLang] :: ScriptDecodeError -> !LedgerPlutusVersion
+[sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
 -- | the protocol version that will first introduce/enable the plutus
 --   version
@@ -4005,10 +4094,10 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !LedgerPlutusVersion -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
 -- | the script's plutus version
-[sdeAffectedLang] :: ScriptDecodeError -> !LedgerPlutusVersion
+[sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
 -- | the protocol version that will first introduce/enable the plutus
 --   version
@@ -4793,10 +4882,10 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !LedgerPlutusVersion -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
 -- | the script's plutus version
-[sdeAffectedLang] :: ScriptDecodeError -> !LedgerPlutusVersion
+[sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
 -- | the protocol version that will first introduce/enable the plutus
 --   version

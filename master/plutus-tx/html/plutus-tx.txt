@@ -1384,8 +1384,13 @@ DeserializedCode :: Program NamedDeBruijn uni fun SrcSpans -> Maybe (Program TyN
 --   functions.
 type CompiledCode = CompiledCodeIn DefaultUni DefaultFun
 
--- | Apply a compiled function to a compiled argument.
-applyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> CompiledCodeIn uni fun b
+-- | Apply a compiled function to a compiled argument. Will fail if the
+--   versions don't match.
+applyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> Maybe (CompiledCodeIn uni fun b)
+
+-- | Apply a compiled function to a compiled argument. Will throw if the
+--   versions don't match, should only be used in non-production code.
+unsafeApplyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> CompiledCodeIn uni fun b
 
 -- | The size of a <a>CompiledCodeIn</a>, in AST nodes.
 sizePlc :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun a -> Integer
@@ -2347,8 +2352,13 @@ getPlcNoAnn :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn u
 getPir :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun a -> Maybe (Program TyName Name uni fun SrcSpans)
 getPirNoAnn :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun a -> Maybe (Program TyName Name uni fun ())
 
--- | Apply a compiled function to a compiled argument.
-applyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> CompiledCodeIn uni fun b
+-- | Apply a compiled function to a compiled argument. Will fail if the
+--   versions don't match.
+applyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> Maybe (CompiledCodeIn uni fun b)
+
+-- | Apply a compiled function to a compiled argument. Will throw if the
+--   versions don't match, should only be used in non-production code.
+unsafeApplyCode :: (Closed uni, uni `Everywhere` Flat, Flat fun) => CompiledCodeIn uni fun (a -> b) -> CompiledCodeIn uni fun a -> CompiledCodeIn uni fun b
 
 -- | A type corresponding to the Plutus Core builtin equivalent of
 --   <a>Data</a>.
