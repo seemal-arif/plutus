@@ -233,6 +233,10 @@ evaluateScriptCounting :: PlutusLedgerLanguage -> ProtocolVersion -> VerboseMode
 --   versions allowed differ.
 evaluateScriptRestricting :: PlutusLedgerLanguage -> ProtocolVersion -> VerboseMode -> EvaluationContext -> ExBudget -> SerialisedScript -> [Data] -> (LogOutput, Either EvaluationError ExBudget)
 
+-- | Evaluate a fully-applied term using the CEK machine. Useful for
+--   mimicking the behaviour of the on-chain evaluator.
+evaluateTerm :: ExBudgetMode cost DefaultUni DefaultFun -> ProtocolVersion -> VerboseMode -> EvaluationContext -> Term NamedDeBruijn DefaultUni DefaultFun () -> (Either (CekEvaluationException NamedDeBruijn DefaultUni DefaultFun) (Term NamedDeBruijn DefaultUni DefaultFun ()), cost, [Text])
+
 -- | A simple toggle indicating whether or not we should accumulate logs
 --   during script execution.
 data VerboseMode
