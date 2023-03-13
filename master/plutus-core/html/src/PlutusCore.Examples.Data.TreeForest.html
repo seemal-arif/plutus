@@ -1,28 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- editorconfig-checker-disable-file</span><span>
-</span><span id="line-2"></span><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-incomplete-uni-patterns #-}</span><span>
-</span><span id="line-3"></span><span>
-</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
-</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE TypeFamilies      #-}</span><span>
-</span><span id="line-6"></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Examples.Data.TreeForest</span><span>
-</span><span id="line-8"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#treeData"><span class="hs-identifier">treeData</span></a></span><span>
-</span><span id="line-9"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestData"><span class="hs-identifier">forestData</span></a></span><span>
-</span><span id="line-10"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#treeNode"><span class="hs-identifier">treeNode</span></a></span><span>
-</span><span id="line-11"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestNil"><span class="hs-identifier">forestNil</span></a></span><span>
-</span><span id="line-12"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestCons"><span class="hs-identifier">forestCons</span></a></span><span>
-</span><span id="line-13"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Core.html"><span class="hs-identifier">PlutusCore.Core</span></a></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.MkPlc.html"><span class="hs-identifier">PlutusCore.MkPlc</span></a></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Normalize.html"><span class="hs-identifier">PlutusCore.Normalize</span></a></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Quote.html"><span class="hs-identifier">PlutusCore.Quote</span></a></span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.StdLib.Type.html"><span class="hs-identifier">PlutusCore.StdLib.Type</span></a></span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Universe.html"><span class="hs-identifier">Universe</span></a></span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-comment">{- Note [Tree]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-incomplete-uni-patterns #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE TypeFamilies      #-}</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Examples.Data.TreeForest</span><span>
+</span><span id="line-7"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#treeData"><span class="hs-identifier">treeData</span></a></span><span>
+</span><span id="line-8"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestData"><span class="hs-identifier">forestData</span></a></span><span>
+</span><span id="line-9"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#treeNode"><span class="hs-identifier">treeNode</span></a></span><span>
+</span><span id="line-10"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestNil"><span class="hs-identifier">forestNil</span></a></span><span>
+</span><span id="line-11"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Examples.Data.TreeForest.html#forestCons"><span class="hs-identifier">forestCons</span></a></span><span>
+</span><span id="line-12"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Core.html"><span class="hs-identifier">PlutusCore.Core</span></a></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.MkPlc.html"><span class="hs-identifier">PlutusCore.MkPlc</span></a></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Normalize.html"><span class="hs-identifier">PlutusCore.Normalize</span></a></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Quote.html"><span class="hs-identifier">PlutusCore.Quote</span></a></span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.StdLib.Type.html"><span class="hs-identifier">PlutusCore.StdLib.Type</span></a></span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Universe.html"><span class="hs-identifier">Universe</span></a></span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-comment">{- Note [Tree]
 Here we encode the following:
 
     mutual
@@ -67,7 +66,8 @@ using this representation:
     TreeForest : Set -&gt; (Set -&gt; Set -&gt; Set) -&gt; Set
     TreeForest =
       Fix&#8322; &#955; Rec A tag -&gt;
-        &#8704; R -&gt; tag ((A -&gt; AsForest Rec A -&gt; R) -&gt; R) (R -&gt; (AsTree Rec A -&gt; AsForest Rec A -&gt; R) -&gt; R)
+      &#8704; R -&gt;
+        tag ((A -&gt; AsForest Rec A -&gt; R) -&gt; R) (R -&gt; (AsTree Rec A -&gt; AsForest Rec A -&gt; R) -&gt; R)
 
     Tree : Set -&gt; Set
     Tree = AsTree TreeForest

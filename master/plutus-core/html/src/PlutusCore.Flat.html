@@ -1,41 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- editorconfig-checker-disable-file</span><span>
-</span><span id="line-2"></span><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-orphans #-}</span><span>
-</span><span id="line-3"></span><span>
-</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE FlexibleInstances    #-}</span><span>
-</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE GADTs                #-}</span><span>
-</span><span id="line-6"></span><span class="hs-pragma">{-# LANGUAGE LambdaCase           #-}</span><span>
-</span><span id="line-7"></span><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving   #-}</span><span>
-</span><span id="line-8"></span><span class="hs-pragma">{-# LANGUAGE TypeApplications     #-}</span><span>
-</span><span id="line-9"></span><span class="hs-pragma">{-# LANGUAGE TypeOperators        #-}</span><span>
-</span><span id="line-10"></span><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- | Flat instances for Plutus Core types. Make sure to read the</span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- Note [Stable encoding of PLC] before touching anything in this</span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- file.  Also see the Notes [Serialising unit annotations] and</span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- [Serialising Scripts] before using anything in this file.</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Flat</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Flat.html#AsSerialize"><span class="hs-identifier">AsSerialize</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Flat.html#safeEncodeBits"><span class="hs-identifier">safeEncodeBits</span></a></span><span>
-</span><span id="line-20"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Core.html"><span class="hs-identifier">PlutusCore.Core</span></a></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Data.html"><span class="hs-identifier">PlutusCore.Data</span></a></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.DeBruijn.html"><span class="hs-identifier">PlutusCore.DeBruijn</span></a></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
-</span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">Codec.Serialise</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">Serialise</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">deserialiseOrFail</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">serialise</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Coerce</span></a></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Functor</span></a></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Proxy</span></a></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Word</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Word8</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-32"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat</span></a></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat.Decoder</span></a></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat.Encoder</span></a></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="GHC.Natural.Extras.html"><span class="hs-identifier">GHC.Natural.Extras</span></a></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Universe.html"><span class="hs-identifier">Universe</span></a></span><span>
-</span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-comment">{- Note [Stable encoding of PLC]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# OPTIONS_GHC -fno-warn-orphans #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-pragma">{-# LANGUAGE FlexibleInstances    #-}</span><span>
+</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE GADTs                #-}</span><span>
+</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE LambdaCase           #-}</span><span>
+</span><span id="line-6"></span><span class="hs-pragma">{-# LANGUAGE StandaloneDeriving   #-}</span><span>
+</span><span id="line-7"></span><span class="hs-pragma">{-# LANGUAGE TypeApplications     #-}</span><span>
+</span><span id="line-8"></span><span class="hs-pragma">{-# LANGUAGE TypeOperators        #-}</span><span>
+</span><span id="line-9"></span><span class="hs-pragma">{-# LANGUAGE UndecidableInstances #-}</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- | Flat instances for Plutus Core types. Make sure to read the</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Note [Stable encoding of PLC] before touching anything in this</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- file.  Also see the Notes [Serialising unit annotations] and</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- [Serialising Scripts] before using anything in this file.</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Flat</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Flat.html#AsSerialize"><span class="hs-identifier">AsSerialize</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Flat.html#safeEncodeBits"><span class="hs-identifier">safeEncodeBits</span></a></span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Core.html"><span class="hs-identifier">PlutusCore.Core</span></a></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Data.html"><span class="hs-identifier">PlutusCore.Data</span></a></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.DeBruijn.html"><span class="hs-identifier">PlutusCore.DeBruijn</span></a></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">Codec.Serialise</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">Serialise</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">deserialiseOrFail</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="../../../../serialise/html/src"><span class="hs-identifier">serialise</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Coerce</span></a></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Functor</span></a></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Proxy</span></a></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Data.Word</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier">Word8</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-31"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat</span></a></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat.Decoder</span></a></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../flat/html/src"><span class="hs-identifier">Flat.Encoder</span></a></span><span>
+</span><span id="line-34"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="GHC.Natural.Extras.html"><span class="hs-identifier">GHC.Natural.Extras</span></a></span><span>
+</span><span id="line-35"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Universe.html"><span class="hs-identifier">Universe</span></a></span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span class="hs-comment">{- Note [Stable encoding of PLC]
 READ THIS BEFORE TOUCHING ANYTHING IN THIS FILE
 
 We need the encoding of PLC on the blockchain to be *extremely* stable. It *must not* change
@@ -55,8 +54,8 @@ However, having this flexibility allows us to encode e.g. PLC with substantial a
 (like position information) in situation where the stability is *not* critical, such as
 for testing.
 -}</span><span>
-</span><span id="line-58"></span><span>
-</span><span id="line-59"></span><span class="hs-comment">{- Note [Encoding/decoding constructor tags using Flat]
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-comment">{- Note [Encoding/decoding constructor tags using Flat]
 Flat saves space when compared to CBOR by allowing tags to use the minimum
 number of bits required for their encoding.
 
@@ -86,15 +85,15 @@ implementations for them (if they have any constructors reserved for future use)
 
 By default, Flat does not use any space to serialise `()`.
 -}</span><span>
-</span><span id="line-89"></span><span>
-</span><span id="line-90"></span><span class="hs-comment">{- Note [Index (Word64) (de)serialized through Natural]
+</span><span id="line-88"></span><span>
+</span><span id="line-89"></span><span class="hs-comment">{- Note [Index (Word64) (de)serialized through Natural]
 
 With the recent change of CEK to use DeBruijn instead of Name,
 we decided to change Index to be a Word instead of Natural, for performance reasons.
 
 However, to be absolutely sure that the script format *does not change*
-for plutus language version 1, we are converting from/to Word64 and (de)-serialize *only through Natural*,
-to keep the old v1 flat format the same.
+for plutus language version 1, we are converting from/to Word64 and (de)-serialize *only through
+Natural*, to keep the old v1 flat format the same.
 
 Natural and Word64 are flat-compatible up-to `maxBound :: Word64`.
 However, the current blockchain might have already stored a plutus v1 script
@@ -102,10 +101,11 @@ containing a hugely-indexed variable `&gt;maxBound::Word64` -- such a script mus
 because such a huge index must be a free variable (given the current script-size constraints).
 
 When decoding such an already-stored (failing) script
-the Natural deserializer makes the script fail at the scopechecking step (previously undebruijnification step).
-Hypotheically using the Word64 deserializer, the script would *hopefully* fail as well, although earlier
-at the deserialization step. Initial tests and looking at flat internals make this likely,
-but until proven, we postpone the transition to Word64 deserializer for version 2 language.
+the Natural deserializer makes the script fail at the scopechecking step (previously
+undebruijnification step). Hypotheically using the Word64 deserializer, the script would *hopefully*
+fail as well, although earlier at the deserialization step. Initial tests and looking at flat
+internals make this likely, but until proven, we postpone the transition to Word64 deserializer for
+version 2 language.
 -}</span><span>
 </span><span id="line-110"></span><span>
 </span><span id="line-111"></span><span>

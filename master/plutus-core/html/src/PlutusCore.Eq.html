@@ -1,32 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- editorconfig-checker-disable-file</span><span>
-</span><span id="line-2"></span><span class="hs-comment">-- | An internal module that defines functions for deciding equality of values of data types</span><span>
-</span><span id="line-3"></span><span class="hs-comment">-- that encode things with binders.</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses #-}</span><span>
-</span><span id="line-6"></span><span class="hs-pragma">{-# LANGUAGE RankNTypes            #-}</span><span>
-</span><span id="line-7"></span><span class="hs-pragma">{-# LANGUAGE TemplateHaskell       #-}</span><span>
-</span><span id="line-8"></span><span class="hs-pragma">{-# LANGUAGE TypeApplications      #-}</span><span>
-</span><span id="line-9"></span><span class="hs-pragma">{-# LANGUAGE UndecidableInstances  #-}</span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Eq</span><span>
-</span><span id="line-12"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#LR"><span class="hs-identifier">LR</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
-</span><span id="line-13"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#RL"><span class="hs-identifier">RL</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
-</span><span id="line-14"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#EqRename"><span class="hs-identifier">EqRename</span></a></span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#ScopedEqRename"><span class="hs-identifier">ScopedEqRename</span></a></span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#runEqRename"><span class="hs-identifier">runEqRename</span></a></span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#withTwinBindings"><span class="hs-identifier">withTwinBindings</span></a></span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#eqNameM"><span class="hs-identifier">eqNameM</span></a></span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#eqM"><span class="hs-identifier">eqM</span></a></span><span>
-</span><span id="line-20"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusPrelude.html"><span class="hs-identifier">PlutusPrelude</span></a></span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Rename.Monad.html"><span class="hs-identifier">PlutusCore.Rename.Monad</span></a></span><span>
-</span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../lens/html/src"><span class="hs-identifier">Control.Lens</span></a></span><span>
-</span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-comment">{- Note [Modulo alpha]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | An internal module that defines functions for deciding equality of values of data types</span><span>
+</span><span id="line-2"></span><span class="hs-comment">-- that encode things with binders.</span><span>
+</span><span id="line-3"></span><span>
+</span><span id="line-4"></span><span class="hs-pragma">{-# LANGUAGE MultiParamTypeClasses #-}</span><span>
+</span><span id="line-5"></span><span class="hs-pragma">{-# LANGUAGE RankNTypes            #-}</span><span>
+</span><span id="line-6"></span><span class="hs-pragma">{-# LANGUAGE TemplateHaskell       #-}</span><span>
+</span><span id="line-7"></span><span class="hs-pragma">{-# LANGUAGE TypeApplications      #-}</span><span>
+</span><span id="line-8"></span><span class="hs-pragma">{-# LANGUAGE UndecidableInstances  #-}</span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusCore.Eq</span><span>
+</span><span id="line-11"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#LR"><span class="hs-identifier">LR</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#RL"><span class="hs-identifier">RL</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-13"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#EqRename"><span class="hs-identifier">EqRename</span></a></span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#ScopedEqRename"><span class="hs-identifier">ScopedEqRename</span></a></span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#runEqRename"><span class="hs-identifier">runEqRename</span></a></span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#withTwinBindings"><span class="hs-identifier">withTwinBindings</span></a></span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#eqNameM"><span class="hs-identifier">eqNameM</span></a></span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusCore.Eq.html#eqM"><span class="hs-identifier">eqM</span></a></span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusPrelude.html"><span class="hs-identifier">PlutusPrelude</span></a></span><span>
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Name.html"><span class="hs-identifier">PlutusCore.Name</span></a></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="PlutusCore.Rename.Monad.html"><span class="hs-identifier">PlutusCore.Rename.Monad</span></a></span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="../../../../lens/html/src"><span class="hs-identifier">Control.Lens</span></a></span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="hs-comment">{- Note [Modulo alpha]
 The implemented algorithm of checking equality modulo alpha works as follows
 (taking types as an example):
 
@@ -41,22 +40,23 @@ The implemented algorithm of checking equality modulo alpha works as follows
     * if one is in scope and the other one is not, then return 'False'
 - otherwise check equality of non-recursive constituents and recurse for recursive occurrences
 -}</span><span>
-</span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="hs-comment">{- Note [Scope tracking]
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-comment">{- Note [Scope tracking]
 Scopes (term level vs type level) are resolved automatically in a type-driven way much like we do
 in the renamer. This allows not to think about scopes when implementing the actual equality checks
 and makes it impossible to confuse the scopes and e.g. insert a type-level name into a term-level
 scope. Also allows to define a function that records bindings and a function that checks equality
 of two names in a general manner for both the scopes.
 -}</span><span>
-</span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span class="hs-comment">{- Note [Side tracking]
+</span><span id="line-51"></span><span>
+</span><span id="line-52"></span><span class="hs-comment">{- Note [Side tracking]
 The simplest way to track that twin variables map to each other is to have two contexts:
 
 - left-hand side variables and what they map to
 - right-hand side variables and what they map to
 
-(we refer to a first argument as being on the left-hand side and to a second argument as being on the right-hand side)
+(we refer to a first argument as being on the left-hand side and to a second argument as being on
+the right-hand side)
 
 E.g. when checking equality of these two types:
 
