@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679944557"><span id="local-6989586621679944558"><span id="local-6989586621679944559"></span></span></span><span class="hs-pragma">{-# LANGUAGE DerivingVia #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679944549"><span id="local-6989586621679944550"><span id="local-6989586621679944551"></span></span></span><span class="hs-pragma">{-# LANGUAGE DerivingVia #-}</span><span>
 </span><span id="line-2"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">PlutusLedgerApi.V1.ParamName</span><span>
 </span><span id="line-3"></span><span>    </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#ParamName"><span class="hs-identifier">ParamName</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
 </span><span id="line-4"></span><span>    </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="PlutusLedgerApi.Common.ParamName.html#tagWithParamNames"><span class="hs-identifier">tagWithParamNames</span></a></span><span>
@@ -14,7 +14,7 @@ IMPORTANT: The order of appearance of the data constructors here matters. DO NOT
 See Note [Quotation marks in cost model parameter constructors]
 See Note [Cost model parameters from the ledger's point of view]
 -}</span><span>
-</span><span id="line-17"></span><span id="local-6989586621679944554"><span id="local-6989586621679944555"></span></span><span class="hs-keyword">data</span><span> </span><span id="ParamName"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#ParamName"><span class="hs-identifier hs-var">ParamName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span id="local-6989586621679944546"><span id="local-6989586621679944547"></span></span><span class="hs-keyword">data</span><span> </span><span id="ParamName"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#ParamName"><span class="hs-identifier hs-var">ParamName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>    </span><span id="AddInteger%27cpu%27arguments%27intercept"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#AddInteger%27cpu%27arguments%27intercept"><span class="hs-identifier hs-var">AddInteger'cpu'arguments'intercept</span></a></span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="AddInteger%27cpu%27arguments%27slope"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#AddInteger%27cpu%27arguments%27slope"><span class="hs-identifier hs-var">AddInteger'cpu'arguments'slope</span></a></span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="AddInteger%27memory%27arguments%27intercept"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#AddInteger%27memory%27arguments%27intercept"><span class="hs-identifier hs-var">AddInteger'memory'arguments'intercept</span></a></span></span><span>
@@ -181,13 +181,13 @@ See Note [Cost model parameters from the ledger's point of view]
 </span><span id="line-181"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="VerifyEd25519Signature%27cpu%27arguments%27intercept"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#VerifyEd25519Signature%27cpu%27arguments%27intercept"><span class="hs-identifier hs-var">VerifyEd25519Signature'cpu'arguments'intercept</span></a></span></span><span>
 </span><span id="line-182"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="VerifyEd25519Signature%27cpu%27arguments%27slope"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#VerifyEd25519Signature%27cpu%27arguments%27slope"><span class="hs-identifier hs-var">VerifyEd25519Signature'cpu'arguments'slope</span></a></span></span><span>
 </span><span id="line-183"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="VerifyEd25519Signature%27memory%27arguments"><span class="annot"><a href="PlutusLedgerApi.V1.ParamName.html#VerifyEd25519Signature%27memory%27arguments"><span class="hs-identifier hs-var">VerifyEd25519Signature'memory'arguments</span></a></span></span><span>
-</span><span id="line-184"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">stock</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679944384"><span id="local-6989586621679944386"><span class="annot"><span class="annottext">ParamName -&gt; ParamName -&gt; Bool
+</span><span id="line-184"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="annot"><span class="hs-keyword">stock</span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679944376"><span id="local-6989586621679944378"><span class="annot"><span class="annottext">ParamName -&gt; ParamName -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: ParamName -&gt; ParamName -&gt; Bool
 $c/= :: ParamName -&gt; ParamName -&gt; Bool
 == :: ParamName -&gt; ParamName -&gt; Bool
 $c== :: ParamName -&gt; ParamName -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944364"><span id="local-6989586621679944366"><span id="local-6989586621679944369"><span id="local-6989586621679944372"><span id="local-6989586621679944375"><span id="local-6989586621679944377"><span id="local-6989586621679944379"><span class="annot"><span class="annottext">Eq ParamName
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944356"><span id="local-6989586621679944358"><span id="local-6989586621679944361"><span id="local-6989586621679944364"><span id="local-6989586621679944367"><span id="local-6989586621679944369"><span id="local-6989586621679944371"><span class="annot"><span class="annottext">Eq ParamName
 ParamName -&gt; ParamName -&gt; Bool
 ParamName -&gt; ParamName -&gt; Ordering
 ParamName -&gt; ParamName -&gt; ParamName
@@ -215,7 +215,7 @@ $c&lt;= :: ParamName -&gt; ParamName -&gt; Bool
 $c&lt; :: ParamName -&gt; ParamName -&gt; Bool
 compare :: ParamName -&gt; ParamName -&gt; Ordering
 $ccompare :: ParamName -&gt; ParamName -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944325"><span id="local-6989586621679944327"><span id="local-6989586621679944331"><span id="local-6989586621679944335"><span id="local-6989586621679944337"><span id="local-6989586621679944347"><span id="local-6989586621679944353"><span id="local-6989586621679944361"><span class="annot"><span class="annottext">Int -&gt; ParamName
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944317"><span id="local-6989586621679944319"><span id="local-6989586621679944323"><span id="local-6989586621679944327"><span id="local-6989586621679944329"><span id="local-6989586621679944339"><span id="local-6989586621679944345"><span id="local-6989586621679944353"><span class="annot"><span class="annottext">Int -&gt; ParamName
 ParamName -&gt; Int
 ParamName -&gt; [ParamName]
 ParamName -&gt; ParamName
@@ -247,7 +247,7 @@ pred :: ParamName -&gt; ParamName
 $cpred :: ParamName -&gt; ParamName
 succ :: ParamName -&gt; ParamName
 $csucc :: ParamName -&gt; ParamName
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944309"><span id="local-6989586621679944311"><span id="local-6989586621679944313"><span id="local-6989586621679944315"><span id="local-6989586621679944317"><span id="local-6989586621679944320"><span class="annot"><span class="annottext">Ord ParamName
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944301"><span id="local-6989586621679944303"><span id="local-6989586621679944305"><span id="local-6989586621679944307"><span id="local-6989586621679944309"><span id="local-6989586621679944312"><span class="annot"><span class="annottext">Ord ParamName
 (ParamName, ParamName) -&gt; Int
 (ParamName, ParamName) -&gt; [ParamName]
 (ParamName, ParamName) -&gt; ParamName -&gt; Bool
@@ -273,7 +273,7 @@ index :: (ParamName, ParamName) -&gt; ParamName -&gt; Int
 $cindex :: (ParamName, ParamName) -&gt; ParamName -&gt; Int
 range :: (ParamName, ParamName) -&gt; [ParamName]
 $crange :: (ParamName, ParamName) -&gt; [ParamName]
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ix</span></a></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944304"><span id="local-6989586621679944306"><span class="annot"><span class="annottext">ParamName
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ix</span></a></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679944296"><span id="local-6989586621679944298"><span class="annot"><span class="annottext">ParamName
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: ParamName
 $cmaxBound :: ParamName
@@ -286,7 +286,7 @@ forall a.
 $cto :: forall x. Rep ParamName x -&gt; ParamName
 $cfrom :: forall x. ParamName -&gt; Rep ParamName x
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var">Generic</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-185"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679944296"><span class="annot"><span class="annottext">ParamName -&gt; String
+</span><span id="line-185"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679944288"><span class="annot"><span class="annottext">ParamName -&gt; String
 forall a. (a -&gt; String) -&gt; IsParamName a
 showParamName :: ParamName -&gt; String
 $cshowParamName :: ParamName -&gt; String
