@@ -370,6 +370,16 @@ builtinsIntroducedIn :: Map (PlutusLedgerLanguage, ProtocolVersion) (Set Default
 --   See Note [New builtins/language versions and protocol versions]
 builtinsAvailableIn :: PlutusLedgerLanguage -> ProtocolVersion -> Set DefaultFun
 
+-- | Query the protocol version that a specific Plutus ledger language was
+--   first introduced in.
+ledgerLanguageIntroducedIn :: PlutusLedgerLanguage -> ProtocolVersion
+
+-- | Which Plutus language versions are available in the given
+--   <a>ProtocolVersion</a>?
+--   
+--   See Note [New builtins/language versions and protocol versions]
+ledgerLanguagesAvailableIn :: ProtocolVersion -> Set PlutusLedgerLanguage
+
 -- | A raw representation of the ledger's cost model parameters.
 --   
 --   The associated keys/names to the parameter values are arbitrarily set
