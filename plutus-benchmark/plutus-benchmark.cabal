@@ -354,15 +354,15 @@ executable ed25519-throughput
   -- Without the line below we get a warning that plutus-tx-plugin is unused which causes a CI failure.
   ghc-options:      -Wno-unused-packages
   build-depends:
-    , base                  >=4.9 && <5
+    , base              >=4.9 && <5
     , bytestring
-    , cardano-crypto-class
-    , flat                  <0.5
+    , flat              <0.5
     , hedgehog
-    , plutus-core           ^>=1.3
-    , plutus-tx             ^>=1.3
-    , plutus-tx-plugin      ^>=1.3
+    , plutus-core       ^>=1.3
+    , plutus-tx         ^>=1.3
+    , plutus-tx-plugin  ^>=1.3
 
+-- , cardano-crypto-class
 ---------------- script contexts ----------------
 
 library script-contexts-internal

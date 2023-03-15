@@ -9,12 +9,12 @@ module Crypto (
   verifySchnorrSecp256k1Signature,
   ) where
 
-import Cardano.Crypto.DSIGN.Class qualified as DSIGN
-import Cardano.Crypto.DSIGN.EcdsaSecp256k1 (EcdsaSecp256k1DSIGN, toMessageHash)
-import Cardano.Crypto.DSIGN.Ed25519 (Ed25519DSIGN)
-import Cardano.Crypto.DSIGN.SchnorrSecp256k1 (SchnorrSecp256k1DSIGN)
-import Crypto.ECC.Ed25519Donna (publicKey, signature, verify)
-import Crypto.Error (CryptoFailable (..))
+-- import Cardano.Crypto.DSIGN.Class qualified as DSIGN
+-- import Cardano.Crypto.DSIGN.EcdsaSecp256k1 (EcdsaSecp256k1DSIGN, toMessageHash)
+-- import Cardano.Crypto.DSIGN.Ed25519 (Ed25519DSIGN)
+-- import Cardano.Crypto.DSIGN.SchnorrSecp256k1 (SchnorrSecp256k1DSIGN)
+-- import Crypto.ECC.Ed25519Donna (publicKey, signature, verify)
+-- import Crypto.Error (CryptoFailable (..))
 import Data.ByteString qualified as BS
 import Data.Kind (Type)
 import Data.Text (Text, pack)
@@ -29,13 +29,13 @@ verifyEd25519Signature_V1
     -> BS.ByteString  -- ^ Message    (arbitrary length)
     -> BS.ByteString  -- ^ Signature  (64 bytes)
     -> Emitter (EvaluationResult Bool)
-verifyEd25519Signature_V1 pubKey msg sig =
-    case verify
-             <$> publicKey pubKey
-             <*> pure msg
-             <*> signature sig
-    of CryptoPassed r   -> pure $ pure r
-       CryptoFailed err -> failWithMessage loc $ pack (show err)
+verifyEd25519Signature_V1 pubKey msg sig = failWithMessage loc $ pack "ERROR..."
+    -- case verify
+    --          <$> publicKey pubKey
+    --          <*> pure msg
+    --          <*> signature sig
+    -- of CryptoPassed r   -> pure $ pure r
+    --    CryptoFailed err -> failWithMessage loc $ pack (show err)
   where
     loc :: Text
     loc = "Ed25519 signature verification"
@@ -49,16 +49,16 @@ verifyEd25519Signature_V2
     -> BS.ByteString  -- ^ Message    (arbitrary length)
     -> BS.ByteString  -- ^ Signature  (64 bytes)
     -> Emitter (EvaluationResult Bool)
-verifyEd25519Signature_V2 pk msg sig =
-  case DSIGN.rawDeserialiseVerKeyDSIGN @Ed25519DSIGN pk of
-    Nothing -> failWithMessage loc "Invalid verification key."
-    Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @Ed25519DSIGN sig of
-      Nothing -> failWithMessage loc "Invalid signature."
-      Just sig' ->
-          pure . pure $
-               case DSIGN.verifyDSIGN () pk' msg sig' of
-                 Left _   -> False
-                 Right () -> True
+verifyEd25519Signature_V2 pk msg sig = failWithMessage loc "Invalid verification key."
+  -- case DSIGN.rawDeserialiseVerKeyDSIGN @Ed25519DSIGN pk of
+  --   Nothing -> failWithMessage loc "Invalid verification key."
+  --   Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @Ed25519DSIGN sig of
+  --     Nothing -> failWithMessage loc "Invalid signature."
+  --     Just sig' ->
+  --         pure . pure $
+  --              case DSIGN.verifyDSIGN () pk' msg sig' of
+  --                Left _   -> False
+  --                Right () -> True
   where
     loc :: Text
     loc = "Ed25519 signature verification"
@@ -90,16 +90,16 @@ verifyEcdsaSecp256k1Signature
   -> BS.ByteString -- ^ Message hash (32 bytes)
   -> BS.ByteString -- ^ Signature    (64 bytes)
   -> Emitter (EvaluationResult Bool)
-verifyEcdsaSecp256k1Signature pk msg sig =
-  case DSIGN.rawDeserialiseVerKeyDSIGN @EcdsaSecp256k1DSIGN pk of
-    Nothing -> failWithMessage loc "Invalid verification key."
-    Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @EcdsaSecp256k1DSIGN sig of
-      Nothing -> failWithMessage loc "Invalid signature."
-      Just sig' -> case toMessageHash msg of
-        Nothing -> failWithMessage loc "Invalid message hash."
-        Just msg' -> pure . pure $ case DSIGN.verifyDSIGN () pk' msg' sig' of
-          Left _   -> False
-          Right () -> True
+verifyEcdsaSecp256k1Signature pk msg sig = failWithMessage loc "Invalid signature."
+  -- case DSIGN.rawDeserialiseVerKeyDSIGN @EcdsaSecp256k1DSIGN pk of
+  --   Nothing -> failWithMessage loc "Invalid verification key."
+  --   Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @EcdsaSecp256k1DSIGN sig of
+  --     Nothing -> failWithMessage loc "Invalid signature."
+  --     Just sig' -> case toMessageHash msg of
+  --       Nothing -> failWithMessage loc "Invalid message hash."
+  --       Just msg' -> pure . pure $ case DSIGN.verifyDSIGN () pk' msg' sig' of
+  --         Left _   -> False
+  --         Right () -> True
   where
     loc :: Text
     loc = "ECDSA SECP256k1 signature verification"
@@ -126,14 +126,14 @@ verifySchnorrSecp256k1Signature
   -> BS.ByteString -- ^ Message    (arbitrary length)
   -> BS.ByteString -- ^ Signature  (64 bytes)
   -> Emitter (EvaluationResult Bool)
-verifySchnorrSecp256k1Signature pk msg sig =
-  case DSIGN.rawDeserialiseVerKeyDSIGN @SchnorrSecp256k1DSIGN pk of
-    Nothing -> failWithMessage loc "Invalid verification key."
-    Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @SchnorrSecp256k1DSIGN sig of
-      Nothing -> failWithMessage loc "Invalid signature."
-      Just sig' -> pure . pure $ case DSIGN.verifyDSIGN () pk' msg sig' of
-        Left _   -> False
-        Right () -> True
+verifySchnorrSecp256k1Signature pk msg sig = failWithMessage loc "Invalid signature."
+  -- case DSIGN.rawDeserialiseVerKeyDSIGN @SchnorrSecp256k1DSIGN pk of
+  --   Nothing -> failWithMessage loc "Invalid verification key."
+  --   Just pk' -> case DSIGN.rawDeserialiseSigDSIGN @SchnorrSecp256k1DSIGN sig of
+  --     Nothing -> failWithMessage loc "Invalid signature."
+  --     Just sig' -> pure . pure $ case DSIGN.verifyDSIGN () pk' msg sig' of
+  --       Left _   -> False
+  --       Right () -> True
   where
     loc :: Text
     loc = "Schnorr SECP256k1 signature verification"
