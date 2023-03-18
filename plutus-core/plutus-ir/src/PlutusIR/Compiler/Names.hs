@@ -19,6 +19,18 @@ replacements :: [(T.Text, T.Text)]
 replacements = [
     -- this helps with module prefixes
     (".", "_")
+    , ("<$>", "_fmap")
+    , ("<*>", "_ap")
+    , (">>=", "_bind")
+    , ("<=", "_lte")
+    , (">=", "_gte")
+    , ("<", "_lt")
+    , (">", "_gt")
+    , ("==", "_eq")
+    , ("/=", "_neq")
+    , ("+", "_plus")
+    , ("-", "_minus")
+    , ("*", "_mult")
     ]
 
 typeReplacements :: [(T.Text, T.Text)]

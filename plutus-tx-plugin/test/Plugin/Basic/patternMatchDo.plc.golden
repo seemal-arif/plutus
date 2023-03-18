@@ -18,7 +18,7 @@
     (termbind
       (strict)
       (vardecl
-        fMonadMaybe_c
+        fMonadMaybe_c_bind
         (all
           a
           (type)
@@ -79,7 +79,7 @@
         [
           [
             {
-              { fMonadMaybe_c [ [ Tuple2 (con integer) ] (con integer) ] }
+              { fMonadMaybe_c_bind [ [ Tuple2 (con integer) ] (con integer) ] }
               (con integer)
             }
             ds
@@ -99,7 +99,9 @@
                   x
                   (con integer)
                   [
-                    [ { { fMonadMaybe_c (con integer) } (con integer) } ds ]
+                    [
+                      { { fMonadMaybe_c_bind (con integer) } (con integer) } ds
+                    ]
                     (lam
                       y
                       (con integer)

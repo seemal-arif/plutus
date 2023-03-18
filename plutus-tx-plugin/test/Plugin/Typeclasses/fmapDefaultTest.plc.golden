@@ -24,7 +24,7 @@
     (termbind
       (strict)
       (vardecl
-        bad_name
+        plus
         (all
           a
           (type)
@@ -36,7 +36,7 @@
     (termbind
       (nonstrict)
       (vardecl v (fun (con integer) (fun (con integer) (con integer))))
-      [ { bad_name (con integer) } fAdditiveSemigroupInteger ]
+      [ { plus (con integer) } fAdditiveSemigroupInteger ]
     )
     (let
       (rec)
@@ -286,7 +286,7 @@
             (termbind
               (strict)
               (vardecl
-                bad_name
+                ap
                 (all
                   f
                   (fun (type) (type))
@@ -482,7 +482,7 @@
                                         [
                                           {
                                             {
-                                              [ { bad_name f } dApplicative ]
+                                              [ { ap f } dApplicative ]
                                               [ List b ]
                                             }
                                             [ List b ]
@@ -659,7 +659,7 @@
                 (termbind
                   (strict)
                   (vardecl
-                    fApplicativeIdentity_c
+                    fApplicativeIdentity_c_ap
                     (all
                       a
                       (type)
@@ -735,7 +735,7 @@
                       ]
                       fApplicativeIdentity_cpure
                     ]
-                    fApplicativeIdentity_c
+                    fApplicativeIdentity_c_ap
                   ]
                 )
                 (termbind

@@ -94,7 +94,7 @@
     (termbind
       (strict)
       (vardecl
-        bad_name
+        eq
         (all
           a
           (type)
@@ -197,7 +197,7 @@
                             (type)
                             [
                               [
-                                [ { bad_name (con integer) } fEqInteger ]
+                                [ { eq (con integer) } fEqInteger ]
                                 {
                                   [
                                     [

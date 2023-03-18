@@ -13,7 +13,7 @@
     (termbind
       (strict)
       (vardecl
-        fApplicativeMaybe_c
+        fApplicativeMaybe_c_ap
         (all
           a
           (type)
@@ -155,7 +155,7 @@
           [ { CConsApplicative Maybe } fFunctorMaybe_cfmap ]
           fApplicativeMaybe_cpure
         ]
-        fApplicativeMaybe_c
+        fApplicativeMaybe_c_ap
       ]
     )
     (let
@@ -369,7 +369,7 @@
             (termbind
               (strict)
               (vardecl
-                bad_name
+                ap
                 (all
                   f
                   (fun (type) (type))
@@ -565,7 +565,7 @@
                                         [
                                           {
                                             {
-                                              [ { bad_name f } dApplicative ]
+                                              [ { ap f } dApplicative ]
                                               [ List b ]
                                             }
                                             [ List b ]
