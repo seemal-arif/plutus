@@ -62,6 +62,8 @@ library
   other-modules:
     PlutusTx.Compiler.Binders
     PlutusTx.Compiler.Builtins
+    PlutusTx.Compiler.Dictionary.Integer
+    PlutusTx.Compiler.Dictionary.List
     PlutusTx.Compiler.Expr
     PlutusTx.Compiler.Kind
     PlutusTx.Compiler.Laziness
@@ -80,6 +82,7 @@ library
     , either
     , extra
     , flat                                  <0.5
+    , ghc-prim
     , lens
     , mtl
     , plutus-core:{plutus-core, plutus-ir}  ^>=1.3
