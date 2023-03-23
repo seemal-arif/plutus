@@ -6,7 +6,7 @@
 --   
 --   Pretty-printer, parser, and typechecker for Plutus Core.
 @package plutus-core
-@version 1.3.0.0
+@version 1.4.0.0
 
 
 -- | Hash functions for lazy [[Data.ByteString.ByteString]]s
