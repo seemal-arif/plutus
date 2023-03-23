@@ -14627,19 +14627,25 @@ du_muArg_146 :: T__'8866''8902'__20 -> T__'8866''8902'__20
 
 module MAlonzo.Code.Algorithmic.Signature
 d_SigTy_10 :: p -> p -> p -> p -> p -> p -> p -> p -> p -> p -> ()
-d_btype''_24 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866'Nf'8902'__44
-d_btype'45''8709'_30 :: T__'8866'Nf'8902'__44 -> T__'8801'__12
-d_btype_34 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866'Nf'8902'__44
-d_btype'45'btype''_48 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8801'__12
-d_btype'''45'ren_66 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T__'8801'__12
-d_btype'45'ren_80 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T__'8801'__12
-d_btype'''45'sub_94 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8801'__12
-d_btype'45'sub_108 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8801'__12
-d_subNf'45'Π_124 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Kind_376 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8866'Nf'8902'__44 -> T__'8801'__12
-d_subSigTy_160 :: Integer -> Integer -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_SigTy_140
-du_subSigTy_160 :: Integer -> Integer -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T_SigTy_140 -> T_SigTy_140
-d__'91'_'93'SigTy_200 :: Integer -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T__'8866'Nf'8902'__44 -> T_SigTy_140
-du__'91'_'93'SigTy_200 :: Integer -> T_SigTy_140 -> T__'8866'Nf'8902'__44 -> T_SigTy_140
+d_convSigTy_12 :: Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> Integer -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_SigTy_140 -> T_SigTy_140
+du_convSigTy_12 :: T_SigTy_140 -> T_SigTy_140
+d_sig2type_14 :: T_Sig_40 -> T__'8866'Nf'8902'__44
+d_sigTy2type_16 :: Integer -> Integer -> Integer -> Integer -> Integer -> Integer -> Integer -> T__'8866'Nf'8902'__44 -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T__'8866'Nf'8902'__44
+du_sigTy2type_16 :: T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44
+d_btype''_26 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866'Nf'8902'__44
+d_btype'45''8709'_32 :: T__'8866'Nf'8902'__44 -> T__'8801'__12
+d_btype_36 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8866'Nf'8902'__44
+d_btype'45'btype''_50 :: T_Ctx'8902'_2 -> T_Builtin_40 -> T__'8801'__12
+d_btype'''45'ren_68 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T__'8801'__12
+d_btype'45'ren_82 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8715''8902'__14) -> T__'8801'__12
+d_btype'''45'sub_96 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8801'__12
+d_btype'45'sub_110 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Builtin_40 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8801'__12
+d_subNf'45'Π_126 :: T_Ctx'8902'_2 -> T_Ctx'8902'_2 -> T_Kind_376 -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T__'8866'Nf'8902'__44 -> T__'8801'__12
+d_subSigTy_162 :: Integer -> Integer -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_SigTy_140
+du_subSigTy_162 :: Integer -> Integer -> (T_Kind_376 -> T__'8715''8902'__14 -> T__'8866'Nf'8902'__44) -> T_SigTy_140 -> T_SigTy_140
+d__'91'_'93'SigTy_202 :: Integer -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T__'8866'Nf'8902'__44 -> T_SigTy_140
+du__'91'_'93'SigTy_202 :: Integer -> T_SigTy_140 -> T__'8866'Nf'8902'__44 -> T_SigTy_140
+d_uniqueSigTy_232 :: Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_SigTy_140 -> T__'8801'__12
 
 module MAlonzo.Code.Algorithmic
 d_TermCon_4 :: p -> p -> ()
@@ -14728,6 +14734,8 @@ module MAlonzo.Code.Algorithmic.ReductionEC
 d_TyCon_8 :: p -> ()
 d_TermCon_30 :: p -> p -> ()
 d_SigTy_52 :: p -> p -> p -> p -> p -> p -> p -> p -> p -> p -> ()
+d_convSigTy_54 :: Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> Integer -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> Integer -> T__'8866'Nf'8902'__44 -> T__'8866'Nf'8902'__44 -> T__'8801'__12 -> T_SigTy_140 -> T_SigTy_140
+du_convSigTy_54 :: T_SigTy_140 -> T_SigTy_140
 d_saturatedSigTy_56 :: T_Sig_40 -> T__'8866'Nf'8902'__44 -> ()
 d_sig2SigTy_58 :: T_Sig_40 -> T_SigTy_140
 d_Value_76 :: p -> p -> ()
@@ -14881,37 +14889,37 @@ du_dischargeBody_272 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T__'8866'__86 -> T_
 d_dischargeBody'8902'_286 :: T_Ctx_44 -> T_Kind_376 -> T__'8866'Nf'8902'__44 -> T__'8866'__86 -> T_Env_72 -> T__'8866'__86
 d_dischargeB_318 :: T_Builtin_40 -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> T__'8724'_'8803'__188 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_BApp_94 -> T__'8866'__86
 du_dischargeB_318 :: T_Builtin_40 -> T__'8724'_'8803'__188 -> T__'8724'_'8803'__188 -> T_BApp_94 -> T__'8866'__86
-d_BUILTIN_360 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_BApp_94 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_98
-du_BUILTIN_360 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_94 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_98
-d_BUILTIN''_596 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> Integer -> T__'8724'_'8803'__188 -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T__'8866'__86
-du_BUILTIN''_596 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_94 -> T__'8866'__86
-d_V'45'I_672 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T_Value_98
-du_V'45'I_672 :: T_Builtin_40 -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T_Value_98
-d_Error_690 :: p -> ()
-data T_Error_690
-C_E'45'error_694 :: T_Error_690
-d_Frame_700 :: p -> p -> ()
-data T_Frame_700
-C_'45''183'_708 :: T_Ctx_44 -> T__'8866'__86 -> T_Env_72 -> T_Frame_700
-C__'183''45'_714 :: T_Value_98 -> T_Frame_700
-C_'45''183''8902'_722 :: T__'8866'Nf'8902'__44 -> T_Frame_700
-C_wrap'45'_730 :: T_Frame_700
-C_unwrap'45'_738 :: T_Frame_700
-d_Stack_744 :: p -> p -> ()
-data T_Stack_744
-C_ε_748 :: T_Stack_744
-C__'44'__754 :: T__'8866'Nf'8902'__44 -> T_Stack_744 -> T_Frame_700 -> T_Stack_744
-d_State_758 :: p -> ()
-data T_State_758
-C__'894'_'9659'__766 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Stack_744 -> T_Env_72 -> T__'8866'__86 -> T_State_758
-C__'9669'__770 :: T__'8866'Nf'8902'__44 -> T_Stack_744 -> T_Value_98 -> T_State_758
-C_'9633'_772 :: T_Value_98 -> T_State_758
-C_'9670'_774 :: T__'8866'Nf'8902'__44 -> T_State_758
-d_ival_778 :: T_Builtin_40 -> T_Value_98
-d_step_784 :: T__'8866'Nf'8902'__44 -> T_State_758 -> T_State_758
-du_step_784 :: T_State_758 -> T_State_758
-d_stepper_918 :: Integer -> T__'8866'Nf'8902'__44 -> T_State_758 -> T_Either_44 T_RuntimeError_360 T_State_758
-du_stepper_918 :: Integer -> T_State_758 -> T_Either_44 T_RuntimeError_360 T_State_758
+d_BUILTIN_356 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_SigTy_140 -> T_BApp_94 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_98
+du_BUILTIN_356 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_94 -> T_Either_44 T__'8866'Nf'8902'__44 T_Value_98
+d_BUILTIN''_592 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> Integer -> T__'8724'_'8803'__188 -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T__'8866'__86
+du_BUILTIN''_592 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> T_BApp_94 -> T__'8866'__86
+d_V'45'I_668 :: T_Builtin_40 -> T__'8866'Nf'8902'__44 -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T_Value_98
+du_V'45'I_668 :: T_Builtin_40 -> Integer -> Integer -> T__'8724'_'8803'__188 -> Integer -> Integer -> T__'8724'_'8803'__188 -> T_SigTy_140 -> T_BApp_94 -> T_Value_98
+d_Error_686 :: p -> ()
+data T_Error_686
+C_E'45'error_690 :: T_Error_686
+d_Frame_696 :: p -> p -> ()
+data T_Frame_696
+C_'45''183'_704 :: T_Ctx_44 -> T__'8866'__86 -> T_Env_72 -> T_Frame_696
+C__'183''45'_710 :: T_Value_98 -> T_Frame_696
+C_'45''183''8902'_718 :: T__'8866'Nf'8902'__44 -> T_Frame_696
+C_wrap'45'_726 :: T_Frame_696
+C_unwrap'45'_734 :: T_Frame_696
+d_Stack_740 :: p -> p -> ()
+data T_Stack_740
+C_ε_744 :: T_Stack_740
+C__'44'__750 :: T__'8866'Nf'8902'__44 -> T_Stack_740 -> T_Frame_696 -> T_Stack_740
+d_State_754 :: p -> ()
+data T_State_754
+C__'894'_'9659'__762 :: T_Ctx_44 -> T__'8866'Nf'8902'__44 -> T_Stack_740 -> T_Env_72 -> T__'8866'__86 -> T_State_754
+C__'9669'__766 :: T__'8866'Nf'8902'__44 -> T_Stack_740 -> T_Value_98 -> T_State_754
+C_'9633'_768 :: T_Value_98 -> T_State_754
+C_'9670'_770 :: T__'8866'Nf'8902'__44 -> T_State_754
+d_ival_774 :: T_Builtin_40 -> T_Value_98
+d_step_780 :: T__'8866'Nf'8902'__44 -> T_State_754 -> T_State_754
+du_step_780 :: T_State_754 -> T_State_754
+d_stepper_914 :: Integer -> T__'8866'Nf'8902'__44 -> T_State_754 -> T_Either_44 T_RuntimeError_360 T_State_754
+du_stepper_914 :: Integer -> T_State_754 -> T_Either_44 T_RuntimeError_360 T_State_754
 
 module MAlonzo.Code.Raw
 d_RawTy_2 :: ()
