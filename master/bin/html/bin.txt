@@ -26,7 +26,7 @@
 --   <a>https://hackage.haskell.org/package/nat</a>, this differs in
 --   naming, and provides promoted variant.
 @package bin
-@version 0.1.2
+@version 0.1.3
 
 
 -- | Positive binary natural numbers, <a>BinP</a>.
@@ -433,6 +433,8 @@ instance Data.Type.BinP.SBinPI b => Data.Type.BinP.SBinPI ('Data.BinP.B0 b)
 instance Data.Type.BinP.SBinPI b => Data.Type.BinP.SBinPI ('Data.BinP.B1 b)
 instance Data.Type.Equality.TestEquality @{Data.BinP.BinP} Data.Type.BinP.SBinP
 instance Data.Type.BinP.SBinPI b => Data.Boring.Boring (Data.Type.BinP.SBinP b)
+instance GHC.Classes.Eq (Data.Type.BinP.SBinP a)
+instance GHC.Classes.Ord (Data.Type.BinP.SBinP a)
 instance Data.GADT.Internal.GShow @Data.BinP.BinP Data.Type.BinP.SBinP
 instance Control.DeepSeq.NFData (Data.Type.BinP.SBinP n)
 instance Data.GADT.DeepSeq.GNFData @Data.BinP.BinP Data.Type.BinP.SBinP
@@ -649,6 +651,8 @@ instance Data.Type.Bin.SBinI 'Data.Bin.BZ
 instance Data.Type.BinP.SBinPI b => Data.Type.Bin.SBinI ('Data.Bin.BP b)
 instance Data.Type.Bin.SBinI b => Data.Boring.Boring (Data.Type.Bin.SBin b)
 instance Data.Type.Equality.TestEquality @{Data.Bin.Bin} Data.Type.Bin.SBin
+instance GHC.Classes.Eq (Data.Type.Bin.SBin a)
+instance GHC.Classes.Ord (Data.Type.Bin.SBin a)
 instance Data.GADT.Internal.GShow @Data.Bin.Bin Data.Type.Bin.SBin
 instance Control.DeepSeq.NFData (Data.Type.Bin.SBin n)
 instance Data.GADT.DeepSeq.GNFData @Data.Bin.Bin Data.Type.Bin.SBin
@@ -730,6 +734,7 @@ instance GHC.Classes.Eq (Data.BinP.PosP.PosP b)
 instance GHC.Classes.Eq (Data.BinP.PosP.PosP' n b)
 instance (Data.Type.Nat.SNatI n, Data.Type.BinP.SBinPI b) => Test.QuickCheck.Arbitrary.Arbitrary (Data.BinP.PosP.PosP' n b)
 instance GHC.Show.Show (Data.BinP.PosP.PosP b)
+instance Data.GADT.Internal.GShow @Data.BinP.BinP Data.BinP.PosP.PosP
 instance Data.Type.BinP.SBinPI b => GHC.Enum.Bounded (Data.BinP.PosP.PosP b)
 instance Control.DeepSeq.NFData (Data.BinP.PosP.PosP b)
 instance Data.Type.BinP.SBinPI b => Test.QuickCheck.Arbitrary.Arbitrary (Data.BinP.PosP.PosP b)
@@ -738,6 +743,7 @@ instance Data.Type.BinP.SBinPI b => Test.QuickCheck.Function.Function (Data.BinP
 instance ((b :: Data.BinP.BinP) GHC.Types.~ ('Data.BinP.BE :: Data.BinP.BinP)) => Data.Boring.Boring (Data.BinP.PosP.PosP b)
 instance GHC.Classes.Ord (Data.BinP.PosP.PosP' n b)
 instance Data.Type.Nat.SNatI n => GHC.Show.Show (Data.BinP.PosP.PosP' n b)
+instance Data.Type.Nat.SNatI n => Data.GADT.Internal.GShow @Data.BinP.BinP (Data.BinP.PosP.PosP' n)
 instance (Data.Type.Nat.SNatI n, Data.Type.BinP.SBinPI b) => GHC.Enum.Bounded (Data.BinP.PosP.PosP' n b)
 instance Control.DeepSeq.NFData (Data.BinP.PosP.PosP' n b)
 instance Data.Type.Nat.SNatI n => Test.QuickCheck.Arbitrary.CoArbitrary (Data.BinP.PosP.PosP' n b)
@@ -847,6 +853,7 @@ universe :: forall b. SBinI b => [Pos b]
 instance GHC.Classes.Eq (Data.Bin.Pos.Pos b)
 instance GHC.Classes.Ord (Data.Bin.Pos.Pos b)
 instance GHC.Show.Show (Data.Bin.Pos.Pos b)
+instance Data.GADT.Internal.GShow @Data.Bin.Bin Data.Bin.Pos.Pos
 instance (Data.Type.BinP.SBinPI n, (b :: Data.Bin.Bin) GHC.Types.~ ('Data.Bin.BP n :: Data.Bin.Bin)) => GHC.Enum.Bounded (Data.Bin.Pos.Pos b)
 instance Control.DeepSeq.NFData (Data.Bin.Pos.Pos b)
 instance (Data.Type.BinP.SBinPI n, (b :: Data.Bin.Bin) GHC.Types.~ ('Data.Bin.BP n :: Data.Bin.Bin)) => Test.QuickCheck.Arbitrary.Arbitrary (Data.Bin.Pos.Pos b)

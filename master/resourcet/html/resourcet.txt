@@ -516,28 +516,37 @@ InvalidAccess :: String -> InvalidAccess
 --   <a>MonadUnliftIO</a> to <a>ReaderT</a> and <a>IdentityT</a>
 --   transformers on top of <a>IO</a>.
 --   
---   Laws. For any value <tt>u</tt> returned by <a>askUnliftIO</a>, it must
---   meet the monad transformer laws as reformulated for
+--   Laws. For any function <tt>run</tt> provided by <a>withRunInIO</a>, it
+--   must meet the monad transformer laws as reformulated for
 --   <tt>MonadUnliftIO</tt>:
 --   
 --   <ul>
---   <li><pre>unliftIO u . return = return</pre></li>
---   <li><pre>unliftIO u (m &gt;&gt;= f) = unliftIO u m &gt;&gt;= unliftIO
---   u . f</pre></li>
+--   <li><pre>run . return = return</pre></li>
+--   <li><pre>run (m &gt;&gt;= f) = run m &gt;&gt;= run . f</pre></li>
 --   </ul>
 --   
---   Instances of <tt>MonadUnliftIO</tt> must also satisfy the idempotency
---   law:
+--   Instances of <tt>MonadUnliftIO</tt> must also satisfy the following
+--   laws:
 --   
 --   <ul>
---   <li><pre>askUnliftIO &gt;&gt;= \u -&gt; (liftIO . unliftIO u) m =
---   m</pre></li>
+--   <li><i>Identity law</i> <tt>withRunInIO (\run -&gt; run m) =
+--   m</tt></li>
+--   <li><i>Inverse law</i> <tt>withRunInIO (\_ -&gt; m) = liftIO
+--   m</tt></li>
 --   </ul>
 --   
---   This law showcases two properties. First, <a>askUnliftIO</a> doesn't
---   change the monadic context, and second, <tt>liftIO . unliftIO u</tt>
---   is equivalent to <tt>id</tt> IF called in the same monadic context as
---   <a>askUnliftIO</a>.
+--   As an example of an invalid instance, a naive implementation of
+--   <tt>MonadUnliftIO (StateT s m)</tt> might be
+--   
+--   <pre>
+--   withRunInIO inner =
+--     StateT $ \s -&gt;
+--       withRunInIO $ \run -&gt;
+--         inner (run . flip evalStateT s)
+--   </pre>
+--   
+--   This breaks the identity law because the inner <tt>run m</tt> would
+--   throw away any state changes in <tt>m</tt>.
 class MonadIO m => MonadUnliftIO (m :: Type -> Type)
 
 -- | The internal state held by a <tt>ResourceT</tt> transformer.

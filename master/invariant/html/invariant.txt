@@ -10,7 +10,7 @@
 --   
 --   <a>http://comonad.com/reader/2008/rotten-bananas/</a>
 @package invariant
-@version 0.6
+@version 0.6.1
 
 
 -- | Haskell98 invariant functors (also known as exponential functors).

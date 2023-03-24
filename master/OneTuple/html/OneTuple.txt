@@ -7,14 +7,14 @@
 --   This package is a compatibility package for a singleton data type
 --   
 --   <pre>
---   data Solo a = Solo a
+--   data Solo a = MkSolo a
 --   </pre>
 --   
 --   Note: it's not a <tt>newtype</tt>
 --   
 --   <tt>Solo</tt> is available in <tt>base-4.16</tt> (GHC-9.2).
 @package OneTuple
-@version 0.3.1
+@version 0.4.1.1
 
 
 -- | <a>Solo</a> fills the <i>tuple gap</i> with a singleton tuple.
@@ -87,6 +87,7 @@ module Data.Tuple.Solo
 --   implementations of lazy and strict mapping functions.
 data Solo a
 Solo :: a -> Solo a
+pattern MkSolo :: a -> Solo a
 getSolo :: Solo a -> a
 
 

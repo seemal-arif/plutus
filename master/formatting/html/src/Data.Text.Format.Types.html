@@ -18,15 +18,15 @@
 </span><span id="line-18"></span><span>    </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span class="hs-comment">-- | Render an integral type in hexadecimal.</span><span>
-</span><span id="line-21"></span><span class="hs-keyword">newtype</span><span> </span><span id="Hex"><span class="annot"><a href="Data.Text.Format.Types.html#Hex"><span class="hs-identifier hs-var">Hex</span></a></span></span><span> </span><span id="local-6989586621679071656"><span class="annot"><a href="#local-6989586621679071656"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Hex"><span class="annot"><a href="Data.Text.Format.Types.html#Hex"><span class="hs-identifier hs-var">Hex</span></a></span></span><span> </span><span class="annot"><a href="#local-6989586621679071656"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-22"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679071589"><span id="local-6989586621679071593"><span class="annot"><span class="annottext">Hex a -&gt; Hex a -&gt; Bool
+</span><span id="line-21"></span><span class="hs-keyword">newtype</span><span> </span><span id="Hex"><span class="annot"><a href="Data.Text.Format.Types.html#Hex"><span class="hs-identifier hs-var">Hex</span></a></span></span><span> </span><span id="local-6989586621679072298"><span class="annot"><a href="#local-6989586621679072298"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Hex"><span class="annot"><a href="Data.Text.Format.Types.html#Hex"><span class="hs-identifier hs-var">Hex</span></a></span></span><span> </span><span class="annot"><a href="#local-6989586621679072298"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-22"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679072231"><span id="local-6989586621679072235"><span class="annot"><span class="annottext">Hex a -&gt; Hex a -&gt; Bool
 forall a. Eq a =&gt; Hex a -&gt; Hex a -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Hex a -&gt; Hex a -&gt; Bool
 $c/= :: forall a. Eq a =&gt; Hex a -&gt; Hex a -&gt; Bool
 == :: Hex a -&gt; Hex a -&gt; Bool
 $c== :: forall a. Eq a =&gt; Hex a -&gt; Hex a -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071555"><span id="local-6989586621679071559"><span id="local-6989586621679071563"><span id="local-6989586621679071567"><span id="local-6989586621679071571"><span id="local-6989586621679071575"><span id="local-6989586621679071579"><span class="annot"><span class="annottext">Hex a -&gt; Hex a -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072197"><span id="local-6989586621679072201"><span id="local-6989586621679072205"><span id="local-6989586621679072209"><span id="local-6989586621679072213"><span id="local-6989586621679072217"><span id="local-6989586621679072221"><span class="annot"><span class="annottext">Hex a -&gt; Hex a -&gt; Bool
 Hex a -&gt; Hex a -&gt; Ordering
 Hex a -&gt; Hex a -&gt; Hex a
 forall a.
@@ -57,7 +57,7 @@ $c&lt;= :: forall a. Ord a =&gt; Hex a -&gt; Hex a -&gt; Bool
 $c&lt; :: forall a. Ord a =&gt; Hex a -&gt; Hex a -&gt; Bool
 compare :: Hex a -&gt; Hex a -&gt; Ordering
 $ccompare :: forall a. Ord a =&gt; Hex a -&gt; Hex a -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071536"><span id="local-6989586621679071543"><span id="local-6989586621679071546"><span id="local-6989586621679071548"><span class="annot"><span class="annottext">ReadPrec [Hex a]
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072178"><span id="local-6989586621679072185"><span id="local-6989586621679072188"><span id="local-6989586621679072190"><span class="annot"><span class="annottext">ReadPrec [Hex a]
 ReadPrec (Hex a)
 ReadS [Hex a]
 forall a. Read a =&gt; ReadPrec [Hex a]
@@ -75,7 +75,7 @@ readList :: ReadS [Hex a]
 $creadList :: forall a. Read a =&gt; ReadS [Hex a]
 readsPrec :: Int -&gt; ReadS (Hex a)
 $creadsPrec :: forall a. Read a =&gt; Int -&gt; ReadS (Hex a)
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071525"><span id="local-6989586621679071527"><span id="local-6989586621679071532"><span class="annot"><span class="annottext">Int -&gt; Hex a -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072167"><span id="local-6989586621679072169"><span id="local-6989586621679072174"><span class="annot"><span class="annottext">Int -&gt; Hex a -&gt; ShowS
 forall a. Show a =&gt; Int -&gt; Hex a -&gt; ShowS
 forall a. Show a =&gt; [Hex a] -&gt; ShowS
 forall a. Show a =&gt; Hex a -&gt; String
@@ -87,7 +87,7 @@ show :: Hex a -&gt; String
 $cshow :: forall a. Show a =&gt; Hex a -&gt; String
 showsPrec :: Int -&gt; Hex a -&gt; ShowS
 $cshowsPrec :: forall a. Show a =&gt; Int -&gt; Hex a -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071497"><span id="local-6989586621679071501"><span id="local-6989586621679071505"><span id="local-6989586621679071509"><span id="local-6989586621679071513"><span id="local-6989586621679071517"><span id="local-6989586621679071521"><span class="annot"><span class="annottext">Integer -&gt; Hex a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072139"><span id="local-6989586621679072143"><span id="local-6989586621679072147"><span id="local-6989586621679072151"><span id="local-6989586621679072155"><span id="local-6989586621679072159"><span id="local-6989586621679072163"><span class="annot"><span class="annottext">Integer -&gt; Hex a
 Hex a -&gt; Hex a
 Hex a -&gt; Hex a -&gt; Hex a
 forall a. Num a =&gt; Integer -&gt; Hex a
@@ -116,14 +116,14 @@ $c* :: forall a. Num a =&gt; Hex a -&gt; Hex a -&gt; Hex a
 $c- :: forall a. Num a =&gt; Hex a -&gt; Hex a -&gt; Hex a
 + :: Hex a -&gt; Hex a -&gt; Hex a
 $c+ :: forall a. Num a =&gt; Hex a -&gt; Hex a -&gt; Hex a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Num</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071484"><span class="annot"><span class="annottext">Hex a -&gt; Rational
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Num</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072126"><span class="annot"><span class="annottext">Hex a -&gt; Rational
 forall a. Num a -&gt; Ord a -&gt; (a -&gt; Rational) -&gt; Real a
 forall {a}. Real a =&gt; Num (Hex a)
 forall {a}. Real a =&gt; Ord (Hex a)
 forall a. Real a =&gt; Hex a -&gt; Rational
 toRational :: Hex a -&gt; Rational
 $ctoRational :: forall a. Real a =&gt; Hex a -&gt; Rational
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Real</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071447"><span id="local-6989586621679071451"><span id="local-6989586621679071455"><span id="local-6989586621679071459"><span id="local-6989586621679071463"><span id="local-6989586621679071467"><span id="local-6989586621679071471"><span id="local-6989586621679071475"><span class="annot"><span class="annottext">Int -&gt; Hex a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Real</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072089"><span id="local-6989586621679072093"><span id="local-6989586621679072097"><span id="local-6989586621679072101"><span id="local-6989586621679072105"><span id="local-6989586621679072109"><span id="local-6989586621679072113"><span id="local-6989586621679072117"><span class="annot"><span class="annottext">Int -&gt; Hex a
 Hex a -&gt; Int
 Hex a -&gt; [Hex a]
 Hex a -&gt; Hex a
@@ -161,7 +161,7 @@ pred :: Hex a -&gt; Hex a
 $cpred :: forall a. Enum a =&gt; Hex a -&gt; Hex a
 succ :: Hex a -&gt; Hex a
 $csucc :: forall a. Enum a =&gt; Hex a -&gt; Hex a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071410"><span id="local-6989586621679071414"><span id="local-6989586621679071418"><span id="local-6989586621679071422"><span id="local-6989586621679071426"><span id="local-6989586621679071430"><span id="local-6989586621679071434"><span class="annot"><span class="annottext">Hex a -&gt; Integer
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072052"><span id="local-6989586621679072056"><span id="local-6989586621679072060"><span id="local-6989586621679072064"><span id="local-6989586621679072068"><span id="local-6989586621679072072"><span id="local-6989586621679072076"><span class="annot"><span class="annottext">Hex a -&gt; Integer
 Hex a -&gt; Hex a -&gt; (Hex a, Hex a)
 Hex a -&gt; Hex a -&gt; Hex a
 forall {a}. Integral a =&gt; Enum (Hex a)
@@ -197,17 +197,17 @@ $cquot :: forall a. Integral a =&gt; Hex a -&gt; Hex a -&gt; Hex a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Integral</span></a></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span class="hs-comment">-- | Render a value using its 'Show' instance.</span><span>
-</span><span id="line-25"></span><span class="hs-keyword">newtype</span><span> </span><span id="Shown"><span class="annot"><a href="Data.Text.Format.Types.html#Shown"><span class="hs-identifier hs-var">Shown</span></a></span></span><span> </span><span id="local-6989586621679071640"><span class="annot"><a href="#local-6989586621679071640"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Shown"><span class="annot"><a href="Data.Text.Format.Types.html#Shown"><span class="hs-identifier hs-var">Shown</span></a></span></span><span> </span><span class="hs-special">{</span><span>
+</span><span id="line-25"></span><span class="hs-keyword">newtype</span><span> </span><span id="Shown"><span class="annot"><a href="Data.Text.Format.Types.html#Shown"><span class="hs-identifier hs-var">Shown</span></a></span></span><span> </span><span id="local-6989586621679072282"><span class="annot"><a href="#local-6989586621679072282"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Shown"><span class="annot"><a href="Data.Text.Format.Types.html#Shown"><span class="hs-identifier hs-var">Shown</span></a></span></span><span> </span><span class="hs-special">{</span><span>
 </span><span id="line-26"></span><span>      </span><span id="shown"><span class="annot"><span class="annottext">forall a. Shown a -&gt; a
-</span><a href="Data.Text.Format.Types.html#shown"><span class="hs-identifier hs-var hs-var">shown</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="#local-6989586621679071640"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-27"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679071395"><span id="local-6989586621679071399"><span class="annot"><span class="annottext">Shown a -&gt; Shown a -&gt; Bool
+</span><a href="Data.Text.Format.Types.html#shown"><span class="hs-identifier hs-var hs-var">shown</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="#local-6989586621679072282"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-27"></span><span>    </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679072037"><span id="local-6989586621679072041"><span class="annot"><span class="annottext">Shown a -&gt; Shown a -&gt; Bool
 forall a. Eq a =&gt; Shown a -&gt; Shown a -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Shown a -&gt; Shown a -&gt; Bool
 $c/= :: forall a. Eq a =&gt; Shown a -&gt; Shown a -&gt; Bool
 == :: Shown a -&gt; Shown a -&gt; Bool
 $c== :: forall a. Eq a =&gt; Shown a -&gt; Shown a -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071384"><span id="local-6989586621679071386"><span id="local-6989586621679071390"><span class="annot"><span class="annottext">Int -&gt; Shown a -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072026"><span id="local-6989586621679072028"><span id="local-6989586621679072032"><span class="annot"><span class="annottext">Int -&gt; Shown a -&gt; ShowS
 forall a. Show a =&gt; Int -&gt; Shown a -&gt; ShowS
 forall a. Show a =&gt; [Shown a] -&gt; ShowS
 forall a. Show a =&gt; Shown a -&gt; String
@@ -219,7 +219,7 @@ show :: Shown a -&gt; String
 $cshow :: forall a. Show a =&gt; Shown a -&gt; String
 showsPrec :: Int -&gt; Shown a -&gt; ShowS
 $cshowsPrec :: forall a. Show a =&gt; Int -&gt; Shown a -&gt; ShowS
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071369"><span id="local-6989586621679071377"><span id="local-6989586621679071380"><span id="local-6989586621679071382"><span class="annot"><span class="annottext">ReadPrec [Shown a]
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679072011"><span id="local-6989586621679072019"><span id="local-6989586621679072022"><span id="local-6989586621679072024"><span class="annot"><span class="annottext">ReadPrec [Shown a]
 ReadPrec (Shown a)
 ReadS [Shown a]
 forall a. Read a =&gt; ReadPrec [Shown a]
@@ -237,7 +237,7 @@ readList :: ReadS [Shown a]
 $creadList :: forall a. Read a =&gt; ReadS [Shown a]
 readsPrec :: Int -&gt; ReadS (Shown a)
 $creadsPrec :: forall a. Read a =&gt; Int -&gt; ReadS (Shown a)
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071338"><span id="local-6989586621679071342"><span id="local-6989586621679071346"><span id="local-6989586621679071350"><span id="local-6989586621679071354"><span id="local-6989586621679071358"><span id="local-6989586621679071362"><span class="annot"><span class="annottext">Shown a -&gt; Shown a -&gt; Bool
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071980"><span id="local-6989586621679071984"><span id="local-6989586621679071988"><span id="local-6989586621679071992"><span id="local-6989586621679071996"><span id="local-6989586621679072000"><span id="local-6989586621679072004"><span class="annot"><span class="annottext">Shown a -&gt; Shown a -&gt; Bool
 Shown a -&gt; Shown a -&gt; Ordering
 Shown a -&gt; Shown a -&gt; Shown a
 forall a.
@@ -268,7 +268,7 @@ $c&lt;= :: forall a. Ord a =&gt; Shown a -&gt; Shown a -&gt; Bool
 $c&lt; :: forall a. Ord a =&gt; Shown a -&gt; Shown a -&gt; Bool
 compare :: Shown a -&gt; Shown a -&gt; Ordering
 $ccompare :: forall a. Ord a =&gt; Shown a -&gt; Shown a -&gt; Ordering
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071308"><span id="local-6989586621679071312"><span id="local-6989586621679071316"><span id="local-6989586621679071320"><span id="local-6989586621679071324"><span id="local-6989586621679071328"><span id="local-6989586621679071332"><span class="annot"><span class="annottext">Integer -&gt; Shown a
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071950"><span id="local-6989586621679071954"><span id="local-6989586621679071958"><span id="local-6989586621679071962"><span id="local-6989586621679071966"><span id="local-6989586621679071970"><span id="local-6989586621679071974"><span class="annot"><span class="annottext">Integer -&gt; Shown a
 Shown a -&gt; Shown a
 Shown a -&gt; Shown a -&gt; Shown a
 forall a. Num a =&gt; Integer -&gt; Shown a
@@ -297,7 +297,7 @@ $c* :: forall a. Num a =&gt; Shown a -&gt; Shown a -&gt; Shown a
 $c- :: forall a. Num a =&gt; Shown a -&gt; Shown a -&gt; Shown a
 + :: Shown a -&gt; Shown a -&gt; Shown a
 $c+ :: forall a. Num a =&gt; Shown a -&gt; Shown a -&gt; Shown a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Num</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071291"><span id="local-6989586621679071295"><span id="local-6989586621679071299"><span class="annot"><span class="annottext">Rational -&gt; Shown a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Num</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071933"><span id="local-6989586621679071937"><span id="local-6989586621679071941"><span class="annot"><span class="annottext">Rational -&gt; Shown a
 Shown a -&gt; Shown a
 Shown a -&gt; Shown a -&gt; Shown a
 forall {a}. Fractional a =&gt; Num (Shown a)
@@ -313,14 +313,14 @@ recip :: Shown a -&gt; Shown a
 $crecip :: forall a. Fractional a =&gt; Shown a -&gt; Shown a
 / :: Shown a -&gt; Shown a -&gt; Shown a
 $c/ :: forall a. Fractional a =&gt; Shown a -&gt; Shown a -&gt; Shown a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Fractional</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071277"><span class="annot"><span class="annottext">Shown a -&gt; Rational
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Fractional</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071919"><span class="annot"><span class="annottext">Shown a -&gt; Rational
 forall a. Num a -&gt; Ord a -&gt; (a -&gt; Rational) -&gt; Real a
 forall {a}. Real a =&gt; Num (Shown a)
 forall {a}. Real a =&gt; Ord (Shown a)
 forall a. Real a =&gt; Shown a -&gt; Rational
 toRational :: Shown a -&gt; Rational
 $ctoRational :: forall a. Real a =&gt; Shown a -&gt; Rational
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Real</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071231"><span id="local-6989586621679071239"><span id="local-6989586621679071247"><span id="local-6989586621679071255"><span id="local-6989586621679071263"><span class="annot"><span class="annottext">forall b. Integral b =&gt; Shown a -&gt; b
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Real</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071873"><span id="local-6989586621679071881"><span id="local-6989586621679071889"><span id="local-6989586621679071897"><span id="local-6989586621679071905"><span class="annot"><span class="annottext">forall b. Integral b =&gt; Shown a -&gt; b
 forall b. Integral b =&gt; Shown a -&gt; (b, Shown a)
 forall a.
 Real a
@@ -346,7 +346,7 @@ $ctruncate :: forall a b. (RealFrac a, Integral b) =&gt; Shown a -&gt; b
 properFraction :: forall b. Integral b =&gt; Shown a -&gt; (b, Shown a)
 $cproperFraction :: forall a b. (RealFrac a, Integral b) =&gt; Shown a -&gt; (b, Shown a)
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">RealFrac</span></a></span></span></span></span></span></span><span class="hs-special">,</span><span>
-</span><span id="line-28"></span><span>                </span><span id="local-6989586621679071133"><span id="local-6989586621679071137"><span id="local-6989586621679071141"><span id="local-6989586621679071145"><span id="local-6989586621679071149"><span id="local-6989586621679071153"><span id="local-6989586621679071157"><span id="local-6989586621679071161"><span id="local-6989586621679071165"><span id="local-6989586621679071169"><span id="local-6989586621679071173"><span id="local-6989586621679071177"><span id="local-6989586621679071181"><span id="local-6989586621679071185"><span id="local-6989586621679071189"><span id="local-6989586621679071193"><span id="local-6989586621679071197"><span id="local-6989586621679071201"><span id="local-6989586621679071205"><span id="local-6989586621679071209"><span id="local-6989586621679071213"><span id="local-6989586621679071217"><span class="annot"><span class="annottext">Shown a
+</span><span id="line-28"></span><span>                </span><span id="local-6989586621679071775"><span id="local-6989586621679071779"><span id="local-6989586621679071783"><span id="local-6989586621679071787"><span id="local-6989586621679071791"><span id="local-6989586621679071795"><span id="local-6989586621679071799"><span id="local-6989586621679071803"><span id="local-6989586621679071807"><span id="local-6989586621679071811"><span id="local-6989586621679071815"><span id="local-6989586621679071819"><span id="local-6989586621679071823"><span id="local-6989586621679071827"><span id="local-6989586621679071831"><span id="local-6989586621679071835"><span id="local-6989586621679071839"><span id="local-6989586621679071843"><span id="local-6989586621679071847"><span id="local-6989586621679071851"><span id="local-6989586621679071855"><span id="local-6989586621679071859"><span class="annot"><span class="annottext">Shown a
 Shown a -&gt; Shown a
 Shown a -&gt; Shown a -&gt; Shown a
 forall {a}. Floating a =&gt; Fractional (Shown a)
@@ -422,7 +422,7 @@ exp :: Shown a -&gt; Shown a
 $cexp :: forall a. Floating a =&gt; Shown a -&gt; Shown a
 pi :: Shown a
 $cpi :: forall a. Floating a =&gt; Shown a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Floating</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071067"><span id="local-6989586621679071071"><span id="local-6989586621679071075"><span id="local-6989586621679071079"><span id="local-6989586621679071083"><span id="local-6989586621679071087"><span id="local-6989586621679071091"><span id="local-6989586621679071095"><span id="local-6989586621679071099"><span id="local-6989586621679071103"><span id="local-6989586621679071107"><span id="local-6989586621679071111"><span id="local-6989586621679071115"><span id="local-6989586621679071119"><span class="annot"><span class="annottext">Int -&gt; Shown a -&gt; Shown a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Floating</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071709"><span id="local-6989586621679071713"><span id="local-6989586621679071717"><span id="local-6989586621679071721"><span id="local-6989586621679071725"><span id="local-6989586621679071729"><span id="local-6989586621679071733"><span id="local-6989586621679071737"><span id="local-6989586621679071741"><span id="local-6989586621679071745"><span id="local-6989586621679071749"><span id="local-6989586621679071753"><span id="local-6989586621679071757"><span id="local-6989586621679071761"><span class="annot"><span class="annottext">Int -&gt; Shown a -&gt; Shown a
 Integer -&gt; Int -&gt; Shown a
 Shown a -&gt; Bool
 Shown a -&gt; Int
@@ -488,7 +488,7 @@ floatDigits :: Shown a -&gt; Int
 $cfloatDigits :: forall a. RealFloat a =&gt; Shown a -&gt; Int
 floatRadix :: Shown a -&gt; Integer
 $cfloatRadix :: forall a. RealFloat a =&gt; Shown a -&gt; Integer
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">RealFloat</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071030"><span id="local-6989586621679071034"><span id="local-6989586621679071038"><span id="local-6989586621679071042"><span id="local-6989586621679071046"><span id="local-6989586621679071050"><span id="local-6989586621679071054"><span id="local-6989586621679071058"><span class="annot"><span class="annottext">Int -&gt; Shown a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">RealFloat</span></a></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071672"><span id="local-6989586621679071676"><span id="local-6989586621679071680"><span id="local-6989586621679071684"><span id="local-6989586621679071688"><span id="local-6989586621679071692"><span id="local-6989586621679071696"><span id="local-6989586621679071700"><span class="annot"><span class="annottext">Int -&gt; Shown a
 Shown a -&gt; Int
 Shown a -&gt; [Shown a]
 Shown a -&gt; Shown a
@@ -526,7 +526,7 @@ pred :: Shown a -&gt; Shown a
 $cpred :: forall a. Enum a =&gt; Shown a -&gt; Shown a
 succ :: Shown a -&gt; Shown a
 $csucc :: forall a. Enum a =&gt; Shown a -&gt; Shown a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679070994"><span id="local-6989586621679070998"><span id="local-6989586621679071002"><span id="local-6989586621679071006"><span id="local-6989586621679071010"><span id="local-6989586621679071014"><span id="local-6989586621679071018"><span class="annot"><span class="annottext">Shown a -&gt; Integer
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></a></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071636"><span id="local-6989586621679071640"><span id="local-6989586621679071644"><span id="local-6989586621679071648"><span id="local-6989586621679071652"><span id="local-6989586621679071656"><span id="local-6989586621679071660"><span class="annot"><span class="annottext">Shown a -&gt; Integer
 Shown a -&gt; Shown a -&gt; (Shown a, Shown a)
 Shown a -&gt; Shown a -&gt; Shown a
 forall {a}. Integral a =&gt; Enum (Shown a)
@@ -559,7 +559,7 @@ rem :: Shown a -&gt; Shown a -&gt; Shown a
 $crem :: forall a. Integral a =&gt; Shown a -&gt; Shown a -&gt; Shown a
 quot :: Shown a -&gt; Shown a -&gt; Shown a
 $cquot :: forall a. Integral a =&gt; Shown a -&gt; Shown a -&gt; Shown a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Integral</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679070984"><span id="local-6989586621679070988"><span class="annot"><span class="annottext">Shown a
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Integral</span></a></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679071626"><span id="local-6989586621679071630"><span class="annot"><span class="annottext">Shown a
 forall a. a -&gt; a -&gt; Bounded a
 forall a. Bounded a =&gt; Shown a
 maxBound :: Shown a

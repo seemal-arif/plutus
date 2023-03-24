@@ -13,7 +13,7 @@
 --   higher-order functions to implement those recursion schemes makes your
 --   code clearer, faster, and safer. See README for details.
 @package recursion-schemes
-@version 5.2.2.2
+@version 5.2.2.4
 
 
 -- | Base Functors for standard types not already expressed as a fixed
@@ -128,7 +128,7 @@ Cons :: a -> b -> ListF a b
 --   time.
 --   
 --   For example, a value of type <tt>[a]</tt> can be unrolled into a
---   <tt><a>ListF</a> a [a]</tt>. Ifthat unrolled value is a <a>Cons</a>,
+--   <tt><a>ListF</a> a [a]</tt>. If that unrolled value is a <a>Cons</a>,
 --   it contains another <tt>[a]</tt> which can be unrolled as well, and so
 --   on.
 --   

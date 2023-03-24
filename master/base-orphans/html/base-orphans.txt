@@ -15,10 +15,14 @@
 --   <a>https://github.com/haskell-compat/base-orphans#readme</a>. See also
 --   the <a>what is not covered</a> section.
 @package base-orphans
-@version 0.8.7
+@version 0.9.0
 
 
 -- | Exports orphan instances that mimic instances available in later
 --   versions of <tt>base</tt>. To use them, simply <tt>import Data.Orphans
 --   ()</tt>.
 module Data.Orphans
+instance GHC.Base.Functor ((,,,,) a b c d)
+instance GHC.Base.Functor ((,,,,,) a b c d e)
+instance GHC.Base.Functor ((,,,,,,) a b c d e f)
+instance (GHC.Enum.Enum a, GHC.Enum.Bounded a, GHC.Classes.Eq a) => GHC.Enum.Enum (Data.Ord.Down a)

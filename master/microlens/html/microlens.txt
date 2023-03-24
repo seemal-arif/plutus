@@ -58,7 +58,7 @@
 --   Note that microlens has no dependencies starting from GHC 7.10
 --   (base-4.8). Prior to that, it depends on transformers-0.2 or above.
 @package microlens
-@version 0.4.13.0
+@version 0.4.13.1
 
 
 -- | This module provides just the types (<a>Lens</a>, <a>Traversal</a>,
@@ -330,8 +330,8 @@ class Each s t a b | s -> a, t -> b, s b -> t, t a -> s
 --   <a>text</a>, and <a>unordered-containers</a> by using
 --   <a>microlens-platform</a>.
 each :: Each s t a b => Traversal s t a b
-type family Index (s :: *) :: *
-type family IxValue (m :: *) :: *
+type family Index (s :: Type) :: Type
+type family IxValue (m :: Type) :: Type
 class Ixed m
 
 -- | This traversal lets you access (and update) an arbitrary element in a

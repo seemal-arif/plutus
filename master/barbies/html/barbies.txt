@@ -8,7 +8,7 @@
 --   outfit for each role. This package provides the basic abstractions to
 --   work with them comfortably.
 @package barbies
-@version 2.0.3.1
+@version 2.0.4.0
 
 
 -- | Generalize the standard two-functor <a>Product</a> to the product of

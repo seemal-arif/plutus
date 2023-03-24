@@ -8,7 +8,7 @@
 --   your unit tests, golden tests, QuickCheck/SmallCheck properties, and
 --   any other types of tests into a single test suite.
 @package tasty
-@version 1.4.2.3
+@version 1.4.3
 
 
 -- | Extensible options. They are used for provider-specific settings,
@@ -187,7 +187,7 @@ type Path = Seq String
 -- | Evaluate an awk expression
 eval :: Expr -> M Value
 
--- | Run the <a>M</a> monad with a given list of fields
+-- | Run the <tt>M</tt> monad with a given list of fields
 --   
 --   The field list should not include <tt>$0</tt>; it's calculated
 --   automatically.
@@ -383,7 +383,7 @@ tryIngredients :: [Ingredient] -> OptionSet -> TestTree -> Maybe (IO Bool)
 --   automatically include <a>NumThreads</a>.
 ingredientOptions :: Ingredient -> [OptionDescription]
 
--- | Like <tt>ingredientOption</tt>, but folds over multiple ingredients.
+-- | Like <a>ingredientOptions</a>, but folds over multiple ingredients.
 ingredientsOptions :: [Ingredient] -> [OptionDescription]
 
 -- | All the options relevant for this test suite. This includes the
@@ -419,7 +419,7 @@ Quiet :: Bool -> Quiet
 -- | Report only failed tests.
 --   
 --   At the moment, this option only works globally. As an argument to
---   <tt>localOption</tt>, it does nothing.
+--   <a>localOption</a>, it does nothing.
 newtype HideSuccesses
 HideSuccesses :: Bool -> HideSuccesses
 
@@ -499,7 +499,7 @@ PrintHeading :: String -> IO () -> TestOutput -> TestOutput
 -- | Inactive test (e.g. not matching the current pattern)
 Skip :: TestOutput
 
--- | Two sets of <tt>TestOuput</tt> on the same level
+-- | Two sets of <a>TestOutput</a> on the same level
 Seq :: TestOutput -> TestOutput -> TestOutput
 
 -- | Build the <a>TestOutput</a> for a <a>TestTree</a> and
@@ -539,7 +539,7 @@ instance GHC.Base.Monoid Test.Tasty.Ingredients.ConsoleReporter.TestOutput
 -- | This module exports the basic ingredients defined in the
 --   <tt>tasty</tt> packages.
 --   
---   Note that if <tt>defaultIngredients</tt> from <a>Test.Tasty</a> suits
+--   Note that if <a>defaultIngredients</a> from <a>Test.Tasty</a> suits
 --   your needs, use that instead of importing this module.
 module Test.Tasty.Ingredients.Basic
 
@@ -553,7 +553,7 @@ Quiet :: Bool -> Quiet
 -- | Report only failed tests.
 --   
 --   At the moment, this option only works globally. As an argument to
---   <tt>localOption</tt>, it does nothing.
+--   <a>localOption</a>, it does nothing.
 newtype HideSuccesses
 HideSuccesses :: Bool -> HideSuccesses
 
@@ -590,7 +590,7 @@ testsNames :: OptionSet -> TestTree -> [TestName]
 -- | This ingredient doesn't do anything apart from registering additional
 --   options.
 --   
---   The option values can be accessed using <tt>askOption</tt>.
+--   The option values can be accessed using <a>askOption</a>.
 includingOptions :: [OptionDescription] -> Ingredient
 
 
@@ -770,7 +770,7 @@ tryIngredients :: [Ingredient] -> OptionSet -> TestTree -> Maybe (IO Bool)
 --   automatically include <a>NumThreads</a>.
 ingredientOptions :: Ingredient -> [OptionDescription]
 
--- | Like <tt>ingredientOption</tt>, but folds over multiple ingredients.
+-- | Like <a>ingredientOptions</a>, but folds over multiple ingredients.
 ingredientsOptions :: [Ingredient] -> [OptionDescription]
 
 -- | A simple console UI
@@ -789,14 +789,14 @@ testsNames :: OptionSet -> TestTree -> [TestName]
 
 -- | Parse the command-line and environment options passed to tasty.
 --   
---   Useful if you need to get the options before <tt>defaultMain</tt> is
+--   Useful if you need to get the options before <a>defaultMain</a> is
 --   called.
 --   
---   Once within the test tree, <tt>askOption</tt> should be used instead.
+--   Once within the test tree, <a>askOption</a> should be used instead.
 --   
 --   The arguments to this function should be the same as for
 --   <a>defaultMainWithIngredients</a>. If you don't use any custom
---   ingredients, pass <tt>defaultIngredients</tt>.
+--   ingredients, pass <a>defaultIngredients</a>.
 parseOptions :: [Ingredient] -> TestTree -> IO OptionSet
 
 -- | Generate a command line parser from a list of option descriptions,
@@ -812,7 +812,7 @@ suiteOptionParser :: [Ingredient] -> TestTree -> ([String], Parser OptionSet)
 --   
 --   When the tests finish, this function calls <a>exitWith</a> with the
 --   exit code that indicates whether any tests have failed. See
---   <tt>defaultMain</tt> for details.
+--   <a>defaultMain</a> for details.
 defaultMainWithIngredients :: [Ingredient] -> TestTree -> IO ()
 
 -- | Current status of a test
@@ -930,10 +930,10 @@ launchTestTree :: OptionSet -> TestTree -> (StatusMap -> IO (Time -> IO a)) -> I
 -- | Number of parallel threads to use for running tests.
 --   
 --   Note that this is <i>not</i> included in <a>coreOptions</a>. Instead,
---   it's automatically included in the options for any
---   <tt>TestReporter</tt> ingredient by <tt>ingredientOptions</tt>,
---   because the way test reporters are handled already involves
---   parallelism. Other ingredients may also choose to include this option.
+--   it's automatically included in the options for any <a>TestReporter</a>
+--   ingredient by <a>ingredientOptions</a>, because the way test reporters
+--   are handled already involves parallelism. Other ingredients may also
+--   choose to include this option.
 newtype NumThreads
 NumThreads :: Int -> NumThreads
 [getNumThreads] :: NumThreads -> Int
@@ -982,7 +982,7 @@ forceElements :: [a] -> ()
 --   
 --   This function is called automatically from the <tt>defaultMain*</tt>
 --   family of functions. You only need to call it explicitly if you call
---   <tt>tryIngredients</tt> yourself.
+--   <a>tryIngredients</a> yourself.
 --   
 --   This function does nothing on non-UNIX systems or when compiled with
 --   GHC older than 7.6.
@@ -1054,7 +1054,7 @@ testGroup :: TestName -> [TestTree] -> TestTree
 
 -- | Parse the command line arguments and run the tests.
 --   
---   When the tests finish, this function calls <tt>exitWith</tt> with the
+--   When the tests finish, this function calls <a>exitWith</a> with the
 --   exit code that indicates whether any tests have failed. Most external
 --   systems (stack, cabal, travis-ci, jenkins etc.) rely on the exit code
 --   to detect whether the tests pass. If you want to do something else
@@ -1083,7 +1083,7 @@ defaultMain :: TestTree -> IO ()
 --   
 --   When the tests finish, this function calls <a>exitWith</a> with the
 --   exit code that indicates whether any tests have failed. See
---   <tt>defaultMain</tt> for details.
+--   <a>defaultMain</a> for details.
 defaultMainWithIngredients :: [Ingredient] -> TestTree -> IO ()
 
 -- | List of the default ingredients. This is what <a>defaultMain</a> uses.
@@ -1095,7 +1095,7 @@ defaultIngredients :: [Ingredient]
 -- | This ingredient doesn't do anything apart from registering additional
 --   options.
 --   
---   The option values can be accessed using <tt>askOption</tt>.
+--   The option values can be accessed using <a>askOption</a>.
 includingOptions :: [OptionDescription] -> Ingredient
 
 -- | Locally adjust the option value for the given test subtree
@@ -1158,12 +1158,14 @@ AllFinish :: DependencyType
 --   
 --   <pre>
 --   <a>after</a> <a>AllFinish</a> "Foo" $
---      <tt>testCase</tt> "A test that depends on Foo.Bar" $ ...
+--      
 --   </pre>
+--   
+--   testCase<tt> "A test that depends on Foo.Bar" $ ... </tt>
 --   
 --   Note, however, that our test also happens to contain <tt>Foo</tt> as
 --   part of its name, so it also matches the pattern and becomes a
---   dependency of itself. This will result in a <tt>DependencyLoop</tt>
+--   dependency of itself. This will result in a <a>DependencyLoop</a>
 --   exception. To avoid this, either change the test name so that it
 --   doesn't mention <tt>Foo</tt> or make the pattern more specific.
 --   
@@ -1172,15 +1174,19 @@ AllFinish :: DependencyType
 --   
 --   <pre>
 --   <a>after</a> <a>AllFinish</a> "$0 == \"Tests.Foo.Bar\"" $
---      <tt>testCase</tt> "A test that depends on Foo.Bar" $ ...
+--      
 --   </pre>
+--   
+--   testCase<tt> "A test that depends on Foo.Bar" $ ... </tt>
 --   
 --   Or only specify the dependency's own name, ignoring the group names:
 --   
 --   <pre>
 --   <a>after</a> <a>AllFinish</a> "$NF == \"Bar\"" $
---      <tt>testCase</tt> "A test that depends on Foo.Bar" $ ...
+--      
 --   </pre>
+--   
+--   testCase<tt> "A test that depends on Foo.Bar" $ ... </tt>
 after :: DependencyType -> String -> TestTree -> TestTree
 
 -- | Like <a>after</a>, but accepts the pattern as a syntax tree instead of
@@ -1192,6 +1198,8 @@ after :: DependencyType -> String -> TestTree -> TestTree
 --   
 --   <pre>
 --   <a>after_</a> <a>AllFinish</a> (<a>EQ</a> (<a>Field</a> <a>NF</a>) (<a>StringLit</a> "Bar")) $
---      <tt>testCase</tt> "A test that depends on Foo.Bar" $ ...
+--      
 --   </pre>
+--   
+--   testCase<tt> "A test that depends on Foo.Bar" $ ... </tt>
 after_ :: DependencyType -> Expr -> TestTree -> TestTree

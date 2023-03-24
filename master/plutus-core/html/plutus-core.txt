@@ -2626,7 +2626,7 @@ tryUniApply :: (MonadPlus m, HasUniApply uni) => SomeTypeIn (Kinded uni) -> Some
 --   say:
 --   
 --   <pre>
---   instance GShow t where gshowsPrec = showsPrec
+--   instance GShow t where gshowsPrec = defaultGshowsPrec
 --   </pre>
 class GShow (t :: k -> Type)
 gshowsPrec :: forall (a :: k). GShow t => Int -> t a -> ShowS
@@ -2635,6 +2635,90 @@ gshow :: forall {k} t (a :: k). GShow t => t a -> String
 -- | A class for type-contexts which contain enough information to (at
 --   least in some cases) decide the equality of types occurring within
 --   them.
+--   
+--   This class is sometimes confused with <a>TestEquality</a> from base.
+--   <a>TestEquality</a> only checks <i>type equality</i>.
+--   
+--   Consider
+--   
+--   <pre>
+--   &gt;&gt;&gt; data Tag a where TagInt1 :: Tag Int; TagInt2 :: Tag Int
+--   </pre>
+--   
+--   The correct <tt><a>TestEquality</a> Tag</tt> instance is
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance TestEquality Tag where
+--       testEquality TagInt1 TagInt1 = Just Refl
+--       testEquality TagInt1 TagInt2 = Just Refl
+--       testEquality TagInt2 TagInt1 = Just Refl
+--       testEquality TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   While we can define
+--   
+--   <pre>
+--   instance <a>GEq</a> Tag where
+--      <a>geq</a> = <a>testEquality</a>
+--   </pre>
+--   
+--   this will mean we probably want to have
+--   
+--   <pre>
+--   instance <a>Eq</a> Tag where
+--      _ <a>==</a> _ = True
+--   </pre>
+--   
+--   <i>Note:</i> In the future version of <tt>some</tt> package (to be
+--   released around GHC-9.6 / 9.8) the <tt>forall a. Eq (f a)</tt>
+--   constraint will be added as a constraint to <a>GEq</a>, with a law
+--   relating <a>GEq</a> and <a>Eq</a>:
+--   
+--   <pre>
+--   <a>geq</a> x y = Just Refl   ⇒  x == y = True        ∀ (x :: f a) (y :: f b)
+--   x == y                ≡  isJust (<a>geq</a> x y)     ∀ (x, y :: f a)
+--   </pre>
+--   
+--   So, the more useful <tt><a>GEq</a> Tag</tt> instance would
+--   differentiate between different constructors:
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance GEq Tag where
+--       geq TagInt1 TagInt1 = Just Refl
+--       geq TagInt1 TagInt2 = Nothing
+--       geq TagInt2 TagInt1 = Nothing
+--       geq TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   which is consistent with a derived <a>Eq</a> instance for <tt>Tag</tt>
+--   
+--   <pre>
+--   &gt;&gt;&gt; deriving instance Eq (Tag a)
+--   </pre>
+--   
+--   Note that even if <tt>a ~ b</tt>, the <tt><a>geq</a> (x :: f a) (y ::
+--   f b)</tt> may be <a>Nothing</a> (when value terms are inequal).
+--   
+--   The consistency of <a>GEq</a> and <a>Eq</a> is easy to check by
+--   exhaustion:
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkFwdGEq :: (forall a. Eq (f a), GEq f) =&gt; f a -&gt; f b -&gt; Bool; checkFwdGEq x y = case geq x y of Just Refl -&gt; x == y; Nothing -&gt; True
+--   
+--   &gt;&gt;&gt; (checkFwdGEq TagInt1 TagInt1, checkFwdGEq TagInt1 TagInt2, checkFwdGEq TagInt2 TagInt1, checkFwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkBwdGEq :: (Eq (f a), GEq f) =&gt; f a -&gt; f a -&gt; Bool; checkBwdGEq x y = if x == y then isJust (geq x y) else isNothing (geq x y)
+--   
+--   &gt;&gt;&gt; (checkBwdGEq TagInt1 TagInt1, checkBwdGEq TagInt1 TagInt2, checkBwdGEq TagInt2 TagInt1, checkBwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
 class GEq (f :: k -> Type)
 
 -- | Produce a witness of type-equality, if one exists.
@@ -2674,6 +2758,73 @@ deriveGCompare :: DeriveGCompare t => t -> Q [Dec]
 data (a :: k) :~: (b :: k)
 [Refl] :: forall {k} (a :: k). a :~: a
 infix 4 :~:
+
+-- | A basic dependent sum type where the first component is a tag that
+--   specifies the type of the second. For example, think of a GADT such
+--   as:
+--   
+--   <pre>
+--   data Tag a where
+--      AString :: Tag String
+--      AnInt   :: Tag Int
+--      Rec     :: Tag (DSum Tag Identity)
+--   </pre>
+--   
+--   Then we can write expressions where the RHS of
+--   <tt>(<a>:=&gt;</a>)</tt> has different types depending on the
+--   <tt>Tag</tt> constructor used. Here are some expressions of type
+--   <tt>DSum Tag <tt>Identity</tt></tt>:
+--   
+--   <pre>
+--   AString :=&gt; Identity "hello!"
+--   AnInt   :=&gt; Identity 42
+--   </pre>
+--   
+--   Often, the <tt>f</tt> we choose has an <a>Applicative</a> instance,
+--   and we can use the helper function <tt>(<a>==&gt;</a>)</tt>. The
+--   following expressions all have the type <tt>Applicative f =&gt; DSum
+--   Tag f</tt>:
+--   
+--   <pre>
+--   AString ==&gt; "hello!"
+--   AnInt   ==&gt; 42
+--   </pre>
+--   
+--   We can write functions that consume <tt>DSum Tag f</tt> values by
+--   matching, such as:
+--   
+--   <pre>
+--   toString :: DSum Tag Identity -&gt; String
+--   toString (AString :=&gt; Identity str) = str
+--   toString (AnInt   :=&gt; Identity int) = show int
+--   toString (Rec     :=&gt; Identity sum) = toString sum
+--   </pre>
+--   
+--   The <tt>(<a>:=&gt;</a>)</tt> constructor and <tt>(<a>==&gt;</a>)</tt>
+--   helper are chosen to resemble the <tt>(key =&gt; value)</tt>
+--   construction for dictionary entries in many dynamic languages. The
+--   <tt>:=&gt;</tt> and <tt>==&gt;</tt> operators have very low precedence
+--   and bind to the right, making repeated use of these operators behave
+--   as you'd expect:
+--   
+--   <pre>
+--   -- Parses as: Rec ==&gt; (AnInt ==&gt; (3 + 4))
+--   -- Has type: Applicative f =&gt; DSum Tag f
+--   Rec ==&gt; AnInt ==&gt; 3 + 4
+--   </pre>
+--   
+--   The precedence of these operators is just above that of <a>$</a>, so
+--   <tt>foo bar $ AString ==&gt; "eep"</tt> is equivalent to <tt>foo bar
+--   (AString ==&gt; "eep")</tt>.
+--   
+--   To use the <a>Eq</a>, <a>Ord</a>, <a>Read</a>, and <a>Show</a>
+--   instances for <tt><a>DSum</a> tag f</tt>, you will need an
+--   <tt>ArgDict</tt> instance for your tag type. Use <a>deriveArgDict</a>
+--   from the <tt>constraints-extras</tt> package to generate this
+--   instance.
+data DSum (tag :: k -> Type) (f :: k -> Type)
+(:=>) :: !tag a -> f a -> DSum (tag :: k -> Type) (f :: k -> Type)
+infixr 1 :=>
 
 module PlutusCore.Pretty
 
@@ -3023,9 +3174,9 @@ PrettyConfigReadable :: configName -> RenderContext -> ShowKinds -> PrettyConfig
 [_pcrConfigName] :: PrettyConfigReadable configName -> configName
 [_pcrRenderContext] :: PrettyConfigReadable configName -> RenderContext
 [_pcrShowKinds] :: PrettyConfigReadable configName -> ShowKinds
-pcrConfigName :: forall configName_aFku configName_aFoo. Lens (PrettyConfigReadable configName_aFku) (PrettyConfigReadable configName_aFoo) configName_aFku configName_aFoo
-pcrRenderContext :: forall configName_aFku. Lens' (PrettyConfigReadable configName_aFku) RenderContext
-pcrShowKinds :: forall configName_aFku. Lens' (PrettyConfigReadable configName_aFku) ShowKinds
+pcrConfigName :: forall configName_aFwt configName_aFAn. Lens (PrettyConfigReadable configName_aFwt) (PrettyConfigReadable configName_aFAn) configName_aFwt configName_aFAn
+pcrRenderContext :: forall configName_aFwt. Lens' (PrettyConfigReadable configName_aFwt) RenderContext
+pcrShowKinds :: forall configName_aFwt. Lens' (PrettyConfigReadable configName_aFwt) ShowKinds
 
 -- | The "readably pretty-printable" constraint.
 type PrettyReadableBy configName = PrettyBy (PrettyConfigReadable configName)
@@ -3175,9 +3326,9 @@ module PlutusCore.Evaluation.Machine.Exception
 --   thrown.
 newtype UnliftingError
 UnliftingErrorE :: Text -> UnliftingError
-class AsUnliftingError r_a19E2
-_UnliftingError :: AsUnliftingError r_a19E2 => Prism' r_a19E2 UnliftingError
-_UnliftingErrorE :: AsUnliftingError r_a19E2 => Prism' r_a19E2 Text
+class AsUnliftingError r_a19RG
+_UnliftingError :: AsUnliftingError r_a19RG => Prism' r_a19RG UnliftingError
+_UnliftingErrorE :: AsUnliftingError r_a19RG => Prism' r_a19RG Text
 
 -- | The type of errors that <tt>readKnown</tt> and <tt>makeKnown</tt> can
 --   return.
@@ -3210,16 +3361,16 @@ BuiltinTermArgumentExpectedMachineError :: MachineError fun
 -- | A builtin received a term argument when something else was expected
 UnexpectedBuiltinTermArgumentMachineError :: MachineError fun
 UnknownBuiltin :: !fun -> MachineError fun
-class AsMachineError r_a19Ej fun_a198n | r_a19Ej -> fun_a198n
-_MachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej (MachineError fun_a198n)
-_NonPolymorphicInstantiationMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_NonWrapUnwrappedMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_NonFunctionalApplicationMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_OpenTermEvaluatedMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_UnliftingMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej UnliftingError
-_BuiltinTermArgumentExpectedMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_UnexpectedBuiltinTermArgumentMachineError :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej ()
-_UnknownBuiltin :: AsMachineError r_a19Ej fun_a198n => Prism' r_a19Ej fun_a198n
+class AsMachineError r_a19RX fun_a19m1 | r_a19RX -> fun_a19m1
+_MachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX (MachineError fun_a19m1)
+_NonPolymorphicInstantiationMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_NonWrapUnwrappedMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_NonFunctionalApplicationMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_OpenTermEvaluatedMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_UnliftingMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX UnliftingError
+_BuiltinTermArgumentExpectedMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_UnexpectedBuiltinTermArgumentMachineError :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX ()
+_UnknownBuiltin :: AsMachineError r_a19RX fun_a19m1 => Prism' r_a19RX fun_a19m1
 
 -- | The type of errors (all of them) which can occur during evaluation
 --   (some are used-caused, some are internal).
@@ -3230,10 +3381,10 @@ InternalEvaluationError :: !internal -> EvaluationError user internal
 
 -- | Indicates user errors.
 UserEvaluationError :: !user -> EvaluationError user internal
-class AsEvaluationError r_a19EB user_a198l internal_a198m | r_a19EB -> user_a198l internal_a198m
-_EvaluationError :: AsEvaluationError r_a19EB user_a198l internal_a198m => Prism' r_a19EB (EvaluationError user_a198l internal_a198m)
-_InternalEvaluationError :: AsEvaluationError r_a19EB user_a198l internal_a198m => Prism' r_a19EB internal_a198m
-_UserEvaluationError :: AsEvaluationError r_a19EB user_a198l internal_a198m => Prism' r_a19EB user_a198l
+class AsEvaluationError r_a19Sf user_a19lZ internal_a19m0 | r_a19Sf -> user_a19lZ internal_a19m0
+_EvaluationError :: AsEvaluationError r_a19Sf user_a19lZ internal_a19m0 => Prism' r_a19Sf (EvaluationError user_a19lZ internal_a19m0)
+_InternalEvaluationError :: AsEvaluationError r_a19Sf user_a19lZ internal_a19m0 => Prism' r_a19Sf internal_a19m0
+_UserEvaluationError :: AsEvaluationError r_a19Sf user_a19lZ internal_a19m0 => Prism' r_a19Sf user_a19lZ
 
 -- | An error and (optionally) what caused it.
 data ErrorWithCause err cause
@@ -3927,10 +4078,10 @@ NamedTyDeBruijn :: NamedDeBruijn -> NamedTyDeBruijn
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1hH0
-_FreeVariableError :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Unique
-_FreeIndex :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Index
+class AsFreeVariableError r_a1hUE
+_FreeVariableError :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Unique
+_FreeIndex :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Index
 unNameDeBruijn :: NamedDeBruijn -> DeBruijn
 unNameTyDeBruijn :: NamedTyDeBruijn -> TyDeBruijn
 fakeNameDeBruijn :: DeBruijn -> NamedDeBruijn
@@ -4080,18 +4231,18 @@ typeAnn :: Type tyname uni ann -> ann
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
-tyVarDeclAnn :: forall tyname_a4xn9 ann_a4xna. Lens' (TyVarDecl tyname_a4xn9 ann_a4xna) ann_a4xna
-tyVarDeclName :: forall tyname_a4xn9 ann_a4xna tyname_a4xwJ. Lens (TyVarDecl tyname_a4xn9 ann_a4xna) (TyVarDecl tyname_a4xwJ ann_a4xna) tyname_a4xn9 tyname_a4xwJ
-tyVarDeclKind :: forall tyname_a4xn9 ann_a4xna. Lens' (TyVarDecl tyname_a4xn9 ann_a4xna) (Kind ann_a4xna)
-varDeclAnn :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa. Lens' (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) ann_a4xxa
-varDeclName :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa name_a4xGy. Lens (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) (VarDecl tyname_a4xx7 name_a4xGy uni_a4xx9 ann_a4xxa) name_a4xx8 name_a4xGy
-varDeclType :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa tyname_a4xGz uni_a4xGA. Lens (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) (VarDecl tyname_a4xGz name_a4xx8 uni_a4xGA ann_a4xxa) (Type tyname_a4xx7 uni_a4xx9 ann_a4xxa) (Type tyname_a4xGz uni_a4xGA ann_a4xxa)
-tyDeclAnn :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0. Lens' (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) ann_a4xH0
-tyDeclType :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0 tyname_a4xQG uni_a4xQH. Lens (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) (TyDecl tyname_a4xQG uni_a4xQH ann_a4xH0) (Type tyname_a4xGY uni_a4xGZ ann_a4xH0) (Type tyname_a4xQG uni_a4xQH ann_a4xH0)
-tyDeclKind :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0. Lens' (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) (Kind ann_a4xH0)
-progAnn :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm. Lens' (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) ann_a4vlm
-progVer :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm. Lens' (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) Version
-progTerm :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK. Lens (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) (Program tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK ann_a4vlm) (Term tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) (Term tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK ann_a4vlm)
+tyVarDeclAnn :: forall tyname_a4xB8 ann_a4xB9. Lens' (TyVarDecl tyname_a4xB8 ann_a4xB9) ann_a4xB9
+tyVarDeclName :: forall tyname_a4xB8 ann_a4xB9 tyname_a4xKI. Lens (TyVarDecl tyname_a4xB8 ann_a4xB9) (TyVarDecl tyname_a4xKI ann_a4xB9) tyname_a4xB8 tyname_a4xKI
+tyVarDeclKind :: forall tyname_a4xB8 ann_a4xB9. Lens' (TyVarDecl tyname_a4xB8 ann_a4xB9) (Kind ann_a4xB9)
+varDeclAnn :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9. Lens' (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) ann_a4xL9
+varDeclName :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9 name_a4xUx. Lens (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) (VarDecl tyname_a4xL6 name_a4xUx uni_a4xL8 ann_a4xL9) name_a4xL7 name_a4xUx
+varDeclType :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9 tyname_a4xUy uni_a4xUz. Lens (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) (VarDecl tyname_a4xUy name_a4xL7 uni_a4xUz ann_a4xL9) (Type tyname_a4xL6 uni_a4xL8 ann_a4xL9) (Type tyname_a4xUy uni_a4xUz ann_a4xL9)
+tyDeclAnn :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ. Lens' (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) ann_a4xUZ
+tyDeclType :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ tyname_a4y4F uni_a4y4G. Lens (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) (TyDecl tyname_a4y4F uni_a4y4G ann_a4xUZ) (Type tyname_a4xUX uni_a4xUY ann_a4xUZ) (Type tyname_a4y4F uni_a4y4G ann_a4xUZ)
+tyDeclKind :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ. Lens' (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) (Kind ann_a4xUZ)
+progAnn :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc. Lens' (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) ann_a4vzc
+progVer :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc. Lens' (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) Version
+progTerm :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ. Lens (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) (Program tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ ann_a4vzc) (Term tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) (Term tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ ann_a4vzc)
 kindSubkinds :: Traversal' (Kind ann) (Kind ann)
 kindSubkindsDeep :: Fold (Kind ann) (Kind ann)
 
@@ -4159,28 +4310,28 @@ typeUniquesDeep :: HasUniques (Type tyname uni ann) => Fold (Type tyname uni ann
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>
 --   (including the type-level ones).
 termUniquesDeep :: HasUniques (Term tyname name uni fun ann) => Fold (Term tyname name uni fun ann) Unique
-data TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-VarF :: ann_i4GR2 -> name_i4GQZ -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-TyAbsF :: ann_i4GR2 -> tyname_i4GQY -> Kind ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-LamAbsF :: ann_i4GR2 -> name_i4GQZ -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ApplyF :: ann_i4GR2 -> r_a4MpI -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ConstantF :: ann_i4GR2 -> Some (ValueOf uni_i4GR0) -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-BuiltinF :: ann_i4GR2 -> fun_i4GR1 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-TyInstF :: ann_i4GR2 -> r_a4MpI -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-UnwrapF :: ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-IWrapF :: ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ErrorF :: ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-data TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyVarF :: ann_i4GRF -> tyname_i4GRD -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyFunF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyIFixF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyForallF :: ann_i4GRF -> tyname_i4GRD -> Kind ann_i4GRF -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyBuiltinF :: ann_i4GRF -> SomeTypeIn uni_i4GRE -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyLamF :: ann_i4GRF -> tyname_i4GRD -> Kind ann_i4GRF -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyAppF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-data KindF (ann_i4GYu :: Type) r_a4MkS
-TypeF :: ann_i4GYu -> KindF (ann_i4GYu :: Type) r_a4MkS
-KindArrowF :: ann_i4GYu -> r_a4MkS -> r_a4MkS -> KindF (ann_i4GYu :: Type) r_a4MkS
+data TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+VarF :: ann_i4H51 -> name_i4H4Y -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+TyAbsF :: ann_i4H51 -> tyname_i4H4X -> Kind ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+LamAbsF :: ann_i4H51 -> name_i4H4Y -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ApplyF :: ann_i4H51 -> r_a4MD7 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ConstantF :: ann_i4H51 -> Some (ValueOf uni_i4H4Z) -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+BuiltinF :: ann_i4H51 -> fun_i4H50 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+TyInstF :: ann_i4H51 -> r_a4MD7 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+UnwrapF :: ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+IWrapF :: ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ErrorF :: ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+data TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyVarF :: ann_i4H5E -> tyname_i4H5C -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyFunF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyIFixF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyForallF :: ann_i4H5E -> tyname_i4H5C -> Kind ann_i4H5E -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyBuiltinF :: ann_i4H5E -> SomeTypeIn uni_i4H5D -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyLamF :: ann_i4H5E -> tyname_i4H5C -> Kind ann_i4H5E -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyAppF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+data KindF (ann_i4Hct :: Type) r_a4Myh
+TypeF :: ann_i4Hct -> KindF (ann_i4Hct :: Type) r_a4Myh
+KindArrowF :: ann_i4Hct -> r_a4Myh -> r_a4Myh -> KindF (ann_i4Hct :: Type) r_a4Myh
 
 module PlutusCore.Subst
 
@@ -5169,27 +5320,27 @@ BuiltinTypeNotAStar :: !Text -> !SourcePos -> ParserError
 UnknownBuiltinFunction :: !Text -> !SourcePos -> ![Text] -> ParserError
 InvalidBuiltinConstant :: !Text -> !Text -> !SourcePos -> ParserError
 InvalidData :: !Text -> !SourcePos -> ParserError
-class AsParserErrorBundle r_a5ofm
-_ParserErrorBundle :: AsParserErrorBundle r_a5ofm => Prism' r_a5ofm ParserErrorBundle
-_ParseErrorB :: AsParserErrorBundle r_a5ofm => Prism' r_a5ofm (ParseErrorBundle Text ParserError)
+class AsParserErrorBundle r_a5ova
+_ParserErrorBundle :: AsParserErrorBundle r_a5ova => Prism' r_a5ova ParserErrorBundle
+_ParseErrorB :: AsParserErrorBundle r_a5ova => Prism' r_a5ova (ParseErrorBundle Text ParserError)
 data ParserErrorBundle
 ParseErrorB :: !ParseErrorBundle Text ParserError -> ParserErrorBundle
 data NormCheckError tyname name uni fun ann
 BadType :: !ann -> !Type tyname uni ann -> !Text -> NormCheckError tyname name uni fun ann
 BadTerm :: !ann -> !Term tyname name uni fun ann -> !Text -> NormCheckError tyname name uni fun ann
-class AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h | r_a5omZ -> tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h
-_NormCheckError :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (NormCheckError tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h)
-_BadType :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (ann_a5m0h, Type tyname_a5m0d uni_a5m0f ann_a5m0h, Text)
-_BadTerm :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (ann_a5m0h, Term tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h, Text)
+class AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS | r_a5oCN -> tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS
+_NormCheckError :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (NormCheckError tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS)
+_BadType :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (ann_a5mfS, Type tyname_a5mfO uni_a5mfQ ann_a5mfS, Text)
+_BadTerm :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (ann_a5mfS, Term tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS, Text)
 data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5ohx ann_a5m0i | r_a5ohx -> ann_a5m0i
-_UniqueError :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (UniqueError ann_a5m0i)
-_MultiplyDefined :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_IncoherentUsage :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_FreeVariable :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i)
+class AsUniqueError r_a5oxl ann_a5mfT | r_a5oxl -> ann_a5mfT
+_UniqueError :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (UniqueError ann_a5mfT)
+_MultiplyDefined :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_IncoherentUsage :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_FreeVariable :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT)
 data TypeError term uni fun ann
 KindMismatch :: !ann -> !Type TyName uni () -> !Kind () -> !Kind () -> TypeError term uni fun ann
 TypeMismatch :: !ann -> !term -> !Type TyName uni () -> !Normalized (Type TyName uni ()) -> TypeError term uni fun ann
@@ -5198,38 +5349,38 @@ NameMismatch :: !ann -> !Name -> !Name -> TypeError term uni fun ann
 FreeTypeVariableE :: !ann -> !TyName -> TypeError term uni fun ann
 FreeVariableE :: !ann -> !Name -> TypeError term uni fun ann
 UnknownBuiltinFunctionE :: !ann -> !fun -> TypeError term uni fun ann
-class AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c | r_a5osC -> term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c
-_TypeError :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (TypeError term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c)
-_KindMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Type TyName uni_a5m0a (), Kind (), Kind ())
-_TypeMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, term_a5m09, Type TyName uni_a5m0a (), Normalized (Type TyName uni_a5m0a ()))
-_TyNameMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, TyName, TyName)
-_NameMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Name, Name)
-_FreeTypeVariableE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, TyName)
-_FreeVariableE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Name)
-_UnknownBuiltinFunctionE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, fun_a5m0b)
+class AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN | r_a5oIq -> term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN
+_TypeError :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (TypeError term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN)
+_KindMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Type TyName uni_a5mfL (), Kind (), Kind ())
+_TypeMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, term_a5mfK, Type TyName uni_a5mfL (), Normalized (Type TyName uni_a5mfL ()))
+_TyNameMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, TyName, TyName)
+_NameMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Name, Name)
+_FreeTypeVariableE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, TyName)
+_FreeVariableE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Name)
+_UnknownBuiltinFunctionE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, fun_a5mfM)
 
 -- | We cannot do a correct translation to or from de Bruijn indices if the
 --   program is not well-scoped. So we throw an error in such a case.
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1hH0
-_FreeVariableError :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Unique
-_FreeIndex :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Index
+class AsFreeVariableError r_a1hUE
+_FreeVariableError :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Unique
+_FreeIndex :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Index
 data Error uni fun ann
 ParseErrorE :: !ParserErrorBundle -> Error uni fun ann
 UniqueCoherencyErrorE :: !UniqueError ann -> Error uni fun ann
 TypeErrorE :: !TypeError (Term TyName Name uni fun ()) uni fun ann -> Error uni fun ann
 NormCheckErrorE :: !NormCheckError TyName Name uni fun ann -> Error uni fun ann
 FreeVariableErrorE :: !FreeVariableError -> Error uni fun ann
-class AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 | r_a5oFZ -> uni_a5m06 fun_a5m07 ann_a5m08
-_Error :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (Error uni_a5m06 fun_a5m07 ann_a5m08)
-_ParseErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ ParserErrorBundle
-_UniqueCoherencyErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (UniqueError ann_a5m08)
-_TypeErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (TypeError (Term TyName Name uni_a5m06 fun_a5m07 ()) uni_a5m06 fun_a5m07 ann_a5m08)
-_NormCheckErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (NormCheckError TyName Name uni_a5m06 fun_a5m07 ann_a5m08)
-_FreeVariableErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ FreeVariableError
+class AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ | r_a5oVN -> uni_a5mfH fun_a5mfI ann_a5mfJ
+_Error :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (Error uni_a5mfH fun_a5mfI ann_a5mfJ)
+_ParseErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN ParserErrorBundle
+_UniqueCoherencyErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (UniqueError ann_a5mfJ)
+_TypeErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (TypeError (Term TyName Name uni_a5mfH fun_a5mfI ()) uni_a5mfH fun_a5mfI ann_a5mfJ)
+_NormCheckErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (NormCheckError TyName Name uni_a5mfH fun_a5mfI ann_a5mfJ)
+_FreeVariableErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN FreeVariableError
 
 -- | Lifts an <a>Either</a> into an error context where we can embed the
 --   <a>Left</a> value into the error.
@@ -5319,11 +5470,11 @@ data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5ohx ann_a5m0i | r_a5ohx -> ann_a5m0i
-_UniqueError :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (UniqueError ann_a5m0i)
-_MultiplyDefined :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_IncoherentUsage :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_FreeVariable :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i)
+class AsUniqueError r_a5oxl ann_a5mfT | r_a5oxl -> ann_a5mfT
+_UniqueError :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (UniqueError ann_a5mfT)
+_MultiplyDefined :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_IncoherentUsage :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_FreeVariable :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT)
 
 module PlutusCore.Builtin.Elaborate
 
@@ -5845,9 +5996,9 @@ data TypeCheckConfig uni fun
 TypeCheckConfig :: KindCheckConfig -> BuiltinTypes uni fun -> TypeCheckConfig uni fun
 [_tccKindCheckConfig] :: TypeCheckConfig uni fun -> KindCheckConfig
 [_tccBuiltinTypes] :: TypeCheckConfig uni fun -> BuiltinTypes uni fun
-class HasKindCheckConfig c_a5KSM
-kindCheckConfig :: HasKindCheckConfig c_a5KSM => Lens' c_a5KSM KindCheckConfig
-kccHandleNameMismatches :: HasKindCheckConfig c_a5KSM => Lens' c_a5KSM HandleNameMismatches
+class HasKindCheckConfig c_a5L8C
+kindCheckConfig :: HasKindCheckConfig c_a5L8C => Lens' c_a5L8C KindCheckConfig
+kccHandleNameMismatches :: HasKindCheckConfig c_a5L8C => Lens' c_a5L8C HandleNameMismatches
 
 -- | The constraints that are required for type checking Plutus Core.
 type MonadTypeCheckPlc err uni fun ann m = MonadTypeCheck err (Term TyName Name uni fun ()) uni fun ann m
@@ -5862,9 +6013,9 @@ type MonadKindCheck err term uni fun ann m = (MonadError err m, AsTypeError err 
 -- | The type checking monad that the type checker runs in. In contains a
 --   <a>TypeCheckEnv</a> and allows to throw <a>TypeError</a>s.
 type TypeCheckT uni fun cfg m = ReaderT (TypeCheckEnv uni fun cfg) m
-tceTyVarKinds :: forall uni_a5KT4 fun_a5KT5 cfg_a5KT6 fun_a5KZv. Lens (TypeCheckEnv uni_a5KT4 fun_a5KT5 cfg_a5KT6) (TypeCheckEnv uni_a5KT4 fun_a5KZv cfg_a5KT6) TyVarKinds TyVarKinds
-tceTypeCheckConfig :: forall uni_a5KT4 fun_a5KT5 cfg_a5KT6 fun_a5KZw cfg_a5KZx. Lens (TypeCheckEnv uni_a5KT4 fun_a5KT5 cfg_a5KT6) (TypeCheckEnv uni_a5KT4 fun_a5KZw cfg_a5KZx) cfg_a5KT6 cfg_a5KZx
-tceVarTypes :: forall uni_a5KT4 fun_a5KT5 cfg_a5KT6 uni_a5KZy fun_a5KZz. Lens (TypeCheckEnv uni_a5KT4 fun_a5KT5 cfg_a5KT6) (TypeCheckEnv uni_a5KZy fun_a5KZz cfg_a5KT6) (VarTypes uni_a5KT4) (VarTypes uni_a5KZy)
+tceTyVarKinds :: forall uni_a5L8U fun_a5L8V cfg_a5L8W fun_a5Lfl. Lens (TypeCheckEnv uni_a5L8U fun_a5L8V cfg_a5L8W) (TypeCheckEnv uni_a5L8U fun_a5Lfl cfg_a5L8W) TyVarKinds TyVarKinds
+tceTypeCheckConfig :: forall uni_a5L8U fun_a5L8V cfg_a5L8W fun_a5Lfm cfg_a5Lfn. Lens (TypeCheckEnv uni_a5L8U fun_a5L8V cfg_a5L8W) (TypeCheckEnv uni_a5L8U fun_a5Lfm cfg_a5Lfn) cfg_a5L8W cfg_a5Lfn
+tceVarTypes :: forall uni_a5L8U fun_a5L8V cfg_a5L8W uni_a5Lfo fun_a5Lfp. Lens (TypeCheckEnv uni_a5L8U fun_a5L8V cfg_a5L8W) (TypeCheckEnv uni_a5Lfo fun_a5Lfp cfg_a5L8W) (VarTypes uni_a5L8U) (VarTypes uni_a5Lfo)
 
 -- | Run a <tt>TypeCheckM</tt> computation by supplying a
 --   <a>TypeCheckConfig</a> to it.
@@ -5945,8 +6096,8 @@ data CostModel machinecosts builtincosts
 CostModel :: machinecosts -> builtincosts -> CostModel machinecosts builtincosts
 [_machineCostModel] :: CostModel machinecosts builtincosts -> machinecosts
 [_builtinCostModel] :: CostModel machinecosts builtincosts -> builtincosts
-machineCostModel :: forall machinecosts_a5Pmb builtincosts_a5Pmc machinecosts_a5Ppi. Lens (CostModel machinecosts_a5Pmb builtincosts_a5Pmc) (CostModel machinecosts_a5Ppi builtincosts_a5Pmc) machinecosts_a5Pmb machinecosts_a5Ppi
-builtinCostModel :: forall machinecosts_a5Pmb builtincosts_a5Pmc builtincosts_a5Pph. Lens (CostModel machinecosts_a5Pmb builtincosts_a5Pmc) (CostModel machinecosts_a5Pmb builtincosts_a5Pph) builtincosts_a5Pmc builtincosts_a5Pph
+machineCostModel :: forall machinecosts_a5PC0 builtincosts_a5PC1 machinecosts_a5PF7. Lens (CostModel machinecosts_a5PC0 builtincosts_a5PC1) (CostModel machinecosts_a5PF7 builtincosts_a5PC1) machinecosts_a5PC0 machinecosts_a5PF7
+builtinCostModel :: forall machinecosts_a5PC0 builtincosts_a5PC1 builtincosts_a5PF6. Lens (CostModel machinecosts_a5PC0 builtincosts_a5PC1) (CostModel machinecosts_a5PC0 builtincosts_a5PF6) builtincosts_a5PC1 builtincosts_a5PF6
 
 -- | At execution time we need a <a>BuiltinsRuntime</a> object which
 --   includes both the cost model for builtins and their denotations. This
@@ -7214,7 +7365,7 @@ knownUniOf :: uni `Contains` a => proxy a -> uni (Esc a)
 --   say:
 --   
 --   <pre>
---   instance GShow t where gshowsPrec = showsPrec
+--   instance GShow t where gshowsPrec = defaultGshowsPrec
 --   </pre>
 class GShow (t :: k -> Type)
 gshowsPrec :: forall (a :: k). GShow t => Int -> t a -> ShowS
@@ -7226,6 +7377,90 @@ show :: Show a => a -> String
 -- | A class for type-contexts which contain enough information to (at
 --   least in some cases) decide the equality of types occurring within
 --   them.
+--   
+--   This class is sometimes confused with <a>TestEquality</a> from base.
+--   <a>TestEquality</a> only checks <i>type equality</i>.
+--   
+--   Consider
+--   
+--   <pre>
+--   &gt;&gt;&gt; data Tag a where TagInt1 :: Tag Int; TagInt2 :: Tag Int
+--   </pre>
+--   
+--   The correct <tt><a>TestEquality</a> Tag</tt> instance is
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance TestEquality Tag where
+--       testEquality TagInt1 TagInt1 = Just Refl
+--       testEquality TagInt1 TagInt2 = Just Refl
+--       testEquality TagInt2 TagInt1 = Just Refl
+--       testEquality TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   While we can define
+--   
+--   <pre>
+--   instance <a>GEq</a> Tag where
+--      <a>geq</a> = <a>testEquality</a>
+--   </pre>
+--   
+--   this will mean we probably want to have
+--   
+--   <pre>
+--   instance <a>Eq</a> Tag where
+--      _ <a>==</a> _ = True
+--   </pre>
+--   
+--   <i>Note:</i> In the future version of <tt>some</tt> package (to be
+--   released around GHC-9.6 / 9.8) the <tt>forall a. Eq (f a)</tt>
+--   constraint will be added as a constraint to <a>GEq</a>, with a law
+--   relating <a>GEq</a> and <a>Eq</a>:
+--   
+--   <pre>
+--   <a>geq</a> x y = Just Refl   ⇒  x == y = True        ∀ (x :: f a) (y :: f b)
+--   x == y                ≡  isJust (<a>geq</a> x y)     ∀ (x, y :: f a)
+--   </pre>
+--   
+--   So, the more useful <tt><a>GEq</a> Tag</tt> instance would
+--   differentiate between different constructors:
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance GEq Tag where
+--       geq TagInt1 TagInt1 = Just Refl
+--       geq TagInt1 TagInt2 = Nothing
+--       geq TagInt2 TagInt1 = Nothing
+--       geq TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   which is consistent with a derived <a>Eq</a> instance for <tt>Tag</tt>
+--   
+--   <pre>
+--   &gt;&gt;&gt; deriving instance Eq (Tag a)
+--   </pre>
+--   
+--   Note that even if <tt>a ~ b</tt>, the <tt><a>geq</a> (x :: f a) (y ::
+--   f b)</tt> may be <a>Nothing</a> (when value terms are inequal).
+--   
+--   The consistency of <a>GEq</a> and <a>Eq</a> is easy to check by
+--   exhaustion:
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkFwdGEq :: (forall a. Eq (f a), GEq f) =&gt; f a -&gt; f b -&gt; Bool; checkFwdGEq x y = case geq x y of Just Refl -&gt; x == y; Nothing -&gt; True
+--   
+--   &gt;&gt;&gt; (checkFwdGEq TagInt1 TagInt1, checkFwdGEq TagInt1 TagInt2, checkFwdGEq TagInt2 TagInt1, checkFwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkBwdGEq :: (Eq (f a), GEq f) =&gt; f a -&gt; f a -&gt; Bool; checkBwdGEq x y = if x == y then isJust (geq x y) else isNothing (geq x y)
+--   
+--   &gt;&gt;&gt; (checkBwdGEq TagInt1 TagInt1, checkBwdGEq TagInt1 TagInt2, checkBwdGEq TagInt2 TagInt1, checkBwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
 class GEq (f :: k -> Type)
 
 -- | Produce a witness of type-equality, if one exists.
@@ -7495,18 +7730,18 @@ Normalized :: a -> Normalized a
 latestVersion :: Version
 termAnn :: Term tyname name uni fun ann -> ann
 typeAnn :: Type tyname uni ann -> ann
-tyVarDeclAnn :: forall tyname_a4xn9 ann_a4xna. Lens' (TyVarDecl tyname_a4xn9 ann_a4xna) ann_a4xna
-tyVarDeclName :: forall tyname_a4xn9 ann_a4xna tyname_a4xwJ. Lens (TyVarDecl tyname_a4xn9 ann_a4xna) (TyVarDecl tyname_a4xwJ ann_a4xna) tyname_a4xn9 tyname_a4xwJ
-tyVarDeclKind :: forall tyname_a4xn9 ann_a4xna. Lens' (TyVarDecl tyname_a4xn9 ann_a4xna) (Kind ann_a4xna)
-varDeclAnn :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa. Lens' (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) ann_a4xxa
-varDeclName :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa name_a4xGy. Lens (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) (VarDecl tyname_a4xx7 name_a4xGy uni_a4xx9 ann_a4xxa) name_a4xx8 name_a4xGy
-varDeclType :: forall tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa tyname_a4xGz uni_a4xGA. Lens (VarDecl tyname_a4xx7 name_a4xx8 uni_a4xx9 ann_a4xxa) (VarDecl tyname_a4xGz name_a4xx8 uni_a4xGA ann_a4xxa) (Type tyname_a4xx7 uni_a4xx9 ann_a4xxa) (Type tyname_a4xGz uni_a4xGA ann_a4xxa)
-tyDeclAnn :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0. Lens' (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) ann_a4xH0
-tyDeclType :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0 tyname_a4xQG uni_a4xQH. Lens (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) (TyDecl tyname_a4xQG uni_a4xQH ann_a4xH0) (Type tyname_a4xGY uni_a4xGZ ann_a4xH0) (Type tyname_a4xQG uni_a4xQH ann_a4xH0)
-tyDeclKind :: forall tyname_a4xGY uni_a4xGZ ann_a4xH0. Lens' (TyDecl tyname_a4xGY uni_a4xGZ ann_a4xH0) (Kind ann_a4xH0)
-progAnn :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm. Lens' (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) ann_a4vlm
-progVer :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm. Lens' (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) Version
-progTerm :: forall tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK. Lens (Program tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) (Program tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK ann_a4vlm) (Term tyname_a4vli name_a4vlj uni_a4vlk fun_a4vll ann_a4vlm) (Term tyname_a4xmH name_a4xmI uni_a4xmJ fun_a4xmK ann_a4vlm)
+tyVarDeclAnn :: forall tyname_a4xB8 ann_a4xB9. Lens' (TyVarDecl tyname_a4xB8 ann_a4xB9) ann_a4xB9
+tyVarDeclName :: forall tyname_a4xB8 ann_a4xB9 tyname_a4xKI. Lens (TyVarDecl tyname_a4xB8 ann_a4xB9) (TyVarDecl tyname_a4xKI ann_a4xB9) tyname_a4xB8 tyname_a4xKI
+tyVarDeclKind :: forall tyname_a4xB8 ann_a4xB9. Lens' (TyVarDecl tyname_a4xB8 ann_a4xB9) (Kind ann_a4xB9)
+varDeclAnn :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9. Lens' (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) ann_a4xL9
+varDeclName :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9 name_a4xUx. Lens (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) (VarDecl tyname_a4xL6 name_a4xUx uni_a4xL8 ann_a4xL9) name_a4xL7 name_a4xUx
+varDeclType :: forall tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9 tyname_a4xUy uni_a4xUz. Lens (VarDecl tyname_a4xL6 name_a4xL7 uni_a4xL8 ann_a4xL9) (VarDecl tyname_a4xUy name_a4xL7 uni_a4xUz ann_a4xL9) (Type tyname_a4xL6 uni_a4xL8 ann_a4xL9) (Type tyname_a4xUy uni_a4xUz ann_a4xL9)
+tyDeclAnn :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ. Lens' (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) ann_a4xUZ
+tyDeclType :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ tyname_a4y4F uni_a4y4G. Lens (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) (TyDecl tyname_a4y4F uni_a4y4G ann_a4xUZ) (Type tyname_a4xUX uni_a4xUY ann_a4xUZ) (Type tyname_a4y4F uni_a4y4G ann_a4xUZ)
+tyDeclKind :: forall tyname_a4xUX uni_a4xUY ann_a4xUZ. Lens' (TyDecl tyname_a4xUX uni_a4xUY ann_a4xUZ) (Kind ann_a4xUZ)
+progAnn :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc. Lens' (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) ann_a4vzc
+progVer :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc. Lens' (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) Version
+progTerm :: forall tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ. Lens (Program tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) (Program tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ ann_a4vzc) (Term tyname_a4vz8 name_a4vz9 uni_a4vza fun_a4vzb ann_a4vzc) (Term tyname_a4xAG name_a4xAH uni_a4xAI fun_a4xAJ ann_a4vzc)
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
@@ -7551,15 +7786,15 @@ normalizeTypesIn :: (HasUnique tyname TypeUnique, HasUnique name TermUnique, Mon
 
 -- | Normalize every <a>Kind</a> in a <a>Program</a>.
 normalizeTypesInProgram :: (HasUnique tyname TypeUnique, HasUnique name TermUnique, MonadNormalizeType uni m) => Program tyname name uni fun ann -> m (Program tyname name uni fun ann)
-class AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c | r_a5osC -> term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c
-_TypeError :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (TypeError term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c)
-_KindMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Type TyName uni_a5m0a (), Kind (), Kind ())
-_TypeMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, term_a5m09, Type TyName uni_a5m0a (), Normalized (Type TyName uni_a5m0a ()))
-_TyNameMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, TyName, TyName)
-_NameMismatch :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Name, Name)
-_FreeTypeVariableE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, TyName)
-_FreeVariableE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, Name)
-_UnknownBuiltinFunctionE :: AsTypeError r_a5osC term_a5m09 uni_a5m0a fun_a5m0b ann_a5m0c => Prism' r_a5osC (ann_a5m0c, fun_a5m0b)
+class AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN | r_a5oIq -> term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN
+_TypeError :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (TypeError term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN)
+_KindMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Type TyName uni_a5mfL (), Kind (), Kind ())
+_TypeMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, term_a5mfK, Type TyName uni_a5mfL (), Normalized (Type TyName uni_a5mfL ()))
+_TyNameMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, TyName, TyName)
+_NameMismatch :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Name, Name)
+_FreeTypeVariableE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, TyName)
+_FreeVariableE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, Name)
+_UnknownBuiltinFunctionE :: AsTypeError r_a5oIq term_a5mfK uni_a5mfL fun_a5mfM ann_a5mfN => Prism' r_a5oIq (ann_a5mfN, fun_a5mfM)
 data TypeError term uni fun ann
 data Error uni fun ann
 ParseErrorE :: !ParserErrorBundle -> Error uni fun ann
@@ -7567,58 +7802,58 @@ UniqueCoherencyErrorE :: !UniqueError ann -> Error uni fun ann
 TypeErrorE :: !TypeError (Term TyName Name uni fun ()) uni fun ann -> Error uni fun ann
 NormCheckErrorE :: !NormCheckError TyName Name uni fun ann -> Error uni fun ann
 FreeVariableErrorE :: !FreeVariableError -> Error uni fun ann
-class AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 | r_a5oFZ -> uni_a5m06 fun_a5m07 ann_a5m08
-_Error :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (Error uni_a5m06 fun_a5m07 ann_a5m08)
-_ParseErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ ParserErrorBundle
-_UniqueCoherencyErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (UniqueError ann_a5m08)
-_TypeErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (TypeError (Term TyName Name uni_a5m06 fun_a5m07 ()) uni_a5m06 fun_a5m07 ann_a5m08)
-_NormCheckErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ (NormCheckError TyName Name uni_a5m06 fun_a5m07 ann_a5m08)
-_FreeVariableErrorE :: AsError r_a5oFZ uni_a5m06 fun_a5m07 ann_a5m08 => Prism' r_a5oFZ FreeVariableError
+class AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ | r_a5oVN -> uni_a5mfH fun_a5mfI ann_a5mfJ
+_Error :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (Error uni_a5mfH fun_a5mfI ann_a5mfJ)
+_ParseErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN ParserErrorBundle
+_UniqueCoherencyErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (UniqueError ann_a5mfJ)
+_TypeErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (TypeError (Term TyName Name uni_a5mfH fun_a5mfI ()) uni_a5mfH fun_a5mfI ann_a5mfJ)
+_NormCheckErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN (NormCheckError TyName Name uni_a5mfH fun_a5mfI ann_a5mfJ)
+_FreeVariableErrorE :: AsError r_a5oVN uni_a5mfH fun_a5mfI ann_a5mfJ => Prism' r_a5oVN FreeVariableError
 data NormCheckError tyname name uni fun ann
 BadType :: !ann -> !Type tyname uni ann -> !Text -> NormCheckError tyname name uni fun ann
 BadTerm :: !ann -> !Term tyname name uni fun ann -> !Text -> NormCheckError tyname name uni fun ann
-class AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h | r_a5omZ -> tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h
-_NormCheckError :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (NormCheckError tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h)
-_BadType :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (ann_a5m0h, Type tyname_a5m0d uni_a5m0f ann_a5m0h, Text)
-_BadTerm :: AsNormCheckError r_a5omZ tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h => Prism' r_a5omZ (ann_a5m0h, Term tyname_a5m0d name_a5m0e uni_a5m0f fun_a5m0g ann_a5m0h, Text)
+class AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS | r_a5oCN -> tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS
+_NormCheckError :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (NormCheckError tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS)
+_BadType :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (ann_a5mfS, Type tyname_a5mfO uni_a5mfQ ann_a5mfS, Text)
+_BadTerm :: AsNormCheckError r_a5oCN tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS => Prism' r_a5oCN (ann_a5mfS, Term tyname_a5mfO name_a5mfP uni_a5mfQ fun_a5mfR ann_a5mfS, Text)
 data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5ohx ann_a5m0i | r_a5ohx -> ann_a5m0i
-_UniqueError :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (UniqueError ann_a5m0i)
-_MultiplyDefined :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_IncoherentUsage :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_FreeVariable :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i)
+class AsUniqueError r_a5oxl ann_a5mfT | r_a5oxl -> ann_a5mfT
+_UniqueError :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (UniqueError ann_a5mfT)
+_MultiplyDefined :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_IncoherentUsage :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_FreeVariable :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT)
 
 -- | We cannot do a correct translation to or from de Bruijn indices if the
 --   program is not well-scoped. So we throw an error in such a case.
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1hH0
-_FreeVariableError :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Unique
-_FreeIndex :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Index
-data TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-VarF :: ann_i4GR2 -> name_i4GQZ -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-TyAbsF :: ann_i4GR2 -> tyname_i4GQY -> Kind ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-LamAbsF :: ann_i4GR2 -> name_i4GQZ -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ApplyF :: ann_i4GR2 -> r_a4MpI -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ConstantF :: ann_i4GR2 -> Some (ValueOf uni_i4GR0) -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-BuiltinF :: ann_i4GR2 -> fun_i4GR1 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-TyInstF :: ann_i4GR2 -> r_a4MpI -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-UnwrapF :: ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-IWrapF :: ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> r_a4MpI -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-ErrorF :: ann_i4GR2 -> Type tyname_i4GQY uni_i4GR0 ann_i4GR2 -> TermF (tyname_i4GQY :: Type) (name_i4GQZ :: Type) (uni_i4GR0 :: Type -> Type) (fun_i4GR1 :: Type) (ann_i4GR2 :: Type) r_a4MpI
-data TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyVarF :: ann_i4GRF -> tyname_i4GRD -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyFunF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyIFixF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyForallF :: ann_i4GRF -> tyname_i4GRD -> Kind ann_i4GRF -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyBuiltinF :: ann_i4GRF -> SomeTypeIn uni_i4GRE -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyLamF :: ann_i4GRF -> tyname_i4GRD -> Kind ann_i4GRF -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
-TyAppF :: ann_i4GRF -> r_a4Mlq -> r_a4Mlq -> TypeF (tyname_i4GRD :: Type) (uni_i4GRE :: Type -> Type) (ann_i4GRF :: Type) r_a4Mlq
+class AsFreeVariableError r_a1hUE
+_FreeVariableError :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Unique
+_FreeIndex :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Index
+data TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+VarF :: ann_i4H51 -> name_i4H4Y -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+TyAbsF :: ann_i4H51 -> tyname_i4H4X -> Kind ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+LamAbsF :: ann_i4H51 -> name_i4H4Y -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ApplyF :: ann_i4H51 -> r_a4MD7 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ConstantF :: ann_i4H51 -> Some (ValueOf uni_i4H4Z) -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+BuiltinF :: ann_i4H51 -> fun_i4H50 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+TyInstF :: ann_i4H51 -> r_a4MD7 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+UnwrapF :: ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+IWrapF :: ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> r_a4MD7 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+ErrorF :: ann_i4H51 -> Type tyname_i4H4X uni_i4H4Z ann_i4H51 -> TermF (tyname_i4H4X :: Type) (name_i4H4Y :: Type) (uni_i4H4Z :: Type -> Type) (fun_i4H50 :: Type) (ann_i4H51 :: Type) r_a4MD7
+data TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyVarF :: ann_i4H5E -> tyname_i4H5C -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyFunF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyIFixF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyForallF :: ann_i4H5E -> tyname_i4H5C -> Kind ann_i4H5E -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyBuiltinF :: ann_i4H5E -> SomeTypeIn uni_i4H5D -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyLamF :: ann_i4H5E -> tyname_i4H5C -> Kind ann_i4H5E -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
+TyAppF :: ann_i4H5E -> r_a4MyP -> r_a4MyP -> TypeF (tyname_i4H5C :: Type) (uni_i4H5D :: Type -> Type) (ann_i4H5E :: Type) r_a4MyP
 
 -- | A non-transformer version of <a>QuoteT</a>.
 type Quote = QuoteT Identity
@@ -7900,9 +8135,9 @@ Program :: ann -> Version -> Term name uni fun ann -> Program name uni fun ann
 [_progAnn] :: Program name uni fun ann -> ann
 [_progVer] :: Program name uni fun ann -> Version
 [_progTerm] :: Program name uni fun ann -> Term name uni fun ann
-progAnn :: forall name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK. Lens' (Program name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK) ann_a6JVK
-progVer :: forall name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK. Lens' (Program name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK) Version
-progTerm :: forall name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK name_a6KFS uni_a6KFT fun_a6KFU. Lens (Program name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK) (Program name_a6KFS uni_a6KFT fun_a6KFU ann_a6JVK) (Term name_a6JVH uni_a6JVI fun_a6JVJ ann_a6JVK) (Term name_a6KFS uni_a6KFT fun_a6KFU ann_a6JVK)
+progAnn :: forall name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz. Lens' (Program name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz) ann_a6Kbz
+progVer :: forall name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz. Lens' (Program name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz) Version
+progTerm :: forall name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz name_a6KVH uni_a6KVI fun_a6KVJ. Lens (Program name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz) (Program name_a6KVH uni_a6KVI fun_a6KVJ ann_a6Kbz) (Term name_a6Kbw uni_a6Kbx fun_a6Kby ann_a6Kbz) (Term name_a6KVH uni_a6KVI fun_a6KVJ ann_a6Kbz)
 bindFunM :: Monad m => (ann -> fun -> m (Term name uni fun' ann)) -> Term name uni fun ann -> m (Term name uni fun' ann)
 bindFun :: (ann -> fun -> Term name uni fun' ann) -> Term name uni fun ann -> Term name uni fun' ann
 mapFun :: (ann -> fun -> fun') -> Term name uni fun ann -> Term name uni fun' ann
@@ -7915,8 +8150,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6KGh ann_a6KGi name_a6KSn. Lens (UVarDecl name_a6KGh ann_a6KGi) (UVarDecl name_a6KSn ann_a6KGi) name_a6KGh name_a6KSn
-uvarDeclAnn :: forall name_a6KGh ann_a6KGi ann_a6KSm. Lens (UVarDecl name_a6KGh ann_a6KGi) (UVarDecl name_a6KGh ann_a6KSm) ann_a6KGi ann_a6KSm
+uvarDeclName :: forall name_a6KW6 ann_a6KW7 name_a6L8c. Lens (UVarDecl name_a6KW6 ann_a6KW7) (UVarDecl name_a6L8c ann_a6KW7) name_a6KW6 name_a6L8c
+uvarDeclAnn :: forall name_a6KW6 ann_a6KW7 ann_a6L8b. Lens (UVarDecl name_a6KW6 ann_a6KW7) (UVarDecl name_a6KW6 ann_a6L8b) ann_a6KW7 ann_a6L8b
 instance GHC.Generics.Generic (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance (GHC.Show.Show ann, GHC.Show.Show name) => GHC.Show.Show (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance GHC.Base.Functor (UntypedPlutusCore.Core.Type.UVarDecl name)
@@ -7952,15 +8187,15 @@ termSubtermsDeep :: Fold (Term name uni fun ann) (Term name uni fun ann)
 
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>.
 termUniquesDeep :: HasUniques (Term name uni fun ann) => Fold (Term name uni fun ann) Unique
-data TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-VarF :: !ann_i6O27 -> !name_i6O24 -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-LamAbsF :: !ann_i6O27 -> !name_i6O24 -> !r_a6Otz -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-ApplyF :: !ann_i6O27 -> !r_a6Otz -> !r_a6Otz -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-ForceF :: !ann_i6O27 -> !r_a6Otz -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-DelayF :: !ann_i6O27 -> !r_a6Otz -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-ConstantF :: !ann_i6O27 -> !Some (ValueOf uni_i6O25) -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-BuiltinF :: !ann_i6O27 -> !fun_i6O26 -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
-ErrorF :: !ann_i6O27 -> TermF (name_i6O24 :: Type) (uni_i6O25 :: Type -> Type) (fun_i6O26 :: Type) (ann_i6O27 :: Type) r_a6Otz
+data TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+VarF :: !ann_i6OhW -> !name_i6OhT -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+LamAbsF :: !ann_i6OhW -> !name_i6OhT -> !r_a6OJo -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+ApplyF :: !ann_i6OhW -> !r_a6OJo -> !r_a6OJo -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+ForceF :: !ann_i6OhW -> !r_a6OJo -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+DelayF :: !ann_i6OhW -> !r_a6OJo -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+ConstantF :: !ann_i6OhW -> !Some (ValueOf uni_i6OhU) -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+BuiltinF :: !ann_i6OhW -> !fun_i6OhV -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
+ErrorF :: !ann_i6OhW -> TermF (name_i6OhT :: Type) (uni_i6OhU :: Type -> Type) (fun_i6OhV :: Type) (ann_i6OhW :: Type) r_a6OJo
 
 -- | Using 4 bits to encode term tags.
 termTagWidth :: NumBits
@@ -7978,11 +8213,11 @@ data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5ohx ann_a5m0i | r_a5ohx -> ann_a5m0i
-_UniqueError :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (UniqueError ann_a5m0i)
-_MultiplyDefined :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_IncoherentUsage :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i, ann_a5m0i)
-_FreeVariable :: AsUniqueError r_a5ohx ann_a5m0i => Prism' r_a5ohx (Unique, ann_a5m0i)
+class AsUniqueError r_a5oxl ann_a5mfT | r_a5oxl -> ann_a5mfT
+_UniqueError :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (UniqueError ann_a5mfT)
+_MultiplyDefined :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_IncoherentUsage :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT, ann_a5mfT)
+_FreeVariable :: AsUniqueError r_a5oxl ann_a5mfT => Prism' r_a5oxl (Unique, ann_a5mfT)
 
 module PlutusCore.Compiler.Erase
 
@@ -8046,10 +8281,10 @@ FakeNamedDeBruijn :: NamedDeBruijn -> FakeNamedDeBruijn
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1hH0
-_FreeVariableError :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Unique
-_FreeIndex :: AsFreeVariableError r_a1hH0 => Prism' r_a1hH0 Index
+class AsFreeVariableError r_a1hUE
+_FreeVariableError :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Unique
+_FreeIndex :: AsFreeVariableError r_a1hUE => Prism' r_a1hUE Index
 
 -- | Convert a <a>Term</a> with <a>Name</a>s into a <a>Term</a> with
 --   <a>DeBruijn</a>s. Will throw an error if a free variable is
@@ -8998,8 +9233,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6KGh ann_a6KGi name_a6KSn. Lens (UVarDecl name_a6KGh ann_a6KGi) (UVarDecl name_a6KSn ann_a6KGi) name_a6KGh name_a6KSn
-uvarDeclAnn :: forall name_a6KGh ann_a6KGi ann_a6KSm. Lens (UVarDecl name_a6KGh ann_a6KGi) (UVarDecl name_a6KGh ann_a6KSm) ann_a6KGi ann_a6KSm
+uvarDeclName :: forall name_a6KW6 ann_a6KW7 name_a6L8c. Lens (UVarDecl name_a6KW6 ann_a6KW7) (UVarDecl name_a6L8c ann_a6KW7) name_a6KW6 name_a6L8c
+uvarDeclAnn :: forall name_a6KW6 ann_a6KW7 ann_a6L8b. Lens (UVarDecl name_a6KW6 ann_a6KW7) (UVarDecl name_a6KW6 ann_a6L8b) ann_a6KW7 ann_a6L8b
 
 -- | Make a <a>Var</a> referencing the given <tt>VarDecl</tt>.
 mkVar :: ann -> UVarDecl name ann -> Term name uni fun ann
@@ -9104,8 +9339,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7snJ a_a7snK. Lens' (SimplifyOpts name_a7snJ a_a7snK) Int
-soInlineHints :: forall name_a7snJ a_a7snK name_a7spl a_a7spm. Lens (SimplifyOpts name_a7snJ a_a7snK) (SimplifyOpts name_a7spl a_a7spm) (InlineHints name_a7snJ a_a7snK) (InlineHints name_a7spl a_a7spm)
+soMaxSimplifierIterations :: forall name_a7sDy a_a7sDz. Lens' (SimplifyOpts name_a7sDy a_a7sDz) Int
+soInlineHints :: forall name_a7sDy a_a7sDz name_a7sFa a_a7sFb. Lens (SimplifyOpts name_a7sDy a_a7sDz) (SimplifyOpts name_a7sFa a_a7sFb) (InlineHints name_a7sDy a_a7sDz) (InlineHints name_a7sFa a_a7sFb)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9174,6 +9409,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7sY4 a_a7sY5 name_a7sZs a_a7sZt. Iso (CompilationOpts name_a7sY4 a_a7sY5) (CompilationOpts name_a7sZs a_a7sZt) (SimplifyOpts name_a7sY4 a_a7sY5) (SimplifyOpts name_a7sZs a_a7sZt)
+coSimplifyOpts :: forall name_a7tdT a_a7tdU name_a7tfh a_a7tfi. Iso (CompilationOpts name_a7tdT a_a7tdU) (CompilationOpts name_a7tfh a_a7tfi) (SimplifyOpts name_a7tdT a_a7tdU) (SimplifyOpts name_a7tfh a_a7tfi)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)

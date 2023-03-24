@@ -12,7 +12,7 @@
 --   updated by concurrent threads. Can be used for progress displays etc.
 --   
 @package concurrent-output
-@version 1.10.16
+@version 1.10.17
 
 
 -- | Concurrent output handling, internals.

@@ -1,5 +1,23 @@
 *Megaparsec follows [SemVer](https://semver.org/).*
 
+## Megaparsec 9.3.0
+
+* Now `label` can override more than one group of hints in the parser it
+  wraps. [Issue 482](https://github.com/mrkkrp/megaparsec/issues/482).
+
+* `takeP n` now returns the empty chunk of the input stream when `n` is
+  negative, similar to when `n == 0`. [Issue
+  497](https://github.com/mrkkrp/megaparsec/issues/497).
+
+* Added the `MonadParsecDbg` type class in `Text.Megaparsec.Debug`. The type
+  class allows us to use `dbg` in MTL monad transformers. [Issue
+  488](https://github.com/mrkkrp/megaparsec/issues/488).
+
+* Introduced the `ShareInput` and `NoShareInput` newtype wrappers in
+  `Text.Megaparsec.Stream` in order to allow the user to choose how the
+  input should be sliced and shared during the parsing. [Issue
+  492](https://github.com/mrkkrp/megaparsec/issues/492).
+
 ## Megaparsec 9.2.2
 
 * Fixed a space leak in the implementations of the `reachOffset` and

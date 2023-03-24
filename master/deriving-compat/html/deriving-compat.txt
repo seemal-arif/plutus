@@ -62,7 +62,7 @@
 --   these typeclasses using Template Haskell.</li>
 --   </ul>
 @package deriving-compat
-@version 0.6.1
+@version 0.6.3
 
 
 -- | Template Haskell-related utilities.
@@ -174,6 +174,7 @@ outOfPlaceTyVarError :: ClassRep a => a -> Name -> Q b
 enumerationError :: String -> Q a
 enumerationOrProductError :: String -> Q a
 enumerationErrorStr :: String -> String
+typeDataError :: Name -> Q a
 
 -- | A mapping of type variable Names to their auxiliary function Names.
 type TyVarMap a = Map Name (OneOrTwoNames a)

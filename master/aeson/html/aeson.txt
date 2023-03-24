@@ -12,8 +12,10 @@
 --   
 --   (A note on naming: in Greek mythology, Aeson was the father of Jason.)
 @package aeson
-@version 2.1.1.0
+@version 2.1.2.1
 
+
+-- | Strong type for JSON keys.
 module Data.Aeson.Key
 data Key
 fromString :: String -> Key
@@ -46,6 +48,83 @@ instance Language.Haskell.TH.Syntax.Lift Data.Aeson.Key.Key
 instance Test.QuickCheck.Arbitrary.Arbitrary Data.Aeson.Key.Key
 instance Test.QuickCheck.Arbitrary.CoArbitrary Data.Aeson.Key.Key
 instance Test.QuickCheck.Function.Function Data.Aeson.Key.Key
+
+
+-- | Token definitions.
+module Data.Aeson.Decoding.Tokens
+
+-- | A well-formed JSON token stream.
+--   
+--   <i>Note</i>: <a>Lit</a> exists to make <a>Tokens</a> have only 6
+--   constructors. This may or may not have impact on performance.
+data Tokens k e
+TkLit :: !Lit -> k -> Tokens k e
+TkText :: !Text -> k -> Tokens k e
+TkNumber :: !Number -> k -> Tokens k e
+TkArrayOpen :: TkArray k e -> Tokens k e
+TkRecordOpen :: TkRecord k e -> Tokens k e
+TkErr :: e -> Tokens k e
+
+-- | Literals. <tt>null</tt>, <tt>true</tt>, <tt>false</tt>.
+data Lit
+LitNull :: Lit
+LitTrue :: Lit
+LitFalse :: Lit
+
+-- | Numbers
+--   
+--   We preserve whether the number was integral, decimal or in scientific
+--   form.
+data Number
+
+-- | e.g. <tt>123</tt>
+NumInteger :: !Integer -> Number
+
+-- | e.g. <tt>123.456</tt>
+NumDecimal :: !Scientific -> Number
+
+-- | e.g. <tt>123e456</tt>, <tt>123e-456</tt> or <tt>123.456E-967</tt>
+NumScientific :: !Scientific -> Number
+
+-- | Array tokens.
+data TkArray k e
+TkItem :: Tokens (TkArray k e) e -> TkArray k e
+TkArrayEnd :: k -> TkArray k e
+TkArrayErr :: e -> TkArray k e
+
+-- | Record tokens.
+data TkRecord k e
+TkPair :: !Key -> Tokens (TkRecord k e) e -> TkRecord k e
+TkRecordEnd :: k -> TkRecord k e
+TkRecordErr :: e -> TkRecord k e
+instance GHC.Show.Show Data.Aeson.Decoding.Tokens.Lit
+instance GHC.Classes.Eq Data.Aeson.Decoding.Tokens.Lit
+instance GHC.Show.Show Data.Aeson.Decoding.Tokens.Number
+instance GHC.Classes.Eq Data.Aeson.Decoding.Tokens.Number
+instance (GHC.Show.Show k, GHC.Show.Show e) => GHC.Show.Show (Data.Aeson.Decoding.Tokens.TkArray k e)
+instance (GHC.Classes.Eq k, GHC.Classes.Eq e) => GHC.Classes.Eq (Data.Aeson.Decoding.Tokens.TkArray k e)
+instance (GHC.Show.Show k, GHC.Show.Show e) => GHC.Show.Show (Data.Aeson.Decoding.Tokens.Tokens k e)
+instance (GHC.Classes.Eq k, GHC.Classes.Eq e) => GHC.Classes.Eq (Data.Aeson.Decoding.Tokens.Tokens k e)
+instance (GHC.Show.Show k, GHC.Show.Show e) => GHC.Show.Show (Data.Aeson.Decoding.Tokens.TkRecord k e)
+instance (GHC.Classes.Eq k, GHC.Classes.Eq e) => GHC.Classes.Eq (Data.Aeson.Decoding.Tokens.TkRecord k e)
+instance GHC.Base.Functor (Data.Aeson.Decoding.Tokens.Tokens k)
+instance GHC.Base.Functor (Data.Aeson.Decoding.Tokens.TkArray k)
+instance GHC.Base.Functor (Data.Aeson.Decoding.Tokens.TkRecord k)
+instance Data.Foldable.Foldable (Data.Aeson.Decoding.Tokens.Tokens k)
+instance Data.Foldable.Foldable (Data.Aeson.Decoding.Tokens.TkArray k)
+instance Data.Foldable.Foldable (Data.Aeson.Decoding.Tokens.TkRecord k)
+instance Data.Traversable.Traversable (Data.Aeson.Decoding.Tokens.Tokens k)
+instance Data.Traversable.Traversable (Data.Aeson.Decoding.Tokens.TkArray k)
+instance Data.Traversable.Traversable (Data.Aeson.Decoding.Tokens.TkRecord k)
+instance Data.Bifunctor.Bifunctor Data.Aeson.Decoding.Tokens.Tokens
+instance Data.Bifunctor.Bifunctor Data.Aeson.Decoding.Tokens.TkArray
+instance Data.Bifunctor.Bifunctor Data.Aeson.Decoding.Tokens.TkRecord
+instance Data.Bifoldable.Bifoldable Data.Aeson.Decoding.Tokens.Tokens
+instance Data.Bifoldable.Bifoldable Data.Aeson.Decoding.Tokens.TkArray
+instance Data.Bifoldable.Bifoldable Data.Aeson.Decoding.Tokens.TkRecord
+instance Data.Bitraversable.Bitraversable Data.Aeson.Decoding.Tokens.Tokens
+instance Data.Bitraversable.Bitraversable Data.Aeson.Decoding.Tokens.TkArray
+instance Data.Bitraversable.Bitraversable Data.Aeson.Decoding.Tokens.TkRecord
 
 
 -- | An abstract interface for maps from JSON keys to values.
@@ -123,6 +202,11 @@ alignWithKey :: (Key -> These a b -> c) -> KeyMap a -> KeyMap b -> KeyMap c
 
 -- | Construct a map with the supplied mappings. If the list contains
 --   duplicate mappings, the later mappings take precedence.
+--   
+--   <pre>
+--   &gt;&gt;&gt; fromList [("a", 'x'), ("a", 'y')]
+--   fromList [("a",'y')]
+--   </pre>
 fromList :: [(Key, v)] -> KeyMap v
 
 -- | Construct a map from a list of elements. Uses the provided function,
@@ -241,6 +325,20 @@ instance Test.QuickCheck.Arbitrary.CoArbitrary v => Test.QuickCheck.Arbitrary.Co
 instance Test.QuickCheck.Function.Function v => Test.QuickCheck.Function.Function (Data.Aeson.KeyMap.KeyMap v)
 
 
+-- | Parser from lazy <a>ByteString</a> to <a>Tokens</a>.
+module Data.Aeson.Decoding.ByteString.Lazy
+
+-- | Lex (and parse) lazy <a>ByteString</a> into <a>Tokens</a> stream.
+lbsToTokens :: ByteString -> Tokens ByteString String
+
+
+-- | Parser from strict <a>ByteString</a> to <a>Tokens</a>.
+module Data.Aeson.Decoding.ByteString
+
+-- | Lex (and parse) strict <a>ByteString</a> into <a>Tokens</a> stream.
+bsToTokens :: ByteString -> Tokens ByteString String
+
+
 -- | Efficiently and correctly parse a JSON string. The string must be
 --   encoded as UTF-8.
 module Data.Aeson.Parser.Internal
@@ -274,14 +372,14 @@ jsonEOF :: Parser Value
 --   
 --   <h4><b>Examples</b></h4>
 --   
---   <a>json</a> keeps only the first occurence of each key, using
+--   <a>json</a> keeps only the first occurrence of each key, using
 --   <a>fromList</a>.
 --   
 --   <pre>
 --   <a>json</a> = <a>jsonWith</a> (<a>Right</a> <a>.</a> <a>fromList</a>)
 --   </pre>
 --   
---   <a>jsonLast</a> keeps the last occurence of each key, using
+--   <a>jsonLast</a> keeps the last occurrence of each key, using
 --   <tt><a>fromListWith</a> (<a>const</a> <a>id</a>)</tt>.
 --   
 --   <pre>
@@ -303,7 +401,7 @@ jsonEOF :: Parser Value
 --   </pre>
 jsonWith :: ([(Key, Value)] -> Either String Object) -> Parser Value
 
--- | Variant of <a>json</a> which keeps only the last occurence of every
+-- | Variant of <a>json</a> which keeps only the last occurrence of every
 --   key.
 jsonLast :: Parser Value
 
@@ -350,7 +448,7 @@ jsonEOF' :: Parser Value
 -- | Strict version of <a>jsonWith</a>.
 jsonWith' :: ([(Key, Value)] -> Either String Object) -> Parser Value
 
--- | Variant of <a>json'</a> which keeps only the last occurence of every
+-- | Variant of <a>json'</a> which keeps only the last occurrence of every
 --   key.
 jsonLast' :: Parser Value
 
@@ -381,6 +479,7 @@ fromListAccum :: [(Key, Value)] -> Object
 -- | <tt><tt>fromListNoDup</tt> kvs</tt> fails if <tt>kvs</tt> contains
 --   duplicate keys.
 parseListNoDup :: [(Key, Value)] -> Either String Object
+unescapeText :: ByteString -> Either UnicodeException Text
 
 
 -- | Efficiently and correctly parse a JSON string. The string must be
@@ -436,14 +535,14 @@ scientific :: Parser Scientific
 --   
 --   <h4><b>Examples</b></h4>
 --   
---   <a>json</a> keeps only the first occurence of each key, using
+--   <a>json</a> keeps only the first occurrence of each key, using
 --   <a>fromList</a>.
 --   
 --   <pre>
 --   <a>json</a> = <a>jsonWith</a> (<a>Right</a> <a>.</a> <a>fromList</a>)
 --   </pre>
 --   
---   <a>jsonLast</a> keeps the last occurence of each key, using
+--   <a>jsonLast</a> keeps the last occurrence of each key, using
 --   <tt><a>fromListWith</a> (<a>const</a> <a>id</a>)</tt>.
 --   
 --   <pre>
@@ -465,7 +564,7 @@ scientific :: Parser Scientific
 --   </pre>
 jsonWith :: ([(Key, Value)] -> Either String Object) -> Parser Value
 
--- | Variant of <a>json</a> which keeps only the last occurence of every
+-- | Variant of <a>json</a> which keeps only the last occurrence of every
 --   key.
 jsonLast :: Parser Value
 
@@ -499,7 +598,7 @@ value' :: Parser Value
 -- | Strict version of <a>jsonWith</a>.
 jsonWith' :: ([(Key, Value)] -> Either String Object) -> Parser Value
 
--- | Variant of <a>json'</a> which keeps only the last occurence of every
+-- | Variant of <a>json'</a> which keeps only the last occurrence of every
 --   key.
 jsonLast' :: Parser Value
 
@@ -520,6 +619,10 @@ eitherDecodeStrictWith :: Parser Value -> (Value -> IResult a) -> ByteString -> 
 --   
 --   <b>Note</b>: all declarations in this module are unstable, and prone
 --   to being changed at any time.
+
+-- | <i>Deprecated: All contents of this module are exported from
+--   Data.Aeson.Types module. This module will be removed in the next major
+--   aeson version.</i>
 module Data.Aeson.Internal
 
 -- | The internal result of running a <a>Parser</a>.
@@ -567,12 +670,19 @@ ifromJSON :: FromJSON a => Value -> IResult a
 iparse :: (a -> Parser b) -> a -> IResult b
 
 
+
+-- | <i>Deprecated: This module will be removed in the next major aeson
+--   version.</i>
 module Data.Aeson.Internal.Time
 
 -- | Like TimeOfDay, but using a fixed-width integer for seconds.
 data TimeOfDay64
 TOD :: {-# UNPACK #-} !Int -> {-# UNPACK #-} !Int -> {-# UNPACK #-} !Int64 -> TimeOfDay64
+
+-- | <i>Deprecated: Use MkFixed</i>
 fromPico :: Pico -> Integer
+
+-- | <i>Deprecated: Use MkFixed</i>
 toPico :: Integer -> Pico
 diffTimeOfDay64 :: DiffTime -> TimeOfDay64
 toTimeOfDay64 :: TimeOfDay -> TimeOfDay64
@@ -1528,7 +1638,7 @@ data FromJSONKeyFunction a
 --   compatible with <a>Text</a> i.e. hash values be equal for wrapped
 --   values as well.
 --   
---   On pre GHC 7.8 this is unconstrainted function.
+--   On pre GHC 7.8 this is unconstrained function.
 fromJSONKeyCoerce :: Coercible Text a => FromJSONKeyFunction a
 
 -- | Semantically the same as <tt>coerceFromJSONKeyFunction = fmap coerce =
@@ -2195,6 +2305,9 @@ formatPath :: JSONPath -> String
 --   relative to some root object.
 formatRelativePath :: JSONPath -> String
 
+-- | Annotate an error message with a <a>JSONPath</a> error location.
+formatError :: JSONPath -> String -> String
+
 
 -- | Most frequently, you'll probably want to encode straight to UTF-8 (the
 --   standard JSON encoding) using <tt>encode</tt>.
@@ -2320,6 +2433,41 @@ eitherDecodeStrict' :: FromJSON a => ByteString -> Either String a
 -- | Like <a>decodeFileStrict'</a> but returns an error message when
 --   decoding fails.
 eitherDecodeFileStrict' :: FromJSON a => FilePath -> IO (Either String a)
+
+-- | Exception thrown by <a>throwDecode</a> and variants.
+newtype AesonException
+AesonException :: String -> AesonException
+
+-- | Like <a>decode</a> but throws an <a>AesonException</a> when decoding
+--   fails.
+--   
+--   <pre>
+--   &gt;&gt;&gt; throwDecode "42" :: Maybe Int
+--   Just 42
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; throwDecode "42" :: IO Int
+--   42
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; throwDecode "true" :: IO Int
+--   ...Exception: AesonException...
+--   </pre>
+throwDecode :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
+
+-- | Like <a>decodeStrict</a> but throws an <a>AesonException</a> when
+--   decoding fails.
+throwDecodeStrict :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
+
+-- | Like <a>decode'</a> but throws an <a>AesonException</a> when decoding
+--   fails.
+throwDecode' :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
+
+-- | Like <a>decodeStrict'</a> but throws an <a>AesonException</a> when
+--   decoding fails.
+throwDecodeStrict' :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
 
 -- | A JSON value represented as a Haskell value.
 data Value
@@ -3448,6 +3596,8 @@ json :: Parser Value
 --   For a more flexible alternative, see <a>jsonWith'</a>.
 json' :: Parser Value
 parseIndexedJSON :: (Value -> Parser a) -> Int -> Value -> Parser a
+instance GHC.Show.Show Data.Aeson.AesonException
+instance GHC.Exception.Type.Exception Data.Aeson.AesonException
 
 
 -- | Functions to mechanically derive <a>JSONFun</a> and <a>FromJSON</a>
@@ -3511,6 +3661,9 @@ parseIndexedJSON :: (Value -> Parser a) -> Int -> Value -> Parser a
 --   -- FromJSON and ToJSON instances for 4-tuples.
 --   $(<a>deriveJSON</a> <a>defaultOptions</a> ''(,,,))
 --   </pre>
+--   
+--   If you derive <a>JSONFun</a> for a type that has no constructors, the
+--   splice will require enabling <tt>EmptyCase</tt> to compile.
 module Data.Aeson.TH
 
 -- | Options that specify how to encode/decode your datatype to/from JSON.
@@ -3704,3 +3857,36 @@ module Data.Aeson.QQ.Simple
 --   joe = [aesonQQ|{ "name": "Joe", "age": 12 }|]
 --   </pre>
 aesonQQ :: QuasiQuoter
+
+
+-- | Convertion to and from <tt>aeson</tt> <a>Value</a>.
+module Data.Aeson.Decoding
+
+-- | Efficiently deserialize a JSON value from a strict <a>ByteString</a>.
+--   If this fails due to incomplete or invalid input, <a>Nothing</a> is
+--   returned.
+decode :: FromJSON a => ByteString -> Maybe a
+
+-- | Like <a>decodeStrict</a> but returns an error message when decoding
+--   fails.
+eitherDecode :: FromJSON a => ByteString -> Either String a
+
+-- | Like <a>decode</a> but throws an <a>AesonException</a> when decoding
+--   fails.
+throwDecode :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
+
+-- | Efficiently deserialize a JSON value from a strict <a>ByteString</a>.
+--   If this fails due to incomplete or invalid input, <a>Nothing</a> is
+--   returned.
+decodeStrict :: FromJSON a => ByteString -> Maybe a
+
+-- | Like <a>decodeStrict</a> but returns an error message when decoding
+--   fails.
+eitherDecodeStrict :: FromJSON a => ByteString -> Either String a
+
+-- | Like <a>decodeStrict</a> but throws an <a>AesonException</a> when
+--   decoding fails.
+throwDecodeStrict :: forall a m. (FromJSON a, MonadThrow m) => ByteString -> m a
+
+-- | Convert <a>Tokens</a> to <a>Value</a>.
+toEitherValue :: Tokens k e -> Either e (Value, k)

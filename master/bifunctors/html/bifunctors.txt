@@ -6,7 +6,7 @@
 --   
 --   Bifunctors.
 @package bifunctors
-@version 5.5.13
+@version 5.5.15
 
 
 module Data.Biapplicative
@@ -361,6 +361,9 @@ instance forall k1 k2 (f :: k1 -> k2 -> *) (g :: k1 -> k2 -> *) (a :: k1) (b :: 
 instance forall k1 k2 (f :: k1 -> k2 -> *) (g :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Show.Show (f a b), GHC.Show.Show (g a b)) => GHC.Show.Show (Data.Bifunctor.Product.Product f g a b)
 instance forall k1 k2 (f :: k1 -> k2 -> *) (g :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Classes.Ord (f a b), GHC.Classes.Ord (g a b)) => GHC.Classes.Ord (Data.Bifunctor.Product.Product f g a b)
 instance forall k1 k2 (f :: k1 -> k2 -> *) (g :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Classes.Eq (f a b), GHC.Classes.Eq (g a b)) => GHC.Classes.Eq (Data.Bifunctor.Product.Product f g a b)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (GHC.Base.Functor (f a), GHC.Base.Functor (g a)) => GHC.Base.Functor (Data.Bifunctor.Product.Product f g a)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (Data.Foldable.Foldable (f a), Data.Foldable.Foldable (g a)) => Data.Foldable.Foldable (Data.Bifunctor.Product.Product f g a)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (Data.Traversable.Traversable (f a), Data.Traversable.Traversable (g a)) => Data.Traversable.Traversable (Data.Bifunctor.Product.Product f g a)
 instance (Data.Functor.Classes.Eq2 f, Data.Functor.Classes.Eq2 g, GHC.Classes.Eq a) => Data.Functor.Classes.Eq1 (Data.Bifunctor.Product.Product f g a)
 instance (Data.Functor.Classes.Eq2 f, Data.Functor.Classes.Eq2 g) => Data.Functor.Classes.Eq2 (Data.Bifunctor.Product.Product f g)
 instance (Data.Functor.Classes.Ord2 f, Data.Functor.Classes.Ord2 g, GHC.Classes.Ord a) => Data.Functor.Classes.Ord1 (Data.Bifunctor.Product.Product f g a)
@@ -392,6 +395,9 @@ instance forall k1 k2 (p :: k1 -> k2 -> *) (q :: k1 -> k2 -> *) (a :: k1) (b :: 
 instance forall k1 k2 (p :: k1 -> k2 -> *) (q :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Show.Show (p a b), GHC.Show.Show (q a b)) => GHC.Show.Show (Data.Bifunctor.Sum.Sum p q a b)
 instance forall k1 k2 (p :: k1 -> k2 -> *) (q :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Classes.Ord (p a b), GHC.Classes.Ord (q a b)) => GHC.Classes.Ord (Data.Bifunctor.Sum.Sum p q a b)
 instance forall k1 k2 (p :: k1 -> k2 -> *) (q :: k1 -> k2 -> *) (a :: k1) (b :: k2). (GHC.Classes.Eq (p a b), GHC.Classes.Eq (q a b)) => GHC.Classes.Eq (Data.Bifunctor.Sum.Sum p q a b)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (GHC.Base.Functor (f a), GHC.Base.Functor (g a)) => GHC.Base.Functor (Data.Bifunctor.Sum.Sum f g a)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (Data.Foldable.Foldable (f a), Data.Foldable.Foldable (g a)) => Data.Foldable.Foldable (Data.Bifunctor.Sum.Sum f g a)
+instance forall k (f :: k -> * -> *) (a :: k) (g :: k -> * -> *). (Data.Traversable.Traversable (f a), Data.Traversable.Traversable (g a)) => Data.Traversable.Traversable (Data.Bifunctor.Sum.Sum f g a)
 instance (Data.Functor.Classes.Eq2 f, Data.Functor.Classes.Eq2 g, GHC.Classes.Eq a) => Data.Functor.Classes.Eq1 (Data.Bifunctor.Sum.Sum f g a)
 instance (Data.Functor.Classes.Eq2 f, Data.Functor.Classes.Eq2 g) => Data.Functor.Classes.Eq2 (Data.Bifunctor.Sum.Sum f g)
 instance (Data.Functor.Classes.Ord2 f, Data.Functor.Classes.Ord2 g, GHC.Classes.Ord a) => Data.Functor.Classes.Ord1 (Data.Bifunctor.Sum.Sum f g a)

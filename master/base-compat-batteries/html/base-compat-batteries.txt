@@ -21,7 +21,7 @@
 --   See <tt><a>here</a></tt> for a more comprehensive list of differences
 --   between <tt>base-compat</tt> and <tt>base-compat-batteries</tt>.
 @package base-compat-batteries
-@version 0.12.2
+@version 0.13.0
 
 module Control.Concurrent.Compat
 
@@ -720,6 +720,13 @@ module Data.Bifoldable.Compat
 --   namespace.
 module Data.Bifoldable.Compat.Repl.Batteries
 
+module Data.Bifoldable1.Compat
+
+
+-- | Reexports <a>Data.Bifoldable1.Compat</a> from a globally unique
+--   namespace.
+module Data.Bifoldable1.Compat.Repl.Batteries
+
 module Data.Bifunctor.Compat
 
 
@@ -764,6 +771,13 @@ module Data.Foldable.Compat
 -- | Reexports <a>Data.Foldable.Compat</a> from a globally unique
 --   namespace.
 module Data.Foldable.Compat.Repl.Batteries
+
+module Data.Foldable1.Compat
+
+
+-- | Reexports <a>Data.Foldable1.Compat</a> from a globally unique
+--   namespace.
+module Data.Foldable1.Compat.Repl.Batteries
 
 module Data.Function.Compat
 
@@ -1156,9 +1170,33 @@ reverse :: NonEmpty a -> NonEmpty a
 --   the finite prefixes of <tt>xs</tt>.
 inits :: Foldable f => f a -> NonEmpty [a]
 
+-- | The <a>inits1</a> function takes a <a>NonEmpty</a> stream <tt>xs</tt>
+--   and returns all the <a>NonEmpty</a> finite prefixes of <tt>xs</tt>,
+--   starting with the shortest.
+--   
+--   <pre>
+--   inits1 (1 :| [2,3]) == (1 :| []) :| [1 :| [2], 1 :| [2,3]]
+--   inits1 (1 :| []) == (1 :| []) :| []
+--   </pre>
+--   
+--   <i>Since: 4.18</i>
+inits1 :: NonEmpty a -> NonEmpty (NonEmpty a)
+
 -- | The <a>tails</a> function takes a stream <tt>xs</tt> and returns all
 --   the suffixes of <tt>xs</tt>.
 tails :: Foldable f => f a -> NonEmpty [a]
+
+-- | The <a>tails1</a> function takes a <a>NonEmpty</a> stream <tt>xs</tt>
+--   and returns all the non-empty suffixes of <tt>xs</tt>, starting with
+--   the longest.
+--   
+--   <pre>
+--   tails1 (1 :| [2,3]) == (1 :| [2,3]) :| [2 :| [3], 3 :| []]
+--   tails1 (1 :| []) == (1 :| []) :| []
+--   </pre>
+--   
+--   <i>Since: 4.18</i>
+tails1 :: NonEmpty a -> NonEmpty (NonEmpty a)
 
 -- | <tt><a>iterate</a> f x</tt> produces the infinite sequence of repeated
 --   applications of <tt>f</tt> to <tt>x</tt>.
@@ -1798,6 +1836,20 @@ module Data.String.Compat
 -- | Reexports <a>Data.String.Compat</a> from a globally unique namespace.
 module Data.String.Compat.Repl.Batteries
 
+module Data.Traversable.Compat
+
+
+-- | Reexports <a>Data.Traversable.Compat</a> from a globally unique
+--   namespace.
+module Data.Traversable.Compat.Repl.Batteries
+
+
+-- | This uses the <tt>OneTuple</tt> compatibility library to backport
+--   <a>Solo</a> to old versions of GHC. Note that <tt>OneTuple</tt> makes
+--   use of pattern synonyms, which cannot be defined on pre-7.8 versions
+--   of GHC. As such, it is not feasible to backport the <tt>Solo</tt> data
+--   constructor on pre-7.8 versions of GHC, as <tt>OneTuple</tt> defines
+--   this as a pattern synonym.
 module Data.Tuple.Compat
 
 -- | <tt>Solo</tt> is the canonical lifted 1-tuple, just like <tt>(,)</tt>
@@ -1851,6 +1903,7 @@ module Data.Tuple.Compat
 --   implementations of lazy and strict mapping functions.
 data Solo a
 Solo :: a -> Solo a
+pattern MkSolo :: a -> Solo a
 
 -- | Extract the first component of a pair.
 fst :: (a, b) -> a
@@ -1971,6 +2024,13 @@ infix 4 ==
 -- | Reexports <a>Data.Type.Equality.Compat</a> from a globally unique
 --   namespace.
 module Data.Type.Equality.Compat.Repl.Batteries
+
+module Data.Typeable.Compat
+
+
+-- | Reexports <a>Data.Typeable.Compat</a> from a globally unique
+--   namespace.
+module Data.Typeable.Compat.Repl.Batteries
 
 module Data.Version.Compat
 
@@ -2095,6 +2155,10 @@ module Numeric.Compat
 module Numeric.Compat.Repl.Batteries
 
 module Numeric.Natural.Compat
+
+-- | <a>Natural</a> subtraction. Returns <a>Nothing</a>s for non-positive
+--   results.
+minusNaturalMaybe :: Natural -> Natural -> Maybe Natural
 
 
 -- | Reexports <a>Numeric.Natural.Compat</a> from a globally unique
