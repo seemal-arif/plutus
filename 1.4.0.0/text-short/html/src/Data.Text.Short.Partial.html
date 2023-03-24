@@ -121,19 +121,19 @@
 </span><span id="line-93"></span><span class="hs-comment">-- @since 0.1.2</span><span>
 </span><span id="line-94"></span><span class="annot"><a href="Data.Text.Short.Partial.html#index"><span class="hs-identifier hs-type">index</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Data.Text.Short.Internal.html#ShortText"><span class="hs-identifier hs-type">ShortText</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Char</span></a></span><span>
 </span><span id="line-95"></span><span id="index"><span class="annot"><span class="annottext">index :: ShortText -&gt; Int -&gt; Char
-</span><a href="Data.Text.Short.Partial.html#index"><span class="hs-identifier hs-var hs-var">index</span></a></span></span><span> </span><span id="local-6989586621679059207"><span class="annot"><span class="annottext">ShortText
-</span><a href="#local-6989586621679059207"><span class="hs-identifier hs-var">st</span></a></span></span><span> </span><span id="local-6989586621679059206"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679059206"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">ShortText -&gt; Int -&gt; Maybe Char
+</span><a href="Data.Text.Short.Partial.html#index"><span class="hs-identifier hs-var hs-var">index</span></a></span></span><span> </span><span id="local-6989586621679059500"><span class="annot"><span class="annottext">ShortText
+</span><a href="#local-6989586621679059500"><span class="hs-identifier hs-var">st</span></a></span></span><span> </span><span id="local-6989586621679059499"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679059499"><span class="hs-identifier hs-var">i</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">ShortText -&gt; Int -&gt; Maybe Char
 </span><a href="Data.Text.Short.Internal.html#indexMaybe"><span class="hs-identifier hs-var">indexMaybe</span></a></span><span> </span><span class="annot"><span class="annottext">ShortText
-</span><a href="#local-6989586621679059207"><span class="hs-identifier hs-var">st</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679059206"><span class="hs-identifier hs-var">i</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679059500"><span class="hs-identifier hs-var">st</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679059499"><span class="hs-identifier hs-var">i</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-96"></span><span>               </span><span class="annot"><span class="annottext">Maybe Char
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Nothing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. HasCallStack =&gt; [Char] -&gt; a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">error</span></a></span><span> </span><span class="annot"><span class="annottext">[Char]
 </span><span class="hs-string">&quot;index: not within ShortText&quot;</span></span><span>
-</span><span id="line-97"></span><span>               </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679059204"><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621679059204"><span class="hs-identifier hs-var">c</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621679059204"><span class="hs-identifier hs-var">c</span></a></span><span>
+</span><span id="line-97"></span><span>               </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Just</span></a></span><span> </span><span id="local-6989586621679059497"><span class="annot"><span class="annottext">Char
+</span><a href="#local-6989586621679059497"><span class="hs-identifier hs-var">c</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Char
+</span><a href="#local-6989586621679059497"><span class="hs-identifier hs-var">c</span></a></span><span>
 </span><span id="line-98"></span><span>
 </span><span id="line-99"></span><span class="hs-comment">-- $setup</span><span>
 </span><span id="line-100"></span><span class="hs-comment">-- &gt;&gt;&gt; :set -XOverloadedStrings</span><span>

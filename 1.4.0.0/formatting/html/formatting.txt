@@ -10,7 +10,7 @@
 --   See the README at
 --   <a>https://github.com/AJChapman/formatting#readme</a> for more info.
 @package formatting
-@version 7.1.3
+@version 7.2.0
 
 
 -- | Types that can be rendered to a <a>Builder</a>.
@@ -123,10 +123,26 @@ Format :: ((Builder -> r) -> a) -> Format r a
 (%) :: Format r a -> Format r' r -> Format r' a
 infixr 9 %
 
+-- | Concatenate two formatters with a space in between.
+--   
+--   <pre>
+--   &gt;&gt;&gt; :set -XOverloadedStrings
+--   
+--   &gt;&gt;&gt; format (int %+ "+" %+ int %+ "=" %+ int) 2 3 5
+--   "2 + 3 = 5"
+--   </pre>
+(%+) :: Format r a -> Format r' r -> Format r' a
+infixr 9 %+
+
 -- | Function compose two formatters. Will feed the result of one formatter
 --   into another.
 (%.) :: Format r (Builder -> r') -> Format r' a -> Format r a
 infixr 8 %.
+
+-- | Like <tt>(&lt;&gt;)</tt> except put a space between the two
+--   formatters. For example: <tt>format (year <a>%+</a> month <a>%+</a>
+--   dayOfMonth) now</tt> will yield <tt>"2022 06 06"</tt>
+(<%+>) :: Format r (a -> r) -> Format r (a -> r) -> Format r (a -> r)
 
 -- | Don't format any data, just output a constant <a>Builder</a>.
 now :: Builder -> Format r r
@@ -159,18 +175,18 @@ bprint :: Format Builder a -> a
 bformat :: Format Builder a -> a
 
 -- | Run the formatter and print out the text to stdout.
-fprint :: Format (IO ()) a -> a
+fprint :: MonadIO m => Format (m ()) a -> a
 
 -- | Run the formatter and print out the text to stdout, followed by a
 --   newline.
-fprintLn :: Format (IO ()) a -> a
+fprintLn :: MonadIO m => Format (m ()) a -> a
 
 -- | Run the formatter and put the output onto the given <a>Handle</a>.
-hprint :: Handle -> Format (IO ()) a -> a
+hprint :: MonadIO m => Handle -> Format (m ()) a -> a
 
 -- | Run the formatter and put the output and a newline onto the given
 --   <a>Handle</a>.
-hprintLn :: Handle -> Format (IO ()) a -> a
+hprintLn :: MonadIO m => Handle -> Format (m ()) a -> a
 
 -- | Run the formatter and return a list of characters.
 formatToString :: Format String a -> a
@@ -179,6 +195,29 @@ instance GHC.Base.Semigroup (Formatting.Internal.Format r (a -> r))
 instance GHC.Base.Monoid (Formatting.Internal.Format r (a -> r))
 instance (a GHC.Types.~ r) => Data.String.IsString (Formatting.Internal.Format r a)
 instance Control.Category.Category Formatting.Internal.Format
+
+module Formatting.FromBuilder
+
+-- | Anything that can be created from a <a>Builder</a>. This class makes
+--   it easier to add formatting to other API's. See <a>formatted</a> for
+--   some examples of this class in action.
+class FromBuilder a
+fromBuilder :: FromBuilder a => Builder -> a
+
+-- | Makes it easy to add formatting to any api that is expecting a
+--   builder, a strict or lazy text, or a string. It is essentially (flip
+--   runFormat), but with a more generous type due to the typeclass.
+--   
+--   For example: &gt;&gt;&gt; formatted TL.putStr ("x is: " % int % "n") 7
+--   x is: 7 &gt;&gt;&gt; formatted T.putStr ("x is: " % int % "n") 7 x is:
+--   7 &gt;&gt;&gt; formatted (id <tt>TL.Text) ("x is: " % int % "n") 7 "x
+--   is: 7n" &gt;&gt;&gt; formatted (id </tt>T.Text) ("x is: " % int % "n")
+--   7 "x is: 7n"
+formatted :: FromBuilder t => (t -> o) -> Format o a -> a
+instance Formatting.FromBuilder.FromBuilder Data.Text.Internal.Builder.Builder
+instance Formatting.FromBuilder.FromBuilder Data.Text.Internal.Lazy.Text
+instance Formatting.FromBuilder.FromBuilder Data.Text.Internal.Text
+instance Formatting.FromBuilder.FromBuilder [GHC.Types.Char]
 
 
 -- | Formatting functions.
@@ -248,7 +287,7 @@ ords :: Integral n => Format r (n -> r)
 --   For example:
 --   
 --   <pre>
---   &gt;&gt;&gt; set -XOverloadedStrings
+--   &gt;&gt;&gt; :set -XOverloadedStrings
 --   
 --   &gt;&gt;&gt; formatPeople = format (int % " " &lt;&gt; plural "person" "people" % ".") :: Int -&gt; Data.Text.Lazy.Text
 --   
@@ -379,7 +418,7 @@ optioned :: Format Builder (a -> Builder) -> Format r (Maybe a -> r)
 -- | Render the value in an Either:
 --   
 --   <pre>
---   &gt;&gt;&gt; format (eithered text int) (Left "Error!"
+--   &gt;&gt;&gt; format (eithered text int) (Left "Error!")
 --   "Error!"
 --   </pre>
 --   
@@ -537,7 +576,7 @@ took :: Int -> Format r ([a] -> r) -> Format r ([a] -> r)
 -- | Drop the first n items from the list of items.
 --   
 --   <pre>
---   &gt;&gt;&gt; format (dropped 3 (list int) [1..6]
+--   &gt;&gt;&gt; format (dropped 3 (list int)) [1..6]
 --   "[4, 5, 6]"
 --   </pre>
 dropped :: Int -> Format r ([a] -> r) -> Format r ([a] -> r)
@@ -573,7 +612,7 @@ splatWith :: (Text -> [Text]) -> (Format r' (Builder -> r') -> Format Builder ([
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; fprint (splatOn "," indentedLines text) "one,two,three"
+--   &gt;&gt;&gt; fprint (splatOn "," (indentedLines 4) text) "one,two,three"
 --       one
 --       two
 --       three
@@ -664,12 +703,12 @@ titlecased :: Format r a -> Format r a
 --   end such that it does not exceed this length.
 --   
 --   <pre>
---   &gt;&gt;&gt; format (truncated 5 text) "hello"
+--   &gt;&gt;&gt; format (ltruncated 5 text) "hello"
 --   "hello"
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; format (truncated 5 text) "hellos"
+--   &gt;&gt;&gt; format (ltruncated 5 text) "hellos"
 --   "he..."
 --   </pre>
 ltruncated :: Int64 -> Format r a -> Format r a
@@ -911,7 +950,7 @@ indented :: Int -> Format r a -> Format r a
 --   number of spaces.
 --   
 --   <pre>
---   &gt;&gt;&gt; fprintLn ("The lucky numbers are:\n" % indentedLines 4 int) [7, 13, 1, 42]
+--   &gt;&gt;&gt; fprint ("The lucky numbers are:\n" % indentedLines 4 int) [7, 13, 1, 42]
 --   The lucky numbers are:
 --       7
 --       13
@@ -1090,6 +1129,7 @@ hexPrefix :: Integral a => Int64 -> Format r (a -> r)
 --   
 --   <pre>
 --   &gt;&gt;&gt; format ("Person's name is " % text % ", age is " % hex) "Dave" 54
+--   "Person's name is Dave, age is 36"
 --   </pre>
 --   
 --   See <a>Formatting.Formatters</a> for a list of formatters. See
@@ -1156,10 +1196,26 @@ data Format r a
 (%) :: Format r a -> Format r' r -> Format r' a
 infixr 9 %
 
+-- | Concatenate two formatters with a space in between.
+--   
+--   <pre>
+--   &gt;&gt;&gt; :set -XOverloadedStrings
+--   
+--   &gt;&gt;&gt; format (int %+ "+" %+ int %+ "=" %+ int) 2 3 5
+--   "2 + 3 = 5"
+--   </pre>
+(%+) :: Format r a -> Format r' r -> Format r' a
+infixr 9 %+
+
 -- | Function compose two formatters. Will feed the result of one formatter
 --   into another.
 (%.) :: Format r (Builder -> r') -> Format r' a -> Format r a
 infixr 8 %.
+
+-- | Like <tt>(&lt;&gt;)</tt> except put a space between the two
+--   formatters. For example: <tt>format (year <a>%+</a> month <a>%+</a>
+--   dayOfMonth) now</tt> will yield <tt>"2022 06 06"</tt>
+(<%+>) :: Format r (a -> r) -> Format r (a -> r) -> Format r (a -> r)
 
 -- | Don't format any data, just output a constant <a>Builder</a>.
 now :: Builder -> Format r r
@@ -1190,21 +1246,32 @@ bprint :: Format Builder a -> a
 bformat :: Format Builder a -> a
 
 -- | Run the formatter and print out the text to stdout.
-fprint :: Format (IO ()) a -> a
+fprint :: MonadIO m => Format (m ()) a -> a
 
 -- | Run the formatter and print out the text to stdout, followed by a
 --   newline.
-fprintLn :: Format (IO ()) a -> a
+fprintLn :: MonadIO m => Format (m ()) a -> a
 
 -- | Run the formatter and put the output onto the given <a>Handle</a>.
-hprint :: Handle -> Format (IO ()) a -> a
+hprint :: MonadIO m => Handle -> Format (m ()) a -> a
 
 -- | Run the formatter and put the output and a newline onto the given
 --   <a>Handle</a>.
-hprintLn :: Handle -> Format (IO ()) a -> a
+hprintLn :: MonadIO m => Handle -> Format (m ()) a -> a
 
 -- | Run the formatter and return a list of characters.
 formatToString :: Format String a -> a
+
+-- | Makes it easy to add formatting to any api that is expecting a
+--   builder, a strict or lazy text, or a string. It is essentially (flip
+--   runFormat), but with a more generous type due to the typeclass.
+--   
+--   For example: &gt;&gt;&gt; formatted TL.putStr ("x is: " % int % "n") 7
+--   x is: 7 &gt;&gt;&gt; formatted T.putStr ("x is: " % int % "n") 7 x is:
+--   7 &gt;&gt;&gt; formatted (id <tt>TL.Text) ("x is: " % int % "n") 7 "x
+--   is: 7n" &gt;&gt;&gt; formatted (id </tt>T.Text) ("x is: " % int % "n")
+--   7 "x is: 7n"
+formatted :: FromBuilder t => (t -> o) -> Format o a -> a
 
 
 -- | Examples that should always compile. If reading on Haddock, you can

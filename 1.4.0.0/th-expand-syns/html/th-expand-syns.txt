@@ -11,7 +11,7 @@
 --   from <tt>th-abstraction</tt>, so you may want to consider using
 --   <tt>th-abstraction</tt> instead.
 @package th-expand-syns
-@version 0.4.10.0
+@version 0.4.11.0
 
 module Language.Haskell.TH.ExpandSyns
 

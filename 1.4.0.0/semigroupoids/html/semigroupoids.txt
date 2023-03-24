@@ -194,9 +194,9 @@ class Functor f => Apply f
 
 -- | Lift a binary function into a comonad with zipping
 liftF2 :: Apply f => (a -> b -> c) -> f a -> f b -> f c
+infixl 4 <.>
 infixl 4 <.
 infixl 4 .>
-infixl 4 <.>
 
 -- | Wrap an <a>Applicative</a> to be used as a member of <a>Apply</a>
 newtype WrappedApplicative f a
@@ -632,9 +632,9 @@ class Functor f => Apply f
 
 -- | Lift a binary function into a comonad with zipping
 liftF2 :: Apply f => (a -> b -> c) -> f a -> f b -> f c
+infixl 4 <.>
 infixl 4 <.
 infixl 4 .>
-infixl 4 <.>
 
 -- | A variant of <a>&lt;.&gt;</a> with the arguments reversed.
 (<..>) :: Apply w => w a -> w (a -> b) -> w b
@@ -1110,9 +1110,9 @@ class Functor f => Apply f
 
 -- | Lift a binary function into a comonad with zipping
 liftF2 :: Apply f => (a -> b -> c) -> f a -> f b -> f c
+infixl 4 <.>
 infixl 4 <.
 infixl 4 .>
-infixl 4 <.>
 
 -- | A variant of <a>&lt;.&gt;</a> with the arguments reversed.
 (<..>) :: Apply w => w a -> w (a -> b) -> w b

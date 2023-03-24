@@ -42,7 +42,7 @@
 --   <li><a>type-combinators</a> is big package too.</li>
 --   </ul>
 @package fin
-@version 0.2.1
+@version 0.3
 
 
 -- | <a>Nat</a> numbers.
@@ -444,6 +444,8 @@ instance Control.DeepSeq.NFData (Data.Type.Nat.SNat n)
 instance Data.GADT.DeepSeq.GNFData @Data.Nat.Nat Data.Type.Nat.SNat
 instance Data.GADT.Internal.GEq @Data.Nat.Nat Data.Type.Nat.SNat
 instance Data.GADT.Internal.GCompare @Data.Nat.Nat Data.Type.Nat.SNat
+instance GHC.Classes.Eq (Data.Type.Nat.SNat a)
+instance GHC.Classes.Ord (Data.Type.Nat.SNat a)
 instance Data.Type.Nat.SNatI 'Data.Nat.Z
 instance Data.Type.Nat.SNatI n => Data.Type.Nat.SNatI ('Data.Nat.S n)
 
@@ -858,6 +860,7 @@ instance GHC.Classes.Ord (Data.Fin.Fin n)
 instance ((n :: Data.Nat.Nat) GHC.Types.~ ('Data.Nat.S m :: Data.Nat.Nat), Data.Type.Nat.SNatI m) => Test.QuickCheck.Arbitrary.Arbitrary (Data.Fin.Fin n)
 instance ((n :: Data.Nat.Nat) GHC.Types.~ ('Data.Nat.S m :: Data.Nat.Nat), Data.Type.Nat.SNatI m) => GHC.Enum.Bounded (Data.Fin.Fin n)
 instance GHC.Show.Show (Data.Fin.Fin n)
+instance Data.GADT.Internal.GShow @Data.Nat.Nat Data.Fin.Fin
 instance Data.Type.Nat.SNatI n => GHC.Num.Num (Data.Fin.Fin n)
 instance Data.Type.Nat.SNatI n => GHC.Real.Real (Data.Fin.Fin n)
 instance Data.Type.Nat.SNatI n => GHC.Real.Integral (Data.Fin.Fin n)
@@ -869,86 +872,3 @@ instance Test.QuickCheck.Arbitrary.CoArbitrary (Data.Fin.Fin n)
 instance ((n :: Data.Nat.Nat) GHC.Types.~ ('Data.Nat.S m :: Data.Nat.Nat), Data.Type.Nat.SNatI m) => Test.QuickCheck.Function.Function (Data.Fin.Fin n)
 instance Data.Type.Nat.SNatI n => Data.Universe.Class.Universe (Data.Fin.Fin n)
 instance Data.Type.Nat.SNatI n => Data.Universe.Class.Finite (Data.Fin.Fin n)
-
-
--- | This module is designed to be imported qualified:
---   
---   <pre>
---   import qualified Data.Fin.Enum as E
---   </pre>
-module Data.Fin.Enum
-
--- | Generic enumerations.
---   
---   <i>Examples:</i>
---   
---   <pre>
---   &gt;&gt;&gt; from ()
---   0
---   </pre>
---   
---   <pre>
---   &gt;&gt;&gt; to 0 :: ()
---   ()
---   </pre>
---   
---   <pre>
---   &gt;&gt;&gt; to 0 :: Bool
---   False
---   </pre>
---   
---   <pre>
---   &gt;&gt;&gt; map to F.universe :: [Bool]
---   [False,True]
---   </pre>
---   
---   <pre>
---   &gt;&gt;&gt; map (to . (+1) . from) [LT, EQ, GT] :: [Ordering] -- Num Fin is modulo arithmetic
---   [EQ,GT,LT]
---   </pre>
-class Enum a where {
-    
-    -- | The size of an enumeration.
-    type EnumSize a :: Nat;
-    type EnumSize a = GEnumSize a;
-}
-
--- | Converts a value to its index.
-from :: Enum a => a -> Fin (EnumSize a)
-
--- | Converts a value to its index.
-from :: (Enum a, Generic a, GFrom a, EnumSize a ~ GEnumSize a) => a -> Fin (EnumSize a)
-
--- | Converts from index to the original value.
-to :: Enum a => Fin (EnumSize a) -> a
-
--- | Converts from index to the original value.
-to :: (Enum a, Generic a, GTo a, EnumSize a ~ GEnumSize a) => Fin (EnumSize a) -> a
-
--- | Generic version of <a>from</a>.
-gfrom :: (Generic a, GFrom a) => a -> Fin (GEnumSize a)
-
--- | Constraint for the class that computes <a>gfrom</a>.
-type GFrom a = GFromRep (Rep a)
-
--- | Generic version of <a>to</a>.
-gto :: (Generic a, GTo a) => Fin (GEnumSize a) -> a
-
--- | Constraint for the class that computes <a>gto</a>.
-type GTo a = GToRep (Rep a)
-
--- | Compute the size from the type.
-type GEnumSize a = EnumSizeRep (Rep a) Nat0
-instance Data.Fin.Enum.Enum Data.Void.Void
-instance Data.Fin.Enum.Enum ()
-instance Data.Fin.Enum.Enum GHC.Types.Bool
-instance Data.Fin.Enum.Enum GHC.Types.Ordering
-instance (Data.Fin.Enum.Enum a, Data.Fin.Enum.Enum b, Data.Type.Nat.SNatI (Data.Fin.Enum.EnumSize a)) => Data.Fin.Enum.Enum (Data.Either.Either a b)
-instance (Data.Fin.Enum.GToRep a, Data.Fin.Enum.GToRep b) => Data.Fin.Enum.GToRep ((GHC.Generics.:+:) @(*) a b)
-instance Data.Fin.Enum.GToRep a => Data.Fin.Enum.GToRep (GHC.Generics.M1 @(*) d c a)
-instance Data.Fin.Enum.GToRep (GHC.Generics.V1 @(*))
-instance Data.Fin.Enum.GToRep (GHC.Generics.U1 @(*))
-instance (Data.Fin.Enum.GFromRep a, Data.Fin.Enum.GFromRep b) => Data.Fin.Enum.GFromRep ((GHC.Generics.:+:) @(*) a b)
-instance Data.Fin.Enum.GFromRep a => Data.Fin.Enum.GFromRep (GHC.Generics.M1 @(*) d c a)
-instance Data.Fin.Enum.GFromRep (GHC.Generics.V1 @(*))
-instance Data.Fin.Enum.GFromRep (GHC.Generics.U1 @(*))

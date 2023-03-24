@@ -9,7 +9,7 @@
 --   derive new folds. Derived folds still traverse the container just once
 --   and are often as efficient as hand-written folds.
 @package foldl
-@version 1.4.12
+@version 1.4.14
 
 
 -- | This module provides efficient and streaming left folds that you can
@@ -18,13 +18,13 @@
 --   Import this module qualified to avoid clashing with the Prelude:
 --   
 --   <pre>
---   &gt;&gt;&gt; import qualified Control.Foldl as L
+--   &gt;&gt;&gt; import qualified Control.Foldl as Foldl
 --   </pre>
 --   
 --   Use <a>fold</a> to apply a <a>Fold</a> to a list:
 --   
 --   <pre>
---   &gt;&gt;&gt; L.fold L.sum [1..100]
+--   &gt;&gt;&gt; Foldl.fold Foldl.sum [1..100]
 --   5050
 --   </pre>
 --   
@@ -34,28 +34,33 @@
 --   <pre>
 --   &gt;&gt;&gt; import Control.Applicative
 --   
---   &gt;&gt;&gt; let average = (/) &lt;$&gt; L.sum &lt;*&gt; L.genericLength
+--   &gt;&gt;&gt; let average = (/) &lt;$&gt; Foldl.sum &lt;*&gt; Foldl.genericLength
 --   </pre>
 --   
---   Taking the sum, the sum of squares, ..., upto the sum of x^5
+--   … or you can use <tt>do</tt> notation if you enable the
+--   <tt>ApplicativeDo</tt> language extension:
 --   
 --   <pre>
---   &gt;&gt;&gt; import Data.Traversable
+--   &gt;&gt;&gt; :set -XApplicativeDo
 --   
---   &gt;&gt;&gt; let powerSums = sequenceA [L.premap (^n) L.sum | n &lt;- [1..5]]
+--   &gt;&gt;&gt; let average = do total &lt;- Foldl.sum; count &lt;- Foldl.genericLength; return (total / count)
+--   </pre>
 --   
---   &gt;&gt;&gt; L.fold powerSums [1..10]
---   [55,385,3025,25333,220825]
+--   … or you can use the fact that the <a>Fold</a> type implements
+--   <a>Num</a> to do this:
+--   
+--   <pre>
+--   &gt;&gt;&gt; let average = Foldl.sum / Foldl.genericLength
 --   </pre>
 --   
 --   These combined folds will still traverse the list only once, streaming
 --   efficiently over the list in constant space without space leaks:
 --   
 --   <pre>
---   &gt;&gt;&gt; L.fold average [1..10000000]
+--   &gt;&gt;&gt; Foldl.fold average [1..10000000]
 --   5000000.5
 --   
---   &gt;&gt;&gt; L.fold ((,) &lt;$&gt; L.minimum &lt;*&gt; L.maximum) [1..10000000]
+--   &gt;&gt;&gt; Foldl.fold ((,) &lt;$&gt; Foldl.minimum &lt;*&gt; Foldl.maximum) [1..10000000]
 --   (Just 1,Just 10000000)
 --   </pre>
 --   
@@ -95,7 +100,7 @@ foldM :: (Foldable f, Monad m) => FoldM m a b -> f a -> m b
 -- | Convert a strict left <a>Fold</a> into a scan
 --   
 --   <pre>
---   &gt;&gt;&gt; L.scan L.length [1..5]
+--   &gt;&gt;&gt; Foldl.scan Foldl.length [1..5]
 --   [0,1,2,3,4,5]
 --   </pre>
 scan :: Fold a b -> [a] -> [b]
@@ -105,7 +110,7 @@ scan :: Fold a b -> [a] -> [b]
 --   "Prescan" means that the last element of the scan is not included
 --   
 --   <pre>
---   &gt;&gt;&gt; L.prescan L.length [1..5]
+--   &gt;&gt;&gt; Foldl.prescan Foldl.length [1..5]
 --   [0,1,2,3,4]
 --   </pre>
 prescan :: Traversable t => Fold a b -> t a -> t b
@@ -115,7 +120,7 @@ prescan :: Traversable t => Fold a b -> t a -> t b
 --   "Postscan" means that the first element of the scan is not included
 --   
 --   <pre>
---   &gt;&gt;&gt; L.postscan L.length [1..5]
+--   &gt;&gt;&gt; Foldl.postscan Foldl.length [1..5]
 --   [1,2,3,4,5]
 --   </pre>
 postscan :: Traversable t => Fold a b -> t a -> t b
@@ -358,12 +363,12 @@ _Fold1 :: (a -> a -> a) -> Fold a (Maybe a)
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; fold (premap Sum L.mconcat) [1..10]
+--   &gt;&gt;&gt; fold (premap Sum Foldl.mconcat) [1..10]
 --   Sum {getSum = 55}
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; fold L.mconcat (List.map Sum [1..10])
+--   &gt;&gt;&gt; fold Foldl.mconcat (List.map Sum [1..10])
 --   Sum {getSum = 55}
 --   </pre>
 --   
@@ -421,10 +426,6 @@ prefilter :: (a -> Bool) -> Fold a r -> Fold a r
 -- | <tt>(prefilterM f folder)</tt> returns a new <a>FoldM</a> where the
 --   folder's input is used only when the input satisfies a monadic
 --   predicate f.
---   
---   <pre>
---   foldM (prefilterM p folder) list = foldM folder (filter p list)
---   </pre>
 prefilterM :: Monad m => (a -> m Bool) -> FoldM m a r -> FoldM m a r
 
 -- | Transforms a <a>Fold</a> into one which ignores elements until they
@@ -449,12 +450,12 @@ predropWhile :: (a -> Bool) -> Fold a r -> Fold a r
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; L.fold (L.drop 3 L.sum) [10, 20, 30, 1, 2, 3]
+--   &gt;&gt;&gt; Foldl.fold (Foldl.drop 3 Foldl.sum) [10, 20, 30, 1, 2, 3]
 --   6
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; L.fold (L.drop 10 L.sum) [10, 20, 30, 1, 2, 3]
+--   &gt;&gt;&gt; Foldl.fold (Foldl.drop 10 Foldl.sum) [10, 20, 30, 1, 2, 3]
 --   0
 --   </pre>
 drop :: Natural -> Fold a b -> Fold a b
@@ -468,12 +469,12 @@ drop :: Natural -> Fold a b -> Fold a b
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; L.foldM (L.dropM 3 (L.generalize L.sum)) [10, 20, 30, 1, 2, 3]
+--   &gt;&gt;&gt; Foldl.foldM (Foldl.dropM 3 (Foldl.generalize Foldl.sum)) [10, 20, 30, 1, 2, 3]
 --   6
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; L.foldM (L.dropM 10 (L.generalize L.sum)) [10, 20, 30, 1, 2, 3]
+--   &gt;&gt;&gt; Foldl.foldM (Foldl.dropM 10 (Foldl.generalize Foldl.sum)) [10, 20, 30, 1, 2, 3]
 --   0
 --   </pre>
 dropM :: Monad m => Natural -> FoldM m a b -> FoldM m a b
@@ -509,7 +510,7 @@ type Handler a b = forall x. (b -> Const (Dual (Endo x)) b) -> a -> Const (Dual 
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; fold (handles _2 L.mconcat) [(1,"Hello "),(2,"World"),(3,"!")]
+--   &gt;&gt;&gt; fold (handles _2 Foldl.mconcat) [(1,"Hello "),(2,"World"),(3,"!")]
 --   "Hello World!"
 --   </pre>
 --   
@@ -530,25 +531,25 @@ handles :: Handler a b -> Fold b r -> Fold a r
 --   Traversal, Prism or Fold with the given folder
 --   
 --   <pre>
---   &gt;&gt;&gt; foldOver (_Just . both) L.sum (Just (2, 3))
+--   &gt;&gt;&gt; foldOver (_Just . both) Foldl.sum (Just (2, 3))
 --   5
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; foldOver (_Just . both) L.sum Nothing
+--   &gt;&gt;&gt; foldOver (_Just . both) Foldl.sum Nothing
 --   0
 --   </pre>
 --   
 --   <pre>
---   L.foldOver f folder xs == L.fold folder (xs^..f)
+--   Foldl.foldOver f folder xs == Foldl.fold folder (xs^..f)
 --   </pre>
 --   
 --   <pre>
---   L.foldOver (folded.f) folder == L.fold (handles f folder)
+--   Foldl.foldOver (folded.f) folder == Foldl.fold (handles f folder)
 --   </pre>
 --   
 --   <pre>
---   L.foldOver folded == L.fold
+--   Foldl.foldOver folded == Foldl.fold
 --   </pre>
 foldOver :: Handler s a -> Fold a b -> s -> b
 
@@ -595,11 +596,11 @@ handlesM :: HandlerM m a b -> FoldM m b r -> FoldM m a r
 --   Traversal, Prism or Fold monadically with the given folder
 --   
 --   <pre>
---   L.foldOverM (folded.f) folder == L.foldM (handlesM f folder)
+--   Foldl.foldOverM (folded.f) folder == Foldl.foldM (handlesM f folder)
 --   </pre>
 --   
 --   <pre>
---   L.foldOverM folded == L.foldM
+--   Foldl.foldOverM folded == Foldl.foldM
 --   </pre>
 foldOverM :: Monad m => HandlerM m s a -> FoldM m a b -> s -> m b
 
@@ -616,7 +617,7 @@ folded :: (Contravariant f, Applicative f, Foldable t) => (a -> f a) -> t a -> f
 --   </pre>
 --   
 --   <pre>
---   &gt;&gt;&gt; foldM (handlesM (filtered even) (L.mapM_ print)) [1..10]
+--   &gt;&gt;&gt; foldM (handlesM (filtered even) (Foldl.mapM_ print)) [1..10]
 --   2
 --   4
 --   6
@@ -835,6 +836,67 @@ data Fold a b
 
 -- | A space efficient, packed, unboxed Unicode text type.
 data Text
+
+
+-- | This module provides a <a>Fold1</a> type that is a "non-empty" analog
+--   of the <a>Fold</a> type, meaning that it requires at least one input
+--   element in order to produce a result
+--   
+--   This module does not provide all of the same utilities as the
+--   <a>Control.Foldl</a> module. Instead, this module only provides the
+--   utilities which can make use of the non-empty input guarantee (e.g.
+--   <a>head</a>). For all other utilities you can convert them from the
+--   equivalent <a>Fold</a> using <a>fromFold</a>.
+module Control.Foldl.NonEmpty
+
+-- | A <a>Fold1</a> is like a <a>Fold</a> except that it consumes at least
+--   one input element
+data Fold1 a b
+Fold1 :: (a -> Fold a b) -> Fold1 a b
+
+-- | Apply a strict left <a>Fold1</a> to a <a>NonEmpty</a> list
+fold1 :: Foldable1 f => Fold1 a b -> f a -> b
+
+-- | Promote any <a>Fold</a> to an equivalent <a>Fold1</a>
+fromFold :: Fold a b -> Fold1 a b
+
+-- | Promote any <a>Fold1</a> to an equivalent <a>Fold</a>
+toFold :: Fold1 a b -> Fold a (Maybe b)
+
+-- | Fold all values within a non-empty container into a <a>NonEmpty</a>
+--   list
+nonEmpty :: Fold1 a (NonEmpty a)
+
+-- | Fold all values within a non-empty container using (<a>&lt;&gt;</a>)
+sconcat :: Semigroup a => Fold1 a a
+
+-- | Get the first element of a non-empty container
+head :: Fold1 a a
+
+-- | Get the last element of a non-empty container
+last :: Fold1 a a
+
+-- | Computes the maximum element
+maximum :: Ord a => Fold1 a a
+
+-- | Computes the maximum element with respect to the given comparison
+--   function
+maximumBy :: (a -> a -> Ordering) -> Fold1 a a
+
+-- | Computes the minimum element
+minimum :: Ord a => Fold1 a a
+
+-- | Computes the minimum element with respect to the given comparison
+--   function
+minimumBy :: (a -> a -> Ordering) -> Fold1 a a
+instance GHC.Base.Functor (Control.Foldl.NonEmpty.Fold1 a)
+instance Data.Profunctor.Unsafe.Profunctor Control.Foldl.NonEmpty.Fold1
+instance GHC.Base.Applicative (Control.Foldl.NonEmpty.Fold1 a)
+instance GHC.Base.Semigroup b => GHC.Base.Semigroup (Control.Foldl.NonEmpty.Fold1 a b)
+instance GHC.Base.Monoid b => GHC.Base.Monoid (Control.Foldl.NonEmpty.Fold1 a b)
+instance GHC.Num.Num b => GHC.Num.Num (Control.Foldl.NonEmpty.Fold1 a b)
+instance GHC.Real.Fractional b => GHC.Real.Fractional (Control.Foldl.NonEmpty.Fold1 a b)
+instance GHC.Float.Floating b => GHC.Float.Floating (Control.Foldl.NonEmpty.Fold1 a b)
 
 
 -- | Folds for byte streams

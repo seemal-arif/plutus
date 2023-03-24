@@ -6,7 +6,7 @@
 --   
 --   Haskell 98 phantom types to avoid unsafely passing dummy arguments.
 @package tagged
-@version 0.8.6.1
+@version 0.8.7
 
 module Data.Proxy.TH
 

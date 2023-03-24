@@ -24,7 +24,7 @@
 --   versions.</li>
 --   </ul>
 @package th-lift
-@version 0.8.2
+@version 0.8.3
 
 
 -- | Helper functions used in code that <a>Language.Haskell.TH.Lift</a>

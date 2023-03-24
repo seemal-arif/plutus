@@ -7,7 +7,7 @@
 --   A correct implementation of the list monad-transformer. Useful for
 --   basic streaming.
 @package list-t
-@version 1.0.5.3
+@version 1.0.5.6
 
 module ListT
 
@@ -43,13 +43,13 @@ alternate :: (Alternative m, Monad m) => ListT m a -> m a
 --   f</tt>.
 alternateHoisting :: (Monad n, Alternative n) => (forall a. m a -> n a) -> ListT m a -> n a
 
--- | Execute, applying a left fold.
-fold :: Monad m => (r -> a -> m r) -> r -> ListT m a -> m r
+-- | Execute, applying a strict left fold.
+fold :: Monad m => (b -> a -> m b) -> b -> ListT m a -> m b
 
 -- | A version of <a>fold</a>, which allows early termination.
-foldMaybe :: Monad m => (r -> a -> m (Maybe r)) -> r -> ListT m a -> m r
+foldMaybe :: Monad m => (b -> a -> m (Maybe b)) -> b -> ListT m a -> m b
 
--- | Apply a left fold abstraction from the "foldl" package.
+-- | Apply the left fold abstraction from the "foldl" package.
 applyFoldM :: Monad m => FoldM m i o -> ListT m i -> m o
 
 -- | Execute, folding to a list.

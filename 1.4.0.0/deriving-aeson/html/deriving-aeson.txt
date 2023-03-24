@@ -8,7 +8,7 @@
 --   customisable via a phantom type parameter. The instances can be
 --   rendered to the original type using DerivingVia.
 @package deriving-aeson
-@version 0.2.8
+@version 0.2.9
 
 
 -- | Type-directed aeson instance CustomJSONisation

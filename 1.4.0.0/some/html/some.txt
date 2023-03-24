@@ -16,14 +16,17 @@
 --   If you are unsure which variant to use, use the one in
 --   <a>Data.Some</a> module.
 @package some
-@version 1.0.3
+@version 1.0.4.1
 
 module Data.GADT.DeepSeq
 class GNFData f
 grnf :: GNFData f => f a -> ()
 instance forall k (a :: k -> *) (b :: k -> *). (Data.GADT.DeepSeq.GNFData a, Data.GADT.DeepSeq.GNFData b) => Data.GADT.DeepSeq.GNFData (Data.Functor.Product.Product a b)
 instance forall k (a :: k -> *) (b :: k -> *). (Data.GADT.DeepSeq.GNFData a, Data.GADT.DeepSeq.GNFData b) => Data.GADT.DeepSeq.GNFData (Data.Functor.Sum.Sum a b)
+instance forall k (a :: k -> *) (b :: k -> *). (Data.GADT.DeepSeq.GNFData a, Data.GADT.DeepSeq.GNFData b) => Data.GADT.DeepSeq.GNFData (a GHC.Generics.:*: b)
+instance forall k (a :: k -> *) (b :: k -> *). (Data.GADT.DeepSeq.GNFData a, Data.GADT.DeepSeq.GNFData b) => Data.GADT.DeepSeq.GNFData (a GHC.Generics.:+: b)
 instance forall k (a :: k). Data.GADT.DeepSeq.GNFData ((Data.Type.Equality.:~:) a)
+instance forall k1 k (a :: k1). Data.GADT.DeepSeq.GNFData ((Data.Type.Equality.:~~:) a)
 instance Data.GADT.DeepSeq.GNFData Data.Typeable.Internal.TypeRep
 
 module Data.GADT.Compare
@@ -31,6 +34,90 @@ module Data.GADT.Compare
 -- | A class for type-contexts which contain enough information to (at
 --   least in some cases) decide the equality of types occurring within
 --   them.
+--   
+--   This class is sometimes confused with <a>TestEquality</a> from base.
+--   <a>TestEquality</a> only checks <i>type equality</i>.
+--   
+--   Consider
+--   
+--   <pre>
+--   &gt;&gt;&gt; data Tag a where TagInt1 :: Tag Int; TagInt2 :: Tag Int
+--   </pre>
+--   
+--   The correct <tt><a>TestEquality</a> Tag</tt> instance is
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance TestEquality Tag where
+--       testEquality TagInt1 TagInt1 = Just Refl
+--       testEquality TagInt1 TagInt2 = Just Refl
+--       testEquality TagInt2 TagInt1 = Just Refl
+--       testEquality TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   While we can define
+--   
+--   <pre>
+--   instance <a>GEq</a> Tag where
+--      <a>geq</a> = <a>testEquality</a>
+--   </pre>
+--   
+--   this will mean we probably want to have
+--   
+--   <pre>
+--   instance <a>Eq</a> Tag where
+--      _ <a>==</a> _ = True
+--   </pre>
+--   
+--   <i>Note:</i> In the future version of <tt>some</tt> package (to be
+--   released around GHC-9.6 / 9.8) the <tt>forall a. Eq (f a)</tt>
+--   constraint will be added as a constraint to <a>GEq</a>, with a law
+--   relating <a>GEq</a> and <a>Eq</a>:
+--   
+--   <pre>
+--   <a>geq</a> x y = Just Refl   ⇒  x == y = True        ∀ (x :: f a) (y :: f b)
+--   x == y                ≡  isJust (<a>geq</a> x y)     ∀ (x, y :: f a)
+--   </pre>
+--   
+--   So, the more useful <tt><a>GEq</a> Tag</tt> instance would
+--   differentiate between different constructors:
+--   
+--   <pre>
+--   &gt;&gt;&gt; :{
+--   instance GEq Tag where
+--       geq TagInt1 TagInt1 = Just Refl
+--       geq TagInt1 TagInt2 = Nothing
+--       geq TagInt2 TagInt1 = Nothing
+--       geq TagInt2 TagInt2 = Just Refl
+--   :}
+--   </pre>
+--   
+--   which is consistent with a derived <a>Eq</a> instance for <tt>Tag</tt>
+--   
+--   <pre>
+--   &gt;&gt;&gt; deriving instance Eq (Tag a)
+--   </pre>
+--   
+--   Note that even if <tt>a ~ b</tt>, the <tt><a>geq</a> (x :: f a) (y ::
+--   f b)</tt> may be <a>Nothing</a> (when value terms are inequal).
+--   
+--   The consistency of <a>GEq</a> and <a>Eq</a> is easy to check by
+--   exhaustion:
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkFwdGEq :: (forall a. Eq (f a), GEq f) =&gt; f a -&gt; f b -&gt; Bool; checkFwdGEq x y = case geq x y of Just Refl -&gt; x == y; Nothing -&gt; True
+--   
+--   &gt;&gt;&gt; (checkFwdGEq TagInt1 TagInt1, checkFwdGEq TagInt1 TagInt2, checkFwdGEq TagInt2 TagInt1, checkFwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; let checkBwdGEq :: (Eq (f a), GEq f) =&gt; f a -&gt; f a -&gt; Bool; checkBwdGEq x y = if x == y then isJust (geq x y) else isNothing (geq x y)
+--   
+--   &gt;&gt;&gt; (checkBwdGEq TagInt1 TagInt1, checkBwdGEq TagInt1 TagInt2, checkBwdGEq TagInt2 TagInt1, checkBwdGEq TagInt2 TagInt2)
+--   (True,True,True,True)
+--   </pre>
 class GEq f
 
 -- | Produce a witness of type-equality, if one exists.
@@ -55,6 +142,10 @@ class GEq f
 --   (Making use of the <tt>DSum</tt> type from <a>Data.Dependent.Sum</a>
 --   in both examples)
 geq :: GEq f => f a -> f b -> Maybe (a :~: b)
+
+-- | If <tt>f</tt> has a <a>GCompare</a> instance, this function makes a
+--   suitable default implementation of <a>geq</a>.
+defaultGeq :: GCompare f => f a -> f b -> Maybe (a :~: b)
 
 -- | If <tt>f</tt> has a <a>GEq</a> instance, this function makes a
 --   suitable default implementation of <a>(==)</a>.
@@ -88,10 +179,14 @@ module Data.GADT.Show
 --   say:
 --   
 --   <pre>
---   instance GShow t where gshowsPrec = showsPrec
+--   instance GShow t where gshowsPrec = defaultGshowsPrec
 --   </pre>
 class GShow t
 gshowsPrec :: GShow t => Int -> t a -> ShowS
+
+-- | If <tt>f</tt> has a 'Show (f a)' instance, this function makes a
+--   suitable default implementation of <a>gshowsPrec</a>.
+defaultGshowsPrec :: Show (t a) => Int -> t a -> ShowS
 gshows :: GShow t => t a -> ShowS
 gshow :: GShow t => t a -> String
 
@@ -113,6 +208,11 @@ gread :: GRead t => String -> (forall a. t a -> b) -> b
 -- | <pre>
 --   &gt;&gt;&gt; greadMaybe "InL Refl" mkSome :: Maybe (Some (Sum ((:~:) Int) ((:~:) Bool)))
 --   Just (mkSome (InL Refl))
+--   </pre>
+--   
+--   <pre>
+--   &gt;&gt;&gt; greadMaybe "L1 Refl" mkSome :: Maybe (Some ((:~:) Int :+: (:~:) Bool))
+--   Just (mkSome (L1 Refl))
 --   </pre>
 --   
 --   <pre>

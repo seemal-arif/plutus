@@ -25,8 +25,8 @@
 </span><span id="line-25"></span><span>
 </span><span id="line-26"></span><span class="hs-comment">-- | A separate 'Parser' data type ensures that we don't forget to skip</span><span>
 </span><span id="line-27"></span><span class="hs-comment">-- spaces.</span><span>
-</span><span id="line-28"></span><span class="hs-keyword">newtype</span><span> </span><span id="Parser"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span id="local-6989586621679075880"><span class="annot"><a href="#local-6989586621679075880"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Parser"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">ReadP</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075880"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075873"><span id="local-6989586621679075877"><span class="annot"><span class="annottext">forall a b. a -&gt; Parser b -&gt; Parser a
+</span><span id="line-28"></span><span class="hs-keyword">newtype</span><span> </span><span id="Parser"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span id="local-6989586621679075645"><span class="annot"><a href="#local-6989586621679075645"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Parser"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">ReadP</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075645"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075638"><span id="local-6989586621679075642"><span class="annot"><span class="annottext">forall a b. a -&gt; Parser b -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; Parser a -&gt; Parser b
 forall (f :: * -&gt; *).
 (forall a b. (a -&gt; b) -&gt; f a -&gt; f b)
@@ -35,7 +35,7 @@ forall (f :: * -&gt; *).
 $c&lt;$ :: forall a b. a -&gt; Parser b -&gt; Parser a
 fmap :: forall a b. (a -&gt; b) -&gt; Parser a -&gt; Parser b
 $cfmap :: forall a b. (a -&gt; b) -&gt; Parser a -&gt; Parser b
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075850"><span id="local-6989586621679075854"><span id="local-6989586621679075858"><span id="local-6989586621679075862"><span id="local-6989586621679075866"><span class="annot"><span class="annottext">Functor Parser
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Functor</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075615"><span id="local-6989586621679075619"><span id="local-6989586621679075623"><span id="local-6989586621679075627"><span id="local-6989586621679075631"><span class="annot"><span class="annottext">Functor Parser
 forall a. a -&gt; Parser a
 forall a b. Parser a -&gt; Parser b -&gt; Parser a
 forall a b. Parser a -&gt; Parser b -&gt; Parser b
@@ -59,7 +59,7 @@ $cliftA2 :: forall a b c. (a -&gt; b -&gt; c) -&gt; Parser a -&gt; Parser b -&gt
 $c&lt;*&gt; :: forall a b. Parser (a -&gt; b) -&gt; Parser a -&gt; Parser b
 pure :: forall a. a -&gt; Parser a
 $cpure :: forall a. a -&gt; Parser a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Applicative</span></a></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075831"><span id="local-6989586621679075835"><span id="local-6989586621679075839"><span id="local-6989586621679075843"><span class="annot"><span class="annottext">Applicative Parser
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Applicative</span></a></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075596"><span id="local-6989586621679075600"><span id="local-6989586621679075604"><span id="local-6989586621679075608"><span class="annot"><span class="annottext">Applicative Parser
 forall a. Parser a
 forall a. Parser a -&gt; Parser [a]
 forall a. Parser a -&gt; Parser a -&gt; Parser a
@@ -78,7 +78,7 @@ $csome :: forall a. Parser a -&gt; Parser [a]
 $c&lt;|&gt; :: forall a. Parser a -&gt; Parser a -&gt; Parser a
 empty :: forall a. Parser a
 $cempty :: forall a. Parser a
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Alternative</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075815"><span id="local-6989586621679075819"><span id="local-6989586621679075824"><span class="annot"><span class="annottext">Applicative Parser
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Alternative</span></a></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075580"><span id="local-6989586621679075584"><span id="local-6989586621679075589"><span class="annot"><span class="annottext">Applicative Parser
 forall a. a -&gt; Parser a
 forall a b. Parser a -&gt; Parser b -&gt; Parser b
 forall a b. Parser a -&gt; (a -&gt; Parser b) -&gt; Parser b
@@ -94,7 +94,7 @@ $creturn :: forall a. a -&gt; Parser a
 $c&gt;&gt; :: forall a b. Parser a -&gt; Parser b -&gt; Parser b
 &gt;&gt;= :: forall a b. Parser a -&gt; (a -&gt; Parser b) -&gt; Parser b
 $c&gt;&gt;= :: forall a b. Parser a -&gt; (a -&gt; Parser b) -&gt; Parser b
-</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Monad</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075800"><span id="local-6989586621679075805"><span class="annot"><span class="annottext">Monad Parser
+</span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Monad</span></a></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075565"><span id="local-6989586621679075570"><span class="annot"><span class="annottext">Monad Parser
 Alternative Parser
 forall a. Parser a
 forall a. Parser a -&gt; Parser a -&gt; Parser a
@@ -110,15 +110,15 @@ mzero :: forall a. Parser a
 $cmzero :: forall a. Parser a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">MonadPlus</span></a></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">data</span><span> </span><span id="ParseResult"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#ParseResult"><span class="hs-identifier hs-var">ParseResult</span></a></span></span><span> </span><span id="local-6989586621679076020"><span class="annot"><a href="#local-6989586621679076020"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Success"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Success"><span class="hs-identifier hs-var">Success</span></a></span></span><span> </span><span class="annot"><a href="#local-6989586621679076020"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Invalid"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Invalid"><span class="hs-identifier hs-var">Invalid</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Ambiguous"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Ambiguous"><span class="hs-identifier hs-var">Ambiguous</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679076020"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075787"><span id="local-6989586621679075792"><span class="annot"><span class="annottext">ParseResult a -&gt; ParseResult a -&gt; Bool
+</span><span id="line-31"></span><span class="hs-keyword">data</span><span> </span><span id="ParseResult"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#ParseResult"><span class="hs-identifier hs-var">ParseResult</span></a></span></span><span> </span><span id="local-6989586621679075785"><span class="annot"><a href="#local-6989586621679075785"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Success"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Success"><span class="hs-identifier hs-var">Success</span></a></span></span><span> </span><span class="annot"><a href="#local-6989586621679075785"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Invalid"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Invalid"><span class="hs-identifier hs-var">Invalid</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Ambiguous"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Ambiguous"><span class="hs-identifier hs-var">Ambiguous</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679075785"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075552"><span id="local-6989586621679075557"><span class="annot"><span class="annottext">ParseResult a -&gt; ParseResult a -&gt; Bool
 forall a. Eq a =&gt; ParseResult a -&gt; ParseResult a -&gt; Bool
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: ParseResult a -&gt; ParseResult a -&gt; Bool
 $c/= :: forall a. Eq a =&gt; ParseResult a -&gt; ParseResult a -&gt; Bool
 == :: ParseResult a -&gt; ParseResult a -&gt; Bool
 $c== :: forall a. Eq a =&gt; ParseResult a -&gt; ParseResult a -&gt; Bool
-</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075774"><span id="local-6989586621679075776"><span id="local-6989586621679075784"><span class="annot"><span class="annottext">Int -&gt; ParseResult a -&gt; ShowS
+</span><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></a></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679075539"><span id="local-6989586621679075541"><span id="local-6989586621679075549"><span class="annot"><span class="annottext">Int -&gt; ParseResult a -&gt; ShowS
 forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 forall a. Show a =&gt; [ParseResult a] -&gt; ShowS
 forall a. Show a =&gt; ParseResult a -&gt; String
@@ -132,12 +132,12 @@ showsPrec :: Int -&gt; ParseResult a -&gt; ShowS
 $cshowsPrec :: forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></a></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span id="local-6989586621679076016"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#token"><span class="hs-identifier hs-type">token</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Token"><span class="hs-identifier hs-type">Token</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679076016"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679076016"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-34"></span><span id="local-6989586621679075781"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#token"><span class="hs-identifier hs-type">token</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Token"><span class="hs-identifier hs-type">Token</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075781"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075781"><span class="hs-identifier hs-type">a</span></a></span></span><span>
 </span><span id="line-35"></span><span id="token"><span class="annot"><span class="annottext">token :: forall a. Token a -&gt; Parser a
-</span><a href="Test.Tasty.Patterns.Parser.html#token"><span class="hs-identifier hs-var hs-var">token</span></a></span></span><span> </span><span id="local-6989586621679075770"><span class="annot"><span class="annottext">Token a
-</span><a href="#local-6989586621679075770"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Token a -&gt; Parser a
+</span><a href="Test.Tasty.Patterns.Parser.html#token"><span class="hs-identifier hs-var hs-var">token</span></a></span></span><span> </span><span id="local-6989586621679075535"><span class="annot"><span class="annottext">Token a
+</span><a href="#local-6989586621679075535"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Token a -&gt; Parser a
 </span><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Token a
-</span><a href="#local-6989586621679075770"><span class="hs-identifier hs-var">a</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
+</span><a href="#local-6989586621679075535"><span class="hs-identifier hs-var">a</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*</span></a></span><span> </span><span class="annot"><span class="annottext">ReadP ()
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">skipSpaces</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-36"></span><span>
@@ -160,14 +160,14 @@ $cshowsPrec :: forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">string</span></a></span><span>
 </span><span id="line-42"></span><span>
 </span><span id="line-43"></span><span class="hs-comment">-- | Run a parser</span><span>
-</span><span id="line-44"></span><span id="local-6989586621679076008"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#runParser"><span class="hs-identifier hs-type">runParser</span></a></span><span>
-</span><span id="line-45"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679076008"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-44"></span><span id="local-6989586621679075773"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#runParser"><span class="hs-identifier hs-type">runParser</span></a></span><span>
+</span><span id="line-45"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075773"><span class="hs-identifier hs-type">a</span></a></span><span>
 </span><span id="line-46"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-comment">-- ^ text to parse</span><span>
-</span><span id="line-47"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#ParseResult"><span class="hs-identifier hs-type">ParseResult</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679076008"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-47"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#ParseResult"><span class="hs-identifier hs-type">ParseResult</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075773"><span class="hs-identifier hs-type">a</span></a></span></span><span>
 </span><span id="line-48"></span><span id="runParser"><span class="annot"><span class="annottext">runParser :: forall a. Parser a -&gt; String -&gt; ParseResult a
-</span><a href="Test.Tasty.Patterns.Parser.html#runParser"><span class="hs-identifier hs-var hs-var">runParser</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span id="local-6989586621679075757"><span class="annot"><span class="annottext">ReadP a
-</span><a href="#local-6989586621679075757"><span class="hs-identifier hs-var">p</span></a></span></span><span class="hs-special">)</span><span> </span><span id="local-6989586621679075756"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075756"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Test.Tasty.Patterns.Parser.html#runParser"><span class="hs-identifier hs-var hs-var">runParser</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span id="local-6989586621679075522"><span class="annot"><span class="annottext">ReadP a
+</span><a href="#local-6989586621679075522"><span class="hs-identifier hs-var">p</span></a></span></span><span class="hs-special">)</span><span> </span><span id="local-6989586621679075521"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075521"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">filter</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">null</span></a></span><span> </span><span class="annot"><span class="annottext">forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
@@ -177,21 +177,21 @@ $cshowsPrec :: forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">readP_to_S</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ReadP ()
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">skipSpaces</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">ReadP a
-</span><a href="#local-6989586621679075757"><span class="hs-identifier hs-var">p</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075756"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-50"></span><span>    </span><span class="hs-special">[</span><span class="hs-special">(</span><span id="local-6989586621679075753"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679075753"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075522"><span class="hs-identifier hs-var">p</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075521"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-50"></span><span>    </span><span class="hs-special">[</span><span class="hs-special">(</span><span id="local-6989586621679075518"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679075518"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; ParseResult a
 </span><a href="Test.Tasty.Patterns.Parser.html#Success"><span class="hs-identifier hs-var">Success</span></a></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679075753"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679075518"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-51"></span><span>    </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. ParseResult a
 </span><a href="Test.Tasty.Patterns.Parser.html#Invalid"><span class="hs-identifier hs-var">Invalid</span></a></span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679075752"><span class="annot"><span class="annottext">[(a, String)]
-</span><a href="#local-6989586621679075752"><span class="hs-keyword hs-var">as</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; ParseResult a
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679075517"><span class="annot"><span class="annottext">[(a, String)]
+</span><a href="#local-6989586621679075517"><span class="hs-keyword hs-var">as</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; ParseResult a
 </span><a href="Test.Tasty.Patterns.Parser.html#Ambiguous"><span class="hs-identifier hs-var">Ambiguous</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall a b. (a, b) -&gt; a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">fst</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">[(a, String)]
-</span><a href="#local-6989586621679075752"><span class="hs-keyword hs-var">as</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679075517"><span class="hs-keyword hs-var">as</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#intP"><span class="hs-identifier hs-type">intP</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/ghc-prim-0.8.0/src"><span class="hs-identifier hs-type">Int</span></a></span><span>
 </span><span id="line-55"></span><span id="intP"><span class="annot"><span class="annottext">intP :: Parser Int
@@ -227,13 +227,13 @@ $cshowsPrec :: forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 </span><span class="hs-char">'/'</span></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f [a]
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">many</span></a></span><span> </span><span class="annot"><span class="annottext">ReadP Char
-</span><a href="#local-6989586621679075743"><span class="hs-identifier hs-var">ch</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
+</span><a href="#local-6989586621679075508"><span class="hs-identifier hs-var">ch</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*</span></a></span><span> </span><span class="annot"><span class="annottext">Char -&gt; ReadP Char
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">char</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'/'</span></span><span>
 </span><span id="line-68"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679075743"><span class="annot"><span class="annottext">ch :: ReadP Char
-</span><a href="#local-6989586621679075743"><span class="hs-identifier hs-var hs-var">ch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679075508"><span class="annot"><span class="annottext">ch :: ReadP Char
+</span><a href="#local-6989586621679075508"><span class="hs-identifier hs-var hs-var">ch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-70"></span><span>      </span><span class="annot"><span class="annottext">(Char -&gt; Bool) -&gt; ReadP Char
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">satisfy</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">forall (t :: * -&gt; *) a. (Foldable t, Eq a) =&gt; a -&gt; t a -&gt; Bool
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">`notElem`</span></a></span><span> </span><span class="annot"><span class="annottext">String
@@ -265,7 +265,7 @@ $cshowsPrec :: forall a. Show a =&gt; Int -&gt; ParseResult a -&gt; ShowS
 t (m a) -&gt; m a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">msum</span></a></span><span>
 </span><span id="line-79"></span><span>  </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe Expr -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#LengthFn"><span class="hs-identifier hs-var">LengthFn</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
@@ -276,21 +276,21 @@ t (m a) -&gt; m a
 </span><span id="line-81"></span><span>    </span><span class="hs-comment">-- because that makes length($1) ambiguous</span><span>
 </span><span id="line-82"></span><span>    </span><span class="hs-comment">-- (we don't require spaces for concatenation)</span><span>
 </span><span id="line-83"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;toupper&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">Expr -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#ToUpperFn"><span class="hs-identifier hs-var">ToUpperFn</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr"><span class="hs-identifier hs-var">expr</span></a></span><span>
 </span><span id="line-84"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;tolower&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">Expr -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#ToLowerFn"><span class="hs-identifier hs-var">ToLowerFn</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr"><span class="hs-identifier hs-var">expr</span></a></span><span>
 </span><span id="line-85"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;match&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">Expr -&gt; String -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#MatchFn"><span class="hs-identifier hs-var">MatchFn</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
@@ -302,7 +302,7 @@ t (m a) -&gt; m a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser String
 </span><a href="Test.Tasty.Patterns.Parser.html#patP"><span class="hs-identifier hs-var">patP</span></a></span><span>
 </span><span id="line-86"></span><span>  </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var">fn</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;substr&quot;</span></span><span> </span><span class="annot"><span class="annottext">forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">$</span></a></span><span> </span><span class="annot"><span class="annottext">Expr -&gt; Expr -&gt; Maybe Expr -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#SubstrFn"><span class="hs-identifier hs-var">SubstrFn</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
@@ -322,19 +322,19 @@ t (m a) -&gt; m a
 </span><a href="Test.Tasty.Patterns.Parser.html#expr"><span class="hs-identifier hs-var">expr</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-88"></span><span>  </span><span class="hs-special">]</span><span>
 </span><span id="line-89"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-90"></span><span>    </span><span id="local-6989586621679075980"><span class="annot"><a href="#local-6989586621679075728"><span class="hs-identifier hs-type">fn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075980"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075980"><span class="hs-identifier hs-type">a</span></a></span></span><span>
-</span><span id="line-91"></span><span>    </span><span id="local-6989586621679075728"><span class="annot"><span class="annottext">fn :: forall a. String -&gt; Parser a -&gt; Parser a
-</span><a href="#local-6989586621679075728"><span class="hs-identifier hs-var hs-var">fn</span></a></span></span><span> </span><span id="local-6989586621679075718"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075718"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span id="local-6989586621679075717"><span class="annot"><span class="annottext">Parser a
-</span><a href="#local-6989586621679075717"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Token a -&gt; Parser a
+</span><span id="line-90"></span><span>    </span><span id="local-6989586621679075745"><span class="annot"><a href="#local-6989586621679075493"><span class="hs-identifier hs-type">fn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075745"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679075745"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-91"></span><span>    </span><span id="local-6989586621679075493"><span class="annot"><span class="annottext">fn :: forall a. String -&gt; Parser a -&gt; Parser a
+</span><a href="#local-6989586621679075493"><span class="hs-identifier hs-var hs-var">fn</span></a></span></span><span> </span><span id="local-6989586621679075483"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075483"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span id="local-6989586621679075482"><span class="annot"><span class="annottext">Parser a
+</span><a href="#local-6989586621679075482"><span class="hs-identifier hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall a. Token a -&gt; Parser a
 </span><a href="Test.Tasty.Patterns.Parser.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; ReadP String
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">string</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075718"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
+</span><a href="#local-6989586621679075483"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Char -&gt; Parser ()
 </span><a href="Test.Tasty.Patterns.Parser.html#sym"><span class="hs-identifier hs-var">sym</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'('</span></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">*&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser a
-</span><a href="#local-6989586621679075717"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
+</span><a href="#local-6989586621679075482"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*</span></a></span><span> </span><span class="annot"><span class="annottext">Char -&gt; Parser ()
 </span><a href="Test.Tasty.Patterns.Parser.html#sym"><span class="hs-identifier hs-var">sym</span></a></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">')'</span></span><span>
@@ -395,29 +395,29 @@ m a -&gt; [[Operator m a]] -&gt; m a
 </span><span id="line-110"></span><span class="hs-comment">--</span><span>
 </span><span id="line-111"></span><span class="hs-comment">-- This roughly corresponds to the @unary_expr@ and @non_unary_expr@</span><span>
 </span><span id="line-112"></span><span class="hs-comment">-- non-terminals in the awk grammar.</span><span>
-</span><span id="line-113"></span><span class="hs-comment">-- (Why roughly? See 'expr2'.)</span><span>
+</span><span id="line-113"></span><span class="hs-comment">-- (Why roughly? See @expr2@.)</span><span>
 </span><span id="line-114"></span><span class="hs-keyword">data</span><span> </span><span id="Unary"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Unary"><span class="hs-identifier hs-var">Unary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Unary"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Unary"><span class="hs-identifier hs-var">Unary</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NonUnary"><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#NonUnary"><span class="hs-identifier hs-var">NonUnary</span></a></span></span><span>
 </span><span id="line-115"></span><span>
 </span><span id="line-116"></span><span class="hs-comment">-- | Arithmetic expressions.</span><span>
 </span><span id="line-117"></span><span class="hs-comment">--</span><span>
 </span><span id="line-118"></span><span class="hs-comment">-- Unlike awk, non-unary expressions disallow unary operators everywhere,</span><span>
 </span><span id="line-119"></span><span class="hs-comment">-- not just in the leading position, to avoid extra complexity in</span><span>
-</span><span id="line-120"></span><span class="hs-comment">-- 'makeExprParser'.</span><span>
+</span><span id="line-120"></span><span class="hs-comment">-- @makeExprParser@.</span><span>
 </span><span id="line-121"></span><span class="hs-comment">--</span><span>
 </span><span id="line-122"></span><span class="hs-comment">-- For example, the expression</span><span>
 </span><span id="line-123"></span><span class="hs-comment">--</span><span>
 </span><span id="line-124"></span><span class="hs-comment">-- &gt;1 3 + -4</span><span>
 </span><span id="line-125"></span><span class="hs-comment">--</span><span>
 </span><span id="line-126"></span><span class="hs-comment">-- is valid in awk because @3 + -4@ is non-unary, but we disallow it here</span><span>
-</span><span id="line-127"></span><span class="hs-comment">-- because 'makeExprParser' does not allow us to distinguish it from</span><span>
+</span><span id="line-127"></span><span class="hs-comment">-- because @makeExprParser@ does not allow us to distinguish it from</span><span>
 </span><span id="line-128"></span><span class="hs-comment">--</span><span>
 </span><span id="line-129"></span><span class="hs-comment">-- &gt;1 -4 + 3</span><span>
 </span><span id="line-130"></span><span class="hs-comment">--</span><span>
 </span><span id="line-131"></span><span class="hs-comment">-- which is ambiguous.</span><span>
 </span><span id="line-132"></span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#expr2"><span class="hs-identifier hs-type">expr2</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Unary"><span class="hs-identifier hs-type">Unary</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Types.html#Expr"><span class="hs-identifier hs-type">Expr</span></a></span><span>
 </span><span id="line-133"></span><span id="expr2"><span class="annot"><span class="annottext">expr2 :: Unary -&gt; Parser Expr
-</span><a href="Test.Tasty.Patterns.Parser.html#expr2"><span class="hs-identifier hs-var hs-var">expr2</span></a></span></span><span> </span><span id="local-6989586621679075703"><span class="annot"><span class="annottext">Unary
-</span><a href="#local-6989586621679075703"><span class="hs-identifier hs-var">unary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a.
+</span><a href="Test.Tasty.Patterns.Parser.html#expr2"><span class="hs-identifier hs-var hs-var">expr2</span></a></span></span><span> </span><span id="local-6989586621679075468"><span class="annot"><span class="annottext">Unary
+</span><a href="#local-6989586621679075468"><span class="hs-identifier hs-var">unary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a.
 MonadPlus m =&gt;
 m a -&gt; [[Operator m a]] -&gt; m a
 </span><a href="Test.Tasty.Patterns.Expr.html#makeExprParser"><span class="hs-identifier hs-var">makeExprParser</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
@@ -430,7 +430,7 @@ m a -&gt; [[Operator m a]] -&gt; m a
 </span><span class="hs-char">'!'</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">++</span></a></span><span>
 </span><span id="line-135"></span><span>    </span><span class="hs-special">(</span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Unary
-</span><a href="#local-6989586621679075703"><span class="hs-identifier hs-var">unary</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679075468"><span class="hs-identifier hs-var">unary</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-136"></span><span>      </span><span class="annot"><span class="annottext">Unary
 </span><a href="Test.Tasty.Patterns.Parser.html#Unary"><span class="hs-identifier hs-var">Unary</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">forall (m :: * -&gt; *) a. m (a -&gt; a) -&gt; Operator m a
 </span><a href="Test.Tasty.Patterns.Expr.html#Prefix"><span class="hs-identifier hs-var">Prefix</span></a></span><span>  </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Expr -&gt; Expr
@@ -460,24 +460,24 @@ m a -&gt; [[Operator m a]] -&gt; m a
 </span><span id="line-145"></span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#expr3"><span class="hs-identifier hs-type">expr3</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Types.html#Expr"><span class="hs-identifier hs-type">Expr</span></a></span><span>
 </span><span id="line-146"></span><span id="expr3"><span class="annot"><span class="annottext">expr3 :: Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr3"><span class="hs-identifier hs-var hs-var">expr3</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser Expr
-</span><a href="#local-6989586621679075696"><span class="hs-identifier hs-var">concatExpr</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f a -&gt; f a
+</span><a href="#local-6989586621679075461"><span class="hs-identifier hs-var">concatExpr</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;|&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Unary -&gt; Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr2"><span class="hs-identifier hs-var">expr2</span></a></span><span> </span><span class="annot"><span class="annottext">Unary
 </span><a href="Test.Tasty.Patterns.Parser.html#Unary"><span class="hs-identifier hs-var">Unary</span></a></span><span>
 </span><span id="line-147"></span><span>  </span><span class="hs-keyword">where</span><span>
 </span><span id="line-148"></span><span>    </span><span class="hs-comment">-- The awk spec mandates that concatenation associates to the left.</span><span>
 </span><span id="line-149"></span><span>    </span><span class="hs-comment">-- But concatenation is associative, so why would we care.</span><span>
-</span><span id="line-150"></span><span>    </span><span id="local-6989586621679075696"><span class="annot"><span class="annottext">concatExpr :: Parser Expr
-</span><a href="#local-6989586621679075696"><span class="hs-identifier hs-var hs-var">concatExpr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Expr -&gt; Expr -&gt; Expr
+</span><span id="line-150"></span><span>    </span><span id="local-6989586621679075461"><span class="annot"><span class="annottext">concatExpr :: Parser Expr
+</span><a href="#local-6989586621679075461"><span class="hs-identifier hs-var hs-var">concatExpr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Expr -&gt; Expr -&gt; Expr
 </span><a href="Test.Tasty.Patterns.Types.html#Concat"><span class="hs-identifier hs-var">Concat</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;$&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
-</span><a href="#local-6989586621679075691"><span class="hs-identifier hs-var">nonUnary</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
+</span><a href="#local-6989586621679075456"><span class="hs-identifier hs-var">nonUnary</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;*&gt;</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Parser Expr
-</span><a href="#local-6989586621679075691"><span class="hs-identifier hs-var">nonUnary</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f a -&gt; f a
+</span><a href="#local-6989586621679075456"><span class="hs-identifier hs-var">nonUnary</span></a></span><span> </span><span class="annot"><span class="annottext">forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f a -&gt; f a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-operator hs-var">&lt;|&gt;</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
-</span><a href="#local-6989586621679075696"><span class="hs-identifier hs-var">concatExpr</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-151"></span><span>    </span><span id="local-6989586621679075691"><span class="annot"><span class="annottext">nonUnary :: Parser Expr
-</span><a href="#local-6989586621679075691"><span class="hs-identifier hs-var hs-var">nonUnary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Unary -&gt; Parser Expr
+</span><a href="#local-6989586621679075461"><span class="hs-identifier hs-var">concatExpr</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-151"></span><span>    </span><span id="local-6989586621679075456"><span class="annot"><span class="annottext">nonUnary :: Parser Expr
+</span><a href="#local-6989586621679075456"><span class="hs-identifier hs-var hs-var">nonUnary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Unary -&gt; Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr2"><span class="hs-identifier hs-var">expr2</span></a></span><span> </span><span class="annot"><span class="annottext">Unary
 </span><a href="Test.Tasty.Patterns.Parser.html#NonUnary"><span class="hs-identifier hs-var">NonUnary</span></a></span><span>
 </span><span id="line-152"></span><span>
@@ -577,16 +577,16 @@ m a -&gt; [[Operator m a]] -&gt; m a
 </span><span id="line-175"></span><span class="hs-comment">-- | Parse an awk expression</span><span>
 </span><span id="line-176"></span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#parseAwkExpr"><span class="hs-identifier hs-type">parseAwkExpr</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">String</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-type">Maybe</span></a></span><span> </span><span class="annot"><a href="Test.Tasty.Patterns.Types.html#Expr"><span class="hs-identifier hs-type">Expr</span></a></span><span>
 </span><span id="line-177"></span><span id="parseAwkExpr"><span class="annot"><span class="annottext">parseAwkExpr :: String -&gt; Maybe Expr
-</span><a href="Test.Tasty.Patterns.Parser.html#parseAwkExpr"><span class="hs-identifier hs-var hs-var">parseAwkExpr</span></a></span></span><span> </span><span id="local-6989586621679075674"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075674"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="Test.Tasty.Patterns.Parser.html#parseAwkExpr"><span class="hs-identifier hs-var hs-var">parseAwkExpr</span></a></span></span><span> </span><span id="local-6989586621679075439"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075439"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-178"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. Parser a -&gt; String -&gt; ParseResult a
 </span><a href="Test.Tasty.Patterns.Parser.html#runParser"><span class="hs-identifier hs-var">runParser</span></a></span><span> </span><span class="annot"><span class="annottext">Parser Expr
 </span><a href="Test.Tasty.Patterns.Parser.html#expr"><span class="hs-identifier hs-var">expr</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075674"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-179"></span><span>    </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Success"><span class="hs-identifier hs-type">Success</span></a></span><span> </span><span id="local-6989586621679075673"><span class="annot"><span class="annottext">Expr
-</span><a href="#local-6989586621679075673"><span class="hs-identifier hs-var">e</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
+</span><a href="#local-6989586621679075439"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-179"></span><span>    </span><span class="annot"><a href="Test.Tasty.Patterns.Parser.html#Success"><span class="hs-identifier hs-type">Success</span></a></span><span> </span><span id="local-6989586621679075438"><span class="annot"><span class="annottext">Expr
+</span><a href="#local-6989586621679075438"><span class="hs-identifier hs-var">e</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. a -&gt; Maybe a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Just</span></a></span><span> </span><span class="annot"><span class="annottext">Expr
-</span><a href="#local-6989586621679075673"><span class="hs-identifier hs-var">e</span></a></span><span>
+</span><a href="#local-6989586621679075438"><span class="hs-identifier hs-var">e</span></a></span><span>
 </span><span id="line-180"></span><span>    </span><span class="annot"><span class="annottext">ParseResult Expr
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">forall a. Maybe a
 </span><a href="../../../../ghc/html/libraries/base-4.16.4.0/src"><span class="hs-identifier hs-var">Nothing</span></a></span><span>

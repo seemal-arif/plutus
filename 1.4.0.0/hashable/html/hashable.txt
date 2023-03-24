@@ -9,7 +9,7 @@
 --   hashing-based data structures. The package provides instances for
 --   basic types and a way to combine hash values.
 @package hashable
-@version 1.4.1.0
+@version 1.4.2.0
 
 
 -- | Lifting of the <a>Hashable</a> class to unary and binary type

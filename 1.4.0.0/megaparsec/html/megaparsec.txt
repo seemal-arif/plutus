@@ -8,7 +8,7 @@
 --   Megaparsec is a feature-rich package that tries to find a nice balance
 --   between speed, flexibility, and quality of parse errors.
 @package megaparsec
-@version 9.2.2
+@version 9.3.0
 
 
 -- | Textual source position. The position includes name of file, line
@@ -105,6 +105,13 @@ module Text.Megaparsec.Stream
 
 -- | Type class for inputs that can be consumed by the library.
 --   
+--   Note that the <a>Stream</a> instances for <tt>Text</tt> and
+--   <tt>ByteString</tt> (strict and lazy) default to "input sharing" (see
+--   <a>ShareInput</a>, <a>NoShareInput</a>). We plan to move away from
+--   input sharing in a future major release; if you want to retain the
+--   current behaviour and are concerned with maximum performance you
+--   should consider using the <a>ShareInput</a> wrapper explicitly.
+--   
 --   <b>Note</b>: before the version <i>9.0.0</i> the class included the
 --   methods from <a>VisualStream</a> and <a>TraversableStream</a>.
 class (Ord (Token s), Ord (Tokens s)) => Stream s where {
@@ -185,6 +192,42 @@ takeN_ :: Stream s => Int -> s -> Maybe (Tokens s, s)
 --   conceptual point of view.
 takeWhile_ :: Stream s => (Token s -> Bool) -> s -> (Tokens s, s)
 
+-- | This wrapper selects the input-sharing <a>Stream</a> implementation
+--   for <a>Text</a> (<a>Text</a>) and <a>ByteString</a>
+--   (<a>ByteString</a>). By input sharing we mean that our parsers will
+--   use slices whenever possible to avoid having to copy parts of the
+--   input. See also the documentation of <a>split</a>.
+--   
+--   Note that using slices is in general faster than copying; on the other
+--   hand it also has the potential for causing surprising memory leaks: if
+--   any slice of the input survives in the output, holding on to the
+--   output will force the entire input <a>Text</a>/<a>ByteString</a> to
+--   stay in memory! Even when using lazy <a>Text</a>/<a>ByteString</a> we
+--   will hold on to whole chunks at a time leading to to significantly
+--   worse memory residency in some cases.
+--   
+--   See <a>NoShareInput</a> for a somewhat slower implementation that
+--   avoids this memory leak scenario.
+newtype ShareInput a
+ShareInput :: a -> ShareInput a
+[unShareInput] :: ShareInput a -> a
+
+-- | This wrapper selects the no-input-sharing <a>Stream</a> implementation
+--   for <a>Text</a> (<a>Text</a>) and <a>ByteString</a>
+--   (<a>ByteString</a>). This means that our parsers will create
+--   independent copies rather than using slices of the input. See also the
+--   documentation of <a>copy</a>.
+--   
+--   More importantly, any parser output will be independent of the input,
+--   and holding on to parts of the output will never prevent the input
+--   from being garbage collected.
+--   
+--   For maximum performance you might consider using <a>ShareInput</a>
+--   instead, but beware of its pitfalls!
+newtype NoShareInput a
+NoShareInput :: a -> NoShareInput a
+[unNoShareInput] :: NoShareInput a -> a
+
 -- | Type class for inputs that can also be used for debugging.
 class Stream s => VisualStream s
 
@@ -258,12 +301,20 @@ instance Text.Megaparsec.Stream.VisualStream Data.ByteString.Internal.ByteString
 instance Text.Megaparsec.Stream.VisualStream Data.ByteString.Lazy.Internal.ByteString
 instance Text.Megaparsec.Stream.VisualStream Data.Text.Internal.Text
 instance Text.Megaparsec.Stream.VisualStream Data.Text.Internal.Lazy.Text
-instance GHC.Classes.Ord a => Text.Megaparsec.Stream.Stream [a]
-instance GHC.Classes.Ord a => Text.Megaparsec.Stream.Stream (Data.Sequence.Internal.Seq a)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.NoShareInput Data.ByteString.Internal.ByteString)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.NoShareInput Data.ByteString.Lazy.Internal.ByteString)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.NoShareInput Data.Text.Internal.Text)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.NoShareInput Data.Text.Internal.Lazy.Text)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.ShareInput Data.ByteString.Internal.ByteString)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.ShareInput Data.ByteString.Lazy.Internal.ByteString)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.ShareInput Data.Text.Internal.Text)
+instance Text.Megaparsec.Stream.Stream (Text.Megaparsec.Stream.ShareInput Data.Text.Internal.Lazy.Text)
 instance Text.Megaparsec.Stream.Stream Data.ByteString.Internal.ByteString
 instance Text.Megaparsec.Stream.Stream Data.ByteString.Lazy.Internal.ByteString
 instance Text.Megaparsec.Stream.Stream Data.Text.Internal.Text
 instance Text.Megaparsec.Stream.Stream Data.Text.Internal.Lazy.Text
+instance GHC.Classes.Ord a => Text.Megaparsec.Stream.Stream [a]
+instance GHC.Classes.Ord a => Text.Megaparsec.Stream.Stream (Data.Sequence.Internal.Seq a)
 
 
 -- | Parse errors. The current version of Megaparsec supports typed errors
@@ -505,7 +556,7 @@ module Text.Megaparsec.Internal
 --   expecting 'r' or end of input
 --   </pre>
 newtype Hints t
-Hints :: [Set (ErrorItem t)] -> Hints t
+Hints :: Set (ErrorItem t) -> Hints t
 
 -- | All information available after parsing. This includes consumption of
 --   input, success (with the returned value) or failure (with the parse
@@ -558,12 +609,11 @@ withHints :: Stream s => Hints (Token s) -> (ParseError s e -> State s e -> m b)
 -- | <tt><a>accHints</a> hs c</tt> results in “OK” continuation that will
 --   add given hints <tt>hs</tt> to third argument of original continuation
 --   <tt>c</tt>.
-accHints :: Hints t -> (a -> State s e -> Hints t -> m b) -> a -> State s e -> Hints t -> m b
+accHints :: Stream s => Hints (Token s) -> (a -> State s e -> Hints (Token s) -> m b) -> a -> State s e -> Hints (Token s) -> m b
 
--- | Replace the most recent group of hints (if any) with the given
---   <a>ErrorItem</a> (or delete it if <a>Nothing</a> is given). This is
---   used in the <a>label</a> primitive.
-refreshLastHint :: Hints t -> Maybe (ErrorItem t) -> Hints t
+-- | Replace the hints with the given <a>ErrorItem</a> (or delete it if
+--   <a>Nothing</a> is given). This is used in the <a>label</a> primitive.
+refreshHints :: Hints t -> Maybe (ErrorItem t) -> Hints t
 
 -- | Low-level unpacking of the <a>ParsecT</a> type.
 runParsecT :: Monad m => ParsecT e s m a -> State s e -> m (Reply e s a)
@@ -594,12 +644,15 @@ instance (GHC.Classes.Ord e, Text.Megaparsec.Stream.Stream s) => GHC.Base.MonadP
 instance (Text.Megaparsec.Stream.Stream s, Control.Monad.Fix.MonadFix m) => Control.Monad.Fix.MonadFix (Text.Megaparsec.Internal.ParsecT e s m)
 instance Text.Megaparsec.Stream.Stream s => Control.Monad.Trans.Class.MonadTrans (Text.Megaparsec.Internal.ParsecT e s)
 instance (GHC.Classes.Ord e, Text.Megaparsec.Stream.Stream s) => Text.Megaparsec.Class.MonadParsec e s (Text.Megaparsec.Internal.ParsecT e s m)
-instance GHC.Base.Semigroup (Text.Megaparsec.Internal.Hints t)
-instance GHC.Base.Monoid (Text.Megaparsec.Internal.Hints t)
+instance GHC.Classes.Ord t => GHC.Base.Semigroup (Text.Megaparsec.Internal.Hints t)
+instance GHC.Classes.Ord t => GHC.Base.Monoid (Text.Megaparsec.Internal.Hints t)
 
 
 -- | Debugging helpers.
 module Text.Megaparsec.Debug
+
+-- | Type class describing parser monads that can trace during evaluation.
+class MonadParsec e s m => MonadParsecDbg e s m
 
 -- | <tt><a>dbg</a> label p</tt> parser works exactly like <tt>p</tt>, but
 --   when it's evaluated it prints information useful for debugging. The
@@ -630,18 +683,25 @@ module Text.Megaparsec.Debug
 --   input.</li>
 --   </ul>
 --   
---   Finally, it's not possible to lift this function into some monad
---   transformers without introducing surprising behavior (e.g. unexpected
---   state backtracking) or adding otherwise redundant constraints (e.g.
---   <a>Show</a> instance for state), so this helper is only available for
---   <a>ParsecT</a> monad, not any instance of <a>MonadParsec</a> in
---   general.
-dbg :: forall e s m a. (VisualStream s, ShowErrorComponent e, Show a) => String -> ParsecT e s m a -> ParsecT e s m a
+--   <b>Note</b>: up until the version <i>9.3.0</i> this was a
+--   non-polymorphic function that worked only in <a>ParsecT</a>. It was
+--   first introduced in the version <i>7.0.0</i>.
+dbg :: (MonadParsecDbg e s m, Show a) => String -> m a -> m a
 
 -- | Just like <a>dbg</a>, but doesn't require the return value of the
 --   parser to be <a>Show</a>-able.
-dbg' :: forall e s m a. (VisualStream s, ShowErrorComponent e) => String -> ParsecT e s m a -> ParsecT e s m a
+dbg' :: MonadParsecDbg e s m => String -> m a -> m a
 instance GHC.Show.Show (Text.Megaparsec.Debug.Blind x)
+instance (Text.Megaparsec.Stream.VisualStream s, Text.Megaparsec.Error.ShowErrorComponent e) => Text.Megaparsec.Debug.MonadParsecDbg e s (Text.Megaparsec.Internal.ParsecT e s m)
+instance (GHC.Base.Monoid w, GHC.Show.Show w, GHC.Show.Show st, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.RWS.Lazy.RWST r w st m)
+instance (GHC.Base.Monoid w, GHC.Show.Show w, GHC.Show.Show st, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.RWS.Strict.RWST r w st m)
+instance (GHC.Show.Show c, GHC.Show.Show a) => GHC.Show.Show (Text.Megaparsec.Debug.ShowComment c a)
+instance (GHC.Show.Show st, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.State.Lazy.StateT st m)
+instance (GHC.Show.Show st, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.State.Strict.StateT st m)
+instance Text.Megaparsec.Debug.MonadParsecDbg e s m => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.Reader.ReaderT r m)
+instance (GHC.Base.Monoid w, GHC.Show.Show w, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.Writer.Lazy.WriterT w m)
+instance (GHC.Base.Monoid w, GHC.Show.Show w, Text.Megaparsec.Debug.MonadParsecDbg e s m) => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.Writer.Strict.WriterT w m)
+instance Text.Megaparsec.Debug.MonadParsecDbg e s m => Text.Megaparsec.Debug.MonadParsecDbg e s (Control.Monad.Trans.Identity.IdentityT m)
 
 
 -- | This module includes everything you need to get started writing a
@@ -1039,8 +1099,8 @@ customFailure :: MonadParsec e s m => e -> m a
 --   wrapper. This applies to both normal and delayed <a>ParseError</a>s.
 --   
 --   As a side-effect of the implementation the inner computation will
---   start with empty collection of delayed errors and they will be updated
---   and “restored” on the way out of <a>region</a>.
+--   start with an empty collection of delayed errors and they will be
+--   updated and “restored” on the way out of <a>region</a>.
 region :: MonadParsec e s m => (ParseError s e -> ParseError s e) -> m a -> m a
 
 -- | Register a <a>ParseError</a> for later reporting. This action does not
@@ -1516,9 +1576,8 @@ IndentSome :: Maybe Pos -> ([b] -> m a) -> m b -> IndentOpt m a b
 --   of the “reference” token. The reference token can influence parsing,
 --   see <a>IndentOpt</a> for more information.
 --   
---   Tokens <i>must not</i> consume newlines after them. On the other hand,
---   the first argument of this function <i>must</i> consume newlines among
---   other white space characters.
+--   <b>Note</b>: the first argument of this function <i>must</i> consume
+--   newlines among other white space characters.
 indentBlock :: (TraversableStream s, MonadParsec e s m, Token s ~ Char) => m () -> m (IndentOpt m a b) -> m a
 
 -- | Create a parser that supports line-folding. The first argument is used
