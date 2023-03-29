@@ -174,8 +174,9 @@ serialiseCompiledCode :: forall a. CompiledCode a -> SerialisedScript
 --   format that is understood by the network and can be stored on-chain.
 serialiseUPLC :: Program DeBruijn DefaultUni DefaultFun () -> SerialisedScript
 
--- | Deserialises a <a>SerialisedScript</a> back into an AST.
-deserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
+-- | Deserialises a <a>SerialisedScript</a> back into an AST. Does *not* do
+--   ledger-language-version-specific checks like for allowable builtins.
+uncheckedDeserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
 
 -- | An error that occurred during script deserialization.
 data ScriptDecodeError
@@ -2588,8 +2589,9 @@ serialiseCompiledCode :: forall a. CompiledCode a -> SerialisedScript
 --   format that is understood by the network and can be stored on-chain.
 serialiseUPLC :: Program DeBruijn DefaultUni DefaultFun () -> SerialisedScript
 
--- | Deserialises a <a>SerialisedScript</a> back into an AST.
-deserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
+-- | Deserialises a <a>SerialisedScript</a> back into an AST. Does *not* do
+--   ledger-language-version-specific checks like for allowable builtins.
+uncheckedDeserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
 
 -- | Check if a <tt>Script</tt> is "valid" according to a protocol version.
 --   At the moment this means "deserialises correctly", which in particular
@@ -3348,8 +3350,9 @@ serialiseCompiledCode :: forall a. CompiledCode a -> SerialisedScript
 --   format that is understood by the network and can be stored on-chain.
 serialiseUPLC :: Program DeBruijn DefaultUni DefaultFun () -> SerialisedScript
 
--- | Deserialises a <a>SerialisedScript</a> back into an AST.
-deserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
+-- | Deserialises a <a>SerialisedScript</a> back into an AST. Does *not* do
+--   ledger-language-version-specific checks like for allowable builtins.
+uncheckedDeserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
 
 -- | Check if a <tt>Script</tt> is "valid" according to a protocol version.
 --   At the moment this means "deserialises correctly", which in particular
@@ -4136,8 +4139,9 @@ serialiseCompiledCode :: forall a. CompiledCode a -> SerialisedScript
 --   format that is understood by the network and can be stored on-chain.
 serialiseUPLC :: Program DeBruijn DefaultUni DefaultFun () -> SerialisedScript
 
--- | Deserialises a <a>SerialisedScript</a> back into an AST.
-deserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
+-- | Deserialises a <a>SerialisedScript</a> back into an AST. Does *not* do
+--   ledger-language-version-specific checks like for allowable builtins.
+uncheckedDeserialiseUPLC :: SerialisedScript -> Program DeBruijn DefaultUni DefaultFun ()
 
 -- | Check if a <tt>Script</tt> is "valid" according to a protocol version.
 --   At the moment this means "deserialises correctly", which in particular

@@ -8204,7 +8204,23 @@ decodeTermTag :: Get Word8
 encodeTerm :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => Term name uni fun ann -> Encoding
 decodeTerm :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => (fun -> Maybe String) -> Get (Term name uni fun ann)
 sizeTerm :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => Term name uni fun ann -> NumBits -> NumBits
+
+-- | An encoder for programs.
+--   
+--   It is not easy to use this correctly with <tt>flat</tt>. The simplest
+--   thing is to go via the instance for <a>UnrestrictedProgram</a>, which
+--   uses this
+encodeProgram :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => Program name uni fun ann -> Encoding
 decodeProgram :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => (fun -> Maybe String) -> Get (Program name uni fun ann)
+sizeProgram :: forall name uni fun ann. (Closed uni, uni `Everywhere` Flat, Flat fun, Flat ann, Flat name, Flat (Binder name)) => Program name uni fun ann -> NumBits -> NumBits
+
+-- | A program that can be serialized without any restrictions, e.g. on the
+--   set of allowable builtins or term constructs. It is generally safe to
+--   use this newtype for serializing, but it should only be used for
+--   deserializing in tests.
+newtype UnrestrictedProgram name uni fun ann
+UnrestrictedProgram :: Program name uni fun ann -> UnrestrictedProgram name uni fun ann
+[unUnrestrictedProgram] :: UnrestrictedProgram name uni fun ann -> Program name uni fun ann
 
 module UntypedPlutusCore.Check.Uniques
 checkProgram :: (Ord ann, HasUnique name TermUnique, AsUniqueError e ann, MonadError e m) => (UniqueError ann -> Bool) -> Program name uni fun ann -> m ()
@@ -9339,8 +9355,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7sDy a_a7sDz. Lens' (SimplifyOpts name_a7sDy a_a7sDz) Int
-soInlineHints :: forall name_a7sDy a_a7sDz name_a7sFa a_a7sFb. Lens (SimplifyOpts name_a7sDy a_a7sDz) (SimplifyOpts name_a7sFa a_a7sFb) (InlineHints name_a7sDy a_a7sDz) (InlineHints name_a7sFa a_a7sFb)
+soMaxSimplifierIterations :: forall name_a7sBc a_a7sBd. Lens' (SimplifyOpts name_a7sBc a_a7sBd) Int
+soInlineHints :: forall name_a7sBc a_a7sBd name_a7sCO a_a7sCP. Lens (SimplifyOpts name_a7sBc a_a7sBd) (SimplifyOpts name_a7sCO a_a7sCP) (InlineHints name_a7sBc a_a7sBd) (InlineHints name_a7sCO a_a7sCP)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9409,6 +9425,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7tdT a_a7tdU name_a7tfh a_a7tfi. Iso (CompilationOpts name_a7tdT a_a7tdU) (CompilationOpts name_a7tfh a_a7tfi) (SimplifyOpts name_a7tdT a_a7tdU) (SimplifyOpts name_a7tfh a_a7tfi)
+coSimplifyOpts :: forall name_a7tbx a_a7tby name_a7tcV a_a7tcW. Iso (CompilationOpts name_a7tbx a_a7tby) (CompilationOpts name_a7tcV a_a7tcW) (SimplifyOpts name_a7tbx a_a7tby) (SimplifyOpts name_a7tcV a_a7tcW)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
