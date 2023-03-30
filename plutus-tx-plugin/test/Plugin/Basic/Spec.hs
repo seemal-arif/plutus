@@ -47,6 +47,7 @@ basic = testNested "Basic" [
     , goldenPir "cl1" cl1
     , goldenPir "cl2" cl2
     , goldenPir "cl3" cl3
+    , goldenPir "nonpure" nonpure
     , goldenUPlc "letApp" letApp
     , goldenUPlc "letIdFunForall" letIdFunForall
     , goldenUPlc "letIdFunForallMulti" letIdFunForallMulti
@@ -77,6 +78,13 @@ basic = testNested "Basic" [
 --   , goldenPir "patternMatchDo" patternMatchDo
 --   , goldenUPlcCatch "patternMatchFailure" patternMatchFailure
   ]
+
+nonpure :: CompiledCode Integer
+nonpure = plc (Proxy @"nonpure")(
+    let ~y = trace "hello" 1
+        !x = y -- so it looks small enough to inline
+    in Builtin.addInteger x x
+    )
 
 cl1 :: CompiledCode (Integer -> Integer -> Integer -> Integer)
 cl1 = plc (Proxy @"cl1") (

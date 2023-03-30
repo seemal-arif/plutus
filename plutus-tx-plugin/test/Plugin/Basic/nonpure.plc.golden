@@ -1,0 +1,33 @@
+(program
+  1.1.0
+  (let
+    (nonrec)
+    (termbind
+      (strict)
+      (vardecl trace (all a (type) (fun (con string) (fun a a))))
+      (builtin trace)
+    )
+    (termbind
+      (nonstrict)
+      (vardecl trace (all a (type) (fun (con string) (fun a a))))
+      trace
+    )
+    (termbind
+      (nonstrict)
+      (vardecl y (con integer))
+      [ [ { trace (con integer) } (con string "hello") ] (con integer 1) ]
+    )
+    (termbind
+      (strict)
+      (vardecl addInteger (fun (con integer) (fun (con integer) (con integer))))
+      (builtin addInteger)
+    )
+    (termbind
+      (strict)
+      (vardecl addInteger (fun (con integer) (fun (con integer) (con integer))))
+      (lam x (con integer) (lam y (con integer) [ [ addInteger x ] y ]))
+    )
+    (termbind (strict) (vardecl x (con integer)) y)
+    [ [ addInteger x ] x ]
+  )
+)
