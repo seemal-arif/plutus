@@ -8648,6 +8648,7 @@ defaultSlippage :: Slippage
 --   <tt>Name</tt> is not necessary but we leave it here for simplicity and
 --   debuggability.
 type NTerm uni fun = Term NamedDeBruijn uni fun
+runCekM :: forall a cost uni fun ann. PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> (forall s. GivenCekReqs uni fun ann s => CekM uni fun s a) -> (Either (CekEvaluationException NamedDeBruijn uni fun) a, cost, [Text])
 instance Data.Hashable.Class.Hashable UntypedPlutusCore.Evaluation.Machine.Cek.Internal.StepKind
 instance Control.DeepSeq.NFData UntypedPlutusCore.Evaluation.Machine.Cek.Internal.StepKind
 instance GHC.Enum.Bounded UntypedPlutusCore.Evaluation.Machine.Cek.Internal.StepKind
@@ -8905,6 +8906,8 @@ Starting :: NTerm uni fun ann -> CekState uni fun ann
 Computing :: Context uni fun ann -> CekValEnv uni fun ann -> NTerm uni fun ann -> CekState uni fun ann
 Returning :: Context uni fun ann -> CekValue uni fun ann -> CekState uni fun ann
 Terminating :: NTerm uni fun () -> CekState uni fun ann
+
+-- | Similar to <a>Context</a>, but augmented with an <tt>ann</tt>
 data Context uni fun ann
 
 -- | <pre>
@@ -8923,8 +8926,19 @@ FrameApplyArg :: ann -> !CekValEnv uni fun ann -> !NTerm uni fun ann -> !Context
 FrameForce :: ann -> !Context uni fun ann -> Context uni fun ann
 NoFrame :: Context uni fun ann
 contextAnn :: Context uni fun ann -> Maybe ann
-ioToCekM :: IO a -> CekM uni fun RealWorld a
-cekMToIO :: CekM uni fun RealWorld a -> IO a
+
+-- | Lift a CEK computation to a primitive.PrimMonad m
+liftCek :: (PrimMonad m, PrimState m ~ s) => CekM uni fun s a -> m a
+
+-- | Class of monads which can perform primitive state-transformer actions.
+class Monad m => PrimMonad (m :: Type -> Type) where {
+    
+    -- | State token type.
+    type family PrimState (m :: Type -> Type);
+}
+
+-- | Execute a primitive operation.
+primitive :: PrimMonad m => (State# (PrimState m) -> (# State# (PrimState m), a #)) -> m a
 lenContext :: Context uni fun ann -> Word
 cekStateContext :: Traversal' (CekState uni fun ann) (Context uni fun ann)
 cekStateAnn :: CekState uni fun ann -> Maybe ann
@@ -8932,15 +8946,23 @@ runCekDeBruijn :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (Ce
 computeCek :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann s) => Context uni fun ann -> CekValEnv uni fun ann -> NTerm uni fun ann -> CekM uni fun s (CekState uni fun ann)
 returnCek :: forall uni fun ann s. (PrettyUni uni fun, GivenCekReqs uni fun ann s) => Context uni fun ann -> CekValue uni fun ann -> CekM uni fun s (CekState uni fun ann)
 
--- | The state transition function of the machine.
-handleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s c
-
--- | As <a>handleStep</a> but captures any exception during a single-state
---   transition
+-- | A <a>MonadError</a> version of <tt>try</tt>.
 --   
---   Note that we use the "pure" MonadError.tryError and not the
---   MonadCatch.tryError. See Note [Throwing exceptions in ST]
-tryHandleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s (Either (CekEvaluationException NamedDeBruijn uni fun) c)
+--   TODO: remove when we switch to mtl&gt;=2.3
+tryError :: MonadError e m => m a -> m (Either e a)
+
+-- | Based on the supplied arguments, initialize the CEK environment and
+--   construct a state transition function. Returns the constructed
+--   transition function paired with the methods to live access the running
+--   budget.
+mkCekTrans :: forall cost uni fun ann m s. (PrettyUni uni fun, PrimMonad m, s ~ PrimState m) => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> Slippage -> m (CekTrans uni fun ann s, ExBudgetInfo cost uni fun s)
+type CekTrans uni fun ann s = Trans (CekM uni fun s) (CekState uni fun ann)
+
+-- | A CEK parameter that turns the slippage optimization *off*.
+--   
+--   This is needed in the case of the debugger, where the
+--   accounting/budgeting costs must be *live* updated.
+nilSlippage :: Slippage
 
 -- | The parameterized type of results various evaluation engines return.
 --   On the PLC side this becomes (via <tt>makeKnown</tt>) either a call to
@@ -9084,6 +9106,7 @@ defaultSlippage :: Slippage
 --   variables with the terms they're bound to (which themselves have to be
 --   obtain by recursively discharging values).
 dischargeCekValue :: CekValue uni fun ann -> NTerm uni fun ()
+runCekM :: forall a cost uni fun ann. PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> (forall s. GivenCekReqs uni fun ann s => CekM uni fun s a) -> (Either (CekEvaluationException NamedDeBruijn uni fun) a, cost, [Text])
 instance (Universe.Core.Everywhere uni GHC.Show.Show, Data.GADT.Internal.GShow uni, Universe.Core.Closed uni, GHC.Show.Show ann, GHC.Show.Show fun) => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Internal.Context uni fun ann)
 instance Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Internal.CekState uni fun ann)
 
@@ -9117,7 +9140,7 @@ Next :: bps -> Cmd bps
 Finish :: bps -> Cmd bps
 
 -- | Entrypoint of the driver
-runDriver :: forall uni fun ann bps m. (Breakpointable ann bps, MonadFree (DebugF uni fun ann bps) m) => NTerm uni fun ann -> m ()
+runDriverT :: forall uni fun ann bps m. (Breakpointable ann bps, MonadFree (DebugF uni fun ann bps) m) => NTerm uni fun ann -> m ()
 
 -- | The drivers's suspension functor
 data DebugF uni fun ann bps a
@@ -9134,15 +9157,17 @@ LogF :: String -> a -> DebugF uni fun ann bps a
 StepF :: CekState uni fun ann -> (CekState uni fun ann -> a) -> DebugF uni fun ann bps a
 UpdateClientF :: CekState uni fun ann -> a -> DebugF uni fun ann bps a
 
--- | The state transition function of the machine.
-handleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s c
+-- | Based on the supplied arguments, initialize the CEK environment and
+--   construct a state transition function. Returns the constructed
+--   transition function paired with the methods to live access the running
+--   budget.
+mkCekTrans :: forall cost uni fun ann m s. (PrettyUni uni fun, PrimMonad m, s ~ PrimState m) => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> Slippage -> m (CekTrans uni fun ann s, ExBudgetInfo cost uni fun s)
+type CekTrans uni fun ann s = Trans (CekM uni fun s) (CekState uni fun ann)
 
--- | As <a>handleStep</a> but captures any exception during a single-state
---   transition
+-- | A <a>MonadError</a> version of <tt>try</tt>.
 --   
---   Note that we use the "pure" MonadError.tryError and not the
---   MonadCatch.tryError. See Note [Throwing exceptions in ST]
-tryHandleStep :: forall uni fun ann s c. (PrettyUni uni fun, GivenCekReqs uni fun ann s, c ~ CekState uni fun ann) => c -> CekM uni fun s (Either (CekEvaluationException NamedDeBruijn uni fun) c)
+--   TODO: remove when we switch to mtl&gt;=2.3
+tryError :: MonadError e m => m a -> m (Either e a)
 
 -- | Monads provide substitution (<a>fmap</a>) and renormalization
 --   (<a>join</a>):
@@ -9355,8 +9380,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7sIL a_a7sIM. Lens' (SimplifyOpts name_a7sIL a_a7sIM) Int
-soInlineHints :: forall name_a7sIL a_a7sIM name_a7sKn a_a7sKo. Lens (SimplifyOpts name_a7sIL a_a7sIM) (SimplifyOpts name_a7sKn a_a7sKo) (InlineHints name_a7sIL a_a7sIM) (InlineHints name_a7sKn a_a7sKo)
+soMaxSimplifierIterations :: forall name_a7sIe a_a7sIf. Lens' (SimplifyOpts name_a7sIe a_a7sIf) Int
+soInlineHints :: forall name_a7sIe a_a7sIf name_a7sJQ a_a7sJR. Lens (SimplifyOpts name_a7sIe a_a7sIf) (SimplifyOpts name_a7sJQ a_a7sJR) (InlineHints name_a7sIe a_a7sIf) (InlineHints name_a7sJQ a_a7sJR)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9425,6 +9450,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7tj6 a_a7tj7 name_a7tku a_a7tkv. Iso (CompilationOpts name_a7tj6 a_a7tj7) (CompilationOpts name_a7tku a_a7tkv) (SimplifyOpts name_a7tj6 a_a7tj7) (SimplifyOpts name_a7tku a_a7tkv)
+coSimplifyOpts :: forall name_a7tiz a_a7tiA name_a7tjX a_a7tjY. Iso (CompilationOpts name_a7tiz a_a7tiA) (CompilationOpts name_a7tjX a_a7tjY) (SimplifyOpts name_a7tiz a_a7tiA) (SimplifyOpts name_a7tjX a_a7tjY)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
