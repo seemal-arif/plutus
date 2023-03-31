@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1680101467596,
+  "lastUpdate": 1680285843709,
   "repoUrl": "https://github.com/input-output-hk/plutus",
   "entries": {
     "Plutus Benchmarks": [
@@ -4823,6 +4823,810 @@ window.BENCHMARK_DATA = {
           {
             "name": "validation-decode-vesting-1",
             "value": 341.1,
+            "unit": "μs"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michael.peyton-jones@iohk.io",
+            "name": "Michael Peyton Jones",
+            "username": "michaelpj"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f58fbb4db8707c9be5a4ec94204edb0681b4d21d",
+          "message": "Addres comments on Flat PR (#5242)",
+          "timestamp": "2023-04-01T01:06:04+08:00",
+          "tree_id": "28d1988c180b69983b36e8cbc4fd66d78e03f827",
+          "url": "https://github.com/input-output-hk/plutus/commit/f58fbb4db8707c9be5a4ec94204edb0681b4d21d"
+        },
+        "date": 1680285808538,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "validation-auction_1-1",
+            "value": 167.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_1-2",
+            "value": 695.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_1-3",
+            "value": 692.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_1-4",
+            "value": 222.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_2-1",
+            "value": 171.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_2-2",
+            "value": 695.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_2-3",
+            "value": 915.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_2-4",
+            "value": 686.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-auction_2-5",
+            "value": 221.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-crowdfunding-success-1",
+            "value": 201.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-crowdfunding-success-2",
+            "value": 202.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-crowdfunding-success-3",
+            "value": 201.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-currency-1",
+            "value": 255.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-redeem_1-1",
+            "value": 353.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-redeem_1-2",
+            "value": 354,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-redeem_2-1",
+            "value": 420.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-redeem_2-2",
+            "value": 415.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-redeem_2-3",
+            "value": 415.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-escrow-refund-1",
+            "value": 149.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-increase-margin-1",
+            "value": 254.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-increase-margin-2",
+            "value": 557.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-increase-margin-3",
+            "value": 556.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-increase-margin-4",
+            "value": 517,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-increase-margin-5",
+            "value": 880.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-pay-out-1",
+            "value": 255.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-pay-out-2",
+            "value": 557,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-pay-out-3",
+            "value": 558.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-pay-out-4",
+            "value": 878.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-settle-early-1",
+            "value": 256.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-settle-early-2",
+            "value": 559.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-settle-early-3",
+            "value": 559.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-future-settle-early-4",
+            "value": 655.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_1-1",
+            "value": 402.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_1-2",
+            "value": 191.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_1-3",
+            "value": 679.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_1-4",
+            "value": 222.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-1",
+            "value": 399.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-2",
+            "value": 192.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-3",
+            "value": 685,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-4",
+            "value": 222.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-5",
+            "value": 681.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-game-sm-success_2-6",
+            "value": 222.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-1",
+            "value": 417.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-2",
+            "value": 413.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-3",
+            "value": 417.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-4",
+            "value": 423.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-5",
+            "value": 606.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-6",
+            "value": 414.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-7",
+            "value": 412.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-8",
+            "value": 418.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-9",
+            "value": 421.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-multisig-sm-10",
+            "value": 605.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-ping-pong-1",
+            "value": 347.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-ping-pong-2",
+            "value": 348.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-ping-pong_2-1",
+            "value": 203.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-prism-1",
+            "value": 157.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-prism-2",
+            "value": 434.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-prism-3",
+            "value": 374.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-pubkey-1",
+            "value": 136.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_1-1",
+            "value": 995.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_1-2",
+            "value": 187.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_1-3",
+            "value": 1.138,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-stablecoin_1-4",
+            "value": 198.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_1-5",
+            "value": 1.453,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-stablecoin_1-6",
+            "value": 246.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_2-1",
+            "value": 994.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_2-2",
+            "value": 187.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-stablecoin_2-3",
+            "value": 1.139,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-stablecoin_2-4",
+            "value": 197.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-token-account-1",
+            "value": 189.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-token-account-2",
+            "value": 337.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-uniswap-1",
+            "value": 432.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-uniswap-2",
+            "value": 218.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-uniswap-3",
+            "value": 1.887,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-uniswap-4",
+            "value": 321.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-uniswap-5",
+            "value": 1.214,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-uniswap-6",
+            "value": 309.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-vesting-1",
+            "value": 364.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_1-1",
+            "value": 191.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_1-2",
+            "value": 602.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_1-3",
+            "value": 604.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_1-4",
+            "value": 191.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_2-1",
+            "value": 191.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_2-2",
+            "value": 604.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_2-3",
+            "value": 602.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_2-4",
+            "value": 601.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-auction_2-5",
+            "value": 191.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-crowdfunding-success-1",
+            "value": 239.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-crowdfunding-success-2",
+            "value": 239.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-crowdfunding-success-3",
+            "value": 239.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-currency-1",
+            "value": 238.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-redeem_1-1",
+            "value": 333.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-redeem_1-2",
+            "value": 332.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-redeem_2-1",
+            "value": 332.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-redeem_2-2",
+            "value": 333.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-redeem_2-3",
+            "value": 333.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-escrow-refund-1",
+            "value": 333.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-increase-margin-1",
+            "value": 238.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-increase-margin-2",
+            "value": 336,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-increase-margin-3",
+            "value": 336.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-increase-margin-4",
+            "value": 814.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-increase-margin-5",
+            "value": 811.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-pay-out-1",
+            "value": 239.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-pay-out-2",
+            "value": 336.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-pay-out-3",
+            "value": 336.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-pay-out-4",
+            "value": 811.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-settle-early-1",
+            "value": 239.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-settle-early-2",
+            "value": 335.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-settle-early-3",
+            "value": 335.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-future-settle-early-4",
+            "value": 811.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_1-1",
+            "value": 583.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_1-2",
+            "value": 161.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_1-3",
+            "value": 582.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_1-4",
+            "value": 161.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-1",
+            "value": 583.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-2",
+            "value": 161.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-3",
+            "value": 583.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-4",
+            "value": 161,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-5",
+            "value": 581.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-game-sm-success_2-6",
+            "value": 161.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-1",
+            "value": 658.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-2",
+            "value": 658.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-3",
+            "value": 658.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-4",
+            "value": 657.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-5",
+            "value": 659.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-6",
+            "value": 660.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-7",
+            "value": 658.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-8",
+            "value": 658.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-9",
+            "value": 658.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-multisig-sm-10",
+            "value": 658.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-ping-pong-1",
+            "value": 539.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-ping-pong-2",
+            "value": 540.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-ping-pong_2-1",
+            "value": 540.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-prism-1",
+            "value": 156,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-prism-2",
+            "value": 571.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-prism-3",
+            "value": 241.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-pubkey-1",
+            "value": 161.5,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-1",
+            "value": 1.191,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-2",
+            "value": 161.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-3",
+            "value": 1.185,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-4",
+            "value": 161.2,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-5",
+            "value": 1.192,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-decode-stablecoin_1-6",
+            "value": 161,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-stablecoin_2-1",
+            "value": 1.178,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-decode-stablecoin_2-2",
+            "value": 161.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-stablecoin_2-3",
+            "value": 1.176,
+            "unit": "ms"
+          },
+          {
+            "name": "validation-decode-stablecoin_2-4",
+            "value": 161.3,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-token-account-1",
+            "value": 235.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-token-account-2",
+            "value": 215.6,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-1",
+            "value": 241.7,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-2",
+            "value": 235.9,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-3",
+            "value": 861.8,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-4",
+            "value": 178,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-5",
+            "value": 858.1,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-uniswap-6",
+            "value": 177.4,
+            "unit": "μs"
+          },
+          {
+            "name": "validation-decode-vesting-1",
+            "value": 342.5,
             "unit": "μs"
           }
         ]
