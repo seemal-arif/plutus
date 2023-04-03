@@ -43,6 +43,7 @@ basic = testNested "Basic" [
     , goldenPir "letFunForall" letFunForall
     , goldenPir "letAppMulti" letAppMulti
     , goldenPir "letOverAppMulti" letOverAppMulti
+    , goldenPir "letOverAppType" letOverAppType
     , goldenPir "letFunConstMulti" letFunConstMulti
     , goldenPir "cl1" cl1
     , goldenPir "cl2" cl2
@@ -79,8 +80,23 @@ basic = testNested "Basic" [
 --   , goldenUPlcCatch "patternMatchFailure" patternMatchFailure
   ]
 
+letOverAppType :: CompiledCode Integer
+letOverAppType = plc (Proxy @"letOverAppType") (
+    let
+        idFun :: forall a . a -> a
+        {-# NOINLINE idFun #-}
+        idFun = \x -> x
+        funApp :: Integer -> Integer
+        {-# NOINLINE funApp #-}
+        funApp = idFun @Integer
+        k :: forall a . a -> a
+        {-# NOINLINE k #-}
+        k = idFun
+    in k @Integer (k @(Integer -> Integer) funApp 3)
+    )
+
 nonpure :: CompiledCode Integer
-nonpure = plc (Proxy @"nonpure")(
+nonpure = plc (Proxy @"nonpure") (
     let ~y = trace "hello" 1
         !x = y -- so it looks small enough to inline
     in Builtin.addInteger x x
@@ -210,7 +226,7 @@ letFunForall = plc (Proxy @"letFunForall") (
     )
 
 letAppMulti :: CompiledCode Integer
-letAppMulti = plc (Proxy @"letAppMulti")(
+letAppMulti = plc (Proxy @"letAppMulti") (
     let
         appNum :: Integer
         {-# NOINLINE  appNum #-}
@@ -225,7 +241,7 @@ letAppMulti = plc (Proxy @"letAppMulti")(
     )
 
 letOverAppMulti :: CompiledCode Integer
-letOverAppMulti = plc (Proxy @"letOverAppMulti")(
+letOverAppMulti = plc (Proxy @"letOverAppMulti") (
     let
         idFun :: Integer -> Integer
         {-# NOINLINE idFun #-}
@@ -240,7 +256,7 @@ letOverAppMulti = plc (Proxy @"letOverAppMulti")(
     )
 
 letFunConstMulti :: CompiledCode (Integer -> Integer)
-letFunConstMulti = plc (Proxy @"letFunConstMulti")(
+letFunConstMulti = plc (Proxy @"letFunConstMulti") (
     let
         constFun :: Integer -> Integer -> Integer
         {-# NOINLINE constFun #-}
