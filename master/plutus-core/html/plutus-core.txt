@@ -8701,6 +8701,23 @@ instance (Universe.Core.Closed uni, Universe.Core.Everywhere uni PlutusCore.Eval
 instance GHC.Show.Show fun => Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.ExBudgetCategory fun)
 instance PlutusCore.Evaluation.Machine.ExBudget.ExBudgetBuiltin fun (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.ExBudgetCategory fun)
 
+module PlutusCore.Evaluation.Machine.ExBudgetingDefaults
+defaultBuiltinsRuntime :: HasMeaningIn DefaultUni term => BuiltinsRuntime DefaultFun term
+defaultCekCostModel :: CostModel CekMachineCosts BuiltinCostModel
+
+-- | Default costs for CEK machine instructions.
+defaultCekMachineCosts :: CekMachineCosts
+defaultCekParameters :: Typeable ann => MachineParameters CekMachineCosts DefaultFun (CekValue DefaultUni DefaultFun ann)
+
+-- | The default cost model data. This is exposed to the ledger, so let's
+--   not confuse anybody by mentioning the CEK machine
+defaultCostModelParams :: Maybe CostModelParams
+
+-- | The default cost model for built-in functions.
+defaultBuiltinCostModel :: BuiltinCostModel
+unitCekMachineCosts :: CekMachineCosts
+unitCekParameters :: Typeable ann => MachineParameters CekMachineCosts DefaultFun (CekValue DefaultUni DefaultFun ann)
+
 
 -- | The API to the CEK machine.
 module UntypedPlutusCore.Evaluation.Machine.Cek
@@ -8885,23 +8902,6 @@ class Eq a => Hashable a
 --   universes, which we need in order to throw exceptions.
 type PrettyUni uni fun = (Pretty (SomeTypeIn uni), Closed uni, uni `Everywhere` PrettyConst, Pretty fun, Typeable uni, Typeable fun)
 
-module PlutusCore.Evaluation.Machine.ExBudgetingDefaults
-defaultBuiltinsRuntime :: HasMeaningIn DefaultUni term => BuiltinsRuntime DefaultFun term
-defaultCekCostModel :: CostModel CekMachineCosts BuiltinCostModel
-
--- | Default costs for CEK machine instructions.
-defaultCekMachineCosts :: CekMachineCosts
-defaultCekParameters :: Typeable ann => MachineParameters CekMachineCosts DefaultFun (CekValue DefaultUni DefaultFun ann)
-
--- | The default cost model data. This is exposed to the ledger, so let's
---   not confuse anybody by mentioning the CEK machine
-defaultCostModelParams :: Maybe CostModelParams
-
--- | The default cost model for built-in functions.
-defaultBuiltinCostModel :: BuiltinCostModel
-unitCekMachineCosts :: CekMachineCosts
-unitCekParameters :: Typeable ann => MachineParameters CekMachineCosts DefaultFun (CekValue DefaultUni DefaultFun ann)
-
 
 -- | Defines the type of default machine parameters and a function for
 --   creating a value of the type. We keep them separate, because the
@@ -8918,7 +8918,7 @@ mkMachineParametersFor :: MonadError CostModelApplyError m => BuiltinVersion Def
 --   <tt>Unique</tt>s whenever they have non-equal string names. I.e.
 --   <tt>Unique</tt>s are used instead of string names. This is for
 --   efficiency reasons. The CEK machines handles name capture by design.
-module UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Internal
+module UntypedPlutusCore.Evaluation.Machine.SteppableCek.Internal
 data CekState uni fun ann
 Starting :: NTerm uni fun ann -> CekState uni fun ann
 Computing :: Context uni fun ann -> CekValEnv uni fun ann -> NTerm uni fun ann -> CekState uni fun ann
@@ -9125,10 +9125,10 @@ defaultSlippage :: Slippage
 --   obtain by recursively discharging values).
 dischargeCekValue :: CekValue uni fun ann -> NTerm uni fun ()
 runCekM :: forall a cost uni fun ann. PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> (forall s. GivenCekReqs uni fun ann s => CekM uni fun s a) -> (Either (CekEvaluationException NamedDeBruijn uni fun) a, cost, [Text])
-instance (Universe.Core.Everywhere uni GHC.Show.Show, Data.GADT.Internal.GShow uni, Universe.Core.Closed uni, GHC.Show.Show ann, GHC.Show.Show fun) => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Internal.Context uni fun ann)
-instance Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Internal.CekState uni fun ann)
+instance (Universe.Core.Everywhere uni GHC.Show.Show, Data.GADT.Internal.GShow uni, Universe.Core.Closed uni, GHC.Show.Show ann, GHC.Show.Show fun) => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.SteppableCek.Internal.Context uni fun ann)
+instance Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.SteppableCek.Internal.CekState uni fun ann)
 
-module UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Driver
+module UntypedPlutusCore.Evaluation.Machine.SteppableCek.DebugDriver
 
 -- | Leave abstract the types of annotation and breakpoints. The only thing
 --   the driver requires is an inclusion relation of breakpoints into the
@@ -9281,9 +9281,192 @@ cutoff :: forall (f :: Type -> Type) (m :: Type -> Type) a. (Functor f, Monad m)
 
 -- | The "free monad transformer" for a functor <tt>f</tt>
 data FreeT (f :: Type -> Type) (m :: Type -> TYPE LiftedRep) a
-instance GHC.Read.Read bps => GHC.Read.Read (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Driver.Cmd bps)
-instance GHC.Show.Show bps => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Driver.Cmd bps)
-instance GHC.Base.Functor (UntypedPlutusCore.Evaluation.Machine.Cek.Debug.Driver.DebugF uni fun ann bps)
+instance GHC.Read.Read bps => GHC.Read.Read (UntypedPlutusCore.Evaluation.Machine.SteppableCek.DebugDriver.Cmd bps)
+instance GHC.Show.Show bps => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.SteppableCek.DebugDriver.Cmd bps)
+instance GHC.Base.Functor (UntypedPlutusCore.Evaluation.Machine.SteppableCek.DebugDriver.DebugF uni fun ann bps)
+
+
+-- | The API to the Steppable CEK machine. Provides the same interface to
+--   original CEK machine.
+module UntypedPlutusCore.Evaluation.Machine.SteppableCek
+
+-- | Evaluate a term using the Steppable CEK machine with logging enabled
+--   and keep track of costing. A wrapper around the internal runCek to
+--   debruijn input and undebruijn output. *THIS FUNCTION IS PARTIAL if the
+--   input term contains free variables*
+runCek :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> Term Name uni fun ann -> (Either (CekEvaluationException Name uni fun) (Term Name uni fun ()), cost, [Text])
+runCekDeBruijn :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> NTerm uni fun ann -> (Either (CekEvaluationException NamedDeBruijn uni fun) (NTerm uni fun ()), cost, [Text])
+
+-- | Evaluate a term using the Steppable CEK machine with logging disabled
+--   and keep track of costing. *THIS FUNCTION IS PARTIAL if the input term
+--   contains free variables*
+runCekNoEmit :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> Term Name uni fun ann -> (Either (CekEvaluationException Name uni fun) (Term Name uni fun ()), cost)
+
+-- | Unsafely evaluate a term using the Steppable CEK machine with logging
+--   disabled -- and keep track of costing. May throw a
+--   <tt>CekMachineException</tt>. *THIS FUNCTION IS PARTIAL if the input
+--   term contains free variables*
+unsafeRunCekNoEmit :: (Pretty (SomeTypeIn uni), Typeable uni, Closed uni, uni `Everywhere` PrettyConst, Pretty fun, Typeable fun) => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> Term Name uni fun ann -> (EvaluationResult (Term Name uni fun ()), cost)
+
+-- | Evaluate a term using the Steppable CEK machine with logging enabled.
+--   *THIS FUNCTION IS PARTIAL if the input term contains free variables*
+evaluateCek :: PrettyUni uni fun => EmitterMode uni fun -> MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> Term Name uni fun ann -> (Either (CekEvaluationException Name uni fun) (Term Name uni fun ()), [Text])
+
+-- | Evaluate a term using the Steppable CEK machine with logging disabled.
+--   *THIS FUNCTION IS PARTIAL if the input term contains free variables*
+evaluateCekNoEmit :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> Term Name uni fun ann -> Either (CekEvaluationException Name uni fun) (Term Name uni fun ())
+
+-- | Evaluate a term using the Steppable CEK machine with logging enabled.
+--   May throw a <tt>CekMachineException</tt>. *THIS FUNCTION IS PARTIAL if
+--   the input term contains free variables*
+unsafeEvaluateCek :: (Pretty (SomeTypeIn uni), Typeable uni, Closed uni, uni `Everywhere` PrettyConst, Pretty fun, Typeable fun) => EmitterMode uni fun -> MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> Term Name uni fun ann -> (EvaluationResult (Term Name uni fun ()), [Text])
+
+-- | Evaluate a term using the Steppable CEK machine with logging disabled.
+--   May throw a <tt>CekMachineException</tt>. *THIS FUNCTION IS PARTIAL if
+--   the input term contains free variables*
+unsafeEvaluateCekNoEmit :: (Pretty (SomeTypeIn uni), Typeable uni, Closed uni, uni `Everywhere` PrettyConst, Pretty fun, Typeable fun) => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> Term Name uni fun ann -> EvaluationResult (Term Name uni fun ())
+
+-- | The parameterized type of results various evaluation engines return.
+--   On the PLC side this becomes (via <tt>makeKnown</tt>) either a call to
+--   <tt>Error</tt> or a value of the PLC counterpart of type <tt>a</tt>.
+data EvaluationResult a
+EvaluationSuccess :: !a -> EvaluationResult a
+EvaluationFailure :: EvaluationResult a
+
+-- | Turn any <a>UserEvaluationError</a> into an <a>EvaluationFailure</a>.
+extractEvaluationResult :: Either (EvaluationException user internal term) a -> Either (ErrorWithCause internal term) (EvaluationResult a)
+unsafeExtractEvaluationResult :: (PrettyPlc internal, PrettyPlc term, Typeable internal, Typeable term) => Either (EvaluationException user internal term) a -> EvaluationResult a
+data CekUserError
+
+-- | The final overspent (i.e. negative) budget.
+CekOutOfExError :: !ExRestrictingBudget -> CekUserError
+
+-- | Error has been called or a builtin application has failed
+CekEvaluationFailure :: CekUserError
+
+-- | An error and (optionally) what caused it.
+data ErrorWithCause err cause
+ErrorWithCause :: !err -> !Maybe cause -> ErrorWithCause err cause
+[_ewcError] :: ErrorWithCause err cause -> !err
+[_ewcCause] :: ErrorWithCause err cause -> !Maybe cause
+
+-- | The CEK machine-specific <a>EvaluationException</a>.
+type CekEvaluationException name uni fun = EvaluationException CekUserError (MachineError fun) (Term name uni fun ())
+
+-- | The type of errors (all of them) which can occur during evaluation
+--   (some are used-caused, some are internal).
+data EvaluationError user internal
+
+-- | Indicates bugs.
+InternalEvaluationError :: !internal -> EvaluationError user internal
+
+-- | Indicates user errors.
+UserEvaluationError :: !user -> EvaluationError user internal
+data ExBudgetCategory fun
+BStep :: StepKind -> ExBudgetCategory fun
+BBuiltinApp :: fun -> ExBudgetCategory fun
+BStartup :: ExBudgetCategory fun
+
+-- | The CEK machine is parameterized over a <tt>spendBudget</tt> function.
+--   This makes the budgeting machinery extensible and allows us to
+--   separate budgeting logic from evaluation logic and avoid branching on
+--   the union of all possible budgeting state types during evaluation.
+newtype CekBudgetSpender uni fun s
+CekBudgetSpender :: (ExBudgetCategory fun -> ExBudget -> CekM uni fun s ()) -> CekBudgetSpender uni fun s
+[unCekBudgetSpender] :: CekBudgetSpender uni fun s -> ExBudgetCategory fun -> ExBudget -> CekM uni fun s ()
+
+-- | A budgeting mode to execute the CEK machine in.
+newtype ExBudgetMode cost uni fun
+ExBudgetMode :: (forall s. ST s (ExBudgetInfo cost uni fun s)) -> ExBudgetMode cost uni fun
+[unExBudgetMode] :: ExBudgetMode cost uni fun -> forall s. ST s (ExBudgetInfo cost uni fun s)
+data StepKind
+BConst :: StepKind
+BVar :: StepKind
+BLamAbs :: StepKind
+BApply :: StepKind
+BDelay :: StepKind
+BForce :: StepKind
+BBuiltin :: StepKind
+
+-- | For a detailed report on what costs how much + the same overall budget
+--   that <tt>Counting</tt> gives. The (derived) <a>Monoid</a> instance of
+--   <a>CekExTally</a> is the main piece of the machinery.
+newtype CekExTally fun
+CekExTally :: MonoidalHashMap (ExBudgetCategory fun) ExBudget -> CekExTally fun
+
+-- | For calculating the cost of execution by counting up using the
+--   <a>Monoid</a> instance of <a>ExBudget</a>.
+newtype CountingSt
+CountingSt :: ExBudget -> CountingSt
+data TallyingSt fun
+TallyingSt :: CekExTally fun -> ExBudget -> TallyingSt fun
+newtype RestrictingSt
+RestrictingSt :: ExRestrictingBudget -> RestrictingSt
+
+-- | Costs for evaluating AST nodes. Times should be specified in
+--   picoseconds, memory sizes in bytes.
+data CekMachineCosts
+
+-- | For calculating the cost of execution.
+counting :: ExBudgetMode CountingSt uni fun
+
+-- | For a detailed report on what costs how much + the same overall budget
+--   that <tt>Counting</tt> gives.
+tallying :: Hashable fun => ExBudgetMode (TallyingSt fun) uni fun
+
+-- | For execution, to avoid overruns.
+restricting :: forall uni fun. PrettyUni uni fun => ExRestrictingBudget -> ExBudgetMode RestrictingSt uni fun
+
+-- | <a>restricting</a> instantiated at <a>enormousBudget</a>.
+restrictingEnormous :: PrettyUni uni fun => ExBudgetMode RestrictingSt uni fun
+
+-- | When we want to just evaluate the program we use the
+--   <tt>Restricting</tt> mode with an enormous budget, so that evaluation
+--   costs of on-chain budgeting are reflected accurately in benchmarks.
+enormousBudget :: ExRestrictingBudget
+
+-- | No emitter.
+noEmitter :: EmitterMode uni fun
+
+-- | Emits log only.
+logEmitter :: EmitterMode uni fun
+
+-- | Emits log with timestamp.
+logWithTimeEmitter :: EmitterMode uni fun
+
+-- | Emits log with the budget.
+logWithBudgetEmitter :: EmitterMode uni fun
+data CekValue uni fun ann
+VCon :: !Some (ValueOf uni) -> CekValue uni fun ann
+VDelay :: !NTerm uni fun ann -> !CekValEnv uni fun ann -> CekValue uni fun ann
+VLamAbs :: !NamedDeBruijn -> !NTerm uni fun ann -> !CekValEnv uni fun ann -> CekValue uni fun ann
+
+-- | A partial builtin application, accumulating arguments for eventual
+--   full application. We don't need a <a>CekValEnv</a> here unlike in the
+--   other constructors, because <a>VBuiltin</a> values always store their
+--   corresponding <a>Term</a>s fully discharged, see the comments at the
+--   call sites (search for <a>VBuiltin</a>).
+VBuiltin :: !fun -> NTerm uni fun () -> !BuiltinRuntime (CekValue uni fun ann) -> CekValue uni fun ann
+
+-- | Unlift a value using the Steppable CEK machine. *THIS FUNCTION IS
+--   PARTIAL if the input term contains free variables*
+readKnownCek :: (ReadKnown (Term Name uni fun ()) a, PrettyUni uni fun) => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> Term Name uni fun ann -> Either (CekEvaluationException Name uni fun) a
+
+-- | The class of types that can be converted to a hash value.
+--   
+--   Minimal implementation: <a>hashWithSalt</a>.
+--   
+--   <i>Note:</i> the hash is not guaranteed to be stable across library
+--   versions, operating systems or architectures. For stable hashing use
+--   named hashes: SHA256, CRC32 etc.
+--   
+--   If you are looking for <a>Hashable</a> instance in <tt>time</tt>
+--   package, check <a>time-compat</a>
+class Eq a => Hashable a
+
+-- | The set of constraints we need to be able to print things in
+--   universes, which we need in order to throw exceptions.
+type PrettyUni uni fun = (Pretty (SomeTypeIn uni), Closed uni, uni `Everywhere` PrettyConst, Pretty fun, Typeable uni, Typeable fun)
 
 module UntypedPlutusCore.MkUPlc
 
@@ -9398,8 +9581,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7t7J a_a7t7K. Lens' (SimplifyOpts name_a7t7J a_a7t7K) Int
-soInlineHints :: forall name_a7t7J a_a7t7K name_a7t9l a_a7t9m. Lens (SimplifyOpts name_a7t7J a_a7t7K) (SimplifyOpts name_a7t9l a_a7t9m) (InlineHints name_a7t7J a_a7t7K) (InlineHints name_a7t9l a_a7t9m)
+soMaxSimplifierIterations :: forall name_a7toS a_a7toT. Lens' (SimplifyOpts name_a7toS a_a7toT) Int
+soInlineHints :: forall name_a7toS a_a7toT name_a7tqu a_a7tqv. Lens (SimplifyOpts name_a7toS a_a7toT) (SimplifyOpts name_a7tqu a_a7tqv) (InlineHints name_a7toS a_a7toT) (InlineHints name_a7tqu a_a7tqv)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9468,6 +9651,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7tI4 a_a7tI5 name_a7tJs a_a7tJt. Iso (CompilationOpts name_a7tI4 a_a7tI5) (CompilationOpts name_a7tJs a_a7tJt) (SimplifyOpts name_a7tI4 a_a7tI5) (SimplifyOpts name_a7tJs a_a7tJt)
+coSimplifyOpts :: forall name_a7tZd a_a7tZe name_a7u0B a_a7u0C. Iso (CompilationOpts name_a7tZd a_a7tZe) (CompilationOpts name_a7u0B a_a7u0C) (SimplifyOpts name_a7tZd a_a7tZe) (SimplifyOpts name_a7u0B a_a7u0C)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
