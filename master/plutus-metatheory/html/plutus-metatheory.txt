@@ -15185,6 +15185,8 @@ UError :: UTerm
 UBuiltin :: DefaultFun -> UTerm
 UDelay :: UTerm -> UTerm
 UForce :: UTerm -> UTerm
+UConstr :: Word64 -> [UTerm] -> UTerm
+UCase :: UTerm -> [UTerm] -> UTerm
 unIndex :: Index -> Integer
 convP :: Program NamedDeBruijn DefaultUni DefaultFun a -> UTerm
 conv :: Term NamedDeBruijn DefaultUni DefaultFun a -> UTerm

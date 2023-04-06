@@ -189,16 +189,23 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LedgerLanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
--- | the script's plutus version
+-- | the script's ledger language
 [sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
--- | the protocol version that will first introduce/enable the plutus
---   version
+-- | the protocol version that will first introduce/enable the ledger
+--   language
 [sdeIntroPv] :: ScriptDecodeError -> !ProtocolVersion
 
--- | the protocol version in which the error occurred
+-- | the current protocol version
+[sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
+PlutusCoreLanguageNotAvailableError :: !Version -> !ProtocolVersion -> ScriptDecodeError
+
+-- | the script's Plutus Core language version
+[sdeAffectedVersion] :: ScriptDecodeError -> !Version
+
+-- | the current protocol version
 [sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
 
 -- | Check if a <tt>Script</tt> is "valid" according to a protocol version.
@@ -265,13 +272,9 @@ CekError :: !CekEvaluationException NamedDeBruijn DefaultUni DefaultFun -> Evalu
 --   indices
 DeBruijnError :: !FreeVariableError -> EvaluationError
 
--- | A deserialisation error
+-- | A deserialisation error TODO: make this error more informative when we
+--   have more information about what went wrong
 CodecError :: !ScriptDecodeError -> EvaluationError
-
--- | An error indicating a version tag that we don't support TODO: make
---   this error more informative when we have more information about what
---   went wrong
-IncompatibleVersionError :: !Version -> EvaluationError
 
 -- | An error indicating that the cost model parameters didn't match what
 --   we expected
@@ -1392,6 +1395,10 @@ VerifyEd25519Signature'memory'arguments :: ParamName
 VerifySchnorrSecp256k1Signature'cpu'arguments'intercept :: ParamName
 VerifySchnorrSecp256k1Signature'cpu'arguments'slope :: ParamName
 VerifySchnorrSecp256k1Signature'memory'arguments :: ParamName
+CekConstrCost'exBudgetCPU :: ParamName
+CekConstrCost'exBudgetMemory :: ParamName
+CekCaseCost'exBudgetCPU :: ParamName
+CekCaseCost'exBudgetMemory :: ParamName
 
 -- | Given an ordered list of parameter values, tag them with their
 --   parameter names. If the passed parameter values are more than
@@ -3299,13 +3306,9 @@ CekError :: !CekEvaluationException NamedDeBruijn DefaultUni DefaultFun -> Evalu
 --   indices
 DeBruijnError :: !FreeVariableError -> EvaluationError
 
--- | A deserialisation error
+-- | A deserialisation error TODO: make this error more informative when we
+--   have more information about what went wrong
 CodecError :: !ScriptDecodeError -> EvaluationError
-
--- | An error indicating a version tag that we don't support TODO: make
---   this error more informative when we have more information about what
---   went wrong
-IncompatibleVersionError :: !Version -> EvaluationError
 
 -- | An error indicating that the cost model parameters didn't match what
 --   we expected
@@ -3322,16 +3325,23 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LedgerLanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
--- | the script's plutus version
+-- | the script's ledger language
 [sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
--- | the protocol version that will first introduce/enable the plutus
---   version
+-- | the protocol version that will first introduce/enable the ledger
+--   language
 [sdeIntroPv] :: ScriptDecodeError -> !ProtocolVersion
 
--- | the protocol version in which the error occurred
+-- | the current protocol version
+[sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
+PlutusCoreLanguageNotAvailableError :: !Version -> !ProtocolVersion -> ScriptDecodeError
+
+-- | the script's Plutus Core language version
+[sdeAffectedVersion] :: ScriptDecodeError -> !Version
+
+-- | the current protocol version
 [sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
 
 
@@ -3619,6 +3629,10 @@ VerifyEd25519Signature'memory'arguments :: ParamName
 VerifySchnorrSecp256k1Signature'cpu'arguments'intercept :: ParamName
 VerifySchnorrSecp256k1Signature'cpu'arguments'slope :: ParamName
 VerifySchnorrSecp256k1Signature'memory'arguments :: ParamName
+CekConstrCost'exBudgetCPU :: ParamName
+CekConstrCost'exBudgetMemory :: ParamName
+CekCaseCost'exBudgetCPU :: ParamName
+CekCaseCost'exBudgetMemory :: ParamName
 
 -- | A fatal error when trying to create a cost given some plain costmodel
 --   parameters.
@@ -4088,13 +4102,9 @@ CekError :: !CekEvaluationException NamedDeBruijn DefaultUni DefaultFun -> Evalu
 --   indices
 DeBruijnError :: !FreeVariableError -> EvaluationError
 
--- | A deserialisation error
+-- | A deserialisation error TODO: make this error more informative when we
+--   have more information about what went wrong
 CodecError :: !ScriptDecodeError -> EvaluationError
-
--- | An error indicating a version tag that we don't support TODO: make
---   this error more informative when we have more information about what
---   went wrong
-IncompatibleVersionError :: !Version -> EvaluationError
 
 -- | An error indicating that the cost model parameters didn't match what
 --   we expected
@@ -4111,16 +4121,23 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LedgerLanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
--- | the script's plutus version
+-- | the script's ledger language
 [sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
--- | the protocol version that will first introduce/enable the plutus
---   version
+-- | the protocol version that will first introduce/enable the ledger
+--   language
 [sdeIntroPv] :: ScriptDecodeError -> !ProtocolVersion
 
--- | the protocol version in which the error occurred
+-- | the current protocol version
+[sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
+PlutusCoreLanguageNotAvailableError :: !Version -> !ProtocolVersion -> ScriptDecodeError
+
+-- | the script's Plutus Core language version
+[sdeAffectedVersion] :: ScriptDecodeError -> !Version
+
+-- | the current protocol version
 [sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
 
 
@@ -4877,13 +4894,9 @@ CekError :: !CekEvaluationException NamedDeBruijn DefaultUni DefaultFun -> Evalu
 --   indices
 DeBruijnError :: !FreeVariableError -> EvaluationError
 
--- | A deserialisation error
+-- | A deserialisation error TODO: make this error more informative when we
+--   have more information about what went wrong
 CodecError :: !ScriptDecodeError -> EvaluationError
-
--- | An error indicating a version tag that we don't support TODO: make
---   this error more informative when we have more information about what
---   went wrong
-IncompatibleVersionError :: !Version -> EvaluationError
 
 -- | An error indicating that the cost model parameters didn't match what
 --   we expected
@@ -4900,14 +4913,21 @@ CBORDeserialiseError :: !DeserialiseFailure -> ScriptDecodeError
 RemainderError :: !ByteString -> ScriptDecodeError
 
 -- | the plutus version of the given script is not enabled yet
-LanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
+LedgerLanguageNotAvailableError :: !PlutusLedgerLanguage -> !ProtocolVersion -> !ProtocolVersion -> ScriptDecodeError
 
--- | the script's plutus version
+-- | the script's ledger language
 [sdeAffectedLang] :: ScriptDecodeError -> !PlutusLedgerLanguage
 
--- | the protocol version that will first introduce/enable the plutus
---   version
+-- | the protocol version that will first introduce/enable the ledger
+--   language
 [sdeIntroPv] :: ScriptDecodeError -> !ProtocolVersion
 
--- | the protocol version in which the error occurred
+-- | the current protocol version
+[sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
+PlutusCoreLanguageNotAvailableError :: !Version -> !ProtocolVersion -> ScriptDecodeError
+
+-- | the script's Plutus Core language version
+[sdeAffectedVersion] :: ScriptDecodeError -> !Version
+
+-- | the current protocol version
 [sdeThisPv] :: ScriptDecodeError -> !ProtocolVersion
