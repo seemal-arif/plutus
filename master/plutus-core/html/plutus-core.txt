@@ -8323,6 +8323,10 @@ ErrorF :: !ann_i6XcK -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (
 ConstrF :: !ann_i6XcK -> !Word64 -> ![r_a6XKk] -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
 CaseF :: !ann_i6XcK -> !r_a6XKk -> ![r_a6XKk] -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
 
+-- | Compute the size needed for a list using the given size function for
+--   the elements. Goes with <a>encodeListWith</a>.
+sizeListWith :: (a -> NumBits -> NumBits) -> [a] -> NumBits -> NumBits
+
 -- | Using 4 bits to encode term tags.
 termTagWidth :: NumBits
 encodeTermTag :: Word8 -> Encoding
@@ -9722,8 +9726,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7Hya a_a7Hyb. Lens' (SimplifyOpts name_a7Hya a_a7Hyb) Int
-soInlineHints :: forall name_a7Hya a_a7Hyb name_a7HzM a_a7HzN. Lens (SimplifyOpts name_a7Hya a_a7Hyb) (SimplifyOpts name_a7HzM a_a7HzN) (InlineHints name_a7Hya a_a7Hyb) (InlineHints name_a7HzM a_a7HzN)
+soMaxSimplifierIterations :: forall name_a7HCc a_a7HCd. Lens' (SimplifyOpts name_a7HCc a_a7HCd) Int
+soInlineHints :: forall name_a7HCc a_a7HCd name_a7HDO a_a7HDP. Lens (SimplifyOpts name_a7HCc a_a7HCd) (SimplifyOpts name_a7HDO a_a7HDP) (InlineHints name_a7HCc a_a7HCd) (InlineHints name_a7HDO a_a7HDP)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9794,6 +9798,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7I9c a_a7I9d name_a7IaA a_a7IaB. Iso (CompilationOpts name_a7I9c a_a7I9d) (CompilationOpts name_a7IaA a_a7IaB) (SimplifyOpts name_a7I9c a_a7I9d) (SimplifyOpts name_a7IaA a_a7IaB)
+coSimplifyOpts :: forall name_a7Ide a_a7Idf name_a7IeC a_a7IeD. Iso (CompilationOpts name_a7Ide a_a7Idf) (CompilationOpts name_a7IeC a_a7IeD) (SimplifyOpts name_a7Ide a_a7Idf) (SimplifyOpts name_a7IeC a_a7IeD)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
