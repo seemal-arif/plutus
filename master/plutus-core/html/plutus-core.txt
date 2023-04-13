@@ -9726,8 +9726,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7HCc a_a7HCd. Lens' (SimplifyOpts name_a7HCc a_a7HCd) Int
-soInlineHints :: forall name_a7HCc a_a7HCd name_a7HDO a_a7HDP. Lens (SimplifyOpts name_a7HCc a_a7HCd) (SimplifyOpts name_a7HDO a_a7HDP) (InlineHints name_a7HCc a_a7HCd) (InlineHints name_a7HDO a_a7HDP)
+soMaxSimplifierIterations :: forall name_a7HCt a_a7HCu. Lens' (SimplifyOpts name_a7HCt a_a7HCu) Int
+soInlineHints :: forall name_a7HCt a_a7HCu name_a7HE5 a_a7HE6. Lens (SimplifyOpts name_a7HCt a_a7HCu) (SimplifyOpts name_a7HE5 a_a7HE6) (InlineHints name_a7HCt a_a7HCu) (InlineHints name_a7HE5 a_a7HE6)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9798,6 +9798,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7Ide a_a7Idf name_a7IeC a_a7IeD. Iso (CompilationOpts name_a7Ide a_a7Idf) (CompilationOpts name_a7IeC a_a7IeD) (SimplifyOpts name_a7Ide a_a7Idf) (SimplifyOpts name_a7IeC a_a7IeD)
+coSimplifyOpts :: forall name_a7Idv a_a7Idw name_a7IeT a_a7IeU. Iso (CompilationOpts name_a7Idv a_a7Idw) (CompilationOpts name_a7IeT a_a7IeU) (SimplifyOpts name_a7Idv a_a7Idw) (SimplifyOpts name_a7IeT a_a7IeU)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
