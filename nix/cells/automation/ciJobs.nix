@@ -26,6 +26,7 @@ let
 
   native-plutus-8107-jobs = make-haskell-jobs library.plutus-project-8107;
   native-plutus-925-jobs = make-haskell-jobs library.plutus-project-925;
+  native-plutus-961-jobs = make-haskell-jobs library.plutus-project-961;
 
   windows-plutus-925-jobs = make-haskell-jobs library.plutus-project-925.projectCross.mingwW64;
 
@@ -35,6 +36,7 @@ let
     # Drop these once we switch to 9.2.4 by default
     { ghc8107 = native-plutus-8107-jobs; } //
     { ghc925 = native-plutus-925-jobs; } //
+    { ghc961 = native-plutus-961-jobs; } //
     # Only cross-compile to windows from linux
     lib.optionalAttrs (system == "x86_64-linux") { mingwW64 = windows-plutus-925-jobs; } //
     other-jobs;

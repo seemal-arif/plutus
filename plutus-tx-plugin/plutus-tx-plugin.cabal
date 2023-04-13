@@ -49,7 +49,7 @@ flag use-ghc-stub
 library
   import:          lang
 
-  if impl(ghc <9.0)
+  if (impl(ghc <9.2) || impl(ghc >9.2))
     buildable: False
 
   hs-source-dirs:  src
@@ -99,7 +99,7 @@ library
 executable gen-plugin-opts-doc
   import:           lang
 
-  if impl(ghc <9.0)
+  if (impl(ghc <9.2) || impl(ghc >9.2))
     buildable: False
 
   main-is:          GeneratePluginOptionsDoc.hs
@@ -120,7 +120,7 @@ executable gen-plugin-opts-doc
 test-suite plutus-tx-tests
   import:         lang
 
-  if impl(ghc <9.0)
+  if (impl(ghc <9.2) || impl(ghc >9.2))
     buildable: False
 
   if flag(use-ghc-stub)
@@ -177,7 +177,7 @@ test-suite plutus-tx-tests
 test-suite size
   import:         lang
 
-  if impl(ghc <9.0)
+  if (impl(ghc <9.2) || impl(ghc >9.2))
     buildable: False
 
   -- needs plutus-tx-plugin but it looks unused

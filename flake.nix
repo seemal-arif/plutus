@@ -13,9 +13,7 @@
   description = "Plutus Core";
 
   inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs";
-    };
+    nixpkgs.follows = "haskell-nix/nixpkgs";
     std = {
       url = "github:divnix/std";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +22,6 @@
       url = "github:input-output-hk/haskell.nix";
       inputs = {
         hackage.follows = "hackage-nix";
-        nixpkgs.follows = "nixpkgs";
       };
     };
     hackage-nix = {

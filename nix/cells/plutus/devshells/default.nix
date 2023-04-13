@@ -5,6 +5,8 @@ rec {
 
   plutus-shell-925 = import ./plutus-shell-925.nix block;
 
+  plutus-shell-961 = import ./plutus-shell-961.nix block;
+
   # TODO(std)
   # profiled-plutus-shell = import ./profiled-plutus-shell.nix block;
 
