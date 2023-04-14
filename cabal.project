@@ -88,3 +88,10 @@ if impl(ghc >= 9.6)
     , strict:these
     , strict:assoc
     , hex-text:base
+
+-- Failures:
+-- foundation
+-- th-extras
+-- brick
+-- inline-r
+-- cardano-crypto-class 

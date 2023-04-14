@@ -60,12 +60,6 @@ inputs.std.lib.dev.mkShell {
       help = "Haskell build tool";
     }
     {
-      package = cell.packages.haskell-language-server;
-      name = "haskell-language-server";
-      category = "haskell";
-      help = "Haskell Language Server";
-    }
-    {
       package = cell.packages.hlint;
       name = "hlint";
       category = "haskell";
@@ -123,8 +117,6 @@ inputs.std.lib.dev.mkShell {
   ];
 
   packages = [
-    # Only occasionally useful, not worth calling out as a command
-    cell.packages.hie-bios
     # Provides sphinx-build and other things, unclear how to represent it as a command
     cell.packages.sphinx-toolchain
     # R environment
