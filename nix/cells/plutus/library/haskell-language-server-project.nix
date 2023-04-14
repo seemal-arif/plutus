@@ -14,6 +14,8 @@ cell.library.haskell-nix.cabalProject' {
   #    them elsewhere
   cabalProjectLocal = ''
     constraints: stylish-haskell==0.14.2.0, hlint==3.4.1
+    benchmarks: False
+    tests: False
   '';
 
   src = inputs.haskell-language-server;

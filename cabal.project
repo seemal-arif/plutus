@@ -53,7 +53,6 @@ package nothunks
 extra-packages: ieee, filemanip
 
 if impl(ghc >= 9.6)
-  constraints: microlens-th >= 0.4.3.12
   allow-newer: 
     -- need to get on Tweag to fix these?
     inline-r:unix

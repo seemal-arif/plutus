@@ -437,16 +437,16 @@
     "haskell-language-server": {
       "flake": false,
       "locked": {
-        "lastModified": 1672051165,
-        "narHash": "sha256-j3XRQTWa7jsVlimaxFZNnlE9IzWII9Prj1/+otks5FQ=",
+        "lastModified": 1680000865,
+        "narHash": "sha256-rc7iiUAcrHxwRM/s0ErEsSPxOR3u8t7DvFeWlMycWgo=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "1916b5782d9f3204d25a1d8f94da4cfd83ae2607",
+        "rev": "b08691db779f7a35ff322b71e72a12f6e3376fd9",
         "type": "github"
       },
       "original": {
         "owner": "haskell",
-        "ref": "1.9.0.0",
+        "ref": "1.10.0.0",
         "repo": "haskell-language-server",
         "type": "github"
       }
