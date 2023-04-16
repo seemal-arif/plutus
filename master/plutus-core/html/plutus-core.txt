@@ -207,6 +207,94 @@ rModelFile :: FilePath
 --   only needed for cost-model-test.
 benchingResultsFile :: FilePath
 
+module PlutusCore.Evaluation.Machine.ExMemory
+type CostingInteger = SatInt
+
+-- | Counts size in machine words.
+newtype ExMemory
+ExMemory :: CostingInteger -> ExMemory
+
+-- | Counts CPU units in picoseconds: maximum value for SatInt is 2^63 ps,
+--   or appproximately 106 days.
+newtype ExCPU
+ExCPU :: CostingInteger -> ExCPU
+instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Enum.Bounded PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Read.Read PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Num.Num PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Classes.Ord PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Enum.Bounded PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Read.Read PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Num.Num PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Classes.Ord PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExMemory.ExCPU
+instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+
+module PlutusCore.Evaluation.Machine.CostStream
+
+-- | A lazy stream of <a>CostingInteger</a>s. Basically <tt>NonEmpty
+--   CostingInteger</tt>, except the elements are stored strictly.
+--   
+--   The semantics of a stream are those of the sum of its elements. I.e. a
+--   stream that is a reordered version of another stream is considered
+--   equal to that stream.
+--   
+--   All costs are assumed not to be negative and functions handling
+--   <a>CostStream</a>s may rely on this assumption. Negative costs (a.k.a.
+--   allowing the user to forge execution units at runtime) wouldn't make
+--   sense.
+data CostStream
+CostLast :: {-# UNPACK #-} !CostingInteger -> CostStream
+CostCons :: {-# UNPACK #-} !CostingInteger -> CostStream -> CostStream
+
+-- | Uncons an element from a <a>CostStream</a> and return the rest of the
+--   stream, if not empty.
+unconsCost :: CostStream -> (CostingInteger, Maybe CostStream)
+
+-- | Cons an element to a <a>CostStream</a>, if given any. Otherwise create
+--   a new <a>CostStream</a> using <a>CostLast</a>.
+reconsCost :: CostingInteger -> Maybe CostStream -> CostStream
+
+-- | Add up all the costs in a <a>CostStream</a>.
+sumCostStream :: CostStream -> CostingInteger
+
+-- | Map a function over a <a>CostStream</a>.
+mapCostStream :: (CostingInteger -> CostingInteger) -> CostStream -> CostStream
+
+-- | Add two streams by interleaving their elements (as opposed to draining
+--   out one of the streams before starting to take elements from the other
+--   one). No particular reason to prefer interleaving over draining out
+--   one of the streams first.
+addCostStream :: CostStream -> CostStream -> CostStream
+
+-- | Calculate the minimum of two <a>CostStream</a>s. May return a stream
+--   that is longer than either of the two (but not more than twice).
+minCostStream :: CostStream -> CostStream -> CostStream
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.CostStream.CostStream
+
 module PlutusPrelude
 
 -- | <a>&amp;</a> is a reverse application operator. This provides
@@ -2336,6 +2424,151 @@ instance PlutusCore.Check.Scoping.Reference n t => PlutusCore.Check.Scoping.Refe
 instance PlutusCore.Check.Scoping.ToScopedName PlutusCore.Name.TyName
 instance PlutusCore.Check.Scoping.ToScopedName PlutusCore.Name.Name
 
+
+-- | Note [Budgeting units]
+--   
+--   We use picoseconds for measuring times and words for measuring memory
+--   usage. Some care is required with time units because different units
+--   are used in different places.
+--   
+--   <ul>
+--   <li>The basic data for models of execution time is produced by
+--   Criterion benchmarks (run via plutus-core:cost-model-budgeting-bench)
+--   and saved in a CSV file (usually 'benching.csv'). At this point the
+--   time units are seconds.</li>
+--   <li>The data in the CSV file is used by
+--   plutus-core:generate-cost-model to create cost-prediction models for
+--   the built-in functions, and data describing these is written to a JSON
+--   file (usually 'builtinCostModel.json'. This process involves several
+--   steps:<ul><li>The CreateBuiltinCostModel module reads in the data from
+--   the CSV file and runs R code in 'models.R' to fit linear models to the
+--   benchmark results for each builtin. This process (and its results)
+--   necessarily involves the use of floating-point
+--   numbers.</li></ul>Builtin execution times are typically of the order
+--   of 10^(-6) or 10^(-7) seconds, and the benching data is converted to
+--   microseconds in 'models.R' because it's sometimes useful to work with
+--   the data interactively and this makes the numbers a lot more
+--   human-readable.<ul><li>The coefficents from the R models are returned
+--   to the Haskell code in CreateBuiltinCostModel and written out to a
+--   JSON file. To avoid the use of floats in JSON and in cost prediction
+--   at runtime (which might be machine-dependent if floats were used),
+--   numbers are multiplied by 10^6 and rounded to the nearest integer,
+--   shfting from the microsecond scale to the picosecond scale. This
+--   rescaling is safe because all of our models are (currently) linear in
+--   their inputs.</li></ul></li>
+--   <li>When the Plutus Core evaluator is compiled, the JSON data in
+--   'builtinCostModel.json' is read in and used to create the
+--   defaultCostModel object. This also includes information about the
+--   costs of basic CEK machine operations obtained from
+--   'cekMachineCosts.json' (currently generated manually).</li>
+--   <li>When the Plutus Core evaluator is run, the code in
+--   PlutusCore.Evaluation.Machine.BuiltinCostModel uses the data in
+--   defaultCostModel to create Haskell versions of the cost models which
+--   estimate the execution time of a built-in function given the sizes of
+--   its inputs. This (and the memory usage) are fed into a budgeting
+--   process which measures the ongoing resource consumption during script
+--   execution.</li>
+--   </ul>
+--   
+--   All budget calculations are (at least on 64-bit machines) done using
+--   the <tt>SatInt</tt> type which deals with overflow by truncating
+--   excessivly large values to the maximum <tt>SatInt</tt> value, 2^63-1.
+--   In picoseconds this is about 106 days, which should suffice for any
+--   code we expect to run. Memory budgeting is entirely in terms of
+--   machine words, and floating-point issues are irrelevant.
+--   
+--   Some precision is lost during the conversion from R's floating-point
+--   models to the integral numbers used in the Haskell models. However,
+--   experimentation shows that the difference is very small. The tests in
+--   plutus-core: cost-model-test run the R models and the Haskell models
+--   with a large number of random inputs and check that they agree to
+--   within one part in 10,000, which is well within the accuracy we
+--   require for the cost model.
+module PlutusCore.Evaluation.Machine.ExBudget
+data ExBudget
+ExBudget :: ExCPU -> ExMemory -> ExBudget
+[exBudgetCPU] :: ExBudget -> ExCPU
+[exBudgetMemory] :: ExBudget -> ExMemory
+
+-- | Subract one <a>ExBudget</a> from another. Does not guarantee that the
+--   result is positive.
+minusExBudget :: ExBudget -> ExBudget -> ExBudget
+
+-- | A class for injecting a <tt>Builtin</tt> into an <tt>exBudgetCat</tt>.
+--   We need it, because the constant application machinery calls
+--   <tt>spendBudget</tt> before reducing a constant application and we
+--   want to be general over <tt>exBudgetCat</tt> there, but still track
+--   the built-in functions category, hence the ad hoc polymorphism.
+class ExBudgetBuiltin fun exBudgetCat
+exBudgetBuiltin :: ExBudgetBuiltin fun exBudgetCat => fun -> exBudgetCat
+newtype ExRestrictingBudget
+ExRestrictingBudget :: ExBudget -> ExRestrictingBudget
+[unExRestrictingBudget] :: ExRestrictingBudget -> ExBudget
+
+-- | This is used elsewhere to convert cost models into JSON objects where
+--   the names of the fields are exactly the same as the names of the
+--   builtins.
+data LowerIntialCharacter
+
+-- | When we want to just evaluate the program we use the
+--   <tt>Restricting</tt> mode with an enormous budget, so that evaluation
+--   costs of on-chain budgeting are reflected accurately in benchmarks.
+enormousBudget :: ExRestrictingBudget
+instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
+instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExBudget.ExBudget
+instance PlutusCore.Evaluation.Machine.ExBudget.ExBudgetBuiltin fun ()
+instance Deriving.Aeson.StringModifier PlutusCore.Evaluation.Machine.ExBudget.LowerIntialCharacter
+
+module PlutusCore.Evaluation.Machine.ExBudgetStream
+
+-- | A lazy stream of <a>ExBudget</a>s. Basically <tt>NonEmpty
+--   ExBudget</tt>, except the elements are stored strictly.
+--   
+--   The semantics of a stream are those of the <tt>fold</tt> of its
+--   elements. I.e. a stream that is a reordered version of another stream
+--   is considered equal to that stream.
+--   
+--   An <a>ExBudgetStream</a> is what one gets by zipping two
+--   <a>CostStream</a>s (one for CPU, one for memory), which is why the two
+--   data types are so similar. The only reason why we don't express both
+--   the concepts in terms of a single data type is efficiency, in
+--   particular unboxing is crucial for <a>CostStream</a> and we don't care
+--   about it in <a>ExBudgetStream</a>, because we can't get the spender in
+--   the CEK machine to get inlined and so unboxing <a>ExBudget</a> here
+--   would only result in boxing it back once it's about to be spent.
+data ExBudgetStream
+ExBudgetLast :: !ExBudget -> ExBudgetStream
+ExBudgetCons :: !ExBudget -> ExBudgetStream -> ExBudgetStream
+
+-- | Add up all the budgets in a <a>ExBudgetStream</a>.
+sumExBudgetStream :: ExBudgetStream -> ExBudget
+
+-- | Zip two <a>CostStream</a> together (one with CPU costs and the other
+--   one with memory costs, respectively) to get an <a>ExBudgetStream</a>.
+--   If one is longer than the other, then it's assumed to contain the
+--   required amount of zeros for two streams to have the same length (all
+--   those zeros "appear" in the tail of the stream).
+zipCostStream :: CostStream -> CostStream -> ExBudgetStream
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExBudgetStream.ExBudgetStream
+
 module Prettyprinter.Custom
 
 -- | This prints a document enclosed by brackets, possibly indenting the
@@ -3188,9 +3421,9 @@ PrettyConfigReadable :: configName -> RenderContext -> ShowKinds -> PrettyConfig
 [_pcrConfigName] :: PrettyConfigReadable configName -> configName
 [_pcrRenderContext] :: PrettyConfigReadable configName -> RenderContext
 [_pcrShowKinds] :: PrettyConfigReadable configName -> ShowKinds
-pcrConfigName :: forall configName_aFMu configName_aFQo. Lens (PrettyConfigReadable configName_aFMu) (PrettyConfigReadable configName_aFQo) configName_aFMu configName_aFQo
-pcrRenderContext :: forall configName_aFMu. Lens' (PrettyConfigReadable configName_aFMu) RenderContext
-pcrShowKinds :: forall configName_aFMu. Lens' (PrettyConfigReadable configName_aFMu) ShowKinds
+pcrConfigName :: forall configName_aKaj configName_aKed. Lens (PrettyConfigReadable configName_aKaj) (PrettyConfigReadable configName_aKed) configName_aKaj configName_aKed
+pcrRenderContext :: forall configName_aKaj. Lens' (PrettyConfigReadable configName_aKaj) RenderContext
+pcrShowKinds :: forall configName_aKaj. Lens' (PrettyConfigReadable configName_aKaj) ShowKinds
 
 -- | The "readably pretty-printable" constraint.
 type PrettyReadableBy configName = PrettyBy (PrettyConfigReadable configName)
@@ -3340,9 +3573,9 @@ module PlutusCore.Evaluation.Machine.Exception
 --   thrown.
 newtype UnliftingError
 UnliftingErrorE :: Text -> UnliftingError
-class AsUnliftingError r_a1abz
-_UnliftingError :: AsUnliftingError r_a1abz => Prism' r_a1abz UnliftingError
-_UnliftingErrorE :: AsUnliftingError r_a1abz => Prism' r_a1abz Text
+class AsUnliftingError r_a1kP6
+_UnliftingError :: AsUnliftingError r_a1kP6 => Prism' r_a1kP6 UnliftingError
+_UnliftingErrorE :: AsUnliftingError r_a1kP6 => Prism' r_a1kP6 Text
 
 -- | The type of errors that <tt>readKnown</tt> and <tt>makeKnown</tt> can
 --   return.
@@ -3377,18 +3610,18 @@ UnexpectedBuiltinTermArgumentMachineError :: MachineError fun
 UnknownBuiltin :: fun -> MachineError fun
 NonConstrScrutinized :: MachineError fun
 MissingCaseBranch :: Word64 -> MachineError fun
-class AsMachineError r_a1abS fun_a19C4 | r_a1abS -> fun_a19C4
-_MachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS (MachineError fun_a19C4)
-_NonPolymorphicInstantiationMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_NonWrapUnwrappedMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_NonFunctionalApplicationMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_OpenTermEvaluatedMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_UnliftingMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS UnliftingError
-_BuiltinTermArgumentExpectedMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_UnexpectedBuiltinTermArgumentMachineError :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_UnknownBuiltin :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS fun_a19C4
-_NonConstrScrutinized :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS ()
-_MissingCaseBranch :: AsMachineError r_a1abS fun_a19C4 => Prism' r_a1abS Word64
+class AsMachineError r_a1kPp fun_a1kg7 | r_a1kPp -> fun_a1kg7
+_MachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp (MachineError fun_a1kg7)
+_NonPolymorphicInstantiationMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_NonWrapUnwrappedMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_NonFunctionalApplicationMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_OpenTermEvaluatedMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_UnliftingMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp UnliftingError
+_BuiltinTermArgumentExpectedMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_UnexpectedBuiltinTermArgumentMachineError :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_UnknownBuiltin :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp fun_a1kg7
+_NonConstrScrutinized :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp ()
+_MissingCaseBranch :: AsMachineError r_a1kPp fun_a1kg7 => Prism' r_a1kPp Word64
 
 -- | The type of errors (all of them) which can occur during evaluation
 --   (some are used-caused, some are internal).
@@ -3399,10 +3632,10 @@ InternalEvaluationError :: !internal -> EvaluationError user internal
 
 -- | Indicates user errors.
 UserEvaluationError :: !user -> EvaluationError user internal
-class AsEvaluationError r_a1ace user_a19C2 internal_a19C3 | r_a1ace -> user_a19C2 internal_a19C3
-_EvaluationError :: AsEvaluationError r_a1ace user_a19C2 internal_a19C3 => Prism' r_a1ace (EvaluationError user_a19C2 internal_a19C3)
-_InternalEvaluationError :: AsEvaluationError r_a1ace user_a19C2 internal_a19C3 => Prism' r_a1ace internal_a19C3
-_UserEvaluationError :: AsEvaluationError r_a1ace user_a19C2 internal_a19C3 => Prism' r_a1ace user_a19C2
+class AsEvaluationError r_a1kPL user_a1kg5 internal_a1kg6 | r_a1kPL -> user_a1kg5 internal_a1kg6
+_EvaluationError :: AsEvaluationError r_a1kPL user_a1kg5 internal_a1kg6 => Prism' r_a1kPL (EvaluationError user_a1kg5 internal_a1kg6)
+_InternalEvaluationError :: AsEvaluationError r_a1kPL user_a1kg5 internal_a1kg6 => Prism' r_a1kPL internal_a1kg6
+_UserEvaluationError :: AsEvaluationError r_a1kPL user_a1kg5 internal_a1kg6 => Prism' r_a1kPL user_a1kg5
 
 -- | An error and (optionally) what caused it.
 data ErrorWithCause err cause
@@ -3482,179 +3715,43 @@ instance GHC.Base.Functor (PlutusCore.Evaluation.Machine.Exception.EvaluationErr
 instance (GHC.Classes.Eq internal, GHC.Classes.Eq user) => GHC.Classes.Eq (PlutusCore.Evaluation.Machine.Exception.EvaluationError user internal)
 instance (GHC.Show.Show internal, GHC.Show.Show user) => GHC.Show.Show (PlutusCore.Evaluation.Machine.Exception.EvaluationError user internal)
 
-module PlutusCore.Evaluation.Machine.ExMemory
-type CostingInteger = SatInt
+module PlutusCore.Evaluation.Machine.ExMemoryUsage
 
--- | Counts size in machine words.
-newtype ExMemory
-ExMemory :: CostingInteger -> ExMemory
+-- | A lazy tree of costs. Convenient for calculating the costs of values
+--   of built-in types, because they may have arbitrary branching (in
+--   particular a <a>Data</a> object can contain a list of <a>Data</a>
+--   objects inside of it).
+--   
+--   <a>CostRose</a> gets collapsed to a lazy linear structure down the
+--   pipeline, so that we can stream the costs to the outside where, say,
+--   the CEK machine picks them up one by one and handles somehow (in
+--   particular, subtracts from the remaining budget).
+data CostRose
+CostRose :: {-# UNPACK #-} !CostingInteger -> ![CostRose] -> CostRose
 
--- | Counts CPU units in picoseconds: maximum value for SatInt is 2^63 ps,
---   or appproximately 106 days.
-newtype ExCPU
-ExCPU :: CostingInteger -> ExCPU
+-- | Create a <a>CostRose</a> containing a single cost.
+singletonRose :: CostingInteger -> CostRose
 class ExMemoryUsage a
-memoryUsage :: ExMemoryUsage a => a -> ExMemory
-instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Enum.Bounded PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Read.Read PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Num.Num PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Classes.Ord PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Enum.Bounded PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Read.Read PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Num.Num PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Classes.Ord PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance (PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage a, PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage b) => PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage (a, b)
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage (Universe.Core.SomeTypeIn uni)
-instance (Universe.Core.Closed uni, Universe.Core.Everywhere uni PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage) => PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage (Data.Some.Newtype.Some (Universe.Core.ValueOf uni))
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage ()
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage GHC.Num.Integer.Integer
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage GHC.Word.Word8
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage Data.ByteString.Internal.ByteString
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage Data.Text.Internal.Text
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage GHC.Types.Int
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage GHC.Types.Char
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage GHC.Types.Bool
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage a => PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage [a]
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage PlutusCore.Data.Data
-instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExMemory.ExCPU
-instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExMemory.ExMemory
-instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExMemory.ExMemory
+memoryUsage :: ExMemoryUsage a => a -> CostRose
 
-
--- | Note [Budgeting units]
---   
---   We use picoseconds for measuring times and words for measuring memory
---   usage. Some care is required with time units because different units
---   are used in different places.
---   
---   <ul>
---   <li>The basic data for models of execution time is produced by
---   Criterion benchmarks (run via plutus-core:cost-model-budgeting-bench)
---   and saved in a CSV file (usually 'benching.csv'). At this point the
---   time units are seconds.</li>
---   <li>The data in the CSV file is used by
---   plutus-core:generate-cost-model to create cost-prediction models for
---   the built-in functions, and data describing these is written to a JSON
---   file (usually 'builtinCostModel.json'. This process involves several
---   steps:<ul><li>The CreateBuiltinCostModel module reads in the data from
---   the CSV file and runs R code in 'models.R' to fit linear models to the
---   benchmark results for each builtin. This process (and its results)
---   necessarily involves the use of floating-point
---   numbers.</li></ul>Builtin execution times are typically of the order
---   of 10^(-6) or 10^(-7) seconds, and the benching data is converted to
---   microseconds in 'models.R' because it's sometimes useful to work with
---   the data interactively and this makes the numbers a lot more
---   human-readable.<ul><li>The coefficents from the R models are returned
---   to the Haskell code in CreateBuiltinCostModel and written out to a
---   JSON file. To avoid the use of floats in JSON and in cost prediction
---   at runtime (which might be machine-dependent if floats were used),
---   numbers are multiplied by 10^6 and rounded to the nearest integer,
---   shfting from the microsecond scale to the picosecond scale. This
---   rescaling is safe because all of our models are (currently) linear in
---   their inputs.</li></ul></li>
---   <li>When the Plutus Core evaluator is compiled, the JSON data in
---   'builtinCostModel.json' is read in and used to create the
---   defaultCostModel object. This also includes information about the
---   costs of basic CEK machine operations obtained from
---   'cekMachineCosts.json' (currently generated manually).</li>
---   <li>When the Plutus Core evaluator is run, the code in
---   PlutusCore.Evaluation.Machine.BuiltinCostModel uses the data in
---   defaultCostModel to create Haskell versions of the cost models which
---   estimate the execution time of a built-in function given the sizes of
---   its inputs. This (and the memory usage) are fed into a budgeting
---   process which measures the ongoing resource consumption during script
---   execution.</li>
---   </ul>
---   
---   All budget calculations are (at least on 64-bit machines) done using
---   the <tt>SatInt</tt> type which deals with overflow by truncating
---   excessivly large values to the maximum <tt>SatInt</tt> value, 2^63-1.
---   In picoseconds this is about 106 days, which should suffice for any
---   code we expect to run. Memory budgeting is entirely in terms of
---   machine words, and floating-point issues are irrelevant.
---   
---   Some precision is lost during the conversion from R's floating-point
---   models to the integral numbers used in the Haskell models. However,
---   experimentation shows that the difference is very small. The tests in
---   plutus-core: cost-model-test run the R models and the Haskell models
---   with a large number of random inputs and check that they agree to
---   within one part in 10,000, which is well within the accuracy we
---   require for the cost model.
-module PlutusCore.Evaluation.Machine.ExBudget
-data ExBudget
-ExBudget :: ExCPU -> ExMemory -> ExBudget
-[exBudgetCPU] :: ExBudget -> ExCPU
-[exBudgetMemory] :: ExBudget -> ExMemory
-
--- | Subract one <a>ExBudget</a> from another. Does not guarantee that the
---   result is positive.
-minusExBudget :: ExBudget -> ExBudget -> ExBudget
-
--- | A class for injecting a <tt>Builtin</tt> into an <tt>exBudgetCat</tt>.
---   We need it, because the constant application machinery calls
---   <tt>spendBudget</tt> before reducing a constant application and we
---   want to be general over <tt>exBudgetCat</tt> there, but still track
---   the built-in functions category, hence the ad hoc polymorphism.
-class ExBudgetBuiltin fun exBudgetCat
-exBudgetBuiltin :: ExBudgetBuiltin fun exBudgetCat => fun -> exBudgetCat
-newtype ExRestrictingBudget
-ExRestrictingBudget :: ExBudget -> ExRestrictingBudget
-[unExRestrictingBudget] :: ExRestrictingBudget -> ExBudget
-
--- | This is used elsewhere to convert cost models into JSON objects where
---   the names of the fields are exactly the same as the names of the
---   builtins.
-data LowerIntialCharacter
-
--- | When we want to just evaluate the program we use the
---   <tt>Restricting</tt> mode with an enormous budget, so that evaluation
---   costs of on-chain budgeting are reflected accurately in benchmarks.
-enormousBudget :: ExRestrictingBudget
-instance Data.Aeson.Types.ToJSON.ToJSON PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Data.Aeson.Types.FromJSON.FromJSON PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Codec.Serialise.Class.Serialise PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance NoThunks.Class.NoThunks PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Language.Haskell.TH.Syntax.Lift PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance GHC.Generics.Generic PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Control.DeepSeq.NFData PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance Text.PrettyBy.Internal.PrettyBy config PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance GHC.Classes.Eq PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExBudget.ExRestrictingBudget
-instance GHC.Base.Semigroup PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance GHC.Base.Monoid PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.ExBudget.ExBudget
-instance PlutusCore.Evaluation.Machine.ExBudget.ExBudgetBuiltin fun ()
-instance Deriving.Aeson.StringModifier PlutusCore.Evaluation.Machine.ExBudget.LowerIntialCharacter
+-- | Collapse a <a>CostRose</a> to a lazy linear stream of costs.
+--   Retrieving the next element takes O(1) time in the worst case
+--   regardless of the recursion pattern of the given <a>CostRose</a>.
+flattenCostRose :: CostRose -> CostStream
+instance GHC.Show.Show PlutusCore.Evaluation.Machine.ExMemoryUsage.CostRose
+instance (PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage a, PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage b) => PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage (a, b)
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage (Universe.Core.SomeTypeIn uni)
+instance (Universe.Core.Closed uni, Universe.Core.Everywhere uni PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage) => PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage (Data.Some.Newtype.Some (Universe.Core.ValueOf uni))
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage ()
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage GHC.Num.Integer.Integer
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage GHC.Word.Word8
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage Data.ByteString.Internal.ByteString
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage Data.Text.Internal.Text
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage GHC.Types.Int
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage GHC.Types.Char
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage GHC.Types.Bool
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage a => PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage [a]
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage PlutusCore.Data.Data
 
 module PlutusCore.Evaluation.Machine.CostingFun.Core
 data CostingFun model
@@ -3736,12 +3833,12 @@ data ModelFiveArguments
 ModelFiveArgumentsConstantCost :: CostingInteger -> ModelFiveArguments
 data ModelSixArguments
 ModelSixArgumentsConstantCost :: CostingInteger -> ModelSixArguments
-runCostingFunOneArgument :: ExMemoryUsage a1 => CostingFun ModelOneArgument -> a1 -> ExBudget
-runCostingFunTwoArguments :: (ExMemoryUsage a1, ExMemoryUsage a2) => CostingFun ModelTwoArguments -> a1 -> a2 -> ExBudget
-runCostingFunThreeArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3) => CostingFun ModelThreeArguments -> a1 -> a2 -> a3 -> ExBudget
-runCostingFunFourArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4) => CostingFun ModelFourArguments -> a1 -> a2 -> a3 -> a4 -> ExBudget
-runCostingFunFiveArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5) => CostingFun ModelFiveArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> ExBudget
-runCostingFunSixArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5, ExMemoryUsage a6) => CostingFun ModelSixArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> a6 -> ExBudget
+runCostingFunOneArgument :: ExMemoryUsage a1 => CostingFun ModelOneArgument -> a1 -> ExBudgetStream
+runCostingFunTwoArguments :: (ExMemoryUsage a1, ExMemoryUsage a2) => CostingFun ModelTwoArguments -> a1 -> a2 -> ExBudgetStream
+runCostingFunThreeArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3) => CostingFun ModelThreeArguments -> a1 -> a2 -> a3 -> ExBudgetStream
+runCostingFunFourArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4) => CostingFun ModelFourArguments -> a1 -> a2 -> a3 -> a4 -> ExBudgetStream
+runCostingFunFiveArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5) => CostingFun ModelFiveArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> ExBudgetStream
+runCostingFunSixArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5, ExMemoryUsage a6) => CostingFun ModelSixArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> a6 -> ExBudgetStream
 
 -- | The class of types that can be converted to a hash value.
 --   
@@ -3836,8 +3933,8 @@ instance Data.Default.Class.Default PlutusCore.Evaluation.Machine.CostingFun.Cor
 instance Data.Default.Class.Default PlutusCore.Evaluation.Machine.CostingFun.Core.ModelThreeArguments
 instance Data.Default.Class.Default PlutusCore.Evaluation.Machine.CostingFun.Core.ModelTwoArguments
 instance Data.Default.Class.Default PlutusCore.Evaluation.Machine.CostingFun.Core.ModelOneArgument
-instance (ab GHC.Types.~ (a -> b), PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage a, PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages c b) => PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages (PlutusCore.Evaluation.Machine.ExMemory.ExMemory -> c) ab
-instance (ab GHC.Types.~ PlutusCore.Evaluation.Machine.ExBudget.ExBudget) => PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages PlutusCore.Evaluation.Machine.ExBudget.ExBudget ab
+instance (ab GHC.Types.~ (a -> b), PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage a, PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages c b) => PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages (PlutusCore.Evaluation.Machine.CostStream.CostStream -> c) ab
+instance (ab GHC.Types.~ PlutusCore.Evaluation.Machine.ExBudgetStream.ExBudgetStream) => PlutusCore.Evaluation.Machine.CostingFun.Core.OnMemoryUsages PlutusCore.Evaluation.Machine.ExBudgetStream.ExBudgetStream ab
 
 
 -- | A separate module for JSON instances, so that we can stick
@@ -4016,12 +4113,12 @@ data ModelFiveArguments
 ModelFiveArgumentsConstantCost :: CostingInteger -> ModelFiveArguments
 data ModelSixArguments
 ModelSixArgumentsConstantCost :: CostingInteger -> ModelSixArguments
-runCostingFunOneArgument :: ExMemoryUsage a1 => CostingFun ModelOneArgument -> a1 -> ExBudget
-runCostingFunTwoArguments :: (ExMemoryUsage a1, ExMemoryUsage a2) => CostingFun ModelTwoArguments -> a1 -> a2 -> ExBudget
-runCostingFunThreeArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3) => CostingFun ModelThreeArguments -> a1 -> a2 -> a3 -> ExBudget
-runCostingFunFourArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4) => CostingFun ModelFourArguments -> a1 -> a2 -> a3 -> a4 -> ExBudget
-runCostingFunFiveArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5) => CostingFun ModelFiveArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> ExBudget
-runCostingFunSixArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5, ExMemoryUsage a6) => CostingFun ModelSixArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> a6 -> ExBudget
+runCostingFunOneArgument :: ExMemoryUsage a1 => CostingFun ModelOneArgument -> a1 -> ExBudgetStream
+runCostingFunTwoArguments :: (ExMemoryUsage a1, ExMemoryUsage a2) => CostingFun ModelTwoArguments -> a1 -> a2 -> ExBudgetStream
+runCostingFunThreeArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3) => CostingFun ModelThreeArguments -> a1 -> a2 -> a3 -> ExBudgetStream
+runCostingFunFourArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4) => CostingFun ModelFourArguments -> a1 -> a2 -> a3 -> a4 -> ExBudgetStream
+runCostingFunFiveArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5) => CostingFun ModelFiveArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> ExBudgetStream
+runCostingFunSixArguments :: (ExMemoryUsage a1, ExMemoryUsage a2, ExMemoryUsage a3, ExMemoryUsage a4, ExMemoryUsage a5, ExMemoryUsage a6) => CostingFun ModelSixArguments -> a1 -> a2 -> a3 -> a4 -> a5 -> a6 -> ExBudgetStream
 
 -- | The class of types that can be converted to a hash value.
 --   
@@ -4095,10 +4192,10 @@ NamedTyDeBruijn :: NamedDeBruijn -> NamedTyDeBruijn
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1iKJ
-_FreeVariableError :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Unique
-_FreeIndex :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Index
+class AsFreeVariableError r_a1ti5
+_FreeVariableError :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Unique
+_FreeIndex :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Index
 unNameDeBruijn :: NamedDeBruijn -> DeBruijn
 unNameTyDeBruijn :: NamedTyDeBruijn -> TyDeBruijn
 fakeNameDeBruijn :: DeBruijn -> NamedDeBruijn
@@ -4284,18 +4381,18 @@ typeAnn :: Type tyname uni ann -> ann
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
-tyVarDeclAnn :: forall tyname_a4yKi ann_a4yKj. Lens' (TyVarDecl tyname_a4yKi ann_a4yKj) ann_a4yKj
-tyVarDeclName :: forall tyname_a4yKi ann_a4yKj tyname_a4yTS. Lens (TyVarDecl tyname_a4yKi ann_a4yKj) (TyVarDecl tyname_a4yTS ann_a4yKj) tyname_a4yKi tyname_a4yTS
-tyVarDeclKind :: forall tyname_a4yKi ann_a4yKj. Lens' (TyVarDecl tyname_a4yKi ann_a4yKj) (Kind ann_a4yKj)
-varDeclAnn :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj. Lens' (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) ann_a4yUj
-varDeclName :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj name_a4z3H. Lens (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) (VarDecl tyname_a4yUg name_a4z3H uni_a4yUi ann_a4yUj) name_a4yUh name_a4z3H
-varDeclType :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj tyname_a4z3I uni_a4z3J. Lens (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) (VarDecl tyname_a4z3I name_a4yUh uni_a4z3J ann_a4yUj) (Type tyname_a4yUg uni_a4yUi ann_a4yUj) (Type tyname_a4z3I uni_a4z3J ann_a4yUj)
-tyDeclAnn :: forall tyname_a4z47 uni_a4z48 ann_a4z49. Lens' (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) ann_a4z49
-tyDeclType :: forall tyname_a4z47 uni_a4z48 ann_a4z49 tyname_a4zdP uni_a4zdQ. Lens (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) (TyDecl tyname_a4zdP uni_a4zdQ ann_a4z49) (Type tyname_a4z47 uni_a4z48 ann_a4z49) (Type tyname_a4zdP uni_a4zdQ ann_a4z49)
-tyDeclKind :: forall tyname_a4z47 uni_a4z48 ann_a4z49. Lens' (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) (Kind ann_a4z49)
-progAnn :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx. Lens' (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) ann_a4wqx
-progVer :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx. Lens' (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) Version
-progTerm :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT. Lens (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) (Program tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT ann_a4wqx) (Term tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) (Term tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT ann_a4wqx)
+tyVarDeclAnn :: forall tyname_a4B4K ann_a4B4L. Lens' (TyVarDecl tyname_a4B4K ann_a4B4L) ann_a4B4L
+tyVarDeclName :: forall tyname_a4B4K ann_a4B4L tyname_a4Bek. Lens (TyVarDecl tyname_a4B4K ann_a4B4L) (TyVarDecl tyname_a4Bek ann_a4B4L) tyname_a4B4K tyname_a4Bek
+tyVarDeclKind :: forall tyname_a4B4K ann_a4B4L. Lens' (TyVarDecl tyname_a4B4K ann_a4B4L) (Kind ann_a4B4L)
+varDeclAnn :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL. Lens' (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) ann_a4BeL
+varDeclName :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL name_a4Bo9. Lens (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) (VarDecl tyname_a4BeI name_a4Bo9 uni_a4BeK ann_a4BeL) name_a4BeJ name_a4Bo9
+varDeclType :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL tyname_a4Boa uni_a4Bob. Lens (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) (VarDecl tyname_a4Boa name_a4BeJ uni_a4Bob ann_a4BeL) (Type tyname_a4BeI uni_a4BeK ann_a4BeL) (Type tyname_a4Boa uni_a4Bob ann_a4BeL)
+tyDeclAnn :: forall tyname_a4Boz uni_a4BoA ann_a4BoB. Lens' (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) ann_a4BoB
+tyDeclType :: forall tyname_a4Boz uni_a4BoA ann_a4BoB tyname_a4Byh uni_a4Byi. Lens (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) (TyDecl tyname_a4Byh uni_a4Byi ann_a4BoB) (Type tyname_a4Boz uni_a4BoA ann_a4BoB) (Type tyname_a4Byh uni_a4Byi ann_a4BoB)
+tyDeclKind :: forall tyname_a4Boz uni_a4BoA ann_a4BoB. Lens' (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) (Kind ann_a4BoB)
+progAnn :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ. Lens' (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) ann_a4yKZ
+progVer :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ. Lens' (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) Version
+progTerm :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l. Lens (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) (Program tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l ann_a4yKZ) (Term tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) (Term tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l ann_a4yKZ)
 kindSubkinds :: Traversal' (Kind ann) (Kind ann)
 kindSubkindsDeep :: Fold (Kind ann) (Kind ann)
 
@@ -4363,31 +4460,31 @@ typeUniquesDeep :: HasUniques (Type tyname uni ann) => Fold (Type tyname uni ann
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>
 --   (including the type-level ones).
 termUniquesDeep :: HasUniques (Term tyname name uni fun ann) => Fold (Term tyname name uni fun ann) Unique
-data TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-VarF :: ann_i4J6C -> name_i4J6z -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-LamAbsF :: ann_i4J6C -> name_i4J6z -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ApplyF :: ann_i4J6C -> r_a4PzT -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-TyAbsF :: ann_i4J6C -> tyname_i4J6y -> Kind ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-TyInstF :: ann_i4J6C -> r_a4PzT -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-IWrapF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-UnwrapF :: ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ConstrF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> Word64 -> [r_a4PzT] -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-CaseF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> [r_a4PzT] -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ConstantF :: ann_i4J6C -> Some (ValueOf uni_i4J6A) -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-BuiltinF :: ann_i4J6C -> fun_i4J6B -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ErrorF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-data TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyVarF :: ann_i4J7f -> tyname_i4J7d -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyFunF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyIFixF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyForallF :: ann_i4J7f -> tyname_i4J7d -> Kind ann_i4J7f -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyBuiltinF :: ann_i4J7f -> SomeTypeIn uni_i4J7e -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyLamF :: ann_i4J7f -> tyname_i4J7d -> Kind ann_i4J7f -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyAppF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TySOPF :: ann_i4J7f -> [[r_a4PuB]] -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-data KindF (ann_i4Je4 :: Type) r_a4Pu0
-TypeF :: ann_i4Je4 -> KindF (ann_i4Je4 :: Type) r_a4Pu0
-KindArrowF :: ann_i4Je4 -> r_a4Pu0 -> r_a4Pu0 -> KindF (ann_i4Je4 :: Type) r_a4Pu0
+data TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+VarF :: ann_i4Lr0 -> name_i4LqX -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+LamAbsF :: ann_i4Lr0 -> name_i4LqX -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ApplyF :: ann_i4Lr0 -> r_a4RUf -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+TyAbsF :: ann_i4Lr0 -> tyname_i4LqW -> Kind ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+TyInstF :: ann_i4Lr0 -> r_a4RUf -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+IWrapF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+UnwrapF :: ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ConstrF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> Word64 -> [r_a4RUf] -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+CaseF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> [r_a4RUf] -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ConstantF :: ann_i4Lr0 -> Some (ValueOf uni_i4LqY) -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+BuiltinF :: ann_i4Lr0 -> fun_i4LqZ -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ErrorF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+data TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyVarF :: ann_i4LrD -> tyname_i4LrB -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyFunF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyIFixF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyForallF :: ann_i4LrD -> tyname_i4LrB -> Kind ann_i4LrD -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyBuiltinF :: ann_i4LrD -> SomeTypeIn uni_i4LrC -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyLamF :: ann_i4LrD -> tyname_i4LrB -> Kind ann_i4LrD -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyAppF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TySOPF :: ann_i4LrD -> [[r_a4ROX]] -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+data KindF (ann_i4Lyr :: Type) r_a4ROm
+TypeF :: ann_i4Lyr -> KindF (ann_i4Lyr :: Type) r_a4ROm
+KindArrowF :: ann_i4Lyr -> r_a4ROm -> r_a4ROm -> KindF (ann_i4Lyr :: Type) r_a4ROm
 
 module PlutusCore.Subst
 
@@ -5381,27 +5478,27 @@ BuiltinTypeNotAStar :: !Text -> !SourcePos -> ParserError
 UnknownBuiltinFunction :: !Text -> !SourcePos -> ![Text] -> ParserError
 InvalidBuiltinConstant :: !Text -> !Text -> !SourcePos -> ParserError
 InvalidData :: !Text -> !SourcePos -> ParserError
-class AsParserErrorBundle r_a5uLI
-_ParserErrorBundle :: AsParserErrorBundle r_a5uLI => Prism' r_a5uLI ParserErrorBundle
-_ParseErrorB :: AsParserErrorBundle r_a5uLI => Prism' r_a5uLI (ParseErrorBundle Text ParserError)
+class AsParserErrorBundle r_a5x69
+_ParserErrorBundle :: AsParserErrorBundle r_a5x69 => Prism' r_a5x69 ParserErrorBundle
+_ParseErrorB :: AsParserErrorBundle r_a5x69 => Prism' r_a5x69 (ParseErrorBundle Text ParserError)
 data ParserErrorBundle
 ParseErrorB :: !ParseErrorBundle Text ParserError -> ParserErrorBundle
 data NormCheckError tyname name uni fun ann
 BadType :: !ann -> !Type tyname uni ann -> !Text -> NormCheckError tyname name uni fun ann
 BadTerm :: !ann -> !Term tyname name uni fun ann -> !Text -> NormCheckError tyname name uni fun ann
-class AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV | r_a5uTl -> tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV
-_NormCheckError :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (NormCheckError tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV)
-_BadType :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (ann_a5swV, Type tyname_a5swR uni_a5swT ann_a5swV, Text)
-_BadTerm :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (ann_a5swV, Term tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV, Text)
+class AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm | r_a5xdM -> tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm
+_NormCheckError :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (NormCheckError tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm)
+_BadType :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (ann_a5uRm, Type tyname_a5uRi uni_a5uRk ann_a5uRm, Text)
+_BadTerm :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (ann_a5uRm, Term tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm, Text)
 data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5uNT ann_a5swW | r_a5uNT -> ann_a5swW
-_UniqueError :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (UniqueError ann_a5swW)
-_MultiplyDefined :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_IncoherentUsage :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_FreeVariable :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW)
+class AsUniqueError r_a5x8k ann_a5uRn | r_a5x8k -> ann_a5uRn
+_UniqueError :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (UniqueError ann_a5uRn)
+_MultiplyDefined :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_IncoherentUsage :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_FreeVariable :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn)
 data TypeError term uni fun ann
 KindMismatch :: !ann -> !Type TyName uni () -> !Kind () -> !Kind () -> TypeError term uni fun ann
 TypeMismatch :: !ann -> !term -> !Type TyName uni () -> !Normalized (Type TyName uni ()) -> TypeError term uni fun ann
@@ -5410,38 +5507,38 @@ NameMismatch :: !ann -> !Name -> !Name -> TypeError term uni fun ann
 FreeTypeVariableE :: !ann -> !TyName -> TypeError term uni fun ann
 FreeVariableE :: !ann -> !Name -> TypeError term uni fun ann
 UnknownBuiltinFunctionE :: !ann -> !fun -> TypeError term uni fun ann
-class AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ | r_a5uYY -> term_a5swN uni_a5swO fun_a5swP ann_a5swQ
-_TypeError :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (TypeError term_a5swN uni_a5swO fun_a5swP ann_a5swQ)
-_KindMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Type TyName uni_a5swO (), Kind (), Kind ())
-_TypeMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, term_a5swN, Type TyName uni_a5swO (), Normalized (Type TyName uni_a5swO ()))
-_TyNameMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, TyName, TyName)
-_NameMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Name, Name)
-_FreeTypeVariableE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, TyName)
-_FreeVariableE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Name)
-_UnknownBuiltinFunctionE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, fun_a5swP)
+class AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh | r_a5xjp -> term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh
+_TypeError :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (TypeError term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh)
+_KindMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Type TyName uni_a5uRf (), Kind (), Kind ())
+_TypeMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, term_a5uRe, Type TyName uni_a5uRf (), Normalized (Type TyName uni_a5uRf ()))
+_TyNameMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, TyName, TyName)
+_NameMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Name, Name)
+_FreeTypeVariableE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, TyName)
+_FreeVariableE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Name)
+_UnknownBuiltinFunctionE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, fun_a5uRg)
 
 -- | We cannot do a correct translation to or from de Bruijn indices if the
 --   program is not well-scoped. So we throw an error in such a case.
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1iKJ
-_FreeVariableError :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Unique
-_FreeIndex :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Index
+class AsFreeVariableError r_a1ti5
+_FreeVariableError :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Unique
+_FreeIndex :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Index
 data Error uni fun ann
 ParseErrorE :: !ParserErrorBundle -> Error uni fun ann
 UniqueCoherencyErrorE :: !UniqueError ann -> Error uni fun ann
 TypeErrorE :: !TypeError (Term TyName Name uni fun ()) uni fun ann -> Error uni fun ann
 NormCheckErrorE :: !NormCheckError TyName Name uni fun ann -> Error uni fun ann
 FreeVariableErrorE :: !FreeVariableError -> Error uni fun ann
-class AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM | r_a5vcl -> uni_a5swK fun_a5swL ann_a5swM
-_Error :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (Error uni_a5swK fun_a5swL ann_a5swM)
-_ParseErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl ParserErrorBundle
-_UniqueCoherencyErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (UniqueError ann_a5swM)
-_TypeErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (TypeError (Term TyName Name uni_a5swK fun_a5swL ()) uni_a5swK fun_a5swL ann_a5swM)
-_NormCheckErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (NormCheckError TyName Name uni_a5swK fun_a5swL ann_a5swM)
-_FreeVariableErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl FreeVariableError
+class AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd | r_a5xwM -> uni_a5uRb fun_a5uRc ann_a5uRd
+_Error :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (Error uni_a5uRb fun_a5uRc ann_a5uRd)
+_ParseErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM ParserErrorBundle
+_UniqueCoherencyErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (UniqueError ann_a5uRd)
+_TypeErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (TypeError (Term TyName Name uni_a5uRb fun_a5uRc ()) uni_a5uRb fun_a5uRc ann_a5uRd)
+_NormCheckErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (NormCheckError TyName Name uni_a5uRb fun_a5uRc ann_a5uRd)
+_FreeVariableErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM FreeVariableError
 
 -- | Lifts an <a>Either</a> into an error context where we can embed the
 --   <a>Left</a> value into the error.
@@ -5531,11 +5628,11 @@ data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5uNT ann_a5swW | r_a5uNT -> ann_a5swW
-_UniqueError :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (UniqueError ann_a5swW)
-_MultiplyDefined :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_IncoherentUsage :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_FreeVariable :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW)
+class AsUniqueError r_a5x8k ann_a5uRn | r_a5x8k -> ann_a5uRn
+_UniqueError :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (UniqueError ann_a5uRn)
+_MultiplyDefined :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_IncoherentUsage :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_FreeVariable :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn)
 
 module PlutusCore.Builtin.Elaborate
 
@@ -5594,7 +5691,7 @@ class (uni `Everywhere` ImplementedKnownTypeAst uni, uni `Everywhere` Implemente
 --   Applying or type-instantiating a builtin peels off the corresponding
 --   constructor from its <a>BuiltinRuntime</a>.
 --   
---   <a>BuiltinResult</a> contains the cost (an <a>ExBudget</a>) and the
+--   <a>BuiltinResult</a> contains the cost (an <tt>ExBudget</tt>) and the
 --   result (a <tt>MakeKnownM val</tt>) of the builtin application. The
 --   cost is stored strictly, since the evaluator is going to look at it
 --   and the result is stored lazily, since it's not supposed to be forced
@@ -5608,7 +5705,7 @@ class (uni `Everywhere` ImplementedKnownTypeAst uni, uni `Everywhere` Implemente
 --   machine) may of course force the result of the builtin application
 --   unconditionally.
 data BuiltinRuntime val
-BuiltinResult :: ExBudget -> ~MakeKnownM val -> BuiltinRuntime val
+BuiltinResult :: ExBudgetStream -> ~MakeKnownM val -> BuiltinRuntime val
 BuiltinExpectArgument :: (val -> BuiltinRuntime val) -> BuiltinRuntime val
 BuiltinExpectForce :: BuiltinRuntime val -> BuiltinRuntime val
 
@@ -5739,7 +5836,7 @@ knownMonotype :: KnownMonotype val args res => TypeScheme val args res
 --   unlifting amounts to: passing the action returning the builtin
 --   application around until full saturation, which is when the action
 --   actually gets run.
-toMonoF :: KnownMonotype val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudget) -> BuiltinRuntime val
+toMonoF :: KnownMonotype val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudgetStream) -> BuiltinRuntime val
 
 -- | A class that allows us to derive a polytype for a builtin.
 class KnownMonotype val args res => KnownPolytype (binds :: [Some TyNameRep]) val args res
@@ -5749,7 +5846,7 @@ knownPolytype :: KnownPolytype binds val args res => TypeScheme val args res
 --   argument is in <a>ReadKnownM</a>, because that's what we need to do:
 --   passing the action returning the builtin application around until full
 --   saturation, which is when the action actually gets run.
-toPolyF :: KnownPolytype binds val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudget) -> BuiltinRuntime val
+toPolyF :: KnownPolytype binds val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudgetStream) -> BuiltinRuntime val
 
 -- | Ensure a built-in function is not nullary and throw a nice error
 --   otherwise.
@@ -5777,7 +5874,7 @@ class MakeBuiltinMeaning a val
 --   <li>the denotation of the builtin</li>
 --   <li>an uninstantiated costing function</li>
 --   </ol>
-makeBuiltinMeaning :: MakeBuiltinMeaning a val => a -> (cost -> FoldArgs (GetArgs a) ExBudget) -> BuiltinMeaning val cost
+makeBuiltinMeaning :: MakeBuiltinMeaning a val => a -> (cost -> FoldArgs (GetArgs a) ExBudgetStream) -> BuiltinMeaning val cost
 
 -- | Convert a <a>BuiltinMeaning</a> to a <a>BuiltinRuntime</a> given a
 --   cost model.
@@ -6057,9 +6154,9 @@ data TypeCheckConfig uni fun
 TypeCheckConfig :: KindCheckConfig -> BuiltinTypes uni fun -> TypeCheckConfig uni fun
 [_tccKindCheckConfig] :: TypeCheckConfig uni fun -> KindCheckConfig
 [_tccBuiltinTypes] :: TypeCheckConfig uni fun -> BuiltinTypes uni fun
-class HasKindCheckConfig c_a5RxS
-kindCheckConfig :: HasKindCheckConfig c_a5RxS => Lens' c_a5RxS KindCheckConfig
-kccHandleNameMismatches :: HasKindCheckConfig c_a5RxS => Lens' c_a5RxS HandleNameMismatches
+class HasKindCheckConfig c_a5TSP
+kindCheckConfig :: HasKindCheckConfig c_a5TSP => Lens' c_a5TSP KindCheckConfig
+kccHandleNameMismatches :: HasKindCheckConfig c_a5TSP => Lens' c_a5TSP HandleNameMismatches
 
 -- | The constraints that are required for type checking Plutus Core.
 type MonadTypeCheckPlc err uni fun ann m = MonadTypeCheck err (Term TyName Name uni fun ()) uni fun ann m
@@ -6074,9 +6171,9 @@ type MonadKindCheck err term uni fun ann m = (MonadError err m, AsTypeError err 
 -- | The type checking monad that the type checker runs in. In contains a
 --   <a>TypeCheckEnv</a> and allows to throw <a>TypeError</a>s.
 type TypeCheckT uni fun cfg m = ReaderT (TypeCheckEnv uni fun cfg) m
-tceTyVarKinds :: forall uni_a5Rya fun_a5Ryb cfg_a5Ryc fun_a5REB. Lens (TypeCheckEnv uni_a5Rya fun_a5Ryb cfg_a5Ryc) (TypeCheckEnv uni_a5Rya fun_a5REB cfg_a5Ryc) TyVarKinds TyVarKinds
-tceTypeCheckConfig :: forall uni_a5Rya fun_a5Ryb cfg_a5Ryc fun_a5REC cfg_a5RED. Lens (TypeCheckEnv uni_a5Rya fun_a5Ryb cfg_a5Ryc) (TypeCheckEnv uni_a5Rya fun_a5REC cfg_a5RED) cfg_a5Ryc cfg_a5RED
-tceVarTypes :: forall uni_a5Rya fun_a5Ryb cfg_a5Ryc uni_a5REE fun_a5REF. Lens (TypeCheckEnv uni_a5Rya fun_a5Ryb cfg_a5Ryc) (TypeCheckEnv uni_a5REE fun_a5REF cfg_a5Ryc) (VarTypes uni_a5Rya) (VarTypes uni_a5REE)
+tceTyVarKinds :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 fun_a5TZy. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TT7 fun_a5TZy cfg_a5TT9) TyVarKinds TyVarKinds
+tceTypeCheckConfig :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 fun_a5TZz cfg_a5TZA. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TT7 fun_a5TZz cfg_a5TZA) cfg_a5TT9 cfg_a5TZA
+tceVarTypes :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 uni_a5TZB fun_a5TZC. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TZB fun_a5TZC cfg_a5TT9) (VarTypes uni_a5TT7) (VarTypes uni_a5TZB)
 
 -- | Run a <tt>TypeCheckM</tt> computation by supplying a
 --   <a>TypeCheckConfig</a> to it.
@@ -6157,8 +6254,8 @@ data CostModel machinecosts builtincosts
 CostModel :: machinecosts -> builtincosts -> CostModel machinecosts builtincosts
 [_machineCostModel] :: CostModel machinecosts builtincosts -> machinecosts
 [_builtinCostModel] :: CostModel machinecosts builtincosts -> builtincosts
-machineCostModel :: forall machinecosts_a5WGq builtincosts_a5WGr machinecosts_a5WJx. Lens (CostModel machinecosts_a5WGq builtincosts_a5WGr) (CostModel machinecosts_a5WJx builtincosts_a5WGr) machinecosts_a5WGq machinecosts_a5WJx
-builtinCostModel :: forall machinecosts_a5WGq builtincosts_a5WGr builtincosts_a5WJw. Lens (CostModel machinecosts_a5WGq builtincosts_a5WGr) (CostModel machinecosts_a5WGq builtincosts_a5WJw) builtincosts_a5WGr builtincosts_a5WJw
+machineCostModel :: forall machinecosts_a5Z1n builtincosts_a5Z1o machinecosts_a5Z4u. Lens (CostModel machinecosts_a5Z1n builtincosts_a5Z1o) (CostModel machinecosts_a5Z4u builtincosts_a5Z1o) machinecosts_a5Z1n machinecosts_a5Z4u
+builtinCostModel :: forall machinecosts_a5Z1n builtincosts_a5Z1o builtincosts_a5Z4t. Lens (CostModel machinecosts_a5Z1n builtincosts_a5Z1o) (CostModel machinecosts_a5Z1n builtincosts_a5Z4t) builtincosts_a5Z1o builtincosts_a5Z4t
 
 -- | At execution time we need a <a>BuiltinsRuntime</a> object which
 --   includes both the cost model for builtins and their denotations. This
@@ -6225,7 +6322,7 @@ instance Prettyprinter.Internal.Pretty PlutusCore.Evaluation.Machine.Ck.CkUserEr
 instance GHC.Show.Show (PlutusCore.Builtin.Runtime.BuiltinRuntime (PlutusCore.Evaluation.Machine.Ck.CkValue uni fun))
 instance (Universe.Core.Closed uni, Prettyprinter.Internal.Pretty (Universe.Core.SomeTypeIn uni), Universe.Core.Everywhere uni PlutusCore.Pretty.PrettyConst.PrettyConst, Prettyprinter.Internal.Pretty fun) => Text.PrettyBy.Internal.PrettyBy PlutusCore.Pretty.Plc.PrettyConfigPlc (PlutusCore.Evaluation.Machine.Ck.CkValue uni fun)
 instance PlutusCore.Builtin.HasConstant.HasConstant (PlutusCore.Evaluation.Machine.Ck.CkValue uni fun)
-instance PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage (PlutusCore.Evaluation.Machine.Ck.CkValue uni fun)
+instance PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage (PlutusCore.Evaluation.Machine.Ck.CkValue uni fun)
 
 
 -- | <tt>nat</tt> and related functions.
@@ -7155,7 +7252,7 @@ knownMonotype :: KnownMonotype val args res => TypeScheme val args res
 --   unlifting amounts to: passing the action returning the builtin
 --   application around until full saturation, which is when the action
 --   actually gets run.
-toMonoF :: KnownMonotype val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudget) -> BuiltinRuntime val
+toMonoF :: KnownMonotype val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudgetStream) -> BuiltinRuntime val
 
 -- | A class that allows us to derive a polytype for a builtin.
 class KnownMonotype val args res => KnownPolytype (binds :: [Some TyNameRep]) val args res
@@ -7165,7 +7262,7 @@ knownPolytype :: KnownPolytype binds val args res => TypeScheme val args res
 --   argument is in <a>ReadKnownM</a>, because that's what we need to do:
 --   passing the action returning the builtin application around until full
 --   saturation, which is when the action actually gets run.
-toPolyF :: KnownPolytype binds val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudget) -> BuiltinRuntime val
+toPolyF :: KnownPolytype binds val args res => ReadKnownM (FoldArgs args res, FoldArgs args ExBudgetStream) -> BuiltinRuntime val
 
 -- | Ensure a built-in function is not nullary and throw a nice error
 --   otherwise.
@@ -7193,7 +7290,7 @@ class MakeBuiltinMeaning a val
 --   <li>the denotation of the builtin</li>
 --   <li>an uninstantiated costing function</li>
 --   </ol>
-makeBuiltinMeaning :: MakeBuiltinMeaning a val => a -> (cost -> FoldArgs (GetArgs a) ExBudget) -> BuiltinMeaning val cost
+makeBuiltinMeaning :: MakeBuiltinMeaning a val => a -> (cost -> FoldArgs (GetArgs a) ExBudgetStream) -> BuiltinMeaning val cost
 
 -- | Convert a <a>BuiltinMeaning</a> to a <a>BuiltinRuntime</a> given a
 --   cost model.
@@ -7841,18 +7938,18 @@ Normalized :: a -> Normalized a
 latestVersion :: Version
 termAnn :: Term tyname name uni fun ann -> ann
 typeAnn :: Type tyname uni ann -> ann
-tyVarDeclAnn :: forall tyname_a4yKi ann_a4yKj. Lens' (TyVarDecl tyname_a4yKi ann_a4yKj) ann_a4yKj
-tyVarDeclName :: forall tyname_a4yKi ann_a4yKj tyname_a4yTS. Lens (TyVarDecl tyname_a4yKi ann_a4yKj) (TyVarDecl tyname_a4yTS ann_a4yKj) tyname_a4yKi tyname_a4yTS
-tyVarDeclKind :: forall tyname_a4yKi ann_a4yKj. Lens' (TyVarDecl tyname_a4yKi ann_a4yKj) (Kind ann_a4yKj)
-varDeclAnn :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj. Lens' (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) ann_a4yUj
-varDeclName :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj name_a4z3H. Lens (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) (VarDecl tyname_a4yUg name_a4z3H uni_a4yUi ann_a4yUj) name_a4yUh name_a4z3H
-varDeclType :: forall tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj tyname_a4z3I uni_a4z3J. Lens (VarDecl tyname_a4yUg name_a4yUh uni_a4yUi ann_a4yUj) (VarDecl tyname_a4z3I name_a4yUh uni_a4z3J ann_a4yUj) (Type tyname_a4yUg uni_a4yUi ann_a4yUj) (Type tyname_a4z3I uni_a4z3J ann_a4yUj)
-tyDeclAnn :: forall tyname_a4z47 uni_a4z48 ann_a4z49. Lens' (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) ann_a4z49
-tyDeclType :: forall tyname_a4z47 uni_a4z48 ann_a4z49 tyname_a4zdP uni_a4zdQ. Lens (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) (TyDecl tyname_a4zdP uni_a4zdQ ann_a4z49) (Type tyname_a4z47 uni_a4z48 ann_a4z49) (Type tyname_a4zdP uni_a4zdQ ann_a4z49)
-tyDeclKind :: forall tyname_a4z47 uni_a4z48 ann_a4z49. Lens' (TyDecl tyname_a4z47 uni_a4z48 ann_a4z49) (Kind ann_a4z49)
-progAnn :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx. Lens' (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) ann_a4wqx
-progVer :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx. Lens' (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) Version
-progTerm :: forall tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT. Lens (Program tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) (Program tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT ann_a4wqx) (Term tyname_a4wqt name_a4wqu uni_a4wqv fun_a4wqw ann_a4wqx) (Term tyname_a4yJQ name_a4yJR uni_a4yJS fun_a4yJT ann_a4wqx)
+tyVarDeclAnn :: forall tyname_a4B4K ann_a4B4L. Lens' (TyVarDecl tyname_a4B4K ann_a4B4L) ann_a4B4L
+tyVarDeclName :: forall tyname_a4B4K ann_a4B4L tyname_a4Bek. Lens (TyVarDecl tyname_a4B4K ann_a4B4L) (TyVarDecl tyname_a4Bek ann_a4B4L) tyname_a4B4K tyname_a4Bek
+tyVarDeclKind :: forall tyname_a4B4K ann_a4B4L. Lens' (TyVarDecl tyname_a4B4K ann_a4B4L) (Kind ann_a4B4L)
+varDeclAnn :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL. Lens' (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) ann_a4BeL
+varDeclName :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL name_a4Bo9. Lens (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) (VarDecl tyname_a4BeI name_a4Bo9 uni_a4BeK ann_a4BeL) name_a4BeJ name_a4Bo9
+varDeclType :: forall tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL tyname_a4Boa uni_a4Bob. Lens (VarDecl tyname_a4BeI name_a4BeJ uni_a4BeK ann_a4BeL) (VarDecl tyname_a4Boa name_a4BeJ uni_a4Bob ann_a4BeL) (Type tyname_a4BeI uni_a4BeK ann_a4BeL) (Type tyname_a4Boa uni_a4Bob ann_a4BeL)
+tyDeclAnn :: forall tyname_a4Boz uni_a4BoA ann_a4BoB. Lens' (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) ann_a4BoB
+tyDeclType :: forall tyname_a4Boz uni_a4BoA ann_a4BoB tyname_a4Byh uni_a4Byi. Lens (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) (TyDecl tyname_a4Byh uni_a4Byi ann_a4BoB) (Type tyname_a4Boz uni_a4BoA ann_a4BoB) (Type tyname_a4Byh uni_a4Byi ann_a4BoB)
+tyDeclKind :: forall tyname_a4Boz uni_a4BoA ann_a4BoB. Lens' (TyDecl tyname_a4Boz uni_a4BoA ann_a4BoB) (Kind ann_a4BoB)
+progAnn :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ. Lens' (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) ann_a4yKZ
+progVer :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ. Lens' (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) Version
+progTerm :: forall tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l. Lens (Program tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) (Program tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l ann_a4yKZ) (Term tyname_a4yKV name_a4yKW uni_a4yKX fun_a4yKY ann_a4yKZ) (Term tyname_a4B4i name_a4B4j uni_a4B4k fun_a4B4l ann_a4yKZ)
 
 -- | Map a function over the set of built-in functions.
 mapFun :: (fun -> fun') -> Term tyname name uni fun ann -> Term tyname name uni fun' ann
@@ -7905,15 +8002,15 @@ normalizeTypesIn :: (HasUnique tyname TypeUnique, HasUnique name TermUnique, Mon
 
 -- | Normalize every <a>Kind</a> in a <a>Program</a>.
 normalizeTypesInProgram :: (HasUnique tyname TypeUnique, HasUnique name TermUnique, MonadNormalizeType uni m) => Program tyname name uni fun ann -> m (Program tyname name uni fun ann)
-class AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ | r_a5uYY -> term_a5swN uni_a5swO fun_a5swP ann_a5swQ
-_TypeError :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (TypeError term_a5swN uni_a5swO fun_a5swP ann_a5swQ)
-_KindMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Type TyName uni_a5swO (), Kind (), Kind ())
-_TypeMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, term_a5swN, Type TyName uni_a5swO (), Normalized (Type TyName uni_a5swO ()))
-_TyNameMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, TyName, TyName)
-_NameMismatch :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Name, Name)
-_FreeTypeVariableE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, TyName)
-_FreeVariableE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, Name)
-_UnknownBuiltinFunctionE :: AsTypeError r_a5uYY term_a5swN uni_a5swO fun_a5swP ann_a5swQ => Prism' r_a5uYY (ann_a5swQ, fun_a5swP)
+class AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh | r_a5xjp -> term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh
+_TypeError :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (TypeError term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh)
+_KindMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Type TyName uni_a5uRf (), Kind (), Kind ())
+_TypeMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, term_a5uRe, Type TyName uni_a5uRf (), Normalized (Type TyName uni_a5uRf ()))
+_TyNameMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, TyName, TyName)
+_NameMismatch :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Name, Name)
+_FreeTypeVariableE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, TyName)
+_FreeVariableE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, Name)
+_UnknownBuiltinFunctionE :: AsTypeError r_a5xjp term_a5uRe uni_a5uRf fun_a5uRg ann_a5uRh => Prism' r_a5xjp (ann_a5uRh, fun_a5uRg)
 data TypeError term uni fun ann
 data Error uni fun ann
 ParseErrorE :: !ParserErrorBundle -> Error uni fun ann
@@ -7921,61 +8018,61 @@ UniqueCoherencyErrorE :: !UniqueError ann -> Error uni fun ann
 TypeErrorE :: !TypeError (Term TyName Name uni fun ()) uni fun ann -> Error uni fun ann
 NormCheckErrorE :: !NormCheckError TyName Name uni fun ann -> Error uni fun ann
 FreeVariableErrorE :: !FreeVariableError -> Error uni fun ann
-class AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM | r_a5vcl -> uni_a5swK fun_a5swL ann_a5swM
-_Error :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (Error uni_a5swK fun_a5swL ann_a5swM)
-_ParseErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl ParserErrorBundle
-_UniqueCoherencyErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (UniqueError ann_a5swM)
-_TypeErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (TypeError (Term TyName Name uni_a5swK fun_a5swL ()) uni_a5swK fun_a5swL ann_a5swM)
-_NormCheckErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl (NormCheckError TyName Name uni_a5swK fun_a5swL ann_a5swM)
-_FreeVariableErrorE :: AsError r_a5vcl uni_a5swK fun_a5swL ann_a5swM => Prism' r_a5vcl FreeVariableError
+class AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd | r_a5xwM -> uni_a5uRb fun_a5uRc ann_a5uRd
+_Error :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (Error uni_a5uRb fun_a5uRc ann_a5uRd)
+_ParseErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM ParserErrorBundle
+_UniqueCoherencyErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (UniqueError ann_a5uRd)
+_TypeErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (TypeError (Term TyName Name uni_a5uRb fun_a5uRc ()) uni_a5uRb fun_a5uRc ann_a5uRd)
+_NormCheckErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM (NormCheckError TyName Name uni_a5uRb fun_a5uRc ann_a5uRd)
+_FreeVariableErrorE :: AsError r_a5xwM uni_a5uRb fun_a5uRc ann_a5uRd => Prism' r_a5xwM FreeVariableError
 data NormCheckError tyname name uni fun ann
 BadType :: !ann -> !Type tyname uni ann -> !Text -> NormCheckError tyname name uni fun ann
 BadTerm :: !ann -> !Term tyname name uni fun ann -> !Text -> NormCheckError tyname name uni fun ann
-class AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV | r_a5uTl -> tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV
-_NormCheckError :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (NormCheckError tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV)
-_BadType :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (ann_a5swV, Type tyname_a5swR uni_a5swT ann_a5swV, Text)
-_BadTerm :: AsNormCheckError r_a5uTl tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV => Prism' r_a5uTl (ann_a5swV, Term tyname_a5swR name_a5swS uni_a5swT fun_a5swU ann_a5swV, Text)
+class AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm | r_a5xdM -> tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm
+_NormCheckError :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (NormCheckError tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm)
+_BadType :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (ann_a5uRm, Type tyname_a5uRi uni_a5uRk ann_a5uRm, Text)
+_BadTerm :: AsNormCheckError r_a5xdM tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm => Prism' r_a5xdM (ann_a5uRm, Term tyname_a5uRi name_a5uRj uni_a5uRk fun_a5uRl ann_a5uRm, Text)
 data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5uNT ann_a5swW | r_a5uNT -> ann_a5swW
-_UniqueError :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (UniqueError ann_a5swW)
-_MultiplyDefined :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_IncoherentUsage :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_FreeVariable :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW)
+class AsUniqueError r_a5x8k ann_a5uRn | r_a5x8k -> ann_a5uRn
+_UniqueError :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (UniqueError ann_a5uRn)
+_MultiplyDefined :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_IncoherentUsage :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_FreeVariable :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn)
 
 -- | We cannot do a correct translation to or from de Bruijn indices if the
 --   program is not well-scoped. So we throw an error in such a case.
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1iKJ
-_FreeVariableError :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Unique
-_FreeIndex :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Index
-data TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-VarF :: ann_i4J6C -> name_i4J6z -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-LamAbsF :: ann_i4J6C -> name_i4J6z -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ApplyF :: ann_i4J6C -> r_a4PzT -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-TyAbsF :: ann_i4J6C -> tyname_i4J6y -> Kind ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-TyInstF :: ann_i4J6C -> r_a4PzT -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-IWrapF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-UnwrapF :: ann_i4J6C -> r_a4PzT -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ConstrF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> Word64 -> [r_a4PzT] -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-CaseF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> r_a4PzT -> [r_a4PzT] -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ConstantF :: ann_i4J6C -> Some (ValueOf uni_i4J6A) -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-BuiltinF :: ann_i4J6C -> fun_i4J6B -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-ErrorF :: ann_i4J6C -> Type tyname_i4J6y uni_i4J6A ann_i4J6C -> TermF (tyname_i4J6y :: Type) (name_i4J6z :: Type) (uni_i4J6A :: Type -> Type) (fun_i4J6B :: Type) (ann_i4J6C :: Type) r_a4PzT
-data TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyVarF :: ann_i4J7f -> tyname_i4J7d -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyFunF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyIFixF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyForallF :: ann_i4J7f -> tyname_i4J7d -> Kind ann_i4J7f -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyBuiltinF :: ann_i4J7f -> SomeTypeIn uni_i4J7e -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyLamF :: ann_i4J7f -> tyname_i4J7d -> Kind ann_i4J7f -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TyAppF :: ann_i4J7f -> r_a4PuB -> r_a4PuB -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
-TySOPF :: ann_i4J7f -> [[r_a4PuB]] -> TypeF (tyname_i4J7d :: Type) (uni_i4J7e :: Type -> Type) (ann_i4J7f :: Type) r_a4PuB
+class AsFreeVariableError r_a1ti5
+_FreeVariableError :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Unique
+_FreeIndex :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Index
+data TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+VarF :: ann_i4Lr0 -> name_i4LqX -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+LamAbsF :: ann_i4Lr0 -> name_i4LqX -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ApplyF :: ann_i4Lr0 -> r_a4RUf -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+TyAbsF :: ann_i4Lr0 -> tyname_i4LqW -> Kind ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+TyInstF :: ann_i4Lr0 -> r_a4RUf -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+IWrapF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+UnwrapF :: ann_i4Lr0 -> r_a4RUf -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ConstrF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> Word64 -> [r_a4RUf] -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+CaseF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> r_a4RUf -> [r_a4RUf] -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ConstantF :: ann_i4Lr0 -> Some (ValueOf uni_i4LqY) -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+BuiltinF :: ann_i4Lr0 -> fun_i4LqZ -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+ErrorF :: ann_i4Lr0 -> Type tyname_i4LqW uni_i4LqY ann_i4Lr0 -> TermF (tyname_i4LqW :: Type) (name_i4LqX :: Type) (uni_i4LqY :: Type -> Type) (fun_i4LqZ :: Type) (ann_i4Lr0 :: Type) r_a4RUf
+data TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyVarF :: ann_i4LrD -> tyname_i4LrB -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyFunF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyIFixF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyForallF :: ann_i4LrD -> tyname_i4LrB -> Kind ann_i4LrD -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyBuiltinF :: ann_i4LrD -> SomeTypeIn uni_i4LrC -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyLamF :: ann_i4LrD -> tyname_i4LrB -> Kind ann_i4LrD -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TyAppF :: ann_i4LrD -> r_a4ROX -> r_a4ROX -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
+TySOPF :: ann_i4LrD -> [[r_a4ROX]] -> TypeF (tyname_i4LrB :: Type) (uni_i4LrC :: Type -> Type) (ann_i4LrD :: Type) r_a4ROX
 
 -- | A non-transformer version of <a>QuoteT</a>.
 type Quote = QuoteT Identity
@@ -8073,6 +8170,7 @@ BiconstPair :: ExtensionFun
 Swap :: ExtensionFun
 SwapEls :: ExtensionFun
 ExtensionVersion :: ExtensionFun
+TrackCosts :: ExtensionFun
 
 -- | Normally <tt>forall</tt> in the type of a Haskell function gets
 --   detected and instantiated automatically, however there's no way of
@@ -8087,6 +8185,14 @@ MetaForall :: a -> MetaForall name a
 data PlcListRep (a :: Type)
 data BuiltinErrorCall
 BuiltinErrorCall :: BuiltinErrorCall
+
+-- | For the most part we don't care about costing functions of example
+--   builtins, hence this class for being explicit about not caring.
+class Whatever a
+
+-- | The costing function of a builtin whose costing function doesn't
+--   matter.
+whatever :: Whatever a => a
 instance Data.Hashable.Class.Hashable PlutusCore.Examples.Builtins.ExtensionFun
 instance GHC.Generics.Generic PlutusCore.Examples.Builtins.ExtensionFun
 instance GHC.Ix.Ix PlutusCore.Examples.Builtins.ExtensionFun
@@ -8098,6 +8204,8 @@ instance GHC.Show.Show PlutusCore.Examples.Builtins.ExtensionFun
 instance GHC.Exception.Type.Exception PlutusCore.Examples.Builtins.BuiltinErrorCall
 instance GHC.Classes.Eq PlutusCore.Examples.Builtins.BuiltinErrorCall
 instance GHC.Show.Show PlutusCore.Examples.Builtins.BuiltinErrorCall
+instance PlutusCore.Examples.Builtins.Whatever b => PlutusCore.Examples.Builtins.Whatever (a -> b)
+instance PlutusCore.Examples.Builtins.Whatever PlutusCore.Evaluation.Machine.ExBudgetStream.ExBudgetStream
 instance (uni GHC.Types.~ PlutusCore.Default.Universe.DefaultUni) => PlutusCore.Builtin.Meaning.ToBuiltinMeaning uni PlutusCore.Examples.Builtins.ExtensionFun
 instance PlutusCore.Builtin.KnownTypeAst.KnownTypeAst uni a => PlutusCore.Builtin.KnownTypeAst.KnownTypeAst uni (PlutusCore.Examples.Builtins.PlcListRep a)
 instance forall kind (name :: PlutusCore.Builtin.Polymorphism.TyNameRep kind) (text :: GHC.Types.Symbol) (uniq :: GHC.TypeNats.Nat) (uni :: * -> *) a. (name GHC.Types.~ 'PlutusCore.Builtin.Polymorphism.TyNameRep text uniq, GHC.TypeLits.KnownSymbol text, GHC.TypeNats.KnownNat uniq, PlutusCore.Builtin.KnownKind.KnownKind kind, PlutusCore.Builtin.KnownTypeAst.KnownTypeAst uni a) => PlutusCore.Builtin.KnownTypeAst.KnownTypeAst uni (PlutusCore.Examples.Builtins.MetaForall name a)
@@ -8259,9 +8367,9 @@ Program :: ann -> Version -> Term name uni fun ann -> Program name uni fun ann
 [_progAnn] :: Program name uni fun ann -> ann
 [_progVer] :: Program name uni fun ann -> Version
 [_progTerm] :: Program name uni fun ann -> Term name uni fun ann
-progAnn :: forall name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH. Lens' (Program name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH) ann_a6SiH
-progVer :: forall name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH. Lens' (Program name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH) Version
-progTerm :: forall name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH name_a6TdJ uni_a6TdK fun_a6TdL. Lens (Program name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH) (Program name_a6TdJ uni_a6TdK fun_a6TdL ann_a6SiH) (Term name_a6SiE uni_a6SiF fun_a6SiG ann_a6SiH) (Term name_a6TdJ uni_a6TdK fun_a6TdL ann_a6SiH)
+progAnn :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw. Lens' (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) ann_a6UKw
+progVer :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw. Lens' (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) Version
+progTerm :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw name_a6VFy uni_a6VFz fun_a6VFA. Lens (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) (Program name_a6VFy uni_a6VFz fun_a6VFA ann_a6UKw) (Term name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) (Term name_a6VFy uni_a6VFz fun_a6VFA ann_a6UKw)
 bindFunM :: Monad m => (ann -> fun -> m (Term name uni fun' ann)) -> Term name uni fun ann -> m (Term name uni fun' ann)
 bindFun :: (ann -> fun -> Term name uni fun' ann) -> Term name uni fun ann -> Term name uni fun' ann
 mapFun :: (ann -> fun -> fun') -> Term name uni fun ann -> Term name uni fun' ann
@@ -8274,8 +8382,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6Te8 ann_a6Te9 name_a6TqK. Lens (UVarDecl name_a6Te8 ann_a6Te9) (UVarDecl name_a6TqK ann_a6Te9) name_a6Te8 name_a6TqK
-uvarDeclAnn :: forall name_a6Te8 ann_a6Te9 ann_a6TqJ. Lens (UVarDecl name_a6Te8 ann_a6Te9) (UVarDecl name_a6Te8 ann_a6TqJ) ann_a6Te9 ann_a6TqJ
+uvarDeclName :: forall name_a6VFX ann_a6VFY name_a6VSz. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VSz ann_a6VFY) name_a6VFX name_a6VSz
+uvarDeclAnn :: forall name_a6VFX ann_a6VFY ann_a6VSy. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VFX ann_a6VSy) ann_a6VFY ann_a6VSy
 instance GHC.Generics.Generic (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance (GHC.Show.Show ann, GHC.Show.Show name) => GHC.Show.Show (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance GHC.Base.Functor (UntypedPlutusCore.Core.Type.UVarDecl name)
@@ -8311,17 +8419,17 @@ termSubtermsDeep :: Fold (Term name uni fun ann) (Term name uni fun ann)
 
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>.
 termUniquesDeep :: HasUniques (Term name uni fun ann) => Fold (Term name uni fun ann) Unique
-data TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-VarF :: !ann_i6XcK -> !name_i6XcH -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-LamAbsF :: !ann_i6XcK -> !name_i6XcH -> !r_a6XKk -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-ApplyF :: !ann_i6XcK -> !r_a6XKk -> !r_a6XKk -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-ForceF :: !ann_i6XcK -> !r_a6XKk -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-DelayF :: !ann_i6XcK -> !r_a6XKk -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-ConstantF :: !ann_i6XcK -> !Some (ValueOf uni_i6XcI) -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-BuiltinF :: !ann_i6XcK -> !fun_i6XcJ -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-ErrorF :: !ann_i6XcK -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-ConstrF :: !ann_i6XcK -> !Word64 -> ![r_a6XKk] -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
-CaseF :: !ann_i6XcK -> !r_a6XKk -> ![r_a6XKk] -> TermF (name_i6XcH :: Type) (uni_i6XcI :: Type -> Type) (fun_i6XcJ :: Type) (ann_i6XcK :: Type) r_a6XKk
+data TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+VarF :: !ann_i6ZEz -> !name_i6ZEw -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+LamAbsF :: !ann_i6ZEz -> !name_i6ZEw -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+ApplyF :: !ann_i6ZEz -> !r_a70c9 -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+ForceF :: !ann_i6ZEz -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+DelayF :: !ann_i6ZEz -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+ConstantF :: !ann_i6ZEz -> !Some (ValueOf uni_i6ZEx) -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+BuiltinF :: !ann_i6ZEz -> !fun_i6ZEy -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+ErrorF :: !ann_i6ZEz -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+ConstrF :: !ann_i6ZEz -> !Word64 -> ![r_a70c9] -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+CaseF :: !ann_i6ZEz -> !r_a70c9 -> ![r_a70c9] -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
 
 -- | Compute the size needed for a list using the given size function for
 --   the elements. Goes with <a>encodeListWith</a>.
@@ -8359,11 +8467,11 @@ data UniqueError ann
 MultiplyDefined :: !Unique -> !ann -> !ann -> UniqueError ann
 IncoherentUsage :: !Unique -> !ann -> !ann -> UniqueError ann
 FreeVariable :: !Unique -> !ann -> UniqueError ann
-class AsUniqueError r_a5uNT ann_a5swW | r_a5uNT -> ann_a5swW
-_UniqueError :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (UniqueError ann_a5swW)
-_MultiplyDefined :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_IncoherentUsage :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW, ann_a5swW)
-_FreeVariable :: AsUniqueError r_a5uNT ann_a5swW => Prism' r_a5uNT (Unique, ann_a5swW)
+class AsUniqueError r_a5x8k ann_a5uRn | r_a5x8k -> ann_a5uRn
+_UniqueError :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (UniqueError ann_a5uRn)
+_MultiplyDefined :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_IncoherentUsage :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn, ann_a5uRn)
+_FreeVariable :: AsUniqueError r_a5x8k ann_a5uRn => Prism' r_a5x8k (Unique, ann_a5uRn)
 
 module PlutusCore.Compiler.Erase
 
@@ -8427,10 +8535,10 @@ FakeNamedDeBruijn :: NamedDeBruijn -> FakeNamedDeBruijn
 data FreeVariableError
 FreeUnique :: !Unique -> FreeVariableError
 FreeIndex :: !Index -> FreeVariableError
-class AsFreeVariableError r_a1iKJ
-_FreeVariableError :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ FreeVariableError
-_FreeUnique :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Unique
-_FreeIndex :: AsFreeVariableError r_a1iKJ => Prism' r_a1iKJ Index
+class AsFreeVariableError r_a1ti5
+_FreeVariableError :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 FreeVariableError
+_FreeUnique :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Unique
+_FreeIndex :: AsFreeVariableError r_a1ti5 => Prism' r_a1ti5 Index
 
 -- | Convert a <a>Term</a> with <a>Name</a>s into a <a>Term</a> with
 --   <a>DeBruijn</a>s. Will throw an error if a free variable is
@@ -8724,6 +8832,9 @@ type PrettyUni uni fun = (Pretty (SomeTypeIn uni), Closed uni, uni `Everywhere` 
 -- | Turn any <a>UserEvaluationError</a> into an <a>EvaluationFailure</a>.
 extractEvaluationResult :: Either (EvaluationException user internal term) a -> Either (ErrorWithCause internal term) (EvaluationResult a)
 
+-- | Spend each budget from the given stream of budgets.
+spendBudgetStreamCek :: GivenCekReqs uni fun ann s => ExBudgetCategory fun -> ExBudgetStream -> CekM uni fun s ()
+
 -- | Evaluate a term using the CEK machine and keep track of costing,
 --   logging is optional.
 runCekDeBruijn :: PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> NTerm uni fun ann -> (Either (CekEvaluationException NamedDeBruijn uni fun) (NTerm uni fun ()), cost, [Text])
@@ -8827,7 +8938,7 @@ instance Prettyprinter.Internal.Pretty UntypedPlutusCore.Evaluation.Machine.Cek.
 instance GHC.Show.Show (PlutusCore.Builtin.Runtime.BuiltinRuntime (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.CekValue uni fun ann))
 instance (Universe.Core.Closed uni, Prettyprinter.Internal.Pretty (Universe.Core.SomeTypeIn uni), Universe.Core.Everywhere uni PlutusCore.Pretty.PrettyConst.PrettyConst, Prettyprinter.Internal.Pretty fun) => Text.PrettyBy.Internal.PrettyBy PlutusCore.Pretty.Plc.PrettyConfigPlc (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.CekValue uni fun ann)
 instance PlutusCore.Builtin.HasConstant.HasConstant (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.CekValue uni fun ann)
-instance (Universe.Core.Closed uni, Universe.Core.Everywhere uni PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage) => PlutusCore.Evaluation.Machine.ExMemory.ExMemoryUsage (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.CekValue uni fun ann)
+instance (Universe.Core.Closed uni, Universe.Core.Everywhere uni PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage) => PlutusCore.Evaluation.Machine.ExMemoryUsage.ExMemoryUsage (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.CekValue uni fun ann)
 instance GHC.Show.Show fun => Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.ExBudgetCategory fun)
 instance PlutusCore.Evaluation.Machine.ExBudget.ExBudgetBuiltin fun (UntypedPlutusCore.Evaluation.Machine.Cek.Internal.ExBudgetCategory fun)
 
@@ -8972,6 +9083,11 @@ RestrictingSt :: ExRestrictingBudget -> RestrictingSt
 -- | Costs for evaluating AST nodes. Times should be specified in
 --   picoseconds, memory sizes in bytes.
 data CekMachineCosts
+
+-- | Construct an <a>ExBudgetMode</a> out of a function returning a value
+--   of the budgeting state type. The value then gets added to the current
+--   state via <tt>(&lt;&gt;)</tt>.
+monoidalBudgeting :: Monoid cost => (ExBudgetCategory fun -> ExBudget -> cost) -> ExBudgetMode cost uni fun
 
 -- | For calculating the cost of execution.
 counting :: ExBudgetMode CountingSt uni fun
@@ -9264,6 +9380,9 @@ defaultSlippage :: Slippage
 --   obtain by recursively discharging values).
 dischargeCekValue :: CekValue uni fun ann -> NTerm uni fun ()
 runCekM :: forall a cost uni fun ann. PrettyUni uni fun => MachineParameters CekMachineCosts fun (CekValue uni fun ann) -> ExBudgetMode cost uni fun -> EmitterMode uni fun -> (forall s. GivenCekReqs uni fun ann s => CekM uni fun s a) -> (Either (CekEvaluationException NamedDeBruijn uni fun) a, cost, [Text])
+
+-- | Spend each budget from the given stream of budgets.
+spendBudgetStreamCek :: GivenCekReqs uni fun ann s => ExBudgetCategory fun -> ExBudgetStream -> CekM uni fun s ()
 instance (Universe.Core.Everywhere uni GHC.Show.Show, Data.GADT.Internal.GShow uni, Universe.Core.Closed uni, GHC.Show.Show ann, GHC.Show.Show fun) => GHC.Show.Show (UntypedPlutusCore.Evaluation.Machine.SteppableCek.Internal.Context uni fun ann)
 instance Prettyprinter.Internal.Pretty (UntypedPlutusCore.Evaluation.Machine.SteppableCek.Internal.CekState uni fun ann)
 
@@ -9617,8 +9736,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6Te8 ann_a6Te9 name_a6TqK. Lens (UVarDecl name_a6Te8 ann_a6Te9) (UVarDecl name_a6TqK ann_a6Te9) name_a6Te8 name_a6TqK
-uvarDeclAnn :: forall name_a6Te8 ann_a6Te9 ann_a6TqJ. Lens (UVarDecl name_a6Te8 ann_a6Te9) (UVarDecl name_a6Te8 ann_a6TqJ) ann_a6Te9 ann_a6TqJ
+uvarDeclName :: forall name_a6VFX ann_a6VFY name_a6VSz. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VSz ann_a6VFY) name_a6VFX name_a6VSz
+uvarDeclAnn :: forall name_a6VFX ann_a6VFY ann_a6VSy. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VFX ann_a6VSy) ann_a6VFY ann_a6VSy
 
 -- | Make a <a>Var</a> referencing the given <tt>VarDecl</tt>.
 mkVar :: ann -> UVarDecl name ann -> Term name uni fun ann
@@ -9726,8 +9845,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7HCt a_a7HCu. Lens' (SimplifyOpts name_a7HCt a_a7HCu) Int
-soInlineHints :: forall name_a7HCt a_a7HCu name_a7HE5 a_a7HE6. Lens (SimplifyOpts name_a7HCt a_a7HCu) (SimplifyOpts name_a7HE5 a_a7HE6) (InlineHints name_a7HCt a_a7HCu) (InlineHints name_a7HE5 a_a7HE6)
+soMaxSimplifierIterations :: forall name_a7Khd a_a7Khe. Lens' (SimplifyOpts name_a7Khd a_a7Khe) Int
+soInlineHints :: forall name_a7Khd a_a7Khe name_a7KiP a_a7KiQ. Lens (SimplifyOpts name_a7Khd a_a7Khe) (SimplifyOpts name_a7KiP a_a7KiQ) (InlineHints name_a7Khd a_a7Khe) (InlineHints name_a7KiP a_a7KiQ)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9798,6 +9917,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7Idv a_a7Idw name_a7IeT a_a7IeU. Iso (CompilationOpts name_a7Idv a_a7Idw) (CompilationOpts name_a7IeT a_a7IeU) (SimplifyOpts name_a7Idv a_a7Idw) (SimplifyOpts name_a7IeT a_a7IeU)
+coSimplifyOpts :: forall name_a7KSf a_a7KSg name_a7KTD a_a7KTE. Iso (CompilationOpts name_a7KSf a_a7KSg) (CompilationOpts name_a7KTD a_a7KTE) (SimplifyOpts name_a7KSf a_a7KSg) (SimplifyOpts name_a7KTD a_a7KTE)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
