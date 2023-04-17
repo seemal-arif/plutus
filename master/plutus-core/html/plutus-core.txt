@@ -5925,11 +5925,12 @@ class KnownTypeAst uni x where {
     type ToHoles x :: [Hole];
     
     -- | Collect all unique variables (a variable consists of a textual name, a
-    --   unique and a kind) in an <tt>a</tt>.
-    type ToBinds x :: [Some TyNameRep];
+    --   unique and a kind) in an accumulator and return the accumulator once a
+    --   leaf is reached.
+    type ToBinds (acc :: [Some TyNameRep]) x :: [Some TyNameRep];
     type IsBuiltin x = IsBuiltin (ElaborateBuiltin x);
     type ToHoles x = ToHoles (ElaborateBuiltin x);
-    type ToBinds x = ToBinds (ElaborateBuiltin x);
+    type ToBinds acc x = ToBinds acc (ElaborateBuiltin x);
 }
 
 -- | The type representing <tt>a</tt> used on the PLC side.
@@ -5938,12 +5939,12 @@ toTypeAst :: KnownTypeAst uni x => proxy x -> Type TyName uni ()
 -- | The type representing <tt>a</tt> used on the PLC side.
 toTypeAst :: (KnownTypeAst uni x, KnownBuiltinTypeAst uni x) => proxy x -> Type TyName uni ()
 
--- | Delete all <tt>x</tt>s from a list.
-type family Delete x xs :: [a]
+-- | Insert <tt>x</tt> into <tt>xs</tt> unless it's already there.
+type family Insert x xs
 
--- | Delete all elements appearing in the first list from the second one
---   and concatenate the lists.
-type family Merge xs ys :: [a]
+-- | Delete the first <tt>x</tt> from a list. Which is okay since we only
+--   ever put things in once.
+type family Delete x xs
 
 -- | The type of errors that <tt>readKnown</tt> and <tt>makeKnown</tt> can
 --   return.
@@ -6154,9 +6155,9 @@ data TypeCheckConfig uni fun
 TypeCheckConfig :: KindCheckConfig -> BuiltinTypes uni fun -> TypeCheckConfig uni fun
 [_tccKindCheckConfig] :: TypeCheckConfig uni fun -> KindCheckConfig
 [_tccBuiltinTypes] :: TypeCheckConfig uni fun -> BuiltinTypes uni fun
-class HasKindCheckConfig c_a5TSP
-kindCheckConfig :: HasKindCheckConfig c_a5TSP => Lens' c_a5TSP KindCheckConfig
-kccHandleNameMismatches :: HasKindCheckConfig c_a5TSP => Lens' c_a5TSP HandleNameMismatches
+class HasKindCheckConfig c_a5TTg
+kindCheckConfig :: HasKindCheckConfig c_a5TTg => Lens' c_a5TTg KindCheckConfig
+kccHandleNameMismatches :: HasKindCheckConfig c_a5TTg => Lens' c_a5TTg HandleNameMismatches
 
 -- | The constraints that are required for type checking Plutus Core.
 type MonadTypeCheckPlc err uni fun ann m = MonadTypeCheck err (Term TyName Name uni fun ()) uni fun ann m
@@ -6171,9 +6172,9 @@ type MonadKindCheck err term uni fun ann m = (MonadError err m, AsTypeError err 
 -- | The type checking monad that the type checker runs in. In contains a
 --   <a>TypeCheckEnv</a> and allows to throw <a>TypeError</a>s.
 type TypeCheckT uni fun cfg m = ReaderT (TypeCheckEnv uni fun cfg) m
-tceTyVarKinds :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 fun_a5TZy. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TT7 fun_a5TZy cfg_a5TT9) TyVarKinds TyVarKinds
-tceTypeCheckConfig :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 fun_a5TZz cfg_a5TZA. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TT7 fun_a5TZz cfg_a5TZA) cfg_a5TT9 cfg_a5TZA
-tceVarTypes :: forall uni_a5TT7 fun_a5TT8 cfg_a5TT9 uni_a5TZB fun_a5TZC. Lens (TypeCheckEnv uni_a5TT7 fun_a5TT8 cfg_a5TT9) (TypeCheckEnv uni_a5TZB fun_a5TZC cfg_a5TT9) (VarTypes uni_a5TT7) (VarTypes uni_a5TZB)
+tceTyVarKinds :: forall uni_a5TTy fun_a5TTz cfg_a5TTA fun_a5TZZ. Lens (TypeCheckEnv uni_a5TTy fun_a5TTz cfg_a5TTA) (TypeCheckEnv uni_a5TTy fun_a5TZZ cfg_a5TTA) TyVarKinds TyVarKinds
+tceTypeCheckConfig :: forall uni_a5TTy fun_a5TTz cfg_a5TTA fun_a5U00 cfg_a5U01. Lens (TypeCheckEnv uni_a5TTy fun_a5TTz cfg_a5TTA) (TypeCheckEnv uni_a5TTy fun_a5U00 cfg_a5U01) cfg_a5TTA cfg_a5U01
+tceVarTypes :: forall uni_a5TTy fun_a5TTz cfg_a5TTA uni_a5U02 fun_a5U03. Lens (TypeCheckEnv uni_a5TTy fun_a5TTz cfg_a5TTA) (TypeCheckEnv uni_a5U02 fun_a5U03 cfg_a5TTA) (VarTypes uni_a5TTy) (VarTypes uni_a5U02)
 
 -- | Run a <tt>TypeCheckM</tt> computation by supplying a
 --   <a>TypeCheckConfig</a> to it.
@@ -6254,8 +6255,8 @@ data CostModel machinecosts builtincosts
 CostModel :: machinecosts -> builtincosts -> CostModel machinecosts builtincosts
 [_machineCostModel] :: CostModel machinecosts builtincosts -> machinecosts
 [_builtinCostModel] :: CostModel machinecosts builtincosts -> builtincosts
-machineCostModel :: forall machinecosts_a5Z1n builtincosts_a5Z1o machinecosts_a5Z4u. Lens (CostModel machinecosts_a5Z1n builtincosts_a5Z1o) (CostModel machinecosts_a5Z4u builtincosts_a5Z1o) machinecosts_a5Z1n machinecosts_a5Z4u
-builtinCostModel :: forall machinecosts_a5Z1n builtincosts_a5Z1o builtincosts_a5Z4t. Lens (CostModel machinecosts_a5Z1n builtincosts_a5Z1o) (CostModel machinecosts_a5Z1n builtincosts_a5Z4t) builtincosts_a5Z1o builtincosts_a5Z4t
+machineCostModel :: forall machinecosts_a5Z1O builtincosts_a5Z1P machinecosts_a5Z4V. Lens (CostModel machinecosts_a5Z1O builtincosts_a5Z1P) (CostModel machinecosts_a5Z4V builtincosts_a5Z1P) machinecosts_a5Z1O machinecosts_a5Z4V
+builtinCostModel :: forall machinecosts_a5Z1O builtincosts_a5Z1P builtincosts_a5Z4U. Lens (CostModel machinecosts_a5Z1O builtincosts_a5Z1P) (CostModel machinecosts_a5Z1O builtincosts_a5Z4U) builtincosts_a5Z1P builtincosts_a5Z4U
 
 -- | At execution time we need a <a>BuiltinsRuntime</a> object which
 --   includes both the cost model for builtins and their denotations. This
@@ -8367,9 +8368,9 @@ Program :: ann -> Version -> Term name uni fun ann -> Program name uni fun ann
 [_progAnn] :: Program name uni fun ann -> ann
 [_progVer] :: Program name uni fun ann -> Version
 [_progTerm] :: Program name uni fun ann -> Term name uni fun ann
-progAnn :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw. Lens' (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) ann_a6UKw
-progVer :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw. Lens' (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) Version
-progTerm :: forall name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw name_a6VFy uni_a6VFz fun_a6VFA. Lens (Program name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) (Program name_a6VFy uni_a6VFz fun_a6VFA ann_a6UKw) (Term name_a6UKt uni_a6UKu fun_a6UKv ann_a6UKw) (Term name_a6VFy uni_a6VFz fun_a6VFA ann_a6UKw)
+progAnn :: forall name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs. Lens' (Program name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs) ann_a6ULs
+progVer :: forall name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs. Lens' (Program name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs) Version
+progTerm :: forall name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs name_a6VGu uni_a6VGv fun_a6VGw. Lens (Program name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs) (Program name_a6VGu uni_a6VGv fun_a6VGw ann_a6ULs) (Term name_a6ULp uni_a6ULq fun_a6ULr ann_a6ULs) (Term name_a6VGu uni_a6VGv fun_a6VGw ann_a6ULs)
 bindFunM :: Monad m => (ann -> fun -> m (Term name uni fun' ann)) -> Term name uni fun ann -> m (Term name uni fun' ann)
 bindFun :: (ann -> fun -> Term name uni fun' ann) -> Term name uni fun ann -> Term name uni fun' ann
 mapFun :: (ann -> fun -> fun') -> Term name uni fun ann -> Term name uni fun' ann
@@ -8382,8 +8383,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6VFX ann_a6VFY name_a6VSz. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VSz ann_a6VFY) name_a6VFX name_a6VSz
-uvarDeclAnn :: forall name_a6VFX ann_a6VFY ann_a6VSy. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VFX ann_a6VSy) ann_a6VFY ann_a6VSy
+uvarDeclName :: forall name_a6VGT ann_a6VGU name_a6VTv. Lens (UVarDecl name_a6VGT ann_a6VGU) (UVarDecl name_a6VTv ann_a6VGU) name_a6VGT name_a6VTv
+uvarDeclAnn :: forall name_a6VGT ann_a6VGU ann_a6VTu. Lens (UVarDecl name_a6VGT ann_a6VGU) (UVarDecl name_a6VGT ann_a6VTu) ann_a6VGU ann_a6VTu
 instance GHC.Generics.Generic (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance (GHC.Show.Show ann, GHC.Show.Show name) => GHC.Show.Show (UntypedPlutusCore.Core.Type.UVarDecl name ann)
 instance GHC.Base.Functor (UntypedPlutusCore.Core.Type.UVarDecl name)
@@ -8419,17 +8420,17 @@ termSubtermsDeep :: Fold (Term name uni fun ann) (Term name uni fun ann)
 
 -- | Get all the transitive child <a>Unique</a>s of the given <a>Term</a>.
 termUniquesDeep :: HasUniques (Term name uni fun ann) => Fold (Term name uni fun ann) Unique
-data TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-VarF :: !ann_i6ZEz -> !name_i6ZEw -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-LamAbsF :: !ann_i6ZEz -> !name_i6ZEw -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-ApplyF :: !ann_i6ZEz -> !r_a70c9 -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-ForceF :: !ann_i6ZEz -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-DelayF :: !ann_i6ZEz -> !r_a70c9 -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-ConstantF :: !ann_i6ZEz -> !Some (ValueOf uni_i6ZEx) -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-BuiltinF :: !ann_i6ZEz -> !fun_i6ZEy -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-ErrorF :: !ann_i6ZEz -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-ConstrF :: !ann_i6ZEz -> !Word64 -> ![r_a70c9] -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
-CaseF :: !ann_i6ZEz -> !r_a70c9 -> ![r_a70c9] -> TermF (name_i6ZEw :: Type) (uni_i6ZEx :: Type -> Type) (fun_i6ZEy :: Type) (ann_i6ZEz :: Type) r_a70c9
+data TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+VarF :: !ann_i6ZFv -> !name_i6ZFs -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+LamAbsF :: !ann_i6ZFv -> !name_i6ZFs -> !r_a70d5 -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+ApplyF :: !ann_i6ZFv -> !r_a70d5 -> !r_a70d5 -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+ForceF :: !ann_i6ZFv -> !r_a70d5 -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+DelayF :: !ann_i6ZFv -> !r_a70d5 -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+ConstantF :: !ann_i6ZFv -> !Some (ValueOf uni_i6ZFt) -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+BuiltinF :: !ann_i6ZFv -> !fun_i6ZFu -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+ErrorF :: !ann_i6ZFv -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+ConstrF :: !ann_i6ZFv -> !Word64 -> ![r_a70d5] -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
+CaseF :: !ann_i6ZFv -> !r_a70d5 -> ![r_a70d5] -> TermF (name_i6ZFs :: Type) (uni_i6ZFt :: Type -> Type) (fun_i6ZFu :: Type) (ann_i6ZFv :: Type) r_a70d5
 
 -- | Compute the size needed for a list using the given size function for
 --   the elements. Goes with <a>encodeListWith</a>.
@@ -9736,8 +9737,8 @@ data UVarDecl name ann
 UVarDecl :: ann -> name -> UVarDecl name ann
 [_uvarDeclAnn] :: UVarDecl name ann -> ann
 [_uvarDeclName] :: UVarDecl name ann -> name
-uvarDeclName :: forall name_a6VFX ann_a6VFY name_a6VSz. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VSz ann_a6VFY) name_a6VFX name_a6VSz
-uvarDeclAnn :: forall name_a6VFX ann_a6VFY ann_a6VSy. Lens (UVarDecl name_a6VFX ann_a6VFY) (UVarDecl name_a6VFX ann_a6VSy) ann_a6VFY ann_a6VSy
+uvarDeclName :: forall name_a6VGT ann_a6VGU name_a6VTv. Lens (UVarDecl name_a6VGT ann_a6VGU) (UVarDecl name_a6VTv ann_a6VGU) name_a6VGT name_a6VTv
+uvarDeclAnn :: forall name_a6VGT ann_a6VGU ann_a6VTu. Lens (UVarDecl name_a6VGT ann_a6VGU) (UVarDecl name_a6VGT ann_a6VTu) ann_a6VGU ann_a6VTu
 
 -- | Make a <a>Var</a> referencing the given <tt>VarDecl</tt>.
 mkVar :: ann -> UVarDecl name ann -> Term name uni fun ann
@@ -9845,8 +9846,8 @@ data SimplifyOpts name a
 SimplifyOpts :: Int -> InlineHints name a -> SimplifyOpts name a
 [_soMaxSimplifierIterations] :: SimplifyOpts name a -> Int
 [_soInlineHints] :: SimplifyOpts name a -> InlineHints name a
-soMaxSimplifierIterations :: forall name_a7Khd a_a7Khe. Lens' (SimplifyOpts name_a7Khd a_a7Khe) Int
-soInlineHints :: forall name_a7Khd a_a7Khe name_a7KiP a_a7KiQ. Lens (SimplifyOpts name_a7Khd a_a7Khe) (SimplifyOpts name_a7KiP a_a7KiQ) (InlineHints name_a7Khd a_a7Khe) (InlineHints name_a7KiP a_a7KiQ)
+soMaxSimplifierIterations :: forall name_a7Ki9 a_a7Kia. Lens' (SimplifyOpts name_a7Ki9 a_a7Kia) Int
+soInlineHints :: forall name_a7Ki9 a_a7Kia name_a7KjL a_a7KjM. Lens (SimplifyOpts name_a7Ki9 a_a7Kia) (SimplifyOpts name_a7KjL a_a7KjM) (InlineHints name_a7Ki9 a_a7Kia) (InlineHints name_a7KjL a_a7KjM)
 defaultSimplifyOpts :: SimplifyOpts name a
 newtype InlineHints name a
 InlineHints :: (a -> name -> Bool) -> InlineHints name a
@@ -9917,6 +9918,6 @@ compileProgram :: (ToBuiltinMeaning uni fun, MonadQuote m, HasUnique name TermUn
 newtype CompilationOpts name a
 CompilationOpts :: SimplifyOpts name a -> CompilationOpts name a
 [_coSimplifyOpts] :: CompilationOpts name a -> SimplifyOpts name a
-coSimplifyOpts :: forall name_a7KSf a_a7KSg name_a7KTD a_a7KTE. Iso (CompilationOpts name_a7KSf a_a7KSg) (CompilationOpts name_a7KTD a_a7KTE) (SimplifyOpts name_a7KSf a_a7KSg) (SimplifyOpts name_a7KTD a_a7KTE)
+coSimplifyOpts :: forall name_a7KTb a_a7KTc name_a7KUz a_a7KUA. Iso (CompilationOpts name_a7KTb a_a7KTc) (CompilationOpts name_a7KUz a_a7KUA) (SimplifyOpts name_a7KTb a_a7KTc) (SimplifyOpts name_a7KUz a_a7KUA)
 defaultCompilationOpts :: CompilationOpts name a
 instance GHC.Show.Show (PlutusCore.Compiler.CompilationOpts name a)
